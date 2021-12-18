@@ -7,11 +7,8 @@ body {
 .HeaderHeader {
   background: black;
   min-width: 1500px;
-}
-
-.HeaderHeader img {
-  width: 300px;
-  height: 135px;
+  height: 180px;
+  box-shadow: -2px 5px 10px black;
 }
 
 .SearchButton {
@@ -20,8 +17,23 @@ body {
   font-family: Maiandra GD;
   border-width: 1px;
 }
+
+.login_register {
+  padding-top: 20px;
+  margin-right: 5%;
+  padding-bottom: 0;
+  background: Black;
+}
+
+.login_register .image_login_register {
+  width: auto;
+  height: 25px;
+  float:right;
+}
+
 .navigation {
-  padding: 40px;
+  padding-top: 20px;
+  padding-bottom: 40px;
   background: #000000;
   color: #eae2d8;
 }
@@ -33,19 +45,44 @@ body {
   overflow: hidden;
 }
 
-.navigation li {
-  float: left;
-  padding: 20px 32px;
-  font-size: 25px;
+.login_register ul {
+  list-style-type: none;
+  margin: 0px;
+  padding-right: 50px;
+  overflow: hidden;
+}
+
+.login_register li {
+  float:right;
+  font-size: 18px;
   color: #cccccc;
   font-family: Maiandra GD;
   display: block;
 }
 
+.login_register li a{
+  padding-left: 10px;
+  text-decoration: none;
+  color: #cccccc;
+  padding-top: 35px;
+}
+
+.navigation li {
+  float: left;
+  padding-left: 32px;
+  padding-right: 32px;
+  font-size: 25px;
+  color: #cccccc;
+  font-family: Maiandra GD;
+  display: block;
+  padding-top: 35px;
+}
+
 .logo {
-  vertical-align: top;
   float: left;
   margin-left: 10px;
+  width: 280px;
+  height: 120px;
 }
 
 .navigation li a:link {
@@ -137,7 +174,7 @@ body {
   float: left;
   width: 50%;
   padding: 10px;
-  height: 525px;
+  height: 475px;
   background-color: rgb(221, 221, 221);
   text-align: center;
 }
@@ -146,7 +183,7 @@ body {
   float: left;
   width: 50%;
   padding: 0px 100px;
-  height: 525px;
+  height: 475px;
   background-color: rgb(221, 221, 221);
 }
 
@@ -241,10 +278,15 @@ html {
 }
 
 .HomepageBanner {
-  height: 400px;
-  width: 1500px;
+  background-image: linear-gradient(to right, rgb(153, 0, 0) 50%, rgb(255, 255, 255) 50%);
+}
 
-  padding: 10px;
+.HomepageBanner img{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  height: 400px;
+  width: 1450px;
 }
 
 .page1-title {
