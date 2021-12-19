@@ -7,6 +7,7 @@
         <link rel="icon" href="Pictures/icon.png">
         <link rel="shortcut icon" href="Pictures/icon.png">
         <link rel="stylesheet" href="CSS/stylesheet.css">
+        <script src="slides.js"></script>
     </head>
     <body>
 
@@ -45,25 +46,40 @@
         </header>
         <br>
         <main>
-            <section class="HomepageBanner">
-                <img src="Pictures/pnwxHomePage.png" alt="Homepage Banner">
-            </section>
+        <div class="slidebanner-container">
+            <div class="mySlides">
+              <img src="Pictures/pnwxHomePage.png" style="width:100%">
+            </div>
+            
+            <div class="mySlides">
+              <div class="row">
+                <div class="column1">
+                        <h1>Silver Recovery Systems.</h1>
+                    <img src="https://www2.pnwx.com/Equipment/DarkEquip/Rotex/05510811_but.jpg" alt="Rotex Silver Recovery Equipment" title="Rotex Silver Recovery Equipment" width="650" height="350" >
+                </div>
+            
+                <div class="column2">
+                    <br><br><br><br>
+                    <h2>Silver Recovery Systems.
+                        How These Systems Work...</h2>
+                    <p>the process by which pure metallic silver can be recycled from old x-ray films. The commonest process now used is called "wash". The film is shredded and placed in large baths of a chemical reagent e.g. cyanide solution. The cyanide leaches the silver from the film. The silver is then removed from the solution by electrolysis. </p>
+                        <p><a href="page2.html"><button class="button">LEARN MORE</button></a></p>
+                </div>
+              </div>
+            </div>
+            
+            <a class="prev" onclick="nextslide(-1)">&#10094;</a>
+            <a class="next" onclick="nextslide(1)">&#10095;</a>
+            
+            <div class = "dotbullet">
+                <span class="dot" onclick="currentSlide(1)"></span> 
+                <span class="dot" onclick="currentSlide(2)"></span> 
+            </div>
+
+            </div>
+            <br>
             <br>
         <section class="Showcase">
-          <div class="row">
-            <div class="column1">
-                    <h1>Silver Recovery Systems.</h1>
-                <img src="https://www2.pnwx.com/Equipment/DarkEquip/Rotex/05510811_but.jpg" alt="Rotex Silver Recovery Equipment" title="Rotex Silver Recovery Equipment" width="650" height="350" >
-            </div>
-        
-            <div class="column2">
-                <br><br><br><br>
-                <h2>Silver Recovery Systems.
-                    How These Systems Work...</h2>
-                <p>the process by which pure metallic silver can be recycled from old x-ray films. The commonest process now used is called "wash". The film is shredded and placed in large baths of a chemical reagent e.g. cyanide solution. The cyanide leaches the silver from the film. The silver is then removed from the solution by electrolysis. </p>
-                    <p><a href="page2.html"><button class="button">LEARN MORE</button></a></p>
-            </div>
-          </div>
 
           <div class="page1-title">
 			      <h2>Product Showcase</h2>
