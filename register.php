@@ -3,27 +3,29 @@
     <head>
         <title>Registration - PNWX</title>
         <meta charset="UTF-8">
-        <script type="text/javascript" src="Register_formValidation.js"></script>
+        <script type="text/javascript" src="RegisterValidation.js"></script>
         <link rel="stylesheet" href="CSS/register.css">
     </head>
 
     <body>
 
         <?php 
-            //Name
+            //Validation
             $welcome = "";
             $fname = $lname = ""; 
             $fnameE = $lnameE = "";
-            $NameE1 = "*Please Capitalise the first character!";
-            $NameE2 = "*First character uppercase and follow by lowercase!";
+            $NameE1 = "*Please capitalize every first character for every WORD in NAME!";
+            $NameE2 = "*Please make sure the other characters after the first character are lowercase for every WORD in NAME!";
             //Other declaration
             $email = $mobile = $pw = $cpw = $gender = $terms = "";
             $emailE = $mobileE = $pwE = $cpwE = $genderE = $termsE ="";
+            $postcode = $add = "";
+            $postcodeE = $addE = "";
             $cpw_match = $pw_strong = "";
 
             if ($_SERVER["REQUEST_METHOD"] == "POST")
             {
-
+                //Validate fname
                 if(empty($_POST["fname"]))
                 {
                     $fnameE = "*First Name is required!";
@@ -41,14 +43,33 @@
                     {
                         for($x=1; $x < strlen($fname); $x++)
                         {
+                            if($fname[$x] === " ") //next word
+                            {
+                                if( $fname[$x+1] !== strtoupper($fname[$x+1]))
+                                {
+                                    $fnameE = $NameE1;
+                                }
+
+                                for($x=$x+2; $x < strlen($fname); $x++)
+                                {
+                                    if($fname[$x] !== strtolower($fname[$x]))
+                                    {
+                                        $fnameE = $NameE2;
+                                        break;
+                                    }
+                                }
+                                break;
+                            }
+                            
                             if($fname[$x] !== strtolower($fname[$x]))
                             {
                                 $fnameE = $NameE2;
                             }
-                        }
+                        }   
                     }
                 }
 
+                //Validate lname
                 if(empty($_POST["lname"]))
                 {
                     $lnameE = "*Last Name is required!";
@@ -66,6 +87,24 @@
                     {
                         for($x=1; $x < strlen($lname); $x++)
                         {
+                            if($lname[$x] === " ") //next word
+                            {
+                                if( $lname[$x+1] !== strtoupper($lname[$x+1]))
+                                {
+                                    $lnameE = $NameE1;
+                                }
+
+                                for($x=$x+2; $x < strlen($lname); $x++)
+                                {
+                                    if($lname[$x] !== strtolower($lname[$x]))
+                                    {
+                                        $lnameE = $NameE2;
+                                        break;
+                                    }
+                                }
+                                break;
+                            }
+                            
                             if($lname[$x] !== strtolower($lname[$x]))
                             {
                                 $lnameE = $NameE2;
@@ -74,7 +113,7 @@
                     }
                 }
                 
-                
+                //Validate email
                 if(empty($_POST["email"]))
                 {
                     $emailE = "*Email is required!";
@@ -89,6 +128,7 @@
                     
                 }
 
+                //Validate mobile
                 if(empty($_POST["mobile"]))
                 {
                     $mobileE = "*Phone number is required!";
@@ -107,6 +147,7 @@
                     }
                 }
 
+                //Validate password
                 if(empty($_POST["pw"]))
                 {
                     $pwE = "*Password is required!";
@@ -144,6 +185,7 @@
                     }
                 }
 
+                //Validate confirm password
                 if(empty($_POST["cpw"]) && !empty($_POST["pw"]))
                 {
                     $cpwE = "*Please confirm your password!";
@@ -161,6 +203,7 @@
                     }
                 }
 
+                //Validate gender
                 if(empty($_POST["gender"]))
                 {
                     $genderE = "*Gender is required!";
@@ -170,6 +213,7 @@
                     $gender = test($_POST["gender"]);
                 }
 
+                //Validate terms
                 if(empty($_POST["terms"]))
                 {
                     $termsE = "*Please accept the terms and conditions!";
@@ -178,8 +222,37 @@
                 {
                     $terms = test($_POST["terms"]);
                 }
+
+                //Validate address
+                if(empty($_POST["Address"]))
+                {
+                    $addE = "*Address is required!";
+                }
+                else
+                {
+                    $add = test($_POST["Address"]);
+                }
+
+                //Validate postcode
+                if(empty($_POST["Postcode"]))
+                {
+                    $postcodeE = "*Postcode is required!";
+                }
+                else
+                {
+                    $postcode = test($_POST["Postcode"]);
+                    if(!is_numeric($postcode))
+                    {
+                        $postcodeE = "*Invalid PostCode! Only numbers are Allowed!";
+                    }
+                    else if (strlen($postcode) > 5 || strlen($postcode) <5)
+                    {
+                        $postcodeE = "*Invalid PostCode length!";
+                    }
+                }
+
                 
-            }
+            } //End Validation
 
             function test($data)
             {
@@ -189,16 +262,54 @@
                 return $data;
             }
 
-            if($emailE == "" && $mobileE == "" && $pwE == "" && $cpwE == "" && $genderE == "" && $termsE =="" && $fnameE == "" && $lnameE == ""
-            &&  $fname != "" && $lname != "" && $email != "" && $mobile != "" && $pw != "" && $cpw != "" && $gender != "" && $terms != "")
+            if($emailE == "" && $mobileE == "" && $pwE == "" && $cpwE == "" && $genderE == "" && $termsE =="" && $fnameE == "" && $lnameE == "" && $addE == "" && $postcodeE == ""
+            &&  $fname != "" && $lname != "" && $email != "" && $mobile != "" && $pw != "" && $cpw != "" && $gender != "" && $terms != "" && $add != "" && $postcode != "")
             {
                 $welcome = "Thank you for your Registration, " .$fname. " !";
             }
 
+            //Database
+            //Create Table Users
+            $servername = "localhost";
+            $username = "root";
+            $password = "";
+            $dbname = "DB_PNWX";
+            
+            // Create connection
+            $conn = mysqli_connect($servername, $username, $password, $dbname);
+            //Check connection
+            if (!$conn) 
+            {
+                die("Connection failed: " . mysqli_connect_error());
+            }
+            else
+            {
+                echo "Connection successful!";
+            }
+            
+            // create table
+            $sql = "CREATE TABLE registered_User (
+            id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+            firstname VARCHAR(30) NOT NULL,
+            lastname VARCHAR(30) NOT NULL,
+            email VARCHAR(50) NOT NULL,
+            phone INT(10) NOT NULL,
+            pwd VARCHAR(30) NOT NULL,
+            gender CHAR(30) NOT NULL
+            )";
+
+            if ($conn->query($sql) === TRUE) {
+                echo "Table MyGuests created successfully";
+            } else {
+                echo "Error creating table: " . $conn->error;
+            }
+            
+            $conn->close();
+
         ?>
 
         <header>
-            <img class="logo" src="Pictures/LOGO.jpeg" alt="Pacific Northwest X-Ray Inc.">
+            <a href="index.php"><img class="logo" src="Pictures/LOGO.jpeg" alt="Pacific Northwest X-Ray Inc." ></a>
             <div class="header_signup">
                 Sign Up
                 <a href="login.php" >Already a Member? Login here!</a>
@@ -311,6 +422,30 @@
                             </div>
                         </div>
                     </div>
+                    <br><br>
+
+                    <div class="row">
+                        <div class="col1">
+                            <img src="Pictures/location.png">
+                            <label for="address">Address</label>
+                        </div>
+                        <div class="col2">
+                            <input type="text" id="address" name="Address" placeholder="Address.." value="<?php echo $add;?>" >
+                            <span class="error"> <br> <?php echo $addE; ?> </span>
+                        </div>
+                    </div>
+                    <br>
+
+                    <div class="row">
+                        <div class="col1">
+                            <img src="Pictures/postcode.png">
+                            <label for="postcode">Postcode</label>
+                        </div>
+                        <div class="col2">
+                            <input type="text" id="postcode" name="Postcode" placeholder="Postcode.." value="<?php echo $postcode;?>" >
+                            <span class="error"> <br> <?php echo $postcodeE; ?> </span>
+                        </div>
+                    </div>
                     <br>
 
                     <div class="row">
@@ -336,7 +471,9 @@
                             </select>
                         </div>
                     </div>
-                    <br><br>
+                    <br>
+                    
+                    <br>
 
                     <div class="Terms_Con">
                         <input type="checkbox" id="terms" name="terms" value="Accepted"
