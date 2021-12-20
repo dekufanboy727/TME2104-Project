@@ -3,19 +3,20 @@
     <head>
         <title>Login - PNWX</title>
         <meta charset="UTF-8">
-        <!--<script type="text/javascript" src="Register_formValidation.js"></script>-->
+        <script type="text/javascript" src="LoginValidation.js"></script>
         <link rel="stylesheet" href="CSS/login.css">
     </head>
 
     <body>
 
         <?php 
-            //Other declaration
+            //Declarations
             $email = $pw = "";
             $emailE = $pwE ="";
 
             if ($_SERVER["REQUEST_METHOD"] == "POST")
             {
+                //Validate Email
                 if(empty($_POST["email"]))
                 {
                     $emailE = "*Email is required!";
@@ -30,41 +31,15 @@
                     
                 }
 
+                //Validate Password
                 if(empty($_POST["pw"]))
                 {
                     $pwE = "*Password is required!";
                 }
                 else
                 {
-                    /*$pw = $_POST["pw"];
-                    if(strlen($pw) <6 )
-                    {
-                        $pwE = "*Please use password with at least 6 digits!";
-                    }
-                    else if(!preg_match("#[0-9]+#",$pw))
-                    {
-                        $pwE = "*Must contain at least 1 number!";
-                    }
-                    else if (!preg_match("#[A-Z]+#",$pw))
-                    {
-                        $pwE = "*Must contain at least 1 uppercase letter!";
-                    }
-                    else if (!preg_match("#[a-z]+#",$pw))
-                    {
-                        $pwE = "*Must contain at least 1 lowercase letter!";
-                    }
-                    else if (!preg_match('/[\'^£$%&*()}{@#~?><>,|=_+¬-]/',$pw))
-                    {
-                        $pwE = "*Must contain at least 1 special character!";
-                    }
-                    else if (preg_match('/\s/',$pw)) //find whitespace
-                    {
-                        $pwE = "*Must not contain any whitespace!";
-                    }
-                    else
-                    {
-                        $pw_strong = "Strong Password!";
-                    }*/
+                    $pw = $_POST["pw"];
+                    
                 }
 
             }
@@ -79,7 +54,7 @@
         ?>
 
         <header>
-            <img class="logo" src="Pictures/LOGO.jpeg" alt="Pacific Northwest X-Ray Inc.">
+            <a href="index.php"> <img class="logo" src="Pictures/LOGO.jpeg" alt="Pacific Northwest X-Ray Inc."> </a>
             <div class="header_login">
                 Log In
                 <a href="login.php" >Not Registred Yet? Register here!</a>
