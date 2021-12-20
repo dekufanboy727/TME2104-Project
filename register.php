@@ -307,7 +307,7 @@
                                 <input type="radio" id="female" name="gender" value="Female"
                                 <?php if (isset($gender) && $gender=="Female") echo "checked";?> >
                                 <label for="female">Female</label>
-                                <span class="errorGender"> <br> <?php echo $genderE; ?> </span>
+                                <span class="errorGender"><?php echo $genderE; ?> </span>
                             </div>
                         </div>
                     </div>
