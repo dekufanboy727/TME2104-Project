@@ -7,7 +7,6 @@
         <link rel="icon" href="Pictures/icon.png">
         <link rel="shortcut icon" href="Pictures/icon.png">
         <link rel="stylesheet" href="CSS/stylesheet.css">
-        <script src="slides.js"></script>
     </head>
     <body>
 
@@ -75,7 +74,7 @@
                 <span class="dot" onclick="currentSlide(1)"></span> 
                 <span class="dot" onclick="currentSlide(2)"></span> 
             </div>
-
+            <script src="slides.js"></script>
             </div>
             <br>
             <br>
