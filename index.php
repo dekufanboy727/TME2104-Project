@@ -10,7 +10,27 @@
     </head>
     <body>
 
-    <?php> <?>
+    <?php
+        $servername = "localhost";
+        $username = "root";
+        $password = "";
+        $dbname = "DB_PNWX";
+        
+        // Create connection
+        $conn = mysqli_connect($servername, $username, $password, $dbname);
+    
+        // Create database
+        $sql = "CREATE DATABASE DB_PNWX";
+        if (mysqli_query($conn, $sql)) 
+        {
+          echo "Database created successfully";
+        } else 
+        {
+          echo "Error creating database: " . mysqli_error($conn);
+        }
+
+        mysqli_close($conn);
+    ?> 
 
         <header class="HeaderHeader">
             <div class="login_register">
