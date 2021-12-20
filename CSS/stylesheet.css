@@ -9,6 +9,8 @@ body {
   min-width: 1500px;
   height: 180px;
   box-shadow: -2px 5px 10px black;
+  position: fixed;
+  z-index: 1;
 }
 
 .SearchButton {
@@ -169,6 +171,8 @@ img {vertical-align: middle;}
   max-width: 1000px;
   position: relative;
   margin: auto;
+  z-index: 0;
+  margin-top: 12%;
 }
 
 /* Next & previous buttons */
