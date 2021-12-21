@@ -1,0 +1,221 @@
+html {
+    margin : 0;
+    padding: 0;
+    min-width: 1500px;
+    font-family: Maiandra GD;
+    height: 100%;
+}
+
+body{
+    margin : 0;
+    padding: 0;
+    min-width: 1500px;
+    font-family: Maiandra GD;
+    color: black;
+    height: 100%;
+    background-color: rgb(230, 230, 230);
+}
+
+header {
+    background-color: black;
+    min-width: 1500px;
+    height: 130px;
+    box-shadow: -2px 5px 10px black;
+}
+
+header .logo {
+    float: left;
+    margin-left: 10px;
+    width: 280px;
+    height: 120px;
+}
+
+.header_login {
+    margin-left: 10px;
+    font-size: 35px;
+    color: #cccccc;
+    text-shadow: 1px 1px 4px #ffffff;
+    padding-top: 60px;
+}
+
+.header_login  a{
+    text-decoration: none;
+    float: right;
+    color: #cccccc;
+    font-size: 20px;
+    text-shadow: 3px 1px 4px #ffffff;
+    font-family: Maiandra GD;
+    padding-top: 10px;
+    padding-right: 70px;
+}
+
+img{
+    width: auto;
+    height: 20px;
+    float: right;
+    padding-right: 5px;
+}
+
+.login{
+    padding-top: 2%;
+    font-size: 25px;
+    text-shadow: 3px 1px 4px #ffffff;
+    margin-left: 8.5%;
+    float: left;
+    padding-right: 6px;
+}
+
+form {
+    font-family: Maiandra GD;
+    color: black;
+    font-weight: bold;
+    text-shadow: 3px 1px 4px #ffffff;
+}
+
+.column {
+    margin: 5% 0;
+    width: 100%;
+    display: flex;
+}
+
+.column .column_A{
+    width: 50%;
+    margin-top: 10%;
+    margin-bottom: 5%;
+    margin-left: 5%;
+}
+
+.column .column_A h1{
+    font-size: 40px;
+    text-align: center;
+}
+
+.column .column_A p {
+    font-size: 20px;
+    text-align: center;
+}
+
+.column .column_B {
+    width: 50%;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    margin-right: 5%;
+    margin-left: 5%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.384);
+    background-color: white;
+}
+
+.row{
+    display: inline-flex;
+    width: 100%;
+}
+
+.col1{
+    width: 40%;
+    padding: 10px 0px;
+    margin-top: 6px;
+}
+
+.col2{
+    width: 60%;
+    padding: 10px 0px;
+    padding-right: 20px;
+}
+
+.col1 label{
+    margin-left: 22%;
+    float: left;
+    padding-right: 6px;
+    font-size: 18px;
+}
+
+.col2 input{
+    width: 350px;
+    height: 30px;
+}
+
+input[type=password]:focus, input[type=email]:focus {
+    background-color: rgb(229, 226, 255);
+    border: 2px solid #555;
+}
+
+.button{
+    padding-top: 50px;
+    text-align: center;
+    margin-bottom: 8%;
+}
+
+.button input{
+    padding: 0px 20px;
+    height: 50px;
+    width: 150px;
+    font-family: Maiandra GD;
+    border-radius: 5px;
+    border: 2px solid #888888;
+    font-size: 18px;
+}
+
+.button input:hover{
+    background-color: rgb(0, 0, 0);
+    color:white;
+    box-shadow: 1px 1px 10px rgb(97, 97, 97) ;
+}
+
+.error{
+    color:red;
+    font-size: 13px;
+    font-family: Maiandra GD;
+}
+
+/*Footer*/
+.FooterFooter {
+    background-color: black;
+    font-family: Maiandra GD;
+    height: 250px;
+    min-width: 1500px;
+}
+
+.FFooterIcon {
+    margin-left: 10px;
+    margin-top: 20px;
+    float: left;
+}
+
+.FFooterBlocks {
+    font-family: Maiandra GD;
+    color: #b3b3b3;
+    background-color: black;
+    width: 270px;
+    height: 90px;
+    display: inline;
+    float: right;
+}
+
+.FFooterBlocks h3 {
+    text-align: left;
+    padding-left: 15%;
+    list-style-type: none;
+    text-align: left;
+}
+
+.FFooterIcon img {
+    width: 300px;
+    height: 130px;
+}
+
+#FooterLine {
+    border-top: #b3b3b3;
+    position: relative;
+}
+
+.FFooterUpperPortion {
+    height: 140px;
+}
+
+.FFooterLowerPortion {
+    text-align: center;
+}
+
+.Disclaimer {
+    color: #b3b3b3;
+}
