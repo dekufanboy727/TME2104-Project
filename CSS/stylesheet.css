@@ -238,8 +238,7 @@ body {
 .column1 {
   float: left;
   width: 50%;
-  padding: 10px;
-  height: 475px;
+  height: 315px;
   background-color: rgb(221, 221, 221);
   text-align: center;
 }
@@ -247,8 +246,8 @@ body {
 .column2 {
   float: left;
   width: 50%;
-  padding: 0px 100px;
-  height: 475px;
+  padding-right: 20px;
+  height: 315px;
   background-color: rgb(221, 221, 221);
 }
 

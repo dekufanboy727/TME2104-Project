@@ -74,7 +74,7 @@
               <div class="row">
                 <div class="column1">
                         <h1>Silver Recovery Systems.</h1>
-                    <img src="https://www2.pnwx.com/Equipment/DarkEquip/Rotex/05510811_but.jpg" alt="Rotex Silver Recovery Equipment" title="Rotex Silver Recovery Equipment" width="650" height="350" >
+                        <img src="Pictures/Equipment1.jpg" alt="Rotex Silver Recovery Equipment" title="Rotex Silver Recovery Equipment" width="200" height="200" >
                 </div>
             
                 <div class="column2">
