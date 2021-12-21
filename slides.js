@@ -24,3 +24,12 @@ function slideshow(n) {
   slides[nslide-1].style.display = "block";  
   dots[nslide-1].className += " active";
 } 
+
+/**Sidebar*** */
+function sidebar() {
+  document.getElementById("mySidenav").style.width = "250px";
+}
+
+function closesidebar() {
+  document.getElementById("mySidenav").style.width = "0";
+}

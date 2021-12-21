@@ -62,6 +62,19 @@
                 
                 </ul>
             </div>
+
+            <div id="mySidenav" class="sidenav">
+              <a href="javascript:void(0)" class="closebtn" onclick="closesidebar()">&times;</a>
+              <a href="#merchantBoard">Merchant Board</a>
+              <a href="#silverRecovery">Silver Recovery Systems</a>
+              <a href="#veterinary">Veterinary</a>
+              <a href="#xray">X-Ray Test Meters</a>
+            </div>
+            <br>
+            <span style="font-size:30px;cursor:pointer" onclick="sidebar()">&#9776; Category</span>
+
+            
+
         </header>
         <br>
         <main>
@@ -74,7 +87,7 @@
               <div class="row">
                 <div class="column1">
                         <h1>Silver Recovery Systems.</h1>
-                        <img src="Pictures/Equipment1.jpg" alt="Rotex Silver Recovery Equipment" title="Rotex Silver Recovery Equipment" width="200" height="200" >
+                    <img src="Pictures/Equipment1.jpg" alt="Rotex Silver Recovery Equipment" title="Rotex Silver Recovery Equipment" width="200" height="200" >
                 </div>
             
                 <div class="column2">
@@ -101,217 +114,113 @@
         <section class="Showcase">
 
           <div class="page1-title">
-			      <h2>Product Showcase</h2>
+			      <h2>Category</h2>
 			    </div>
               <div class="row">
+              <h3 id ="merchantBoard"> Merchant Board </h3>
                 <div class="column">
                   <div class="card">
-                    <img src="https://www2.pnwx.com/Accessories/LeadProducts/Aprons/Infab/LightningFast/UFP_1.jpg" alt="Frontal Apron">
+                    <img src="Pictures/merchantBoard1.jpg" alt="merchantBoard1">
                     <div class="grid-container">
-                      <h2>Fastest Shipping Lead Apparel.</h2>
-                      <p class="title">Infab's lightning fast 24 hour ship aprons.</p>
-                      <p><a href="https://www2.pnwx.com/Accessories/LeadProducts/Aprons/Infab/LightningFast/"><button class="button">LEARN MORE</button></a></p>
+                      <h2> 	PNWX Merchant Board for DR Panels</h2><br>
+                      <p class="title">$1,968.00</p>
+                      <p><a href="http://www.pnwx.com/Accessories/PatAsst/MerchantBoards/"><button class="button">LEARN MORE</button></a></p>
                     </div>
                   </div>
                 </div>
               
                 <div class="column">
                   <div class="card">
-                    <img src="https://www2.pnwx.com/Accessories/LeadProducts/Aprons/TechnoAideFlex/FVR_2.jpg" alt="Techno-Aide apron">
+                    <img src="Pictures/merchantBoard2.jpg" alt="merchantBoard2">
                     <div class="grid-grid-container">
-                      <h2>1-Week Ship Frontal Protection Apron.</h2>
-                      <p class="title">Techno-Aide Flex-Guard Flexible Back Lead Apron.</p>
-                      <p><a href="https://www2.pnwx.com/Accessories/LeadProducts/Aprons/TechnoAideFlex/"><button class="button">LEARN MORE</button></a></p>
+                      <h2> 	PNWX Light Duty Merchant Board for Film Cassettes</h2>
+                      <p class="title">$770.00</p>
+                      <p><a href="http://www.pnwx.com/Accessories/PatAsst/MerchantBoards/"><button class="button">LEARN MORE</button></a></p>
                     </div>
                   </div>
                 </div>
                 
-                <div class="column">
-                  <div class="card">
-                    <img src="https://www2.pnwx.com/Accessories/LeadProducts/Aprons/Infab/Revolution/ElasticBackFullWrap/603-S-RL_but.jpg" alt="Revolution Lead Aprons">
-                    <div class="grid-container">
-                      <h2>Best Comfort, 10-day ship Aprons.</h2>
-                      <p class="title">Revolution Lead Aprons - Main Menu.</p>
-                      <p><a href="https://www2.pnwx.com/Accessories/LeadProducts/Aprons/Infab/Revolution/"><button class="button">LEARN MORE</button></a></p>
-                    </div>
-                  </div>
-                </div>
+
               </div>
               
               <div class="row">
+              <h3 id ="silverRecovery"> Silver Recovery Systems</h3>
                 <div class="column">
                   <div class="card">
-                    <img src="https://www2.pnwx.com/Accessories/PatAsst/MerchantBoards/1104-C3a_1.jpg" alt="X-Ray Merchant board">
+                    <img src="Pictures/Equipment1.jpg" alt="X-Ray Merchant board">
                     <div class="grid-container">
-                      <h2>X-Ray Merchant Boards.</h2>
-                      <p class="title">PNWX Merchant Board for DR Panels.</p>
-                      <p><a href="https://www2.pnwx.com/Accessories/PatAsst/MerchantBoards/"><button class="button">LEARN MORE</button></a></p>
+                      <h2>Steel Wool Recovery Canisters and Accessories</h2>
+                      <p class="title">$215.00</p>
+                      <p><a href="http://www.pnwx.com/Equipment/DarkEquip/Rotex/SteelWoolCanisters/"><button class="button">LEARN MORE</button></a></p>
                     </div>
                   </div>
                 </div>
               
                 <div class="column">
                   <div class="card">
-                    <img src="https://www2.pnwx.com/Accessories/LeadProducts/Gloves/Proguard/RR1_1.jpg" alt="Surgical Radiation Reducing Gloves">
+                    <img src="Pictures/Equipment2.jpg" alt="Surgical Radiation Reducing Gloves">
                     <div class="grid-container">
-                      <h2>Surgical Radiation Reducing Gloves.	</h2>
-                      <p class="title">Exam and Surgical Radiation Reducing Gloves.</p>
-                      <p><a href="https://www2.pnwx.com/Accessories/LeadProducts/Gloves/Proguard/"><button class="button">LEARN MORE</button></a></p>
+                      <h2>	Rotex Standard Ultra Series Silver Recovery Systems</h2>
+                      <p class="title">$2,412.31</p>
+                      <p><a href="http://www.pnwx.com/Equipment/DarkEquip/Rotex/Ultra/"><button class="button">LEARN MORE</button></a></p>
                     </div>
                   </div>
                 </div>
                 
-                <div class="column">
-                  <div class="card">
-                    <img src="https://www2.pnwx.com/Accessories/LeadProducts/Gloves/Infab/683300-500_1.jpg" alt="Infab Lead Gloves">
-                    <div class="grid-container">
-                      <h2>Maxi-Flex Lead Gloves.</h2>
-                      <p class="title">Infab Lead Gloves</p>
-                      <p><a href="https://www2.pnwx.com/Accessories/LeadProducts/Gloves/Infab/"><button class="button">LEARN MORE</button></a></p>
-                    </div>
-                  </div>
-                </div>
               </div>
 
               <div class="row">
+              <h3 id ="veterinary"> Veterinary</h3>
                 <div class="column">
                   <div class="card">
-                    <img src="https://www2.pnwx.com/Accessories/Phantoms/Test/LinePair/05-401_1.jpg" alt="Resolution Test Patterns">
+                    <img src="Pictures/pet1.jpg" alt="Veterinary Immobilizers">
                     <div class="grid-container">
-                      <h2>Line-Pair Resolution Test Phantoms.</h2>
-                      <p class="title">Resolution Test Patterns, Easily Customized At Your Request.</p>
-                      <p><a href="https://www2.pnwx.com/Accessories/Phantoms/Test/LinePair/"><button class="button">LEARN MORE</button></a></p>
+                      <h2>	Techno-Aide's Veterinary Immobilizers</h2><br>
+                      <p class="title">$169.80</p>
+                      <p><a href="https://www2.pnwx.com/Accessories/PosAides/Pet-Sitioner/"><button class="button">LEARN MORE</button></a></p>
                     </div>
                   </div>
                 </div>
               
                 <div class="column">
                   <div class="card">
-                    <img src="https://www2.pnwx.com/Accessories/PosAides/Pet-Sitioner/QUVCA_1.jpg" alt="Veterinary Immobilizers">
+                    <img src="Pictures/pet2.jpg" alt="Veterinary Immobilizers">
                     <div class="grid-container">
-                      <h2>Small Animal Immobilizers.</h2>
-                      <p class="title">Techno-Aide's Veterinary Immobilizers.</p>
+                      <h2>Techno-Aide Veterinary Positioner</h2><br>
+                      <p class="title">$32.50</p>
                       <p><a href="https://www2.pnwx.com/Accessories/PosAides/Pet-Sitioner/"><button class="button">LEARN MORE</button></a></p>
                     </div>
                   </div>
                 </div>
                 
-                <div class="column">
-                  <div class="card">
-                    <img src="https://www2.pnwx.com/Accessories/LeadProducts/Windows/RayBarGlass_1.jpg" alt="Lead Glass">
-                    <div class="grid-container">
-                      <h2>Lead Glass.</h2>
-                      <p class="title">Leaded Glass.</p>
-                      <p><a href="https://www2.pnwx.com/Accessories/LeadProducts/Windows/"><button class="button">LEARN MORE</button></a></p>
-                    </div>
-                  </div>
-                </div>
               </div>
  
               <div class="row">
+              <h3 id ="xray">X-Ray Test Meters</h3>
                 <div class="column">
                   <div class="card">
-                    <img src="https://www2.pnwx.com/Accessories/LeadProducts/MobileBarriers/Infab/076994_2.jpg" alt="Mobile Barriers">
+                    <img src="Pictures/xray1.jpg" alt="X-Ray Test Meters">
                     <div class="grid-container">
-                      <h2>Mobile Lead Barriers.</h2>
-                      <p class="title">Adjustable Physician Protection X-ray Mobile Barrier.</p>
-                      <p><a href="https://www2.pnwx.com/Accessories/LeadProducts/MobileBarriers/Infab/"><button class="button">LEARN MORE</button></a></p>
+                      <h2>	ECC Series 820 kVp, mA, Time/mAs Meters</h2>
+                      <p class="title">$2,279.00</p>
+                      <p><a href="http://www.pnwx.com/Equipment/Test/X-Ray/ECC/820/"><button class="button">LEARN MORE</button></a></p>
                     </div>
                   </div>
                 </div>
               
                 <div class="column">
                   <div class="card">
-                    <img src="https://www2.pnwx.com/Equipment/Test/X-Ray/ECC/815_but.jpg" alt="X-Ray Test Meters">
+                    <img src="Pictures/xray2.jpg" alt="X-Ray Test Meters">
                     <div class="grid-container">
-                      <h2>X-Ray Test Meters.</h2>
-                      <p class="title">Adjustable Physician Protection X-ray Mobile Barrier.</p>
-                      <p><a href="https://www2.pnwx.com/Equipment/Test/X-Ray/ECC/"><button class="button">LEARN MORE</button></a></p>
+                      <h2>Series 815 kVp Meters</h2><br>
+                      <p class="title">$1,700.00</p>
+                      <p><a href="http://www.pnwx.com/Equipment/Test/X-Ray/ECC/815/"><button class="button">LEARN MORE</button></a></p>
                     </div>
                   </div>
                 </div>
                 
-                <div class="column">
-                  <div class="card">
-                    <img src="https://www2.pnwx.com/Accessories/PatAsst/TablePads/X-Ray/PAD-51_1.jpg" alt="X-Ray Table Pads">
-                    <div class="grid-container">
-                      <h2>X-Ray Table Pads.</h2>
-                      <p class="title">Standard X-Ray Table Pads.</p>
-                      <p><a href="https://www2.pnwx.com/Accessories/PatAsst/TablePads/X-Ray/"><button class="button">LEARN MORE</button></a></p>
-                    </div>
-                  </div>
-                </div>
               </div>
 
-              <div class="row">
-                <div class="column">
-                  <div class="card">
-                    <img src="https://www2.pnwx.com/Accessories/Phantoms/Mammography/CIRS/Accreditation/086_1.jpg" alt="ACR Digital Mammography">
-                    <div class="grid-container">
-                      <h2>ACR Accreditation Phantoms.</h2>
-                      <p class="title">ACR Digital Mammography Phantom.</p>
-                      <p><a href="https://www2.pnwx.com/Accessories/Phantoms/Mammography/CIRS/Accreditation/"><button class="button">LEARN MORE</button></a></p>
-                    </div>
-                  </div>
-                </div>
-              
-                <div class="column">
-                  <div class="card">
-                    <img src="http://www.pnwx.com/Equipment/DarkEquip/Rotex/SteelWoolCanisters/05510811_1.jpg" alt="Steel Wool Silver Recovery Canisters and Accessories.">
-                    <div class="grid-container">
-                      <h2>Steel Wool Recovery Canisters and Accessories.</h2>
-                      <p class="title">Rotex Steel Wool Recovery Equipment.</p>
-                      <p><a href="http://www.pnwx.com/Equipment/DarkEquip/Rotex/SteelWoolCanisters/"><button class="button">LEARN MORE</button></a></p>
-                    </div>
-                  </div>
-                </div>
-                
-                <div class="column">
-                  <div class="card">
-                    <img src="https://www2.pnwx.com/Accessories/LeadProducts/Blockers-Shields/Curtains/683650_1.jpg" alt="LEAD CURTAINS">
-                    <div class="grid-container">
-                      <h2>Lead Curtains.</h2>
-                      <p class="title">Infab's Solid Panel Mobile Curtain.</p>
-                      <p><a href="https://www2.pnwx.com/Accessories/LeadProducts/Blockers-Shields/Curtains/"><button class="button">LEARN MORE</button></a></p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="row">
-                <div class="column">
-                  <div class="card">
-                    <img src="https://www2.pnwx.com/Parts/Grids/11432_1.jpg" alt="X-Ray Grids">
-                    <div class="grid-container">
-                      <h2>X-Ray Grids.</h2>
-                      <p class="title">Standard X-Ray Grids.</p>
-                      <p><a href="https://www2.pnwx.com/Parts/Grids/"><button class="button">LEARN MORE</button></a></p>
-                    </div>
-                  </div>
-                </div>
-              
-                <div class="column">
-                  <div class="card">
-                    <img src="https://www2.pnwx.com/Accessories/Phantoms/Radiology/Sectional/RSD/RS-108_2.jpg" alt="Anthropomorphic Body Sections">
-                    <div class="grid-container">
-                      <h2>Sectional Body Phantoms.</h2>
-                      <p class="title">RSD Sectional Phantoms.</p>
-                      <p><a href="https://www2.pnwx.com/Accessories/Phantoms/Radiology/Sectional/RSD/"><button class="button">LEARN MORE</button></a></p>
-                    </div>
-                  </div>
-                </div>
-                
-                <div class="column">
-                  <div class="card">
-                    <img src="https://www2.pnwx.com/Accessories/Phantoms/Radiology/Ultrasound/CIRS/GeneralPurpose/040GSE_1.jpg" alt="Multi-Purpose Multi-Tissue Ultrasound Phantom">
-                    <div class="grid-container">
-                      <h2>Ultrasound Phantoms.</h2>
-                      <p class="title">General Purpose, Multi-Tissue Ultrasound Phantom.</p>
-                      <p><a href="https://www2.pnwx.com/Accessories/Phantoms/Radiology/Ultrasound/CIRS/GeneralPurpose/"><button class="button">LEARN MORE</button></a></p>
-                    </div>
-                  </div>
-                </div>
-              </div>
             </section>
         </main>
         <br>
