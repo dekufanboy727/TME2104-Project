@@ -1,3 +1,6 @@
+<!--!!!-->
+<?php session_start(); ?>
+
 <!DOCTYPE html>
 <!--Procurred by Chong Yun Sin 74455, Than Ye Hong 76990, Tang Jhen Nee 77363, Liew Yu Heng 77313-->
 
@@ -11,23 +14,40 @@
     <body>
 
     <?php
-        $servername = "localhost";
-        $username = "root";
-        $password = "";
-        $dbname = "DB_PNWX";
-        
-        // Create connection
-        $conn = mysqli_connect($servername, $username, $password, $dbname);
+        include 'connection.php';
     
         // Create database
         $sql = "CREATE DATABASE DB_PNWX";
         if (mysqli_query($conn, $sql)) 
         {
           echo "Database created successfully";
-        } else 
-        {
-          //echo "Error creating database: " . mysqli_error($conn);
         }
+
+        
+        // ADDDED!!!!!
+        //Declarations
+        $signup = $login = $logout = $myprofile = "";
+        //Check if session login is defined
+        if (isset($_SESSION['login'])) 
+        {
+            //If it is defined, then we check is it Logged in 
+            if($_SESSION['login'] === "Logged In")
+            {
+                $logout = "Logout";
+                $myprofile = "My Profile     |";
+            }
+            else //Or logged out
+            {
+                $signup = "Sign Up";
+                $login = "Login     |";
+            }
+        }
+        else //session login not set yet
+        {
+            $signup = "Sign Up";
+            $login = "Login     |";
+        }
+        //ADDDED!!!!!
 
         mysqli_close($conn);
     ?> 
@@ -35,12 +55,17 @@
         <header class="HeaderHeader" id="Push_header">
             <img class="logo" src="Pictures/LOGO.jpeg" alt="Pacific Northwest X-Ray Inc.">
             <div class="login_register">
+              <!-- ADDDED!!!!!-->
                 <ul>
-                  <li><a href="register.php">Sign Up</a></li>
-                  <li><a>|</a></li>
-                  <li><a href="login.php" >Login</a></li>
-                  <li><img class="image_login_register" src="Pictures/login_register_icon.png" alt="Login and register icon""></li>
+                  <li><a href="register.php"><?php echo $signup?></a></li>
+                  <li><a href="login.php" ><?php echo $login?></a></li>
+                  <li><a href="logout.php"  ><?php echo $logout?></a></li>
+                  <li><a href="myProfile.php"  ><?php echo $myprofile?></a></li>
+                  <li>
+                  <img class="image_login_register" src="Pictures/login_register_icon.png" alt="Login and register icon">
+                  </li>
                 </ul>
+                <!-- ADDDED!!!!!-->
             </div>
 
             <div class="navigation">
