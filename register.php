@@ -11,16 +11,16 @@
 
         <?php 
             //Validation
-            $welcome = "";
+            $welcome = $login = "";
             $fname = $lname = ""; 
             $fnameE = $lnameE = "";
-            $NameE1 = "*Please capitalize every first character for every WORD in NAME!";
-            $NameE2 = "*Please make sure the other characters after the first character are lowercase for every WORD in NAME!";
+            $NameE1 = "*Please capitalise FIRST CHARACTER of your Name!";
+            $NameE2 = "*Please make sure your Name are all in lowercase except the FIRST character!";
             //Other declaration
             $email = $mobile = $pw = $cpw = $gender = $terms = "";
             $emailE = $mobileE = $pwE = $cpwE = $genderE = $termsE ="";
-            $postcode = $add = "";
-            $postcodeE = $addE = "";
+            $postcode = $add = $city ="";
+            $postcodeE = $addE = $cityE ="";
             $cpw_match = $pw_strong = "";
 
             if ($_SERVER["REQUEST_METHOD"] == "POST")
@@ -45,23 +45,13 @@
                         {
                             if($fname[$x] === " ") //next word
                             {
-                                if( $fname[$x+1] !== strtoupper($fname[$x+1]))
+                                $x++;
+                                if( $fname[$x] !== strtoupper($fname[$x]))
                                 {
                                     $fnameE = $NameE1;
                                 }
-
-                                for($x=$x+2; $x < strlen($fname); $x++)
-                                {
-                                    if($fname[$x] !== strtolower($fname[$x]))
-                                    {
-                                        $fnameE = $NameE2;
-                                        break;
-                                    }
-                                }
-                                break;
                             }
-                            
-                            if($fname[$x] !== strtolower($fname[$x]))
+                            else if($fname[$x] !== strtolower($fname[$x]))
                             {
                                 $fnameE = $NameE2;
                             }
@@ -89,27 +79,17 @@
                         {
                             if($lname[$x] === " ") //next word
                             {
-                                if( $lname[$x+1] !== strtoupper($lname[$x+1]))
+                                $x++;
+                                if( $lname[$x] !== strtoupper($lname[$x]))
                                 {
                                     $lnameE = $NameE1;
                                 }
-
-                                for($x=$x+2; $x < strlen($lname); $x++)
-                                {
-                                    if($lname[$x] !== strtolower($lname[$x]))
-                                    {
-                                        $lnameE = $NameE2;
-                                        break;
-                                    }
-                                }
-                                break;
                             }
-                            
-                            if($lname[$x] !== strtolower($lname[$x]))
+                            else if($lname[$x] !== strtolower($lname[$x]))
                             {
                                 $lnameE = $NameE2;
                             }
-                        }
+                        }   
                     }
                 }
                 
@@ -251,6 +231,18 @@
                     }
                 }
 
+                //Validate city
+                if(empty($_POST["city"]))
+                {
+                    $cityE = "*City is required!";
+                }
+                else
+                {
+                    $city = test($_POST["city"]);
+                }
+
+                $state = test($_POST["state"]);
+
                 
             } //End Validation
 
@@ -262,32 +254,28 @@
                 return $data;
             }
 
-            if($emailE == "" && $mobileE == "" && $pwE == "" && $cpwE == "" && $genderE == "" && $termsE =="" && $fnameE == "" && $lnameE == "" && $addE == "" && $postcodeE == ""
-            &&  $fname != "" && $lname != "" && $email != "" && $mobile != "" && $pw != "" && $cpw != "" && $gender != "" && $terms != "" && $add != "" && $postcode != "")
+            //Connection
+            include 'connection.php';
+
+            if($emailE == "" && $mobileE == "" && $pwE == "" && $cpwE == "" && $genderE == "" && $termsE =="" && $fnameE == "" && $lnameE == "" && $addE == "" && $postcodeE == "" && $cityE == ""
+            &&  $fname != "" && $lname != "" && $email != "" && $mobile != "" && $pw != "" && $cpw != "" && $gender != "" && $terms != "" && $add != "" && $postcode != "" && $city != "")
             {
                 $welcome = "Thank you for your Registration, " .$fname. " !";
+                $login = "Click HERE to Login!";
+
+                //Insert registered user's data into the table
+                $sql = "INSERT INTO registered_User (firstname, lastname, email, phone, pwd, gender, _state, postcode, _address, city,login)
+                VALUES ('$fname', '$lname', '$email','$mobile', '$pw','$gender', '$state', '$postcode', '$add', '$city', 'Logged Out')";
+                if ($conn->query($sql) === TRUE) {
+                    echo "New record created successfully";
+                  } else {
+                    echo "Error: " . $sql . "<br>" . $conn->error;
+                  }
             }
 
-            //Database
+            
+
             //Create Table Users
-            $servername = "localhost";
-            $username = "root";
-            $password = "";
-            $dbname = "DB_PNWX";
-            
-            // Create connection
-            $conn = mysqli_connect($servername, $username, $password, $dbname);
-            //Check connection
-            if (!$conn) 
-            {
-                die("Connection failed: " . mysqli_connect_error());
-            }
-            else
-            {
-                echo "Connection successful!";
-            }
-            
-            // create table
             $sql = "CREATE TABLE registered_User (
             id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
             firstname VARCHAR(30) NOT NULL,
@@ -298,13 +286,25 @@
             gender CHAR(30) NOT NULL
             )";
 
+            $sql ="ALTER table registered_User
+            ADD _state CHAR(30) NOT NULL,
+            ADD postcode INT(10) NOT NULL,
+            ADD _address VARCHAR(255) NOT NULL";
+
+            $sql ="ALTER table registered_User
+            ADD city CHAR(30) NOT NULL";
+            
+            $sql ="ALTER table registered_User
+            ADD login CHAR(30) NOT NULL";
+
             if ($conn->query($sql) === TRUE) {
                 echo "Table MyGuests created successfully";
             } else {
                 echo "Error creating table: " . $conn->error;
             }
             
-            $conn->close();
+            //Close Connection
+            mysqli_close($conn);
 
         ?>
 
@@ -324,7 +324,7 @@
             </div>
 
             <div class="column_B">  
-                    <h3 class="signup">Create your PNWX Account</h3>
+                <h3 class="signup">Create your PNWX Account</h3>
                 <form name="reg" method="post" onsubmit="return validateForm()" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
                     <div class="row">
                         <div class="col1">
@@ -451,6 +451,18 @@
                     <div class="row">
                         <div class="col1">
                             <img src="Pictures/location.png">
+                            <label for="city">City</label>
+                        </div>
+                        <div class="col2">
+                            <input type="text" id="city" name="city" placeholder="City.." value="<?php echo $city;?>" >
+                            <span class="error"> <br> <?php echo $cityE; ?> </span>
+                        </div>
+                    </div>
+                    <br>
+
+                    <div class="row">
+                        <div class="col1">
+                            <img src="Pictures/location.png">
                             <label for="state">State</label>
                         </div>
                         <div class="col2">
@@ -486,7 +498,14 @@
                         <input type="submit" name = "submit" value="Register" >
                         <input type="reset" name = "reset" value="Clear" > 
                     </div>
-                    <div class="welcome"> <br> <?php echo $welcome; ?></div>
+
+                    <div class="welcome"> 
+                        <br> 
+                        <?php echo $welcome; ?>
+                        <br><br>
+                        <span class="login"><a href= "login.php"> <?php echo $login; ?> </a></span>
+                    </div>
+
                 </form>
             </div>
         </div>
