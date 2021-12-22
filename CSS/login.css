@@ -57,7 +57,7 @@ img{
 }
 
 .login{
-    padding-top: 2%;
+    margin-top: 7%;
     font-size: 25px;
     text-shadow: 3px 1px 4px #ffffff;
     margin-left: 8.5%;
@@ -161,6 +161,23 @@ input[type=password]:focus, input[type=email]:focus {
     box-shadow: 1px 1px 10px rgb(97, 97, 97) ;
 }
 
+.login_error {
+    text-align: center;
+    margin: 3% 0;
+}
+
+.login_fail {
+    color:red;
+    font-family: Maiandra GD;
+    font-size: 25px;
+}
+
+.login_pass {
+    color:green;
+    font-family: Maiandra GD;
+    font-size: 25px;
+}
+
 .error{
     color:red;
     font-size: 13px;
@@ -219,3 +236,4 @@ input[type=password]:focus, input[type=email]:focus {
 .Disclaimer {
     color: #b3b3b3;
 }
+

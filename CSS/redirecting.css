@@ -1,0 +1,154 @@
+html {
+    margin : 0;
+    padding: 0;
+    min-width: 1500px;
+    font-family: Maiandra GD;
+    height: 100%;
+}
+
+body{
+    margin : 0;
+    padding: 0;
+    min-width: 1500px;
+    font-family: Maiandra GD;
+    color: black;
+    height: 100%;
+    background-color: rgb(230, 230, 230);
+}
+
+header {
+    background-color: black;
+    min-width: 1500px;
+    height: 130px;
+    box-shadow: -2px 5px 10px black;
+}
+
+header .logo {
+    float: left;
+    margin-left: 10px;
+    width: 280px;
+    height: 120px;
+}
+
+.header_login {
+    margin-left: 10px;
+    font-size: 35px;
+    color: #cccccc;
+    text-shadow: 1px 1px 4px #ffffff;
+    padding-top: 60px;
+}
+
+.MAINBODY {
+    color: black;
+    font-family: Maiandra GD;
+    font-size: 30px;
+    height: 50%;
+    text-align: center;
+    margin-top: 17%;
+}
+
+/*Footer*/
+.FooterFooter {
+    background-color: black;
+    font-family: Maiandra GD;
+    height: 250px;
+    min-width: 1500px;
+}
+
+.FFooterIcon {
+    margin-left: 10px;
+    margin-top: 20px;
+    float: left;
+}
+
+.FFooterBlocks {
+    font-family: Maiandra GD;
+    color: #b3b3b3;
+    background-color: black;
+    width: 270px;
+    height: 90px;
+    display: inline;
+    float: right;
+}
+
+.FFooterBlocks h3 {
+    text-align: left;
+    padding-left: 15%;
+    list-style-type: none;
+    text-align: left;
+}
+
+.FFooterIcon img {
+    width: 300px;
+    height: 130px;
+}
+
+#FooterLine {
+    border-top: #b3b3b3;
+    position: relative;
+}
+
+.FFooterUpperPortion {
+    height: 140px;
+}
+
+.FFooterLowerPortion {
+    text-align: center;
+}
+
+.Disclaimer {
+    color: #b3b3b3;
+}
+
+#boxes {
+    text-align: center;
+}
+
+/*Animation*/
+
+.box {
+    position: relative;
+    width: 80px;
+    height: 40px;
+    margin: 5px;
+    display: inline-block;
+    margin-top: 2%;
+    font-family: Maiandra GD;
+}
+    
+._1 {
+    background-color: #478ee6;
+    padding: 5px;
+}
+
+._2 {
+    background-color: #f15c61;
+    padding: 5px;
+}
+
+._3 {
+    background-color: #5ffdc0;
+    padding: 5px;
+}
+
+._4 {
+    background-color: #fd5ff5;
+    padding: 5px;
+}
+
+._5 {
+    background-color: #5fcbfd;
+    padding: 5px;
+}
+
+._6 {
+    background-color: #edfd5f;
+    padding: 5px;
+}
+
+._7 {
+    background-color: #00c22a;
+    padding: 5px;
+}
+
+
