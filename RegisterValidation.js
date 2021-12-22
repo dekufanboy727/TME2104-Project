@@ -9,7 +9,9 @@ function validateForm()
     let cpw = document.reg.cpw.value;
     let address = document.reg.Address.value;
     let postcode = document.reg.Postcode.value;
-
+    let city = document.reg.city.value;
+    
+    
     //validate first name
     if(fname == "" ||  fname == null)
     {
@@ -129,6 +131,13 @@ function validateForm()
         }
     }
     
+    //validate city
+    if( city  == ""  )
+    {
+        alert("City is Required!");
+        return false;
+    }
+    
     //validate if the terms is checked
     if(!document.getElementById("terms").checked)
     {
@@ -148,34 +157,26 @@ function ValidateName(name) //Validate first and last name
 
     if(name.charAt(0) !== name.charAt(0).toUpperCase())
     {
-        alert("Please capitalise the first character of Name!");
+        alert("Please capitalise FIRST CHARACTER of your Name!");
         return false;
     }
     else //Check whether the other characters are in lower case?
     {
+        
         for(x=1; x<name.length; x++)
         {
             if(name.charAt(x) === " ")//Next word
             {
-                if(name.charAt(x+1) !== name.charAt(x+1).toUpperCase())
+                x++;
+                if(name.charAt(x) !== name.charAt(x).toUpperCase())
                 {
-                    alert("Please capitalize every first character for every WORD in NAME!");
+                    alert("Please capitalise FIRST CHARACTER of your Name!");
                     return false;
                 }
- 
-                for(x=x+2; x<name.length; x++)
-                {
-                    if(name.charAt(x) !== name.charAt(x).toLowerCase())
-                    {
-                        alert("Please make sure the other characters after the first character are lowercase for every WORD in NAME!")
-                        return false;
-                    }
-                }
             }
-            
-            if(name.charAt(x) !== name.charAt(x).toLowerCase())
+            else if(name.charAt(x) !== name.charAt(x).toLowerCase())
             {
-                alert("Please make sure the other characters after the first character are lowercase for every WORD in NAME!")
+                alert("Please make sure your Name are all in lowercase except the FIRST character!");
                 return false;
             }
             
