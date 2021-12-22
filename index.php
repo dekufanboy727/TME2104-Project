@@ -26,13 +26,14 @@
           echo "Database created successfully";
         } else 
         {
-          echo "Error creating database: " . mysqli_error($conn);
+          //echo "Error creating database: " . mysqli_error($conn);
         }
 
         mysqli_close($conn);
     ?> 
 
-        <header class="HeaderHeader">
+        <header class="HeaderHeader" id="Push_header">
+            <img class="logo" src="Pictures/LOGO.jpeg" alt="Pacific Northwest X-Ray Inc.">
             <div class="login_register">
                 <ul>
                   <li><a href="register.php">Sign Up</a></li>
@@ -42,8 +43,6 @@
                 </ul>
             </div>
 
-            <img class="logo" src="Pictures/LOGO.jpeg" alt="Pacific Northwest X-Ray Inc.">
-            
             <div class="navigation">
                 <ul >
                 
@@ -62,22 +61,25 @@
                 
                 </ul>
             </div>
-
-            <div id="mySidenav" class="sidenav">
-              <a href="javascript:void(0)" class="closebtn" onclick="closesidebar()">&times;</a>
-              <a href="#merchantBoard">Merchant Board</a>
-              <a href="#silverRecovery">Silver Recovery Systems</a>
-              <a href="#veterinary">Veterinary</a>
-              <a href="#xray">X-Ray Test Meters</a>
-            </div>
-            <br>
-            <span style="font-size:30px;cursor:pointer" onclick="sidebar()">&#9776; Category</span>
-
-            
-
         </header>
+        <div id="mySidenav" class="sidenav">
+              <a href="javascript:void(0)" class="closebtn" onclick="closesidebar()">&times;</a>
+              <br>
+              <a href="#merchantBoard" >Merchant Board</a>
+              <br>
+              <a href="#silverRecovery" >Silver Recovery Systems</a>
+              <br>
+              <a href="#veterinary">Veterinary</a>
+              <br>
+              <a href="#xray" ">X-Ray Test Meters</a>
+        </div>
         <br>
-        <main>
+        <a id="expand_sidenav">
+        <span onclick="sidebar()">&#9776; Category</span>
+        </a>
+        <br>
+
+        <main id="Push_main">
         <div class="slidebanner-container">
             <div class="mySlides">
               <img src="Pictures/pnwxHomePage.png" style="width:100%">
@@ -111,13 +113,14 @@
             </div>
             <br>
             <br>
-        <section class="Showcase">
 
+        <section class="Showcase">
           <div class="page1-title">
-			      <h2>Category</h2>
+			      <h2>- Category -</h2>
 			    </div>
               <div class="row">
-              <h3 id ="merchantBoard"> Merchant Board </h3>
+                <h3 id ="merchantBoard"> Merchant Board </h3>
+
                 <div class="column">
                   <div class="card">
                     <img src="Pictures/merchantBoard1.jpg" alt="merchantBoard1">
@@ -132,7 +135,7 @@
                 <div class="column">
                   <div class="card">
                     <img src="Pictures/merchantBoard2.jpg" alt="merchantBoard2">
-                    <div class="grid-grid-container">
+                    <div class="grid-container">
                       <h2> 	PNWX Light Duty Merchant Board for Film Cassettes</h2>
                       <p class="title">$770.00</p>
                       <p><a href="http://www.pnwx.com/Accessories/PatAsst/MerchantBoards/"><button class="button">LEARN MORE</button></a></p>
@@ -223,10 +226,8 @@
 
             </section>
         </main>
-        <br>
 
-
-        <footer class="FooterFooter">
+        <footer class="FooterFooter" id="Push_footer">
             <div class="FFooterUpperPortion">
                 <div class="FFooterIcon">
                     <img src="Pictures/LOGO.jpeg" alt="Pacific Northwest X-Ray Inc.">
