@@ -15,6 +15,8 @@
             //Declarations
             $email = $pw = "";
             $emailE = $pwE ="";
+            $error= "";
+
 
             if ($_SERVER["REQUEST_METHOD"] == "POST")
             {
@@ -77,7 +79,8 @@
                     if($result == true)
                     {
                         echo "UPDATED LOGIN";
-                    } else
+                    } 
+                    else
                     {
                         echo "Failed to update". $conn->error;
                     }
@@ -85,10 +88,17 @@
                     //Set session variables
                     $_SESSION['email'] = $email;
                     $_SESSION['login'] = "Logged In";
-                    $_SESSION['id'] = $id;
+                    $_SESSION['user_id'] = $id;
 
                     //Close Connection
                     mysqli_close($conn);
+
+                    //Redirecting user
+                    header("Location: redirecting.html");
+                }   
+                else
+                {
+                    $error = "Login Failed! Please try again!";
                 }
             }
         ?>
@@ -109,7 +119,7 @@
             </div>
 
             <div class="column_B">  
-                    <h3 class="login">Log In</h3>
+                <h3 class="login">Log In</h3>
                 <form name="login" method="post" onsubmit="return validateForm()" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
                     <div class="row">
                         <div class="col1">
@@ -136,6 +146,10 @@
 
                     <div class="button">
                         <input type="submit" name = "submit" value="Login" > 
+                    </div>
+
+                    <div class = "login_error">
+                    <span class = "login_fail"><?php echo $error; ?></span>
                     </div>
 
                 </form>
