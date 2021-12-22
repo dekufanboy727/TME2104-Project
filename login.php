@@ -1,3 +1,5 @@
+<?php session_start() ?>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -39,7 +41,6 @@
                 else
                 {
                     $pw = $_POST["pw"];
-                    
                 }
 
             }
@@ -51,13 +52,52 @@
                 $data = htmlspecialchars($data);
                 return $data;
             }
+
+            //Connection
+            include 'connection.php';
+            
+            //No error in input
+            if (!empty($_POST["email"])&& !empty($_POST["pw"])) //Check whether the user exists 
+            {
+                $sql = "SELECT id FROM registered_User WHERE email='$email' AND pwd='$pw'"; //Select the user id
+                $isFound = mysqli_query($conn,$sql); //Check is it exists
+                
+                //Found the user
+                if(mysqli_num_rows($isFound) == 1) 
+                {
+                    //fetch the id
+                    $result = mysqli_fetch_assoc($isFound);
+                    $id = $result["id"];
+
+                    //Update the login status in table
+                    $sql = "UPDATE registered_User SET login='Logged In' WHERE id='$id'";
+
+                    $result = mysqli_query ($conn,$sql);
+                    //See if updated
+                    if($result == true)
+                    {
+                        echo "UPDATED LOGIN";
+                    } else
+                    {
+                        echo "Failed to update". $conn->error;
+                    }
+
+                    //Set session variables
+                    $_SESSION['email'] = $email;
+                    $_SESSION['login'] = "Logged In";
+                    $_SESSION['id'] = $id;
+
+                    //Close Connection
+                    mysqli_close($conn);
+                }
+            }
         ?>
 
         <header>
             <a href="index.php"> <img class="logo" src="Pictures/LOGO.jpeg" alt="Pacific Northwest X-Ray Inc."> </a>
             <div class="header_login">
                 Log In
-                <a href="login.php" >Not Registred Yet? Register here!</a>
+                <a href="register.php" >Not Registred Yet? Register here!</a>
             </div>
         </header>
         
