@@ -242,6 +242,7 @@
                 }
 
                 $state = test($_POST["state"]);
+                $region = test($_POST["region"]);
 
                 
             } //End Validation
@@ -263,6 +264,7 @@
                 firstname VARCHAR(30) NOT NULL,
                 lastname VARCHAR(30) NOT NULL,
                 email VARCHAR(50) NOT NULL,
+                region int(5) NOT NULL,
                 phone INT(10) NOT NULL,
                 pwd VARCHAR(30) NOT NULL,
                 gender CHAR(30) NOT NULL,
@@ -270,7 +272,7 @@
                 postcode INT(10) NOT NULL,
                 _address VARCHAR(255) NOT NULL,
                 city CHAR(30) NOT NULL,
-                login CHAR(30) NOT NULL
+                _login CHAR(30) NOT NULL
                 )";
     
                 if ($conn->query($sql) === TRUE) {
@@ -286,8 +288,8 @@
                 $login = "Click HERE to Login!";
 
                 //Insert registered user's data into the table
-                $sql = "INSERT INTO registered_User (firstname, lastname, email, phone, pwd, gender, _state, postcode, _address, city,login)
-                VALUES ('$fname', '$lname', '$email','$mobile', '$pw','$gender', '$state', '$postcode', '$add', '$city', 'Logged Out')";
+                $sql = "INSERT INTO registered_User (firstname, lastname, email, region, phone, pwd, gender, _state, postcode, _address, city,_login)
+                VALUES ('$fname', '$lname', '$email','$region','$mobile', '$pw','$gender', '$state', '$postcode', '$add', '$city', 'Logged Out')";
                 if ($conn->query($sql) === TRUE) {
                     echo "New record created successfully";
                   } else {

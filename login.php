@@ -72,7 +72,7 @@
                     $id = $result["id"];
 
                     //Update the login status in table
-                    $sql = "UPDATE registered_User SET login='Logged In' WHERE id='$id'";
+                    $sql = "UPDATE registered_User SET _login='Logged In' WHERE id='$id'";
 
                     $result = mysqli_query ($conn,$sql);
                     //See if updated
