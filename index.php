@@ -14,15 +14,9 @@
     <body>
 
     <?php
-        include 'connection.php';
-    
-        // Create database
-        $sql = "CREATE DATABASE DB_PNWX";
-        if (mysqli_query($conn, $sql)) 
-        {
-          echo "Database created successfully";
-        }
 
+        // Create database & connection
+        include 'connection.php';
         
         // ADDDED!!!!!
         //Declarations
@@ -47,31 +41,32 @@
             $signup = "Sign Up";
             $login = "Login     |";
         }
-        //ADDDED!!!!!
 
         mysqli_close($conn);
     ?> 
 
+    
         <header class="HeaderHeader" id="Push_header">
+            <div id = side_logo>
+            <a id="expand_sidenav"><span onclick="sidebar()">&#9776;</span></a>
             <img class="logo" src="Pictures/LOGO.jpeg" alt="Pacific Northwest X-Ray Inc.">
+            </div>
+
             <div class="login_register">
-              <!-- ADDDED!!!!!-->
                 <ul>
                   <li><a href="register.php"><?php echo $signup?></a></li>
                   <li><a href="login.php" ><?php echo $login?></a></li>
                   <li><a href="logout.php"  ><?php echo $logout?></a></li>
                   <li><a href="myProfile.php"  ><?php echo $myprofile?></a></li>
-                  <li>
-                  <img class="image_login_register" src="Pictures/login_register_icon.png" alt="Login and register icon">
-                  </li>
+                  <li><img class="image_login_register" src="Pictures/login_register_icon.png" alt="Login and register icon"></a>
                 </ul>
-                <!-- ADDDED!!!!!-->
             </div>
-
+            
+                 
             <div class="navigation">
                 <ul >
                 
-                <li><a href="index.html" target="_blank">Home</a></li>
+                <li><a href="index.php" target="_blank">Home</a></li>
                 <li><a href="http://www.pnwx.com/Equipment/" target="_blank">Equipment</a></li>
                 <li><a href="http://www.pnwx.com/Accessories/" target="_blank">Accessories</a></li>
                 <li><a href="http://www.pnwx.com/Supplies" target="_blank">Supplies</a></li>
@@ -98,11 +93,6 @@
               <br>
               <a href="#xray" ">X-Ray Test Meters</a>
         </div>
-        <br>
-        <a id="expand_sidenav">
-        <span onclick="sidebar()">&#9776; Category</span>
-        </a>
-        <br>
 
         <main id="Push_main">
         <div class="slidebanner-container">
