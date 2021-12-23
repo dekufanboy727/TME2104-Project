@@ -265,19 +265,13 @@
                 email VARCHAR(50) NOT NULL,
                 phone INT(10) NOT NULL,
                 pwd VARCHAR(30) NOT NULL,
-                gender CHAR(30) NOT NULL
+                gender CHAR(30) NOT NULL,
+                _state CHAR(30) NOT NULL,
+                postcode INT(10) NOT NULL,
+                _address VARCHAR(255) NOT NULL,
+                city CHAR(30) NOT NULL,
+                login CHAR(30) NOT NULL
                 )";
-    
-                $sql ="ALTER table registered_User
-                ADD _state CHAR(30) NOT NULL,
-                ADD postcode INT(10) NOT NULL,
-                ADD _address VARCHAR(255) NOT NULL";
-    
-                $sql ="ALTER table registered_User
-                ADD city CHAR(30) NOT NULL";
-                
-                $sql ="ALTER table registered_User
-                ADD login CHAR(30) NOT NULL";
     
                 if ($conn->query($sql) === TRUE) {
                     echo "Table MyGuests created successfully";
