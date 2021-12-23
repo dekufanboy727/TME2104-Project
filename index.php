@@ -48,8 +48,10 @@
     
         <header class="HeaderHeader" id="Push_header">
             <div id = side_logo>
-            <a id="expand_sidenav"><span onclick="sidebar()">&#9776;</span></a>
-            <img class="logo" src="Pictures/LOGO.jpeg" alt="Pacific Northwest X-Ray Inc.">
+              <ul>
+              <li><a id="expand_sidenav"><span onclick="sidebar()">&#9776;</span></a></li>
+              <li><img class="logo" src="Pictures/LOGO.jpeg" alt="Pacific Northwest X-Ray Inc."></li>
+              <ul>
             </div>
 
             <div class="login_register">
@@ -66,7 +68,7 @@
             <div class="navigation">
                 <ul >
                 
-                <li><a href="index.php" target="_blank">Home</a></li>
+                <!--<li><a href="index.php" target="_blank">Home</a></li>
                 <li><a href="http://www.pnwx.com/Equipment/" target="_blank">Equipment</a></li>
                 <li><a href="http://www.pnwx.com/Accessories/" target="_blank">Accessories</a></li>
                 <li><a href="http://www.pnwx.com/Supplies" target="_blank">Supplies</a></li>
@@ -79,7 +81,7 @@
                 </form></li>
                 </div>
                 
-                </ul>
+                </ul>-->
             </div>
         </header>
         <div id="mySidenav" class="sidenav">
