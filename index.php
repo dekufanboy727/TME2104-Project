@@ -1,3 +1,6 @@
+<!--!!!-->
+<?php session_start(); ?>
+
 <!DOCTYPE html>
 <!--Procurred by Chong Yun Sin 74455, Than Ye Hong 76990, Tang Jhen Nee 77363, Liew Yu Heng 77313-->
 
@@ -11,43 +14,61 @@
     <body>
 
     <?php
-        $servername = "localhost";
-        $username = "root";
-        $password = "";
-        $dbname = "DB_PNWX";
+
+        // Create database & connection
+        include 'connection.php';
         
-        // Create connection
-        $conn = mysqli_connect($servername, $username, $password, $dbname);
-    
-        // Create database
-        $sql = "CREATE DATABASE DB_PNWX";
-        if (mysqli_query($conn, $sql)) 
+        // ADDDED!!!!!
+        //Declarations
+        $signup = $login = $logout = $myprofile = "";
+        //Check if session login is defined
+        if (isset($_SESSION['login'])) 
         {
-          echo "Database created successfully";
-        } else 
+            //If it is defined, then we check is it Logged in 
+            if($_SESSION['login'] === "Logged In")
+            {
+                $logout = "Logout";
+                $myprofile = "My Profile     |";
+            }
+            else //Or logged out
+            {
+                $signup = "Sign Up";
+                $login = "Login     |";
+            }
+        }
+        else //session login not set yet
         {
-          echo "Error creating database: " . mysqli_error($conn);
+            $signup = "Sign Up";
+            $login = "Login     |";
         }
 
         mysqli_close($conn);
     ?> 
 
-        <header class="HeaderHeader">
-            <div class="login_register">
-                <ul>
-                  <li><a href="register.php">Sign Up</a></li>
-                  <li><a>|</a></li>
-                  <li><a href="login.php" >Login</a></li>
-                  <li><img class="image_login_register" src="Pictures/login_register_icon.png" alt="Login and register icon""></li>
-                </ul>
+    
+        <header class="HeaderHeader" id="Push_header">
+            <div id = side_logo>
+              <ul>
+              <li><a id="expand_sidenav"><span onclick="sidebar()">&#9776;</span></a></li>
+              <li><img class="logo" src="Pictures/LOGO.jpeg" alt="Pacific Northwest X-Ray Inc."></li>
+              <ul>
             </div>
 
-            <img class="logo" src="Pictures/LOGO.jpeg" alt="Pacific Northwest X-Ray Inc.">
+            <div class="login_register">
+                <ul>
+                  <li><a href="register.php"><?php echo $signup?></a></li>
+                  <li><a href="login.php" ><?php echo $login?></a></li>
+                  <li><a href="logout.php"  ><?php echo $logout?></a></li>
+                  <li><a href="myProfile.php"  ><?php echo $myprofile?></a></li>
+                  <li><img class="image_login_register" src="Pictures/login_register_icon.png" alt="Login and register icon"></a>
+                </ul>
+            </div>
             
+                 
             <div class="navigation">
                 <ul >
                 
-                <li><a href="index.html" target="_blank">Home</a></li>
+                <!--<li><a href="index.php" target="_blank">Home</a></li>
                 <li><a href="http://www.pnwx.com/Equipment/" target="_blank">Equipment</a></li>
                 <li><a href="http://www.pnwx.com/Accessories/" target="_blank">Accessories</a></li>
                 <li><a href="http://www.pnwx.com/Supplies" target="_blank">Supplies</a></li>
@@ -60,24 +81,22 @@
                 </form></li>
                 </div>
                 
-                </ul>
+                </ul>-->
             </div>
-
-            <div id="mySidenav" class="sidenav">
-              <a href="javascript:void(0)" class="closebtn" onclick="closesidebar()">&times;</a>
-              <a href="#merchantBoard">Merchant Board</a>
-              <a href="#silverRecovery">Silver Recovery Systems</a>
-              <a href="#veterinary">Veterinary</a>
-              <a href="#xray">X-Ray Test Meters</a>
-            </div>
-            <br>
-            <span style="font-size:30px;cursor:pointer" onclick="sidebar()">&#9776; Category</span>
-
-            
-
         </header>
-        <br>
-        <main>
+        <div id="mySidenav" class="sidenav">
+              <a href="javascript:void(0)" class="closebtn" onclick="closesidebar()">&times;</a>
+              <br>
+              <a href="#merchantBoard" >Merchant Board</a>
+              <br>
+              <a href="#silverRecovery" >Silver Recovery Systems</a>
+              <br>
+              <a href="#veterinary">Veterinary</a>
+              <br>
+              <a href="#xray" ">X-Ray Test Meters</a>
+        </div>
+
+        <main id="Push_main">
         <div class="slidebanner-container">
             <div class="mySlides">
               <img src="Pictures/pnwxHomePage.png" style="width:100%">
@@ -111,13 +130,14 @@
             </div>
             <br>
             <br>
-        <section class="Showcase">
 
+        <section class="Showcase">
           <div class="page1-title">
-			      <h2>Category</h2>
+			      <h2>- Category -</h2>
 			    </div>
               <div class="row">
-              <h3 id ="merchantBoard"> Merchant Board </h3>
+                <h3 id ="merchantBoard"> Merchant Board </h3>
+
                 <div class="column">
                   <div class="card">
                     <img src="Pictures/merchantBoard1.jpg" alt="merchantBoard1">
@@ -132,7 +152,7 @@
                 <div class="column">
                   <div class="card">
                     <img src="Pictures/merchantBoard2.jpg" alt="merchantBoard2">
-                    <div class="grid-grid-container">
+                    <div class="grid-container">
                       <h2> 	PNWX Light Duty Merchant Board for Film Cassettes</h2>
                       <p class="title">$770.00</p>
                       <p><a href="http://www.pnwx.com/Accessories/PatAsst/MerchantBoards/"><button class="button">LEARN MORE</button></a></p>
@@ -223,10 +243,8 @@
 
             </section>
         </main>
-        <br>
 
-
-        <footer class="FooterFooter">
+        <footer class="FooterFooter" id="Push_footer">
             <div class="FFooterUpperPortion">
                 <div class="FFooterIcon">
                     <img src="Pictures/LOGO.jpeg" alt="Pacific Northwest X-Ray Inc.">

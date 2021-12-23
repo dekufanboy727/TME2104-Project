@@ -28,8 +28,20 @@ function slideshow(n) {
 /**Sidebar*** */
 function sidebar() {
   document.getElementById("mySidenav").style.width = "250px";
+  document.getElementById("Push_header").style.paddingLeft = "250px";
+  document.getElementById("Push_main").style.paddingLeft = "250px";
+  document.getElementById("expand_sidenav").style.paddingLeft = "250px";
+  document.getElementById("expand_sidenav").style.opacity = "0";
+  document.getElementById("Push_footer").style.marginLeft = "250px";
 }
 
 function closesidebar() {
   document.getElementById("mySidenav").style.width = "0";
+  document.getElementById("Push_header").style.paddingLeft = "0";
+  document.getElementById("Push_main").style.paddingLeft = "0";
+  document.getElementById("expand_sidenav").style.paddingLeft = "25px";
+  document.getElementById("expand_sidenav").style.paddingTop = "5px";
+  document.getElementById("expand_sidenav").style.paddingRight = "15px";
+  document.getElementById("expand_sidenav").style.opacity = "100";
+  document.getElementById("Push_footer").style.marginLeft = "0";
 }
