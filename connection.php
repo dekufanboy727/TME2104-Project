@@ -2,11 +2,12 @@
     $servername = "localhost";
     $username = "root";
     $password = "";
-    $dbname = "Db_PNWX";
+    $dbname = "DB_PNWX";
     
+    $sql = "CREATE DATABASE DB_PNWX";
     // Create connection
     $conn = mysqli_connect($servername, $username, $password, $dbname);
-    $sql = "CREATE DATABASE DB_PNWX";
+    
     if (mysqli_query($conn, $sql)) 
     {
         echo "Database created successfully";
