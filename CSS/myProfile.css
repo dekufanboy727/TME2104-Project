@@ -3,7 +3,7 @@
     background-color: black;
     font-family: Maiandra GD;
     height: 250px;
-    min-width: 1500px;
+    width: 100%;
 }
 
 .FFooterIcon {
@@ -56,7 +56,6 @@ html {
     padding: 0;
     min-width: 1500px;
     font-family: Maiandra GD;
-    height: 100%;
 }
 
 body{
@@ -65,10 +64,11 @@ body{
     min-width: 1500px;
     font-family: Maiandra GD;
     color: black;
-    height: 100%;
-    background-color: rgb(230, 230, 230);
+    background-color: rgb(255, 255, 255);
+    min-height: 100%;
 }
 
+/*Header*/
 header {
     background-color: black;
     min-width: 1500px;
@@ -138,3 +138,188 @@ header .logo {
     color:rgb(230, 230, 230);
 }
 
+/*column*/
+.column1 ul, .column2 ul {
+    list-style-type: none;
+}
+
+.column1 {
+    width: 40%;
+    margin-left: 20%;
+}
+
+.column2 {
+    width: 60%;
+    margin-left: -10%;
+}
+
+.column1 ul li {
+    padding: 15px 0px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+/*Display Profile*/
+#display0, #display1, #display3, #display4, #display5, #display6, #display7, #display8, #display9, #display10{
+    padding: 15px 0px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.column {
+    width: 100%;
+    display: flex;
+}
+
+/*Edit button*/
+
+.display_title_editbutton .editbutton {
+    width: 10%;
+    margin-right: 1.8%;
+}
+
+.display_title_editbutton .editbutton img{
+    padding: 10px 0;
+    width: 40px;
+    height: auto;
+    margin-top: 20px;
+    padding: 0;
+    box-shadow: 0px 2px 5px black;
+    border-radius: 5px;
+}
+
+.editbutton a{
+    cursor: pointer;
+}
+
+.display_title_editbutton .title {
+    margin-top: 10px;
+    font-size: 30px;
+    margin-left: 20%;
+    font-weight: bold;
+    width: 90%;
+}
+
+.display_title_editbutton {
+    display:flex;
+    width: 100%;
+    padding-bottom: 20px;
+}
+
+noscript {
+    margin-left: 0;
+    text-align: center;
+    color: red;
+    padding-top: 20px;
+    font-weight: bold;
+    padding-right: 15px;
+}
+
+/*Edit Profile Input Field*/
+ #fname, #lname, #email, #pw, #male, #female {
+    display:none;
+    width: 350px;
+    height: 25px;
+    margin-top: 2.5%;
+    margin-bottom: 2.5%;
+}
+
+#edit_confirm_pw {
+    display:none;
+}
+
+#display2_cpw {
+    display: none;
+    padding: 15px 0px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+#cpw {
+    display:none;
+    width: 350px;
+    height: 30px;
+    margin-top: 1%;
+    margin-bottom: 1%;
+}
+
+#city, #postcode, #address {
+    display:none;
+    width: 350px;
+    height: 25px;
+    margin-top: 0.5%;
+    margin-bottom: 2.5%;
+}
+
+#state {
+    display:none;
+    width: 358px;
+    height: 35px;
+    margin-top: 2.5%;
+}
+
+#GENDER {
+    font-size: 15px;
+    display:none;
+    margin-top: 1%;
+    margin-bottom: 1%;
+}
+
+#GENDER input {
+    width: 15px;
+    height: 15px;
+}
+
+#mobile{
+    width: 288px;
+    height: 15px;
+    display:none;
+    padding: 5px 5px;
+    margin-top: 1.5%;
+}
+
+#region {
+    width: 57px;
+    height: 29px;
+    display:none;
+    padding: 5px 5px;
+    margin-top: 1.5%;
+}
+
+#button {
+    padding-top: 30px;
+    margin-bottom: 5%;
+    margin-left: -20%;
+    display:none;
+}
+
+#button input {
+    padding: 0px 20px;
+    height: 50px;
+    width: 150px;
+    font-family: Maiandra GD;
+    border-radius: 5px;
+    border: 2px solid #888888;
+    font-size: 18px;
+    margin: 0 20px;
+    text-align: center;
+}
+
+#button .cancel {
+    padding: 0px 10px;
+    height: 47px;
+    width: 130px;
+    font-family: Maiandra GD;
+    border-radius: 5px;
+    border: 2px solid #888888;
+    font-size: 18px;
+    margin: 0 20px;
+    text-align: center;
+    background-color: #eeeeee;
+}
+
+#button input:hover{
+    background-color: rgb(0, 0, 0);
+    color:white;
+    box-shadow: 1px 1px 10px rgb(97, 97, 97) ;
+}
