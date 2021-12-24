@@ -13,7 +13,19 @@
         
         session_start();
         $id = $_SESSION['user_id'];
-        $sql = "UPDATE registered_User SET login='Logged Out' WHERE id='$id'";
+        $sql = "UPDATE registered_User SET _login='Logged Out' WHERE id='$id'";
+
+        $result = mysqli_query ($conn,$sql);
+        //See if updated
+        if($result == true)
+        {
+            echo "UPDATED LOGIN";
+        } 
+        else
+        {
+            echo "Failed to update". $conn->error;
+        }
+                    
         session_destroy();
     ?>
 
