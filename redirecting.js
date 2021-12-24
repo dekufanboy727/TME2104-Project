@@ -28,4 +28,7 @@ function redirecting() {
 function redirecting_logout() {
     window.location.href = "index.php";
 }
-   
+
+function redirecting_admin_logout() {
+    window.location.href = "adminlogin.php";
+}
