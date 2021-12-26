@@ -187,43 +187,108 @@
 
               <div class="row">
 
-                <h3> Merchant Board </h3>
+                <h3 id = "merchantBoard"> Merchant Board </h3>
                 <?php 
-                      if($productcategory = "Merchant Board") {
-                        include 'displayitem.php';} else {
-                          echo "Not Merchant Board";
-                        }
+                include 'connection.php';
+                $sql = "SELECT id, productcategory, productname, productdetail, price, productpic FROM cat1 WHERE productcategory='Merchant Board'";
+                $result = $conn->query($sql);
+    
+                if ($result->num_rows > 0) {
+                    // output data of each row
+                    while($row = $result->fetch_assoc()) {
+                      echo '<div class="column"> <div class = "card">';
+                      echo '' .'<img src = "' . $row['productpic'] . '"/>' . '';
+                      echo '  <div class="grid-container"> <h2>' . $row["productname"]. '</h2></div>';
+                      echo '  <div class="grid-container"> <p>' . $row["productdetail"] . '</p></div>';
+                      echo '  <div class="grid-container"> <p class="title">'. "$" . $row["price"] .  '</p></div>';
+                      echo '<p><a href="#addcart"><button class="button">Add Cart</button></a></p>     ';
+                      echo '</div></div>';
+    
+                    }
+    
+                } else {
+                    echo "0 results";
+                }
                 ?>    
+                
               </div>
 
               <div class="row">
-                <h3> Silver Recovery Systems </h3>
+                <h3 id = "silverRecovery"> Silver Recovery Systems </h3>
                 <?php 
-                      if($productcategory === "Silver Recovery Systems") {
-                        include 'displayitem.php';} else {
-                          echo "Not silver recovery system";
-                        }
-                ?>              
+                include 'connection.php';
+                $sql = "SELECT id, productcategory, productname, productdetail, price, productpic FROM cat1 WHERE productcategory='Silver Recovery Systems'";
+                $result = $conn->query($sql);
+    
+                if ($result->num_rows > 0) {
+                    // output data of each row
+                    while($row = $result->fetch_assoc()) {
+                      echo '<div class="column"> <div class = "card">';
+                      echo '' .'<img src = "' . $row['productpic'] . '"/>' . '';
+                      echo '  <div class="grid-container"> <h2>' . $row["productname"]. '</h2></div>';
+                      echo '  <div class="grid-container"> <p>' . $row["productdetail"] . '</p></div>';
+                      echo '  <div class="grid-container"> <p class="title">'. "$" . $row["price"] .  '</p></div>';
+                      echo '<p><a href="#addcart"><button class="button">Add Cart</button></a></p>     ';
+                      echo '</div></div>';
+    
+                    }
+    
+                } else {
+                    echo "0 results";
+                }
+                ?>            
               </div>
 
               <div class="row">
-                <h3> Veterinary  </h3>
+                <h3 id = "veterinary"> Veterinary  </h3>
                 <?php 
-                      if($productcategory === "Veterinary") {
-                        include 'displayitem.php';} else {
-                          echo "Not Veterinary";
-                        }
-                ?>              
+                include 'connection.php';
+                $sql = "SELECT id, productcategory, productname, productdetail, price, productpic FROM cat1 WHERE productcategory='Veterinary '";
+                $result = $conn->query($sql);
+    
+                if ($result->num_rows > 0) {
+                    // output data of each row
+                    while($row = $result->fetch_assoc()) {
+                      echo '<div class="column"> <div class = "card">';
+                      echo '' .'<img src = "' . $row['productpic'] . '"/>' . '';
+                      echo '  <div class="grid-container"> <h2>' . $row["productname"]. '</h2></div>';
+                      echo '  <div class="grid-container"> <p>' . $row["productdetail"] . '</p></div>';
+                      echo '  <div class="grid-container"> <p class="title">'. "$" . $row["price"] .  '</p></div>';
+                      echo '<p><a href="#addcart"><button class="button">Add Cart</button></a></p>     ';
+                      echo '</div></div>';
+    
+                    }
+    
+                } else {
+                    echo "0 results";
+                }
+                ?>               
               </div>
 
               <div class="row">
-                <h3> X Ray Test Meters  </h3>
+                <h3 id = "xray"> X Ray Test Meters  </h3>
                 <?php 
-                      if($productcategory === "X Ray Test Meters") {
-                        include 'displayitem.php';} else {
-                          echo "Not X Ray Test Meters";
-                        }
-                ?>              
+                include 'connection.php';
+                $sql = "SELECT id, productcategory, productname, productdetail, price, productpic FROM cat1 WHERE productcategory='X Ray Test Meters  '";
+                $result = $conn->query($sql);
+    
+                if ($result->num_rows > 0) {
+                    // output data of each row
+                    while($row = $result->fetch_assoc()) {
+                      echo '<div class="column"> <div class = "card">';
+                      echo '' .'<img src = "' . $row['productpic'] . '"/>' . '';
+                      echo '  <div class="grid-container"> <h2>' . $row["productname"]. '</h2></div>';
+                      echo '  <div class="grid-container"> <p>' . $row["productdetail"] . '</p></div>';
+                      echo '  <div class="grid-container"> <p class="title">'. "$" . $row["price"] .  '</p></div>';
+                      echo '<p><a href="#addcart"><button class="button">Add Cart</button></a></p>     ';
+                      echo '</div></div>';
+    
+                    }
+    
+                } else {
+                    echo "0 results";
+                }
+                ?>                
               </div>
             </section>
 
