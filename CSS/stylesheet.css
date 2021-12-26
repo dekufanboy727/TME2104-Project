@@ -402,6 +402,9 @@ html {
 }
 
 /******sidebar*********/
+ul#abc li {
+  display:inline;
+}
 
 .sidenav {
   height: 100%;
@@ -452,7 +455,7 @@ html {
 }
 
 #expand_sidenav {
-  font-size:25px;
+  font-size:30px;
   cursor:pointer; 
   font-family:Maiandra GD;
   position: fixed;
@@ -462,6 +465,7 @@ html {
   padding-left: 5px;
   padding-right: 15px;
   transition: .5s ease-in-out;
+  padding-top: 35px;
   padding-bottom: 15px;
   float: left;
 }
