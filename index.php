@@ -59,7 +59,7 @@
 
 
             //Create Table Products
-            $sql = "CREATE TABLE cat1 (
+            $sql = "CREATE TABLE IF NOT EXISTS cat1 (
                 id INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
                 productcategory VARCHAR(255) NOT NULL,
                 productname VARCHAR(255) NOT NULL,
