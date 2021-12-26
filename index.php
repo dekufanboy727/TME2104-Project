@@ -41,249 +41,62 @@
             $signup = "Sign Up";
             $login = "Login     |";
         }
+        //product
 
+        //Create Table Products
+        $sql = "CREATE TABLE IF NOT EXISTS cat1 (
+        id INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+        productcategory VARCHAR(255) NOT NULL,
+        productname VARCHAR(255) NOT NULL,
+        productdetail VARCHAR(255) NOT NULL,
+        price int(11) NOT NULL,
+        productpic BLOB (255) NOT NULL
+        )";
+
+        if (mysqli_query($conn, $sql) === TRUE) {
+          echo "Table cat1 created successfully or Table exists <br\>";
+
+          $sql = "SELECT id FROM cat1";
+          $query = mysqli_query($conn, $sql);
+          if ( mysqli_num_rows($query) == 0){
+            //setup array for dummy products
+            $productcategory = array("Merchant Board ", "Merchant Board ", "Silver Recovery Systems ", "Silver Recovery Systems ", "Veterinary ", "Veterinary ", 
+            "X Ray Test Meters ", "X Ray Test Meters ");
+
+            $productname = array("Pacific Northway X-Ray Merchant Board for DR Panels ", "PNWX Light Duty Merchant Board for Film Cassettes", 
+            "Steel Wool Recovery Canisters and Accessories", "Rotex Standard Ultra Series Silver Recovery Systems", "Techno Aide Veterinary Immobilizers", 
+            "Techno Aide Veterinary Positioner", "ECC Series 820 kVp Meters", "Series 815 kVp Meters");
+
+            $productdetail = array("Model: 1104-C3a, box style merchant board with arms to accommodate DR Panels up to 1-1/4 thick.", 
+            "Model: 1104, constructed of solid oak, adjustable tabletops ,compatible with CR.", 
+            "Model: C4 Steel Wool Canister; Size: 3-1/2 gallon; Steel Wool Type: Coarse", "Model: Ultra 4; Max Recovery Rate: 0.5oz/hr Tank Capacity: 2.75 gal; Electrical Requirements: 115VAC/60Hz", 
+            "Type:  Immobilizers; Model: VIT X; Size: X Large; Dimension: 36 x 14 x 9 feet high.",
+            "Type:  Positioner; Model: YFCA Positioner; Size: Small; Dimensions: 7 x 12.5 x 3.", "Model: 820; X-Ray kVp Meter/Exposure; Time Meter/mA Meter/mAs; kVp Range: 45 to 125.",
+            "Model: 815L;Lower kV Range Version of the 815 Meter(40 to 120kVp);For dental applications.");
+
+            $price = array("1968", "770", "215", "2412", "170", "33", "2279", "1700");
+
+            $productpic = array("itempic/item1.jpg", "itempic/item2.jpg", "itempic/item3.jpg", "itempic/item4.jpg", "itempic/item5.jpg", "itempic/item6.jpg", "itempic/item7.jpg", 
+            "itempic/item8.jpg");
+            
+            $index = 0;
+            foreach($productcategory as $value){
+              $sql = "INSERT INTO cat1(productcategory, productname, productdetail, price, productpic) 
+              VALUES ('$value','$productname[$index]', '$productdetail[$index]', '$price[$index]', '$productpic[$index]')";
+              if (mysqli_query($conn, $sql) === TRUE) {
+                echo "New record created successfully";
+              } else {
+                echo "Error: " . $sql  . mysqli_error($conn);
+              }
+              $index++;
+            }
+          }else{
+            echo "Error: " . $sql . "There's already products in the table";
+          }
+        } else {
+            echo "Error creating table: " . mysqli_error($conn);
+        }
         mysqli_close($conn);
-    ?> 
-    <!----product-->
-    <?php 
-            $servername = "localhost";
-            $username = "root";
-            $password = "";
-            $dbname = "DB_PNWX";
-        
-            // Create connection
-            $conn = new mysqli($servername, $username, $password, $dbname);
-            
-            // Check connection
-            if ($conn->connect_error) {die("Connection failed: " . $conn->connect_error);}                  
-
-
-            //Create Table Products
-            $sql = "CREATE TABLE IF NOT EXISTS cat1 (
-                id INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-                productcategory VARCHAR(255) NOT NULL,
-                productname VARCHAR(255) NOT NULL,
-                productdetail VARCHAR(255) NOT NULL,
-                price int(11) NOT NULL,
-                productpic BLOB (255) NOT NULL
-                )";
-    
-                if ($conn->query($sql) === TRUE) {
-                    echo "Table MyGuests created successfully";
-                } else {
-                    echo "Error creating table: " . $conn->error;
-                }
-
-            // Product declaration 1
-            $productcategory = "Merchant Board ";
-            $productname = "Pacific Northway X-Ray Merchant Board for DR Panels ";
-            $productdetail = "Model: 1104-C3a, box style merchant board with arms to accommodate DR Panels up to 1-1/4 thick.";
-            $price = "1968";
-            $productpic = "itempic/item1.jpg";
-
-            $sql = "SELECT id, productcategory, productname, productdetail, price, productpic FROM cat1";
-            $result = $conn->query($sql);
-
-            if ($result->num_rows > 0) {
-                // output data of each row
-                echo " Product already existed.";
-            } else {
-              $sql = "INSERT INTO cat1(productcategory, productname, productdetail, price, productpic) 
-              VALUES ('$productcategory','$productname', '$productdetail', '$price', '$productpic')";
-              if ($conn->query($sql) === TRUE) {
-                echo "New record created successfully";
-              } else {
-                echo "Error: " . $sql  . $conn->error;
-              }
-
-            }
-  
-            // Product declaration 2
-            $productcategory = "Merchant Board ";
-            $productname = "PNWX Light Duty Merchant Board for Film Cassettes";
-            $productdetail = "Model: 1104, constructed of solid oak, adjustable tabletops ,compatible with CR.";
-            $price = "770";
-            $productpic = "itempic/item2.jpg";
-
-            //Insert product data into database table
-            $sql = "SELECT id, productcategory, productname, productdetail, price, productpic FROM cat1";
-            $result = $conn->query($sql);
-
-            if ($result->num_rows > 1) {
-                // output data of each row
-                echo " Product already existed.";
-            } else {
-              $sql = "INSERT INTO cat1(productcategory, productname, productdetail, price, productpic) 
-              VALUES ('$productcategory','$productname', '$productdetail', '$price', '$productpic')";
-              if ($conn->query($sql) === TRUE) {
-                echo "New record created successfully";
-              } else {
-                echo "Error: " . $sql  . $conn->error;
-              }
-
-            }
-
-            // Product declaration 3
-            $productcategory = "Silver Recovery Systems ";
-            $productname = "Steel Wool Recovery Canisters and Accessories";
-            $productdetail = "Model: C4 Steel Wool Canister; Size: 3-1/2 gallon; Steel Wool Type: Coarse";
-            $price = "215";
-            $productpic = "itempic/item3.jpg";
-
-            //Insert product data into database table
-            $sql = "SELECT id, productcategory, productname, productdetail, price, productpic FROM cat1";
-            $result = $conn->query($sql);
-
-            if ($result->num_rows > 2) {
-                // output data of each row
-                echo " Product already existed.";
-            } else {
-              $sql = "INSERT INTO cat1(productcategory, productname, productdetail, price, productpic) 
-              VALUES ('$productcategory','$productname', '$productdetail', '$price', '$productpic')";
-              if ($conn->query($sql) === TRUE) {
-                echo "New record created successfully";
-              } else {
-                echo "Error: " . $sql  . $conn->error;
-              }
-
-            }
-
-            // Product declaration 4
-            $productcategory = "Silver Recovery Systems ";
-            $productname = "Rotex Standard Ultra Series Silver Recovery Systems";
-            $productdetail = "Model: Ultra 4; Max Recovery Rate: 0.5oz/hr
-            Tank Capacity: 2.75 gal; Electrical Requirements: 115VAC/60Hz
-            ";
-            $price = "2412";
-            $productpic = "itempic/item4.jpg";
-
-            //Insert product data into database table
-            $sql = "SELECT id, productcategory, productname, productdetail, price, productpic FROM cat1";
-            $result = $conn->query($sql);
-
-            if ($result->num_rows > 3) {
-                // output data of each row
-                echo " Product already existed.";
-            } else {
-              $sql = "INSERT INTO cat1(productcategory, productname, productdetail, price, productpic) 
-              VALUES ('$productcategory','$productname', '$productdetail', '$price', '$productpic')";
-              if ($conn->query($sql) === TRUE) {
-                echo "New record created successfully";
-              } else {
-                echo "Error: " . $sql  . $conn->error;
-              }
-
-            }
-
-            // Product declaration 5
-            $productcategory = "Veterinary ";
-            $productname = "Techno Aide Veterinary Immobilizers";
-            $productdetail = "Type:  Immobilizers; Model: VIT X; Size: X Large; Dimension: 36 x 14 x 9 feet high.
-            ";
-            $price = "170";
-            $productpic = "itempic/item5.jpg";
-
-            //Insert product data into database table
-            $sql = "SELECT id, productcategory, productname, productdetail, price, productpic FROM cat1";
-            $result = $conn->query($sql);
-
-            if ($result->num_rows > 4) {
-                // output data of each row
-                echo " Product already existed.";
-            } else {
-              $sql = "INSERT INTO cat1(productcategory, productname, productdetail, price, productpic) 
-              VALUES ('$productcategory','$productname', '$productdetail', '$price', '$productpic')";
-              if ($conn->query($sql) === TRUE) {
-                echo "New record created successfully";
-              } else {
-                echo "Error: " . $sql  . $conn->error;
-              }
-
-            }
-
-            // Product declaration 6
-            $productcategory = "Veterinary ";
-            $productname = "Techno Aide Veterinary Positioner";
-            $productdetail = "Type:  Positioner; Model: YFCA Positioner; Size: Small; Dimensions: 7 x 12.5 x 3.
-            ";
-            $price = "33";
-            $productpic = "itempic/item6.jpg";
-
-            //Insert product data into database table
-            $sql = "SELECT id, productcategory, productname, productdetail, price, productpic FROM cat1";
-            $result = $conn->query($sql);
-
-            if ($result->num_rows > 5) {
-                // output data of each row
-                echo " Product already existed.";
-            } else {
-              $sql = "INSERT INTO cat1(productcategory, productname, productdetail, price, productpic) 
-              VALUES ('$productcategory','$productname', '$productdetail', '$price', '$productpic')";
-              if ($conn->query($sql) === TRUE) {
-                echo "New record created successfully";
-              } else {
-                echo "Error: " . $sql  . $conn->error;
-              }
-
-            }
-
-            // Product declaration 7
-            $productcategory = "X Ray Test Meters ";
-            $productname = "ECC Series 820 kVp Meters";
-            $productdetail = "Model: 820; X-Ray kVp Meter/Exposure; Time Meter/mA Meter/mAs; kVp Range: 45 to 125.
-            ";
-            $price = "2279";
-            $productpic = "itempic/item7.jpg";
-
-            //Insert product data into database table
-            $sql = "SELECT id, productcategory, productname, productdetail, price, productpic FROM cat1";
-            $result = $conn->query($sql);
-
-            if ($result->num_rows > 6) {
-                // output data of each row
-                echo " Product already existed.";
-            } else {
-              $sql = "INSERT INTO cat1(productcategory, productname, productdetail, price, productpic) 
-              VALUES ('$productcategory','$productname', '$productdetail', '$price', '$productpic')";
-              if ($conn->query($sql) === TRUE) {
-                echo "New record created successfully";
-              } else {
-                echo "Error: " . $sql  . $conn->error;
-              }
-
-            }
-
-              // Product declaration 8
-              $productcategory = "X Ray Test Meters ";
-              $productname = "Series 815 kVp Meters";
-              $productdetail = "Model: 815L;Lower kV Range Version of the 815 Meter(40 to 120kVp);For dental applications.
-              ";
-              $price = "1700";
-              $productpic = "itempic/item8.jpg";
-  
-              //Insert product data into database table
-              $sql = "SELECT id, productcategory, productname, productdetail, price, productpic FROM cat1";
-              $result = $conn->query($sql);
-  
-              if ($result->num_rows > 7) {
-                  // output data of each row
-                  echo " Product already existed.";
-              } else {
-                $sql = "INSERT INTO cat1(productcategory, productname, productdetail, price, productpic) 
-                VALUES ('$productcategory','$productname', '$productdetail', '$price', '$productpic')";
-                if ($conn->query($sql) === TRUE) {
-                  echo "New record created successfully";
-                } else {
-                  echo "Error: " . $sql  . $conn->error;
-                }
-
-              }
-            
-            
-            //Close Connection
-            mysqli_close($conn);
-
-
     ?>
     <!----product end-->
     
