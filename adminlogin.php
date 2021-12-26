@@ -11,7 +11,7 @@
 
     <body>
 
-        <?php 
+        <?php
             //Declarations
             $email = $pw = "";
             $emailE = $pwE ="";
@@ -57,6 +57,39 @@
 
             //Connection
             include 'adminconfig.php';
+            
+            //Dummy Table Setup
+            $sql = "CREATE TABLE admins (
+                    ID int(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+                    username varchar(30) NOT NULL,
+                    pass varchar(30) NOT NULL,
+                    fullname varchar(30) NOT NULL,
+                    email varchar(30) NOT NULL,
+                    _login tinyint(1) NOT NULL
+                ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;";
+
+            if (mysqli_query($conn, $sql) === TRUE){
+                echo "Table added";
+
+                $sql = "ALTER TABLE admins AUTO_INCREMENT = 1000";
+                if (mysqli_query($conn, $sql) === TRUE){
+                    echo "Alter successful";
+                    $sql = "INSERT INTO admins (username, pass, fullname, email, _login) 
+                        VALUES  ('admin01', 'PNWX', 'Jared RightBottom', 'admin01@pnwx.com', 0),
+                                ('admin02', 'PNWX', 'Garry HIghlander', 'admin02@pnwx.com', 0);";
+
+                    if (mysqli_query($conn, $sql) == TRUE){
+                        echo "Values added successful";
+                    }else{
+                        echo "Error: " . mysqli_error($conn);
+                    }
+
+                }else{
+                    echo "Error: " . mysqli_error($conn);
+                }
+            }else{
+                echo "Error: " . mysqli_error($conn);
+            }
             
             //No error in input
             if (!empty($_POST["email"])&& !empty($_POST["pw"])) //Check whether the user exists 
