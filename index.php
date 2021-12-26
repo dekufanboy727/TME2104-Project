@@ -44,7 +44,248 @@
 
         mysqli_close($conn);
     ?> 
+    <!----product-->
+    <?php 
+            $servername = "localhost";
+            $username = "root";
+            $password = "";
+            $dbname = "DB_PNWX";
+        
+            // Create connection
+            $conn = new mysqli($servername, $username, $password, $dbname);
+            
+            // Check connection
+            if ($conn->connect_error) {die("Connection failed: " . $conn->connect_error);}                  
 
+
+            //Create Table Products
+            $sql = "CREATE TABLE cat1 (
+                id INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+                productcategory VARCHAR(255) NOT NULL,
+                productname VARCHAR(255) NOT NULL,
+                productdetail VARCHAR(255) NOT NULL,
+                price int(11) NOT NULL,
+                productpic BLOB (255) NOT NULL
+                )";
+    
+                if ($conn->query($sql) === TRUE) {
+                    echo "Table MyGuests created successfully";
+                } else {
+                    echo "Error creating table: " . $conn->error;
+                }
+
+            // Product declaration 1
+            $productcategory = "Merchant Board ";
+            $productname = "Pacific Northway X-Ray Merchant Board for DR Panels ";
+            $productdetail = "Model: 1104-C3a, box style merchant board with arms to accommodate DR Panels up to 1-1/4 thick.";
+            $price = "1968";
+            $productpic = "itempic/item1.jpg";
+
+            $sql = "SELECT id, productcategory, productname, productdetail, price, productpic FROM cat1";
+            $result = $conn->query($sql);
+
+            if ($result->num_rows > 0) {
+                // output data of each row
+                echo " Product already existed.";
+            } else {
+              $sql = "INSERT INTO cat1(productcategory, productname, productdetail, price, productpic) 
+              VALUES ('$productcategory','$productname', '$productdetail', '$price', '$productpic')";
+              if ($conn->query($sql) === TRUE) {
+                echo "New record created successfully";
+              } else {
+                echo "Error: " . $sql  . $conn->error;
+              }
+
+            }
+  
+            // Product declaration 2
+            $productcategory = "Merchant Board ";
+            $productname = "PNWX Light Duty Merchant Board for Film Cassettes";
+            $productdetail = "Model: 1104, constructed of solid oak, adjustable tabletops ,compatible with CR.";
+            $price = "770";
+            $productpic = "itempic/item2.jpg";
+
+            //Insert product data into database table
+            $sql = "SELECT id, productcategory, productname, productdetail, price, productpic FROM cat1";
+            $result = $conn->query($sql);
+
+            if ($result->num_rows > 1) {
+                // output data of each row
+                echo " Product already existed.";
+            } else {
+              $sql = "INSERT INTO cat1(productcategory, productname, productdetail, price, productpic) 
+              VALUES ('$productcategory','$productname', '$productdetail', '$price', '$productpic')";
+              if ($conn->query($sql) === TRUE) {
+                echo "New record created successfully";
+              } else {
+                echo "Error: " . $sql  . $conn->error;
+              }
+
+            }
+
+            // Product declaration 3
+            $productcategory = "Silver Recovery Systems ";
+            $productname = "Steel Wool Recovery Canisters and Accessories";
+            $productdetail = "Model: C4 Steel Wool Canister; Size: 3-1/2 gallon; Steel Wool Type: Coarse";
+            $price = "215";
+            $productpic = "itempic/item3.jpg";
+
+            //Insert product data into database table
+            $sql = "SELECT id, productcategory, productname, productdetail, price, productpic FROM cat1";
+            $result = $conn->query($sql);
+
+            if ($result->num_rows > 2) {
+                // output data of each row
+                echo " Product already existed.";
+            } else {
+              $sql = "INSERT INTO cat1(productcategory, productname, productdetail, price, productpic) 
+              VALUES ('$productcategory','$productname', '$productdetail', '$price', '$productpic')";
+              if ($conn->query($sql) === TRUE) {
+                echo "New record created successfully";
+              } else {
+                echo "Error: " . $sql  . $conn->error;
+              }
+
+            }
+
+            // Product declaration 4
+            $productcategory = "Silver Recovery Systems ";
+            $productname = "Rotex Standard Ultra Series Silver Recovery Systems";
+            $productdetail = "Model: Ultra 4; Max Recovery Rate: 0.5oz/hr
+            Tank Capacity: 2.75 gal; Electrical Requirements: 115VAC/60Hz
+            ";
+            $price = "2412";
+            $productpic = "itempic/item4.jpg";
+
+            //Insert product data into database table
+            $sql = "SELECT id, productcategory, productname, productdetail, price, productpic FROM cat1";
+            $result = $conn->query($sql);
+
+            if ($result->num_rows > 3) {
+                // output data of each row
+                echo " Product already existed.";
+            } else {
+              $sql = "INSERT INTO cat1(productcategory, productname, productdetail, price, productpic) 
+              VALUES ('$productcategory','$productname', '$productdetail', '$price', '$productpic')";
+              if ($conn->query($sql) === TRUE) {
+                echo "New record created successfully";
+              } else {
+                echo "Error: " . $sql  . $conn->error;
+              }
+
+            }
+
+            // Product declaration 5
+            $productcategory = "Veterinary ";
+            $productname = "Techno Aide Veterinary Immobilizers";
+            $productdetail = "Type:  Immobilizers; Model: VIT X; Size: X Large; Dimension: 36 x 14 x 9 feet high.
+            ";
+            $price = "170";
+            $productpic = "itempic/item5.jpg";
+
+            //Insert product data into database table
+            $sql = "SELECT id, productcategory, productname, productdetail, price, productpic FROM cat1";
+            $result = $conn->query($sql);
+
+            if ($result->num_rows > 4) {
+                // output data of each row
+                echo " Product already existed.";
+            } else {
+              $sql = "INSERT INTO cat1(productcategory, productname, productdetail, price, productpic) 
+              VALUES ('$productcategory','$productname', '$productdetail', '$price', '$productpic')";
+              if ($conn->query($sql) === TRUE) {
+                echo "New record created successfully";
+              } else {
+                echo "Error: " . $sql  . $conn->error;
+              }
+
+            }
+
+            // Product declaration 6
+            $productcategory = "Veterinary ";
+            $productname = "Techno Aide Veterinary Positioner";
+            $productdetail = "Type:  Positioner; Model: YFCA Positioner; Size: Small; Dimensions: 7 x 12.5 x 3.
+            ";
+            $price = "33";
+            $productpic = "itempic/item6.jpg";
+
+            //Insert product data into database table
+            $sql = "SELECT id, productcategory, productname, productdetail, price, productpic FROM cat1";
+            $result = $conn->query($sql);
+
+            if ($result->num_rows > 5) {
+                // output data of each row
+                echo " Product already existed.";
+            } else {
+              $sql = "INSERT INTO cat1(productcategory, productname, productdetail, price, productpic) 
+              VALUES ('$productcategory','$productname', '$productdetail', '$price', '$productpic')";
+              if ($conn->query($sql) === TRUE) {
+                echo "New record created successfully";
+              } else {
+                echo "Error: " . $sql  . $conn->error;
+              }
+
+            }
+
+            // Product declaration 7
+            $productcategory = "X Ray Test Meters ";
+            $productname = "ECC Series 820 kVp Meters";
+            $productdetail = "Model: 820; X-Ray kVp Meter/Exposure; Time Meter/mA Meter/mAs; kVp Range: 45 to 125.
+            ";
+            $price = "2279";
+            $productpic = "itempic/item7.jpg";
+
+            //Insert product data into database table
+            $sql = "SELECT id, productcategory, productname, productdetail, price, productpic FROM cat1";
+            $result = $conn->query($sql);
+
+            if ($result->num_rows > 6) {
+                // output data of each row
+                echo " Product already existed.";
+            } else {
+              $sql = "INSERT INTO cat1(productcategory, productname, productdetail, price, productpic) 
+              VALUES ('$productcategory','$productname', '$productdetail', '$price', '$productpic')";
+              if ($conn->query($sql) === TRUE) {
+                echo "New record created successfully";
+              } else {
+                echo "Error: " . $sql  . $conn->error;
+              }
+
+            }
+
+              // Product declaration 8
+              $productcategory = "X Ray Test Meters ";
+              $productname = "Series 815 kVp Meters";
+              $productdetail = "Model: 815L;Lower kV Range Version of the 815 Meter(40 to 120kVp);For dental applications.
+              ";
+              $price = "1700";
+              $productpic = "itempic/item8.jpg";
+  
+              //Insert product data into database table
+              $sql = "SELECT id, productcategory, productname, productdetail, price, productpic FROM cat1";
+              $result = $conn->query($sql);
+  
+              if ($result->num_rows > 7) {
+                  // output data of each row
+                  echo " Product already existed.";
+              } else {
+                $sql = "INSERT INTO cat1(productcategory, productname, productdetail, price, productpic) 
+                VALUES ('$productcategory','$productname', '$productdetail', '$price', '$productpic')";
+                if ($conn->query($sql) === TRUE) {
+                  echo "New record created successfully";
+                } else {
+                  echo "Error: " . $sql  . $conn->error;
+                }
+
+              }
+            
+            
+            //Close Connection
+            mysqli_close($conn);
+
+
+    ?>
+    <!----product end-->
     
         <header class="HeaderHeader" id="Push_header">
             <div id = side_logo>
@@ -131,117 +372,54 @@
             <br>
             <br>
 
-        <section class="Showcase">
-          <div class="page1-title">
-			      <h2>- Category -</h2>
-			    </div>
-              <div class="row">
-                <h3 id ="merchantBoard"> Merchant Board </h3>
-
-                <div class="column">
-                  <div class="card">
-                    <img src="Pictures/merchantBoard1.jpg" alt="merchantBoard1">
-                    <div class="grid-container">
-                      <h2> 	PNWX Merchant Board for DR Panels</h2><br>
-                      <p class="title">$1,968.00</p>
-                      <p><a href="http://www.pnwx.com/Accessories/PatAsst/MerchantBoards/"><button class="button">LEARN MORE</button></a></p>
-                    </div>
-                  </div>
-                </div>
-              
-                <div class="column">
-                  <div class="card">
-                    <img src="Pictures/merchantBoard2.jpg" alt="merchantBoard2">
-                    <div class="grid-container">
-                      <h2> 	PNWX Light Duty Merchant Board for Film Cassettes</h2>
-                      <p class="title">$770.00</p>
-                      <p><a href="http://www.pnwx.com/Accessories/PatAsst/MerchantBoards/"><button class="button">LEARN MORE</button></a></p>
-                    </div>
-                  </div>
-                </div>
-                
-
-              </div>
-              
-              <div class="row">
-              <h3 id ="silverRecovery"> Silver Recovery Systems</h3>
-                <div class="column">
-                  <div class="card">
-                    <img src="Pictures/Equipment1.jpg" alt="X-Ray Merchant board">
-                    <div class="grid-container">
-                      <h2>Steel Wool Recovery Canisters and Accessories</h2>
-                      <p class="title">$215.00</p>
-                      <p><a href="http://www.pnwx.com/Equipment/DarkEquip/Rotex/SteelWoolCanisters/"><button class="button">LEARN MORE</button></a></p>
-                    </div>
-                  </div>
-                </div>
-              
-                <div class="column">
-                  <div class="card">
-                    <img src="Pictures/Equipment2.jpg" alt="Surgical Radiation Reducing Gloves">
-                    <div class="grid-container">
-                      <h2>	Rotex Standard Ultra Series Silver Recovery Systems</h2>
-                      <p class="title">$2,412.31</p>
-                      <p><a href="http://www.pnwx.com/Equipment/DarkEquip/Rotex/Ultra/"><button class="button">LEARN MORE</button></a></p>
-                    </div>
-                  </div>
-                </div>
-                
+            <section class="Showcase">
+              <div class="page1-title">
+                <h2>- Category -</h2>
               </div>
 
               <div class="row">
-              <h3 id ="veterinary"> Veterinary</h3>
-                <div class="column">
-                  <div class="card">
-                    <img src="Pictures/pet1.jpg" alt="Veterinary Immobilizers">
-                    <div class="grid-container">
-                      <h2>	Techno-Aide's Veterinary Immobilizers</h2><br>
-                      <p class="title">$169.80</p>
-                      <p><a href="https://www2.pnwx.com/Accessories/PosAides/Pet-Sitioner/"><button class="button">LEARN MORE</button></a></p>
-                    </div>
-                  </div>
-                </div>
-              
-                <div class="column">
-                  <div class="card">
-                    <img src="Pictures/pet2.jpg" alt="Veterinary Immobilizers">
-                    <div class="grid-container">
-                      <h2>Techno-Aide Veterinary Positioner</h2><br>
-                      <p class="title">$32.50</p>
-                      <p><a href="https://www2.pnwx.com/Accessories/PosAides/Pet-Sitioner/"><button class="button">LEARN MORE</button></a></p>
-                    </div>
-                  </div>
-                </div>
-                
-              </div>
- 
-              <div class="row">
-              <h3 id ="xray">X-Ray Test Meters</h3>
-                <div class="column">
-                  <div class="card">
-                    <img src="Pictures/xray1.jpg" alt="X-Ray Test Meters">
-                    <div class="grid-container">
-                      <h2>	ECC Series 820 kVp, mA, Time/mAs Meters</h2>
-                      <p class="title">$2,279.00</p>
-                      <p><a href="http://www.pnwx.com/Equipment/Test/X-Ray/ECC/820/"><button class="button">LEARN MORE</button></a></p>
-                    </div>
-                  </div>
-                </div>
-              
-                <div class="column">
-                  <div class="card">
-                    <img src="Pictures/xray2.jpg" alt="X-Ray Test Meters">
-                    <div class="grid-container">
-                      <h2>Series 815 kVp Meters</h2><br>
-                      <p class="title">$1,700.00</p>
-                      <p><a href="http://www.pnwx.com/Equipment/Test/X-Ray/ECC/815/"><button class="button">LEARN MORE</button></a></p>
-                    </div>
-                  </div>
-                </div>
-                
+
+                <h3> Merchant Board </h3>
+                <?php 
+                      if($productcategory = "Merchant Board") {
+                        include 'displayitem.php';} else {
+                          echo "Not Merchant Board";
+                        }
+                ?>    
               </div>
 
+              <div class="row">
+                <h3> Silver Recovery Systems </h3>
+                <?php 
+                      if($productcategory === "Silver Recovery Systems") {
+                        include 'displayitem.php';} else {
+                          echo "Not silver recovery system";
+                        }
+                ?>              
+              </div>
+
+              <div class="row">
+                <h3> Veterinary  </h3>
+                <?php 
+                      if($productcategory === "Veterinary") {
+                        include 'displayitem.php';} else {
+                          echo "Not Veterinary";
+                        }
+                ?>              
+              </div>
+
+              <div class="row">
+                <h3> X Ray Test Meters  </h3>
+                <?php 
+                      if($productcategory === "X Ray Test Meters") {
+                        include 'displayitem.php';} else {
+                          echo "Not X Ray Test Meters";
+                        }
+                ?>              
+              </div>
             </section>
+
+        
         </main>
 
         <footer class="FooterFooter" id="Push_footer">

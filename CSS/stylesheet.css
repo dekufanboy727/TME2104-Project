@@ -247,7 +247,7 @@ body {
   border: none;
   outline: 0;
   display: inline-block;
-  padding: 8px;
+  padding: 20px;
   color: white;
   background-color: #000;
   text-align: center;
@@ -279,8 +279,8 @@ html {
 }
 
 .card {
-  min-height: 400px;
-  max-height: 400px;
+  min-height: 460px;
+  max-height: 460px;
   min-width: 450px;
   max-width: 450px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
@@ -293,7 +293,6 @@ html {
   height: 250px;
   margin-left: auto;
   margin-right: auto;
-  width: 50%;
 }
 
 .PadCard{
