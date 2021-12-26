@@ -97,10 +97,10 @@
     
         <header class="HeaderHeader" id="Push_header">
             <div id = side_logo>
-              <ul>
+              <ul id = abc>
               <li><a id="expand_sidenav"><span onclick="sidebar()">&#9776;</span></a></li>
-              <li><img class="logo" src="Pictures/LOGO.jpeg" alt="Pacific Northwest X-Ray Inc."></li>
               <ul>
+              <img class="logo" src="Pictures/LOGO.jpeg" alt="Pacific Northwest X-Ray Inc.">
             </div>
 
             <div class="login_register">
