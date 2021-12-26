@@ -44,7 +44,7 @@
         //product
 
         //Create Table Products
-        $sql = "CREATE TABLE IF NOT EXISTS cat1 (
+        $sql = "CREATE TABLE cat1 (
         id INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
         productcategory VARCHAR(255) NOT NULL,
         productname VARCHAR(255) NOT NULL,
@@ -55,44 +55,39 @@
 
         if (mysqli_query($conn, $sql) === TRUE) {
           echo "Table cat1 created successfully or Table exists <br\>";
+          
+          //setup array for dummy products
+          $productcategory = array("Merchant Board ", "Merchant Board ", "Silver Recovery Systems ", "Silver Recovery Systems ", "Veterinary ", "Veterinary ", 
+          "X Ray Test Meters ", "X Ray Test Meters ");
 
-          $sql = "SELECT id FROM cat1";
-          $query = mysqli_query($conn, $sql);
-          if ( mysqli_num_rows($query) == 0){
-            //setup array for dummy products
-            $productcategory = array("Merchant Board ", "Merchant Board ", "Silver Recovery Systems ", "Silver Recovery Systems ", "Veterinary ", "Veterinary ", 
-            "X Ray Test Meters ", "X Ray Test Meters ");
+          $productname = array("Pacific Northway X-Ray Merchant Board for DR Panels ", "PNWX Light Duty Merchant Board for Film Cassettes", 
+          "Steel Wool Recovery Canisters and Accessories", "Rotex Standard Ultra Series Silver Recovery Systems", "Techno Aide Veterinary Immobilizers", 
+          "Techno Aide Veterinary Positioner", "ECC Series 820 kVp Meters", "Series 815 kVp Meters");
 
-            $productname = array("Pacific Northway X-Ray Merchant Board for DR Panels ", "PNWX Light Duty Merchant Board for Film Cassettes", 
-            "Steel Wool Recovery Canisters and Accessories", "Rotex Standard Ultra Series Silver Recovery Systems", "Techno Aide Veterinary Immobilizers", 
-            "Techno Aide Veterinary Positioner", "ECC Series 820 kVp Meters", "Series 815 kVp Meters");
+          $productdetail = array("Model: 1104-C3a, box style merchant board with arms to accommodate DR Panels up to 1-1/4 thick.", 
+          "Model: 1104, constructed of solid oak, adjustable tabletops ,compatible with CR.", 
+          "Model: C4 Steel Wool Canister; Size: 3-1/2 gallon; Steel Wool Type: Coarse", "Model: Ultra 4; Max Recovery Rate: 0.5oz/hr Tank Capacity: 2.75 gal; Electrical Requirements: 115VAC/60Hz", 
+          "Type:  Immobilizers; Model: VIT X; Size: X Large; Dimension: 36 x 14 x 9 feet high.",
+          "Type:  Positioner; Model: YFCA Positioner; Size: Small; Dimensions: 7 x 12.5 x 3.", "Model: 820; X-Ray kVp Meter/Exposure; Time Meter/mA Meter/mAs; kVp Range: 45 to 125.",
+          "Model: 815L;Lower kV Range Version of the 815 Meter(40 to 120kVp);For dental applications.");
 
-            $productdetail = array("Model: 1104-C3a, box style merchant board with arms to accommodate DR Panels up to 1-1/4 thick.", 
-            "Model: 1104, constructed of solid oak, adjustable tabletops ,compatible with CR.", 
-            "Model: C4 Steel Wool Canister; Size: 3-1/2 gallon; Steel Wool Type: Coarse", "Model: Ultra 4; Max Recovery Rate: 0.5oz/hr Tank Capacity: 2.75 gal; Electrical Requirements: 115VAC/60Hz", 
-            "Type:  Immobilizers; Model: VIT X; Size: X Large; Dimension: 36 x 14 x 9 feet high.",
-            "Type:  Positioner; Model: YFCA Positioner; Size: Small; Dimensions: 7 x 12.5 x 3.", "Model: 820; X-Ray kVp Meter/Exposure; Time Meter/mA Meter/mAs; kVp Range: 45 to 125.",
-            "Model: 815L;Lower kV Range Version of the 815 Meter(40 to 120kVp);For dental applications.");
+          $price = array("1968", "770", "215", "2412", "170", "33", "2279", "1700");
 
-            $price = array("1968", "770", "215", "2412", "170", "33", "2279", "1700");
-
-            $productpic = array("itempic/item1.jpg", "itempic/item2.jpg", "itempic/item3.jpg", "itempic/item4.jpg", "itempic/item5.jpg", "itempic/item6.jpg", "itempic/item7.jpg", 
-            "itempic/item8.jpg");
-            
-            $index = 0;
-            foreach($productcategory as $value){
-              $sql = "INSERT INTO cat1(productcategory, productname, productdetail, price, productpic) 
-              VALUES ('$value','$productname[$index]', '$productdetail[$index]', '$price[$index]', '$productpic[$index]')";
-              if (mysqli_query($conn, $sql) === TRUE) {
-                echo "New record created successfully";
-              } else {
-                echo "Error: " . $sql  . mysqli_error($conn);
-              }
-              $index++;
+          $productpic = array("itempic/item1.jpg", "itempic/item2.jpg", "itempic/item3.jpg", "itempic/item4.jpg", "itempic/item5.jpg", "itempic/item6.jpg", "itempic/item7.jpg", 
+          "itempic/item8.jpg");
+          
+          $index = 0;
+          foreach($productcategory as $value){
+            $sql = "INSERT INTO cat1(productcategory, productname, productdetail, price, productpic) 
+            VALUES ('$value','$productname[$index]', '$productdetail[$index]', '$price[$index]', '$productpic[$index]')";
+            if (mysqli_query($conn, $sql) === TRUE) {
+              echo "New record created successfully";
+            } else {
+              echo "Error: " . $sql  . mysqli_error($conn);
             }
-          }else{
-            echo "Error: " . $sql . "There's already products in the table";
+            $index++;
           }
+          
         } else {
             echo "Error creating table: " . mysqli_error($conn);
         }
