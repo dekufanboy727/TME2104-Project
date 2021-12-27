@@ -1,0 +1,159 @@
+html {
+    margin : 0;
+    padding: 0;
+    min-width: 1500px;
+    font-family: Maiandra GD;
+    height: 100%;
+}
+
+body{
+    margin : 0;
+    padding: 0;
+    min-width: 1500px;
+    font-family: Maiandra GD;
+    color: black;
+    height: 100%;
+    background-color: rgb(255, 255, 255);
+}
+
+.HeaderHeader {
+    background: black;
+    height: 150px;
+    width: 100%;
+    box-shadow: -2px 5px 10px black;
+}
+
+.login_register {
+    padding-top: 20px;
+    margin-right: 5%;
+    padding-bottom: 0;
+    background: Black;
+  }
+  
+.login_register .image_login_register {
+    width: auto;
+    height: 25px;
+    float:right;
+}
+
+.login_register ul {
+    list-style-type: none;
+    margin: 0px;
+    padding-right: 50px;
+    overflow: hidden;
+}
+
+.login_register li {
+    float:right;
+    font-size: 18px;
+    color: #cccccc;
+    font-family: Maiandra GD;
+    display: block;
+}
+
+.login_register li a{
+    padding-left: 10px;
+    text-decoration: none;
+    color: #cccccc;
+    padding-top: 35px;
+}
+
+.menu a {
+    font-size: 25px;
+    float: left;
+    padding: 0px 40px;
+    padding-top: 60px;
+    text-decoration: none;
+    color: #cccccc;
+}
+
+.menu h3 {
+    font-size: 25px;
+    float: left;
+    padding: 30px 40px;
+    text-shadow: 2px 2px 5px white;
+    color: #ffffff;
+}
+
+header {
+    background-color: black;
+    min-width: 1500px;
+    height: 130px;
+    box-shadow: -2px 5px 10px black;
+    font-family: Maiandra GD;
+    font-size: 35px;
+}
+
+header .logo {
+    float: left;
+    margin-left: 10px;
+    width: 280px;
+    height: 120px;
+}
+
+#cart {
+    width: 40px;
+    height: auto;
+    
+}
+
+.menu .cart_position {
+    float: right;
+    margin-right: 5%;
+}
+
+/*Footer*/
+.FooterFooter {
+    background-color: black;
+    font-family: Maiandra GD;
+    height: 250px;
+    min-width: 1500px;
+}
+
+.FFooterIcon {
+    margin-left: 10px;
+    margin-top: 20px;
+    float: left;
+}
+
+.FFooterBlocks {
+    font-family: Maiandra GD;
+    color: #b3b3b3;
+    background-color: black;
+    width: 270px;
+    height: 90px;
+    display: inline;
+    float: right;
+}
+
+.FFooterBlocks h3 {
+    text-align: left;
+    padding-left: 15%;
+    list-style-type: none;
+    text-align: left;
+}
+
+.FFooterIcon img {
+    width: 300px;
+    height: 130px;
+}
+
+#FooterLine {
+    border-top: #b3b3b3;
+    position: relative;
+}
+
+.FFooterUpperPortion {
+    height: 140px;
+}
+
+.FFooterLowerPortion {
+    text-align: center;
+}
+
+.Disclaimer {
+    color: #b3b3b3;
+}
+
+/*main*/
+
