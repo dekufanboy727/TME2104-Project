@@ -5,6 +5,8 @@
     <head>
         <title>Login - PNWX</title>
         <meta charset="UTF-8">
+        <link rel="icon" href="Pictures/icon.png">
+        <link rel="shortcut icon" href="Pictures/icon.png">
         <script type="text/javascript" src="LoginValidation.js"></script>
         <link rel="stylesheet" href="CSS/login.css">
     </head>
@@ -67,6 +69,8 @@
                 //Found the user
                 if(mysqli_num_rows($isFound) == 1) 
                 {
+                    unset($_SESSION['cart']); //Unset the session cart for public users
+                    
                     //fetch the id
                     $result = mysqli_fetch_assoc($isFound);
                     $id = $result["id"];
@@ -89,6 +93,16 @@
                     $_SESSION['email'] = $email;
                     $_SESSION['login'] = "Logged In";
                     $_SESSION['user_id'] = $id;
+
+                    $sql = "SELECT id FROM ShoppingCart WHERE User_id='$id'"; //Select the cart id From SHOPPING CART
+                    $isFound = mysqli_query($conn,$sql); 
+
+                    //Fetch the cart id
+                    $result = mysqli_fetch_assoc($isFound); 
+
+                    //Store the cart id
+                    $cartid = $result["id"]; 
+                    $_SESSION['cartid'] = $cartid;
 
                     //Close Connection
                     mysqli_close($conn);

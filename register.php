@@ -3,6 +3,8 @@
     <head>
         <title>Registration - PNWX</title>
         <meta charset="UTF-8">
+        <link rel="icon" href="Pictures/icon.png">
+        <link rel="shortcut icon" href="Pictures/icon.png">
         <script type="text/javascript" src="RegisterValidation.js"></script>
         <link rel="stylesheet" href="CSS/register.css">
     </head>
@@ -281,6 +283,25 @@
                     echo "Error creating table: " . $conn->error;
                 }
 
+            //Create CART
+            $sql = "CREATE TABLE ShoppingCart (
+                id INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+                User_id INT(10) UNSIGNED NOT NULL,
+                Grand_total FLOAT(20, 2) NOT NULL,
+                FOREIGN KEY (User_id) REFERENCES registered_User(id)
+                ON DELETE CASCADE
+                ON UPDATE CASCADE
+                )";
+      
+                if (mysqli_query($conn, $sql) === TRUE)
+                {
+                echo "Table cart created successfully or Table exists".'<br>';
+                }
+                else
+                {
+                echo "Error creating table cart: " . mysqli_error($conn);
+                }
+
             if($emailE == "" && $mobileE == "" && $pwE == "" && $cpwE == "" && $genderE == "" && $termsE =="" && $fnameE == "" && $lnameE == "" && $addE == "" && $postcodeE == "" && $cityE == ""
             &&  $fname != "" && $lname != "" && $email != "" && $mobile != "" && $pw != "" && $cpw != "" && $gender != "" && $terms != "" && $add != "" && $postcode != "" && $city != "")
             {
@@ -295,7 +316,23 @@
                   } else {
                     echo "Error: " . $sql . "<br>" . $conn->error;
                   }
+
+                $sql = "SELECT id FROM registered_User WHERE email='$email'"; //Select the user id
+                $isFound = mysqli_query($conn,$sql); 
+                $result = mysqli_fetch_assoc($isFound);
+                $id = $result["id"];
+
+                //Insert cart data
+                $sql = "INSERT INTO ShoppingCart (User_id, Grand_total)
+                VALUES ('$id', '0.00')";
+                if ($conn->query($sql) === TRUE) {
+                    echo "New CART created successfully";
+                  } else {
+                    echo "Error: " . $sql . "<br>" . $conn->error;
+                  }
             }
+
+            
 
             //Close Connection
             mysqli_close($conn);
