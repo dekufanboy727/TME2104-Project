@@ -127,7 +127,7 @@
                     mysqli_close($conn);
                     
                     //Redirecting user
-                    header("Location: adminindex.php");
+                    header("Location: adminDashboard.php");
                 }   
                 else
                 {
