@@ -287,3 +287,27 @@ html {
   background-color: rgb(238, 238, 238);
   width: 87%;
 }
+
+.summary{
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.sumtoppart {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 20%;
+  padding-right: 20%;
+  text-align: center;
+}
+
+.sumtoppart input{
+  display: inline;
+}
+
+.sum_select{
+  display: inline;
+}
+
