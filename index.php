@@ -1,4 +1,3 @@
-<!--!!!-->
 <?php session_start(); ?>
 
 <!DOCTYPE html>
@@ -17,8 +16,7 @@
 
         // Create database & connection
         include 'connection.php';
-        
-        // ADDDED!!!!!
+
         //Declarations
         $signup = $login = $logout = $myprofile = "";
         //Check if session login is defined
@@ -44,7 +42,7 @@
         //product
 
         //Create Table Products
-        $sql = "CREATE TABLE cat1 (
+        $sql = "CREATE TABLE product (
         id INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
         productcategory VARCHAR(255) NOT NULL,
         productname VARCHAR(255) NOT NULL,
@@ -54,7 +52,7 @@
         )";
 
         if (mysqli_query($conn, $sql) === TRUE) {
-          echo "Table cat1 created successfully or Table exists <br\>";
+          echo "Table u created successfully or Table exists".'<br>';
           
           //setup array for dummy products
           $productcategory = array("Merchant Board ", "Merchant Board ", "Silver Recovery Systems ", "Silver Recovery Systems ", "Veterinary ", "Veterinary ", 
@@ -78,7 +76,7 @@
           
           $index = 0;
           foreach($productcategory as $value){
-            $sql = "INSERT INTO cat1(productcategory, productname, productdetail, price, productpic) 
+            $sql = "INSERT INTO Product(productcategory, productname, productdetail, price, productpic) 
             VALUES ('$value','$productname[$index]', '$productdetail[$index]', '$price[$index]', '$productpic[$index]')";
             if (mysqli_query($conn, $sql) === TRUE) {
               echo "New record created successfully";
@@ -91,6 +89,7 @@
         } else {
             echo "Error creating table: " . mysqli_error($conn);
         }
+
         mysqli_close($conn);
     ?>
     <!----product end-->
@@ -190,19 +189,23 @@
                 <h3 id = "merchantBoard"> Merchant Board </h3>
                 <?php 
                 include 'connection.php';
-                $sql = "SELECT id, productcategory, productname, productdetail, price, productpic FROM cat1 WHERE productcategory='Merchant Board'";
+                $sql = "SELECT id, productcategory, productname, productdetail, price, productpic FROM Product WHERE productcategory='Merchant Board'";
                 $result = $conn->query($sql);
     
                 if ($result->num_rows > 0) {
                     // output data of each row
                     while($row = $result->fetch_assoc()) {
+                      echo '<form name="add_cart" method="post" action="cart.php">';
                       echo '<div class="column"> <div class = "card">';
                       echo '' .'<img src = "' . $row['productpic'] . '"/>' . '';
                       echo '  <div class="grid-container"> <h2>' . $row["productname"]. '</h2></div>';
                       echo '  <div class="grid-container"> <p>' . $row["productdetail"] . '</p></div>';
                       echo '  <div class="grid-container"> <p class="title">'. "$" . $row["price"] .  '</p></div>';
-                      echo '<p><a href="#addcart"><button class="button">Add Cart</button></a></p>     ';
+                      echo '<input type="number" name="quantity" value="1" min="1" >';
+                      echo '<input type="hidden" name="product_id" value="' .$row["id"]. '">';
+                      echo '<input class="button" type="submit" value="Add Cart">   ';
                       echo '</div></div>';
+                      echo '</form>';
     
                     }
     
@@ -217,22 +220,25 @@
                 <h3 id = "silverRecovery"> Silver Recovery Systems </h3>
                 <?php 
                 include 'connection.php';
-                $sql = "SELECT id, productcategory, productname, productdetail, price, productpic FROM cat1 WHERE productcategory='Silver Recovery Systems'";
+                $sql = "SELECT id, productcategory, productname, productdetail, price, productpic FROM Product WHERE productcategory='Silver Recovery Systems'";
                 $result = $conn->query($sql);
     
                 if ($result->num_rows > 0) {
                     // output data of each row
                     while($row = $result->fetch_assoc()) {
+                      echo '<form name="add_cart" method="post" action="cart.php">';
                       echo '<div class="column"> <div class = "card">';
                       echo '' .'<img src = "' . $row['productpic'] . '"/>' . '';
                       echo '  <div class="grid-container"> <h2>' . $row["productname"]. '</h2></div>';
                       echo '  <div class="grid-container"> <p>' . $row["productdetail"] . '</p></div>';
                       echo '  <div class="grid-container"> <p class="title">'. "$" . $row["price"] .  '</p></div>';
-                      echo '<p><a href="#addcart"><button class="button">Add Cart</button></a></p>     ';
+                      echo '<input type="number" name="quantity" value="1" min="1" >';
+                      echo '<input type="hidden" name="product_id" value="' .$row["id"]. '">';
+                      echo '<input class="button" type="submit" value="Add Cart">   ';
                       echo '</div></div>';
-    
+                      echo '</form>';
                     }
-    
+                    
                 } else {
                     echo "0 results";
                 }
@@ -243,19 +249,23 @@
                 <h3 id = "veterinary"> Veterinary  </h3>
                 <?php 
                 include 'connection.php';
-                $sql = "SELECT id, productcategory, productname, productdetail, price, productpic FROM cat1 WHERE productcategory='Veterinary '";
+                $sql = "SELECT id, productcategory, productname, productdetail, price, productpic FROM Product WHERE productcategory='Veterinary '";
                 $result = $conn->query($sql);
     
                 if ($result->num_rows > 0) {
                     // output data of each row
                     while($row = $result->fetch_assoc()) {
+                      echo '<form name="add_cart" method="post" action="cart.php">';
                       echo '<div class="column"> <div class = "card">';
                       echo '' .'<img src = "' . $row['productpic'] . '"/>' . '';
                       echo '  <div class="grid-container"> <h2>' . $row["productname"]. '</h2></div>';
                       echo '  <div class="grid-container"> <p>' . $row["productdetail"] . '</p></div>';
                       echo '  <div class="grid-container"> <p class="title">'. "$" . $row["price"] .  '</p></div>';
-                      echo '<p><a href="#addcart"><button class="button">Add Cart</button></a></p>     ';
+                      echo '<input type="number" name="quantity" value="1" min="1" >';
+                      echo '<input type="hidden" name="product_id" value="' .$row["id"]. '">';
+                      echo '<input class="button" type="submit" value="Add Cart">   ';
                       echo '</div></div>';
+                      echo '</form>';
     
                     }
     
@@ -269,19 +279,23 @@
                 <h3 id = "xray"> X Ray Test Meters  </h3>
                 <?php 
                 include 'connection.php';
-                $sql = "SELECT id, productcategory, productname, productdetail, price, productpic FROM cat1 WHERE productcategory='X Ray Test Meters  '";
+                $sql = "SELECT id, productcategory, productname, productdetail, price, productpic FROM Product WHERE productcategory='X Ray Test Meters  '";
                 $result = $conn->query($sql);
     
                 if ($result->num_rows > 0) {
                     // output data of each row
                     while($row = $result->fetch_assoc()) {
+                      echo '<form name="add_cart" method="post" action="cart.php">';
                       echo '<div class="column"> <div class = "card">';
                       echo '' .'<img src = "' . $row['productpic'] . '"/>' . '';
                       echo '  <div class="grid-container"> <h2>' . $row["productname"]. '</h2></div>';
                       echo '  <div class="grid-container"> <p>' . $row["productdetail"] . '</p></div>';
                       echo '  <div class="grid-container"> <p class="title">'. "$" . $row["price"] .  '</p></div>';
-                      echo '<p><a href="#addcart"><button class="button">Add Cart</button></a></p>     ';
+                      echo '<input type="number" name="quantity" value="1" min="1" >';
+                      echo '<input type="hidden" name="product_id" value="' .$row["id"]. '">';
+                      echo '<input class="button" type="submit" value="Add Cart">   ';
                       echo '</div></div>';
+                      echo '</form>';
     
                     }
     
