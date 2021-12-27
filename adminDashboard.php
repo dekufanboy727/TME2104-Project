@@ -39,6 +39,70 @@
             return $data;
         }
 
+         //Create Dummy Transactions and Transaction Details
+         $sql = "CREATE TABLE transactions (
+            id int(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+            userid int(15) NOT NULL,
+            _date date NOT NULL,
+            total double(15,2) NOT NULL,
+            is_preset tinyint(1) NOT NULL DEFAULT 0
+          );";
+
+        if (mysqli_query($conn, $sql) == TRUE){
+            echo "Table Transactions Created Successfully".'<br>';
+
+            $sql = "INSERT INTO `transactions` (`id`, `userid`, `_date`, `total`, `is_preset`) VALUES
+            (1, 1, '2021-12-28', 8239.00, 1),
+            (2, 2, '2021-12-29', 340.00, 1),
+            (3, 3, '2021-12-28', 9212.50, 1),
+            (4, 4, '2022-12-08', 3936.00, 1),
+            (5, 5, '2022-12-08', 4950.00, 1);";
+
+            if (mysqli_query($conn, $sql) === TRUE) {
+                echo "New record created successfully";
+            } else {
+                echo "Error: " .  mysqli_error($conn);
+            }
+
+        }else{
+            echo "Error creating table: " . $conn->error;
+        }
+
+        $sql = "CREATE TABLE transactions_details (
+            trans_id int(15) UNSIGNED NOT NULL, 
+            product_id int(30) NOT NULL,
+            quantity int(15) NOT NULL,
+            total_price double(15,2) NOT NULL,
+            PRIMARY KEY (trans_id, product_id, quantity, total_price),
+            FOREIGN KEY (trans_id) REFERENCES transactions (id)
+            ON DELETE CASCADE
+            ON UPDATE CASCADE
+            )";
+
+        if (mysqli_query($conn, $sql) == TRUE){
+            echo "Table Transaction Details Created Successfully".'<br>';
+
+            $sql = "INSERT INTO transactions_details (trans_id, product_id, quantity, total_price) VALUES
+            (1, 3, 4, 860.00),
+            (1, 7, 1, 2279.00),
+            (1, 8, 3, 5100.00),
+            (2, 5, 2, 340.00),
+            (3, 4, 1, 2412.00),
+            (3, 5, 40, 6800.00),
+            (4, 1, 2, 3936.00),
+            (5, 2, 6, 4620.00),
+            (5, 6, 10, 330.00);";
+
+            if (mysqli_query($conn, $sql) === TRUE) {
+                echo "New record created successfully";
+            } else {
+                echo "Error: " .  mysqli_error($conn);
+            }
+
+        }else{
+            echo "Error creating table: " . $conn->error;
+        }
+
         if ($_SERVER["REQUEST_METHOD"] == "POST"){
             $sum_option = test($_POST["summary_selection"]);
 
@@ -157,6 +221,7 @@
                     echo "<br>";
                     echo "<p> No Results </p>";
                 }
+                mysqli_close($conn);
             ?>
         </div>
     </section>
