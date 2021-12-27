@@ -120,45 +120,47 @@
     <br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
     <div class="admin-title">
-        <h1>Summary of Transaction Records</h1>
+        <h1>Report of Transaction Records</h1>
         <hr>
     </div>
 
-    <div>
-            <section class="summary">
-                <form class="sum_top_part" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
-                    <div class="sum_select">
-                        <select name="summary_selection" id="sum_select">
-                            <option value="daily">Daily</option>
-                            <option value="weekly">Weekly</option>
-                            <option value="monthly">Monthly</option>
-                        </select>
-                    </div>
-                    <input type="submit" class="sum_button" value ="show"></input>
-                </form>
-                <span class= "error"> <?php echo $sum_err ?></span>
-                <div class="sum_bot_part">
-                    <?php
-                        if($_SERVER["REQUEST_METHOD"] == "POST"){
-                            if(mysqli_num_rows($result) > 0){
-                                echo "<table class='demTable'>";
-                                echo "<tr><th>ID</th><th>UserID</th><th>Date</th><th>Total</th></tr>";
-                                while($row = mysqli_fetch_assoc($result)){
-                                    echo "<tr><td>".$row["id"]."</td><td>".$row["userid"]."</td><td>".$row["_date"]."</td><td>".$row["total"]."</td></tr>";
-                                }
-                                echo "</table>";
-                            }else{
-                                echo "<br>";
-                                echo "<p> No Results </p>";
-                            }
-                        }else{
-                            echo "<br>";
-                            echo "<p> No Results </p>";
-                        }
-                    ?>
+
+    <section class="summary">
+        <div class="sumtoppart" >
+            <form  action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
+                <div class="sum_select">
+                    <select name="summary_selection" id="sum_select">
+                        <option value="daily">Daily</option>
+                        <option value="weekly">Weekly</option>
+                        <option value="monthly">Monthly</option>
+                    </select>
                 </div>
-            </section>
+                <input type="submit" class="sum_button" value ="show"></input>
+            </form>
+            <span class= "error"> <?php echo $sum_err ?></span>
         </div>
+        <div class="sum_bot_part">
+            <?php
+                if($_SERVER["REQUEST_METHOD"] == "POST"){
+                    if(mysqli_num_rows($result) > 0){
+                        echo "<table class='demTable'>";
+                        echo "<tr><th>ID</th><th>UserID</th><th>Date</th><th>Total</th></tr>";
+                        while($row = mysqli_fetch_assoc($result)){
+                            echo "<tr><td>".$row["id"]."</td><td>".$row["userid"]."</td><td>".$row["_date"]."</td><td>".$row["total"]."</td></tr>";
+                        }
+                        echo "</table>";
+                    }else{
+                        echo "<br>";
+                        echo "<p> No Results </p>";
+                    }
+                }else{
+                    echo "<br>";
+                    echo "<p> No Results </p>";
+                }
+            ?>
+        </div>
+    </section>
+
 
     <!-- For animating elements as they enter/leave the viewport -->
     </div>
