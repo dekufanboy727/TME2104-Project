@@ -249,6 +249,32 @@
                 </span>
             </div>
 
+            <div class="profilepic"> 
+            <?php 
+                $sql = "SELECT gender FROM registered_User WHERE id = '$id'"; //Select the user id
+                $isFound = mysqli_query($conn,$sql); //Check is it exists
+                
+                //Found the user
+                if(mysqli_num_rows($isFound) == 1) 
+                {
+                    //fetch the id
+                    $result = mysqli_fetch_assoc($isFound);
+                    $gender = $result["gender"];
+
+                    if( $gender === "Female")
+                    {
+                        echo '<img src="Pictures/default_pp_female.png">';
+                    }
+                    else
+                    {
+                        echo '<img src="Pictures/default_pp_male.png">';
+                    }
+                }
+            ?>
+            </div>
+
+            <br>
+
             <div class = "column">
                 <div class="column1">
                     <ul>
@@ -342,6 +368,7 @@
 
             </div> <!-- End Column-->
         </main>
+        <br><br>
 
         <footer class="FooterFooter">
             <div class="FFooterUpperPortion">
