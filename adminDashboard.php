@@ -1,3 +1,5 @@
+<?php session_start(); ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,6 +11,59 @@
     <title>Admin Dashboard - PNWX</title>
 </head>
 <body>
+    <?php
+        include 'adminconfig.php';
+
+        date_default_timezone_set("Asia/Kuching");
+
+        $id = $email = $name = $sum_err = "";
+
+        $id = $_SESSION['admin_id'];
+        $email = $_SESSION['email'];
+
+        $sql = "SELECT username FROM admins WHERE ID='$id'"; //Select the user id
+        $isFound = mysqli_query($conn,$sql); //Check is it exists
+
+        if (mysqli_num_rows($isFound) > 0){
+            $result = mysqli_fetch_assoc($isFound);
+            $name = $result['username'];
+        }else{
+            echo "no results";
+        }
+        
+        function test($data)
+        {
+            $data = trim($data);
+            $data = stripslashes($data);
+            $data = htmlspecialchars($data);
+            return $data;
+        }
+
+        if ($_SERVER["REQUEST_METHOD"] == "POST"){
+            $sum_option = test($_POST["summary_selection"]);
+
+            if ($sum_option === "daily"){
+                $date = date( 'Y-m-d' ,strtotime("now"));
+                $sql = "SELECT id, userid, _date, total FROM transactions WHERE _date = '$date'";
+                $result = mysqli_query($conn, $sql);
+
+            }else if ($sum_option === "weekly"){
+                $date = date( 'W' ,strtotime("now"));
+                $date2 = date( 'Y' ,strtotime("now"));
+                $sql = "SELECT id, userid, _date, total FROM transactions WHERE WEEK(_date) = '$date' AND YEAR(_date) = '$date2'";
+                $result = mysqli_query($conn, $sql);
+
+            }else if ($sum_option === "monthly"){
+                $date = date( 'm' ,strtotime("now"));
+                $date2 = date( 'Y' ,strtotime("now"));
+                $sql = "SELECT id, userid, _date, total FROM transactions WHERE MONTH(_date) = '$date' AND YEAR(_date) = '$date2'";
+                $result = mysqli_query($conn, $sql);
+
+            }else{
+                $sum_err = "Please Select Something";
+            }
+        }
+    ?>
     <header class="HeaderHeader" id="Push_header">
         <a href="adminDashboard.php"> <img class="logo" src="Pictures/LOGO.jpeg" alt="Pacific Northwest X-Ray Inc."> </a>
         
@@ -19,7 +74,7 @@
         <div class="login_register">
             <ul> 
                 <li><a href="adminlogout.php">Log Out</a></li>
-                <!-- <li><a href=""><?php echo $name ?></a></li> -->
+                <li><a href=""><?php echo $name ?></a></li>
                 <li><img class="image_login_register" src="Pictures/login_register_icon.png" alt="Login and register icon"></a>
             </ul>
         </div>
@@ -69,52 +124,41 @@
         <hr>
     </div>
 
-    <table class="demTable">
-		<thead>
-			<tr>
-				<th>Payment ID</th>
-				<th>Header 1</th>
-				<th>Header 2</th>
-				<th>Header 3</th>
-				<th>Header 4</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr>
-				<td>&nbsp;</td>
-				<td>&nbsp;</td>
-				<td>&nbsp;</td>
-				<td>&nbsp;</td>
-				<td>&nbsp;</td>
-			</tr>
-		</tbody>
-    </table>
-    <br>
-
-    <!-- For inserting new data -->
-    <section class="padCard">
-        <h1>Insert Data</h1>
-        <p>*Insert Form Here</p>
-        <br>
-
-    </section>
-
-    <!-- For deleting existing data -->
-    <section class="padCard">
-        <h1>Delete Data</h1>
-        <p>*Insert Form Here</p>
-        <br>
-        
-    </section>
-
-    <!-- For updating exsting data -->
-    <section class="padCard">
-        <h1>Update Data</h1>
-        <p>*Insert Form Here</p>
-        <br>
-        
-    </section>
-
+    <div>
+            <section class="summary">
+                <form class="sum_top_part" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
+                    <div class="sum_select">
+                        <select name="summary_selection" id="sum_select">
+                            <option value="daily">Daily</option>
+                            <option value="weekly">Weekly</option>
+                            <option value="monthly">Monthly</option>
+                        </select>
+                    </div>
+                    <input type="submit" class="sum_button" value ="show"></input>
+                </form>
+                <span class= "error"> <?php echo $sum_err ?></span>
+                <div class="sum_bot_part">
+                    <?php
+                        if($_SERVER["REQUEST_METHOD"] == "POST"){
+                            if(mysqli_num_rows($result) > 0){
+                                echo "<table class='demTable'>";
+                                echo "<tr><th>ID</th><th>UserID</th><th>Date</th><th>Total</th></tr>";
+                                while($row = mysqli_fetch_assoc($result)){
+                                    echo "<tr><td>".$row["id"]."</td><td>".$row["userid"]."</td><td>".$row["_date"]."</td><td>".$row["total"]."</td></tr>";
+                                }
+                                echo "</table>";
+                            }else{
+                                echo "<br>";
+                                echo "<p> No Results </p>";
+                            }
+                        }else{
+                            echo "<br>";
+                            echo "<p> No Results </p>";
+                        }
+                    ?>
+                </div>
+            </section>
+        </div>
 
     <!-- For animating elements as they enter/leave the viewport -->
     </div>
