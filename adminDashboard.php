@@ -105,22 +105,27 @@
 
         if ($_SERVER["REQUEST_METHOD"] == "POST"){
             $sum_option = test($_POST["summary_selection"]);
+            $date = $_POST["search_date"];
 
             if ($sum_option === "daily"){
-                $date = date( 'Y-m-d' ,strtotime("now"));
-                $sql = "SELECT id, userid, _date, total FROM transactions WHERE _date = '$date'";
+                $date1 = date( 'd' ,strtotime($date));
+                $date2 = date('m', strtotime($date));
+                $date3 = date('Y', strtotime($date));
+                $sql = "SELECT id, userid, _date, total FROM transactions WHERE DAY(_date) = '$date1' AND MONTH(_date) = '$date2' 
+                AND YEAR(_date) = '$date3'";
+
                 $result = mysqli_query($conn, $sql);
 
             }else if ($sum_option === "weekly"){
-                $date = date( 'W' ,strtotime("now"));
-                $date2 = date( 'Y' ,strtotime("now"));
-                $sql = "SELECT id, userid, _date, total FROM transactions WHERE WEEK(_date) = '$date' AND YEAR(_date) = '$date2'";
+                $date1 = date( 'W' ,strtotime($date));
+                $date2 = date( 'Y' ,strtotime($date));
+                $sql = "SELECT id, userid, _date, total FROM transactions WHERE WEEK(_date) = '$date1' AND YEAR(_date) = '$date2'";
                 $result = mysqli_query($conn, $sql);
 
             }else if ($sum_option === "monthly"){
-                $date = date( 'm' ,strtotime("now"));
-                $date2 = date( 'Y' ,strtotime("now"));
-                $sql = "SELECT id, userid, _date, total FROM transactions WHERE MONTH(_date) = '$date' AND YEAR(_date) = '$date2'";
+                $date1 = date( 'm' ,strtotime($date));
+                $date2 = date( 'Y' ,strtotime($date));
+                $sql = "SELECT id, userid, _date, total FROM transactions WHERE MONTH(_date) = '$date1' AND YEAR(_date) = '$date2'";
                 $result = mysqli_query($conn, $sql);
 
             }else{
@@ -192,6 +197,7 @@
     <section class="summary">
         <div class="sumtoppart" >
             <form  action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
+                <input type="date" class="sum_button" name="search_date"></input>
                 <div class="sum_select">
                     <select name="summary_selection" id="sum_select">
                         <option value="daily">Daily</option>
@@ -203,23 +209,29 @@
             </form>
             <span class= "error"> <?php echo $sum_err ?></span>
         </div>
-        <div class="sum_bot_part">
+        <br><br>
+        <div class="sumbotpart">
             <?php
                 if($_SERVER["REQUEST_METHOD"] == "POST"){
                     if(mysqli_num_rows($result) > 0){
                         echo "<table class='demTable'>";
                         echo "<tr><th>ID</th><th>UserID</th><th>Date</th><th>Total</th></tr>";
                         while($row = mysqli_fetch_assoc($result)){
-                            echo "<tr><td>".$row["id"]."</td><td>".$row["userid"]."</td><td>".$row["_date"]."</td><td>".$row["total"]."</td></tr>";
+                            $temp_id = $row["id"];
+                            $sql_name = "SELECT firstname, lastname FROM registered_user WHERE id = '$temp_id'";
+                            $result2 = mysqli_query($conn, $sql_name);
+                            $temp_name = mysqli_fetch_assoc($result2);
+                            echo "<tr><td>".$row["id"]."</td><td>".$row["userid"].":".$temp_name["firstname"]." ".$temp_name["lastname"]."</td><td>".$row["_date"]."</td><td>".
+                            "$".$row["total"]."</td></tr>";
                         }
                         echo "</table>";
                     }else{
                         echo "<br>";
-                        echo "<p> No Results </p>";
+                        echo "<p class='noresults'> No Results </p>";
                     }
                 }else{
                     echo "<br>";
-                    echo "<p> No Results </p>";
+                    echo "<p class='noresults'> No Results </p>";
                 }
                 mysqli_close($conn);
             ?>
