@@ -120,7 +120,7 @@
     <br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
     <div class="admin-title">
-        <h1>Summary of Transaction Records</h1>
+        <h1>Report of Transaction Records</h1>
         <hr>
     </div>
 
