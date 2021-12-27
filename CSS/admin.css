@@ -311,3 +311,12 @@ html {
   display: inline;
 }
 
+.sumbotpart{
+  text-align: center;
+}
+
+.noresults{
+  font-weight: bolder;
+  margin-left: auto;
+  margin-right: auto;
+}
