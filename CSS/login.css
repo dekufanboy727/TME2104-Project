@@ -36,6 +36,7 @@ header .logo {
     color: #cccccc;
     text-shadow: 1px 1px 4px #ffffff;
     padding-top: 60px;
+    background-color: black;
 }
 
 .header_login  a{
