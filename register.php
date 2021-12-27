@@ -276,13 +276,27 @@
                 city CHAR(30) NOT NULL,
                 _login CHAR(30) NOT NULL
                 )";
-    
-                if ($conn->query($sql) === TRUE) {
-                    echo "Table MyGuests created successfully";
-                } else {
-                    echo "Error creating table: " . $conn->error;
-                }
 
+            //Inserting Preset Users For Functions to Work
+            if ($conn->query($sql) === TRUE) {
+                echo "Table MyGuests created successfully";
+
+                $sql = " INSERT INTO registered_user (id, firstname, lastname, email, region, phone, pwd, gender, _state, postcode, _address, city, _login) VALUES
+                (1, 'Jerry', 'Mander', 'JM1@gmail.com', 60, 1910001000, 'Cc123@', 'Male', 'Selangor', 53110, '3, Jalan Terringgi 3/5 C,', 'Kuala Lumpur', 'Logged Out'),
+                (2, 'Holly', 'Maddson', 'HM2@gmail.com', 60, 1110001000, 'Aa123@', 'Female', 'Penang', 37701, '2, Jalan Ferringgi 5/7B', 'GeorgeTown', 'Logged Out'),
+                (3, 'Barry', 'Halselhoff', 'BH3@gmail.com', 60, 1320001000, 'Bb123@', 'Male', 'Selangor', 48000, '4, Jalan University,', 'Petaling Jaya', 'Logged Out'),
+                (4, 'Darrel', 'Wong', 'DW4@gmail.com', 60, 1420001000, 'Bb123@', 'Male', 'Sarawak', 93000, '6, Jalan Rodway,', 'Kuching', 'Logged Out'),
+                (5, 'Siti', 'Ahmad', 'MA5@gmail.com', 60, 1530002000, 'Bb123@', 'Female', 'Pahang', 27600, '7, Jalan Lipis,', 'Raub', 'Logged Out');";
+
+                if (mysqli_query($conn, $sql) === TRUE) {
+                    echo "New record created successfully";
+                } else {
+                    echo "Error: " .  mysqli_error($conn);
+                }
+            } else {
+                echo "Error creating table: " . $conn->error;
+            }
+            
             //Create CART
             $sql = "CREATE TABLE ShoppingCart (
                 id INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
@@ -301,7 +315,72 @@
                 {
                 echo "Error creating table cart: " . mysqli_error($conn);
                 }
+            
+            //Create Dummy Transactions and Transaction Details
+            $sql = "CREATE TABLE transactions (
+                id int(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+                userid int(15) NOT NULL,
+                _date date NOT NULL,
+                total double(15,2) NOT NULL,
+                is_preset tinyint(1) NOT NULL DEFAULT 0
+              );";
 
+            if (mysqli_query($conn, $sql) == TRUE){
+                echo "Table Transactions Created Successfully".'<br>';
+
+                $sql = "INSERT INTO `transactions` (`id`, `userid`, `_date`, `total`, `is_preset`) VALUES
+                (1, 1, '2021-12-28', 8239.00, 1),
+                (2, 2, '2021-12-29', 340.00, 1),
+                (3, 3, '2021-12-28', 9212.50, 1),
+                (4, 4, '2022-12-08', 3936.00, 1),
+                (5, 5, '2022-12-08', 4950.00, 1);";
+
+                if (mysqli_query($conn, $sql) === TRUE) {
+                    echo "New record created successfully";
+                } else {
+                    echo "Error: " .  mysqli_error($conn);
+                }
+
+            }else{
+                echo "Error creating table: " . $conn->error;
+            }
+
+            $sql = "CREATE TABLE transactions_details (
+                trans_id int(15) UNSIGNED NOT NULL, 
+                product_id int(30) NOT NULL,
+                quantity int(15) NOT NULL,
+                total_price double(15,2) NOT NULL,
+                PRIMARY KEY (trans_id, product_id, quantity, total_price),
+                FOREIGN KEY (trans_id) REFERENCES transactions (id)
+                ON DELETE CASCADE
+                ON UPDATE CASCADE
+                )";
+
+            if (mysqli_query($conn, $sql) == TRUE){
+                echo "Table Transaction Details Created Successfully".'<br>';
+
+                $sql = "INSERT INTO transactions_details (trans_id, product_id, quantity, total_price) VALUES
+                (1, 3, 4, 860.00),
+                (1, 7, 1, 2279.00),
+                (1, 8, 3, 5100.00),
+                (2, 5, 2, 340.00),
+                (3, 4, 1, 2412.00),
+                (3, 5, 40, 6800.00),
+                (4, 1, 2, 3936.00),
+                (5, 2, 6, 4620.00),
+                (5, 6, 10, 330.00);";
+
+                if (mysqli_query($conn, $sql) === TRUE) {
+                    echo "New record created successfully";
+                } else {
+                    echo "Error: " .  mysqli_error($conn);
+                }
+
+            }else{
+                echo "Error creating table: " . $conn->error;
+            }
+
+            //Actual Registration Logic
             if($emailE == "" && $mobileE == "" && $pwE == "" && $cpwE == "" && $genderE == "" && $termsE =="" && $fnameE == "" && $lnameE == "" && $addE == "" && $postcodeE == "" && $cityE == ""
             &&  $fname != "" && $lname != "" && $email != "" && $mobile != "" && $pw != "" && $cpw != "" && $gender != "" && $terms != "" && $add != "" && $postcode != "" && $city != "")
             {
@@ -331,8 +410,6 @@
                     echo "Error: " . $sql . "<br>" . $conn->error;
                   }
             }
-
-            
 
             //Close Connection
             mysqli_close($conn);

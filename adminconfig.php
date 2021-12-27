@@ -1,7 +1,9 @@
 <?php 
     $servername = "localhost";
-    $username = "PNWX_admin";
-    $password = "2L4R/4hb6Qd6GVG3";
+    $username = "root";
+    $password = "";
+
+    //Pass for PNWX_admin is 2L4R/4hb6Qd6GVG3
     
     // Create connection
     $conn = mysqli_connect($servername, $username, $password);
