@@ -288,13 +288,13 @@ html {
   width: 87%;
 }
 
-.summary{
+.report{
   width: 80%;
   margin-left: auto;
   margin-right: auto;
 }
 
-.sumtoppart {
+.reptoppart {
   width: 100%;
   margin-left: auto;
   margin-right: auto;
@@ -303,15 +303,15 @@ html {
   text-align: center;
 }
 
-.sumtoppart input{
+.reptoppart input{
   display: inline;
 }
 
-.sum_select{
+.rep_select{
   display: inline;
 }
 
-.sumbotpart{
+.repbotpart{
   text-align: center;
 }
 

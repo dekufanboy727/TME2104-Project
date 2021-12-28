@@ -104,7 +104,7 @@
         }
 
         if ($_SERVER["REQUEST_METHOD"] == "POST"){
-            $sum_option = test($_POST["summary_selection"]);
+            $sum_option = test($_POST["rep_selection"]);
             $date = $_POST["search_date"];
 
             if ($sum_option === "daily"){
@@ -186,7 +186,76 @@
     
     
     
-    <br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br>
+    
+    <div class="admin-title">
+        <h1>Summary of Transaction Records</h1>
+        <hr>
+    </div>
+    
+    <div class="summaryRow">
+        <div class="summaryColumn">
+            <div class="SumTitle">
+                <h3>Recent Buyers and States</h3>
+                <hr>
+            </div>
+            <?php
+                $sql_sum = "SELECT userid FROM transactions ORDER BY _date DESC LIMIT 5";
+                $sum_result = mysqli_query($conn,$sql_sum);
+
+                if(mysqli_num_rows($sum_result) > 0){
+                    echo "<table class='demTable'>";
+                    echo "<tr><th>No</th><th>UserID</th><th>Username</th><th>State</th></tr>";
+                    $key = 1;
+                    while($sum_row = mysqli_fetch_assoc($sum_result)){
+                        $temp_id = $sum_row["userid"];
+                        $sql_name = "SELECT firstname, lastname, _state FROM registered_user WHERE id = '$temp_id'";
+                        $sum_result2 = mysqli_query($conn, $sql_name);
+                        $temp_name = mysqli_fetch_assoc($sum_result2);
+                        echo "<tr><td>".$key."</td><td>".$sum_row["userid"]."</td><td>".$temp_name["firstname"]." ".$temp_name["lastname"]."</td><td>".$temp_name["_state"]."</td></tr>";
+                        $key++;
+                    }
+                    echo "</table>";
+                }else{
+                    echo "<br>";
+                    echo "<p class='noresults'> No Results </p>";
+                }
+            ?>
+        </div>
+        <div class="summaryColumn">
+            <div class="SumTitle">
+                <h3>Transactions based on States</h3>
+                <p>Maybe you can chartify this?</p>
+                <hr>
+            </div>
+            <?php
+                $sql_sum = "SELECT _state,  COUNT(transactions.id) AS custotal 
+                            FROM registered_user 
+                            INNER JOIN transactions 
+                            ON registered_user.id = transactions.userid 
+                            GROUP BY _state";
+                $sum_result = mysqli_query($conn,$sql_sum);
+
+                if(mysqli_num_rows($sum_result) > 0){
+                    echo "<table class='demTable'>";
+                    echo "<tr><th>No</th><th>State</th><th>Number</th></tr>";
+                    $key = 1;
+                    while($sum_row = mysqli_fetch_assoc($sum_result)){
+                        echo "<tr><td>".$key."</td><td>".$sum_row["_state"]."</td><td>".$sum_row["custotal"]."</td></tr>";
+                        $key++;
+                    }
+                    echo "</table>";
+                }else{
+                    echo "<br>";
+                    echo "<p class='noresults'> No Results </p>";
+                }
+                
+            ?>
+        </div>
+    </div>
+    
+
+    <br><br><br><br><br><br><br>
 
     <div class="admin-title">
         <h1>Report of Transaction Records</h1>
@@ -194,23 +263,23 @@
     </div>
 
 
-    <section class="summary">
-        <div class="sumtoppart" >
+    <section class="report">
+        <div class="reptoppart" >
             <form  action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
                 <input type="date" class="sum_button" name="search_date"></input>
-                <div class="sum_select">
-                    <select name="summary_selection" id="sum_select">
+                <div class="rep_select">
+                    <select name="rep_selection" id="sum_select">
                         <option value="daily">Daily</option>
                         <option value="weekly">Weekly</option>
                         <option value="monthly">Monthly</option>
                     </select>
                 </div>
-                <input type="submit" class="sum_button" value ="show"></input>
+                <input type="submit" class="rep_button"></input>
             </form>
             <span class= "error"> <?php echo $sum_err ?></span>
         </div>
         <br><br>
-        <div class="sumbotpart">
+        <div class="repbotpart">
             <?php
                 if($_SERVER["REQUEST_METHOD"] == "POST"){
                     if(mysqli_num_rows($result) > 0){
