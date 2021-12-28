@@ -199,7 +199,6 @@
             
         ?>
 
-        
         <header class="HeaderHeader">
             <a href="index.php"> <img class="logo" src="Pictures/LOGO.jpeg" alt="Pacific Northwest X-Ray Inc."> </a>
             <span class = "menu">
@@ -217,14 +216,18 @@
             </div>
         </header>
         
-        <div class= "row-title">
-            <ul>
-            <li>Item(s)</li>
-            <li>Quantity</li>
-            <li>Unit Price</li>
-            <li>Subtotal</li>
-            </ul>
-        </div>
+        <table class= "table">
+        <tbody>
+        <tr style="background-color: #C0C0C0">
+            <td style="background-color: #FFFFFF"></td>
+            <td>Item(s)</td>
+            <td></td>
+            <td>Quantity</td>
+            <td></td>
+            <td>Unit Price</td>
+            <td>Subtotal</td>
+            <td></td>
+        </tr>
             
         <?php 
             //To calculate GRAND TOTAL
@@ -258,19 +261,32 @@
                 {
                     while($row = mysqli_fetch_assoc($result))
                     {
-                        echo '<td color="white">'.$row['productname']. '</td>';
-                        echo '<a href="minus_quantity.php?update_pro='.$row['id'].'&update_pro_quantity='.$row['Quantity'].'&update_cart_id='.$row['Cart_id'].'"><img src = "Pictures/minus.png"></a>';
+                        echo'<tr align = "center">';
+                        echo'<td></td>';
+                        echo '<td >'.$row['productname']. '</td>';
+                        echo '<td> <a href="minus_quantity.php?update_pro='.$row['id'].'&update_pro_quantity='.$row['Quantity'].'&update_cart_id='.$row['Cart_id'].'"><img src = "Pictures/minus.png"></a></td>';
                         echo '<td>'.$row['Quantity'].'</td>';
-                        echo '<a href="plus_quantity.php?update_pro='.$row['id'].'&update_pro_quantity='.$row['Quantity'].'&update_cart_id='.$row['Cart_id'].'"><img src = "Pictures/plus.png"></a>';
+                        echo '<td> <a href="plus_quantity.php?update_pro='.$row['id'].'&update_pro_quantity='.$row['Quantity'].'&update_cart_id='.$row['Cart_id'].'"><img src = "Pictures/plus.png"></a></td>';
                         echo '<td>' .$row['price']. '</td>';
                         echo '<td>' .$row['Subtotal']. '</td>';
-                        echo '<a href="remove_item.php?update_pro='.$row['id'].'&update_cart_id='.$row['Cart_id'].'"><img src = "Pictures/remove_item.png"></a>';
+                        echo '<td><a href="remove_item.php?update_pro='.$row['id'].'&update_cart_id='.$row['Cart_id'].'"><img src = "Pictures/remove_item.png"></a></td>';
+                        echo'</tr>';
                                 
                         $temp_subtotal = $row['Subtotal'];
                         $temp_total = $temp_total + $temp_subtotal;
                     }
                     
-                    echo '<br>'."Total: $" .$temp_total;
+                    echo'<tr>';
+                    echo '<td colspan="6" align="right">'."<strong> Total: ". '</strong> </td>';
+                    echo '<td colspan="7" align="left">'."<strong> $" .$temp_total. '</strong> </td>';
+                    echo'</tr>';
+
+                    //Check Out Button
+                    echo'<tr>';
+                    echo'<td></td>';
+                    echo ' <td colspan="7" align="right"> <button class="button" type="Check Out" value="Check Out"> Check Out </button></td>';
+                    echo'</tr>';
+
                 }
                 else
                 {
@@ -294,16 +310,19 @@
                         $isFound = mysqli_query($conn,$sql); 
                         $row = mysqli_fetch_assoc($isFound);
 
-                        echo $row['productname'];
-                        echo '<a href="minus_quantity.php?update_pro='.$row['id'].'"><img src = "Pictures/minus.png"></a>';
+                        echo'<tr align = "center">';
+                        echo'<td></td>';
+                        echo '<td >'.$row['productname']. '</td>';
+                        echo '<td> <a href="minus_quantity.php?update_pro='.$row['id'].'"><img src = "Pictures/minus.png"></a> </td>';
                         echo '<td>'.$proquan.'</td>';
-                        echo '<a href="plus_quantity.php?update_pro='.$row['id'].'"><img src = "Pictures/plus.png"></a>';
+                        echo '<td> <a href="plus_quantity.php?update_pro='.$row['id'].'"><img src = "Pictures/plus.png"></a></td>';
                         echo '<td>' .$row['price']. '</td>';
 
                         $temp_subtotal = $row['price'] * $proquan;
                         echo '<td>' .$temp_subtotal. '</td>';
 
-                        echo '<a href="remove_item.php?update_pro='.$row['id'].'"><img src = "Pictures/remove_item.png"></a>';
+                        echo '<td> <a href="remove_item.php?update_pro='.$row['id'].'"><img src = "Pictures/remove_item.png"></a> </td>';
+                        echo'</tr>';
                                 
                         
                         $temp_total = $temp_total + $temp_subtotal;
@@ -316,63 +335,75 @@
 
                 if($isEmpty === 1)
                 {
-                    echo '<br>'."Total: $" .$temp_total;
+                    echo'<tr>';
+                    echo '<td colspan="6" align="right">'."<strong> Total: ". '</strong> </td>';
+                    echo '<td colspan="7" align="left">'."<strong> $" .$temp_total. '</strong> </td>';
+                    echo'</tr>';
+
+                    //Check Out Button
+                    echo'<tr>';
+                    echo'<td></td>';
+                    echo ' <td colspan="7" align="right"> <button class="button" type="Check Out" value="Check Out"> Check Out </button></td>';
+                    echo'</tr>';
+
                 }
                 else
                 {
                     echo "Empty Cart!";
                 }
                 
-                
             }
         ?>
+            </tbody>
+        </table>
 
-        <footer class="FooterFooter">
-            <div class="FFooterUpperPortion">
-                <div class="FFooterIcon">
-                    <img src="Pictures/LOGO.jpeg" alt="Pacific Northwest X-Ray Inc.">
-                </div>
-                <div class="FFooterBlocks">
-                    <h3><b>Contact Us</b></h3>
-                    <ul>
-                        <li>Tel: 503-667-3000</li>
-                        <br>
-                        <li>Toll-Free: 800-827-9729</li>
-                        <br>
-                        <li>Fax: 503-666-8855</li>
-                    </ul>
-                </div>
-                <div class="FFooterBlocks">
-                    <h3><b>Reach Us</b></h3>
-                    <ul>
-                        <li>P.O. Box 625,</li>
-                        <br>
-                        <li>Gresham, OR</li>
-                        <br>
-                        <li>97030 U.S.A.</li>
-                    </ul>
-                </div>
-                <div class="FFooterBlocks">
-                    <h3><b>Opening Hours</b></h3>
-                    <ul>
-                        <li>8am - 5pm</li>
-                        <br>
-                        <li>Monday-Friday</li>
-                        <br>
-                        <li>(PST/PT)</li>
-                    </ul>
-                </div>
-            </div>
 
-            <br>
-            <br>
-            <hr id="FooterLine"/>
-            <div class="FFooterLowerPortion" >
-              <sub class="Disclaimer">This web site is our catalog! <u>No printed catalog is available.</u></sub>
-              <br>
-              <sub class="Disclaimer">©1997-2021 Pacific Northwest X-Ray Inc. - Sales & Marketing Division - All Rights Reserved</sub>
-            </div>
-        </footer>
+    <footer class="FooterFooter">
+                <div class="FFooterUpperPortion">
+                    <div class="FFooterIcon">
+                        <img src="Pictures/LOGO.jpeg" alt="Pacific Northwest X-Ray Inc.">
+                    </div>
+                    <div class="FFooterBlocks">
+                        <h3><b>Contact Us</b></h3>
+                        <ul>
+                            <li>Tel: 503-667-3000</li>
+                            <br>
+                            <li>Toll-Free: 800-827-9729</li>
+                            <br>
+                            <li>Fax: 503-666-8855</li>
+                        </ul>
+                    </div>
+                    <div class="FFooterBlocks">
+                        <h3><b>Reach Us</b></h3>
+                        <ul>
+                            <li>P.O. Box 625,</li>
+                            <br>
+                            <li>Gresham, OR</li>
+                            <br>
+                            <li>97030 U.S.A.</li>
+                        </ul>
+                    </div>
+                    <div class="FFooterBlocks">
+                        <h3><b>Opening Hours</b></h3>
+                        <ul>
+                            <li>8am - 5pm</li>
+                            <br>
+                            <li>Monday-Friday</li>
+                            <br>
+                            <li>(PST/PT)</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <br>
+                <br>
+                <hr id="FooterLine"/>
+                <div class="FFooterLowerPortion" >
+                <sub class="Disclaimer">This web site is our catalog! <u>No printed catalog is available.</u></sub>
+                <br>
+                <sub class="Disclaimer">©1997-2021 Pacific Northwest X-Ray Inc. - Sales & Marketing Division - All Rights Reserved</sub>
+                </div>
+            </footer>
 
     </body>
 

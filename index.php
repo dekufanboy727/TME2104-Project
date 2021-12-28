@@ -199,9 +199,9 @@
                       echo '<div class="column"> <div class = "card">';
                       echo '' .'<img src = "' . $row['productpic'] . '"/>' . '';
                       echo '  <div class="grid-container"> <h2>' . $row["productname"]. '</h2></div>';
+                      echo '  <div class="grid-container"> <h2 class="title">'. "$" . $row["price"] .  '</h2></div>';
                       echo '  <div class="grid-container"> <p>' . $row["productdetail"] . '</p></div>';
-                      echo '  <div class="grid-container"> <p class="title">'. "$" . $row["price"] .  '</p></div>';
-                      echo '<input type="number" name="quantity" value="1" min="1" >';
+                      echo '<p align = "center"> Quantity: <input type="number" name="quantity" value="1" min="1" style="text-align:center" > </p>';
                       echo '<input type="hidden" name="product_id" value="' .$row["id"]. '">';
                       echo '<input class="button" type="submit" value="Add Cart">   ';
                       echo '</div></div>';
@@ -230,9 +230,9 @@
                       echo '<div class="column"> <div class = "card">';
                       echo '' .'<img src = "' . $row['productpic'] . '"/>' . '';
                       echo '  <div class="grid-container"> <h2>' . $row["productname"]. '</h2></div>';
+                      echo '  <div class="grid-container"> <h2 class="title">'. "$" . $row["price"] .  '</h2></div>';
                       echo '  <div class="grid-container"> <p>' . $row["productdetail"] . '</p></div>';
-                      echo '  <div class="grid-container"> <p class="title">'. "$" . $row["price"] .  '</p></div>';
-                      echo '<input type="number" name="quantity" value="1" min="1" >';
+                      echo '<p align = "center"> Quantity: <input type="number" name="quantity" value="1" min="1" style="text-align:center" width="100%"> </p>';
                       echo '<input type="hidden" name="product_id" value="' .$row["id"]. '">';
                       echo '<input class="button" type="submit" value="Add Cart">   ';
                       echo '</div></div>';
@@ -259,9 +259,9 @@
                       echo '<div class="column"> <div class = "card">';
                       echo '' .'<img src = "' . $row['productpic'] . '"/>' . '';
                       echo '  <div class="grid-container"> <h2>' . $row["productname"]. '</h2></div>';
+                      echo '  <div class="grid-container"> <h2 class="title">'. "$" . $row["price"] .  '</h2></div>';
                       echo '  <div class="grid-container"> <p>' . $row["productdetail"] . '</p></div>';
-                      echo '  <div class="grid-container"> <p class="title">'. "$" . $row["price"] .  '</p></div>';
-                      echo '<input type="number" name="quantity" value="1" min="1" >';
+                      echo '<p align = "center"> Quantity: <input type="number" name="quantity" value="1" min="1" style="text-align:center" width="100%"> </p>';
                       echo '<input type="hidden" name="product_id" value="' .$row["id"]. '">';
                       echo '<input class="button" type="submit" value="Add Cart">   ';
                       echo '</div></div>';
@@ -289,9 +289,9 @@
                       echo '<div class="column"> <div class = "card">';
                       echo '' .'<img src = "' . $row['productpic'] . '"/>' . '';
                       echo '  <div class="grid-container"> <h2>' . $row["productname"]. '</h2></div>';
+                      echo '  <div class="grid-container"> <h2 class="title">'. "$" . $row["price"] .  '</h2></div>';
                       echo '  <div class="grid-container"> <p>' . $row["productdetail"] . '</p></div>';
-                      echo '  <div class="grid-container"> <p class="title">'. "$" . $row["price"] .  '</p></div>';
-                      echo '<input type="number" name="quantity" value="1" min="1" >';
+                      echo '<p align = "center"> Quantity: <input type="number" name="quantity" value="1" min="1" style="text-align:center" width="100%"> </p>';
                       echo '<input type="hidden" name="product_id" value="' .$row["id"]. '">';
                       echo '<input class="button" type="submit" value="Add Cart">   ';
                       echo '</div></div>';
