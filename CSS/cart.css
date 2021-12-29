@@ -68,11 +68,11 @@ body{
 }
 
 .menu h3 {
-    font-size: 25px;
+    font-size: 30px;
     float: left;
     padding: 30px 40px;
-    text-shadow: 2px 2px 5px white;
-    color: #ffffff;
+    text-shadow: 1px 1px 4px white;
+    color: #cccccc;
 }
 
 header {
