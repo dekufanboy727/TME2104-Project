@@ -108,6 +108,7 @@ header .logo {
     font-family: Maiandra GD;
     height: 250px;
     min-width: 1500px;
+    margin-top: auto;
 }
 
 .FFooterIcon {
@@ -158,6 +159,11 @@ header .logo {
 /*main*/
 
 /*cart table*/
+table{
+    max-width: 100%;
+    min-width: 100%;
+}
+
 .table td {
 	border-bottom: #F0F0F0 1px solid;
 	padding: 20px;
@@ -170,18 +176,41 @@ img {
 }
 
 /*check out*/
-.button {
-    border: none;
-    outline: 0;
-    display: inline-block;
+
+.b2 {
     padding: 20px;
-    color: white;
-    background-color: #000;
+    margin-right: 53px;
+    color: rgb(255, 255, 255);
+    background-color: rgb(0, 0, 0);
     text-align: center;
     cursor: pointer;
-    width: 25%;
+    width: 23%;
+  }
+  
+.b2:hover {
+    background-color: rgb(155, 153, 153);
+  }
+
+.button {
+    outline: 2;
+    border-color: rgb(221, 26, 26);
+    padding: 8px;
+    color: rgb(221, 26, 26);
+    background-color: rgb(255, 255, 255);
+    text-align: center;
+    cursor: pointer;
+    width: 10%;
+    margin-left: auto;
+    margin-right: 3.6%;
   }
   
 .button:hover {
-    background-color: #555;
+    background-color: rgb(233, 231, 231);
   }
+
+.spacing {
+    display: flex;
+    flex-direction: column;
+    min-height:95vh;
+}
+
