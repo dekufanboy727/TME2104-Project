@@ -220,7 +220,7 @@
         <tbody>
         <tr style="background-color: #C0C0C0">
             <td style="background-color: #FFFFFF"></td>
-            <td>Item(s)</td>
+            <td style= "width:50%" align= center >Item(s)</td>
             <td></td>
             <td>Quantity</td>
             <td></td>
@@ -284,13 +284,16 @@
                     //Check Out Button
                     echo'<tr>';
                     echo'<td></td>';
-                    echo ' <td colspan="7" align="right"> <button class="button" type="Check Out" value="Check Out"> Check Out </button></td>';
+                    echo ' <td style="padding-bottom: 200px" colspan="7" align="right"> <button class="button" type="Check Out" value="Check Out"> Check Out </button></td>';
                     echo'</tr>';
 
                 }
                 else
                 {
-                    echo "Empty Cart!";
+                    echo'<br></br>';
+                    echo'<tr>';
+                    echo'<td style="padding-bottom: 300px" colspan="8" align="center"> Empty Cart! </td>';
+                    echo'</tr>';
                 }
             }
             else //Public User!
@@ -343,13 +346,16 @@
                     //Check Out Button
                     echo'<tr>';
                     echo'<td></td>';
-                    echo ' <td colspan="7" align="right"> <button class="button" type="Check Out" value="Check Out"> Check Out </button></td>';
+                    echo ' <td style="padding-bottom: 200px" colspan="7" align="right"> <button class="button" type="Check Out" value="Check Out"> Check Out </button></td>';
                     echo'</tr>';
 
                 }
                 else
                 {
-                    echo "Empty Cart!";
+                    echo'<br></br>';
+                    echo'<tr>';
+                    echo'<td style="padding-bottom: 300px" colspan="8" align="center"> Empty Cart! </td>';
+                    echo'</tr>';
                 }
                 
             }
