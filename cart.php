@@ -288,6 +288,8 @@
 
                     //Check Out Button
                     echo '<p style="text-align:right">';
+                    //Proceed to payment
+                    //Registered users
                     echo '<a href = "checkout.php"><button class="b2" type="checkout" value="checkout"> Check Out </button></a>';
                     echo'</p>';
                 }
@@ -355,7 +357,9 @@
 
                     //Check Out Button
                     echo '<p style="text-align:right">';
-                    echo '<button class="b2" type="checkout" value="checkout"> Check Out </button>';
+                    //Redirect to registration
+                    //Public users
+                    echo '<a href = "register.php"><button class="b2" type="checkout" value="checkout"> Check Out </button>';
                     echo'</p>';
                 }
                 else
