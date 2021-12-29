@@ -157,3 +157,31 @@ header .logo {
 
 /*main*/
 
+/*cart table*/
+.table td {
+	border-bottom: #F0F0F0 1px solid;
+	padding: 10px;
+	}
+
+/*image*/
+img {
+    width: 30px;
+    height: 30px;
+}
+
+/*check out*/
+.button {
+    border: none;
+    outline: 0;
+    display: inline-block;
+    padding: 20px;
+    color: white;
+    background-color: #000;
+    text-align: center;
+    cursor: pointer;
+    width: 25%;
+  }
+  
+.button:hover {
+    background-color: #555;
+  }
