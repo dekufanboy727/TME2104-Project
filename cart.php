@@ -288,7 +288,7 @@
 
                     //Check Out Button
                     echo '<p style="text-align:right">';
-                    echo '<button class="b2" type="checkout" value="checkout"> Check Out </button>';
+                    echo '<a href = "checkout.php"><button class="b2" type="checkout" value="checkout"> Check Out </button></a>';
                     echo'</p>';
                 }
                 else
@@ -306,41 +306,44 @@
                 $counter = 0;
                 $isEmpty = 0;
 
-                foreach($_SESSION['cart'] as $product)
+                if(isset($_SESSION['cart']))
                 {
-                    if(isset($product['Proid']))
+                    foreach($_SESSION['cart'] as $product)
                     {
-                        $isEmpty = 1;
-                        $proid = $product['Proid'];
-                        $proquan = $product['Proquantity'];
-
-                        $sql = "SELECT id, productname, price FROM product WHERE id = '$proid'";
-                        $isFound = mysqli_query($conn,$sql); 
-                        $row = mysqli_fetch_assoc($isFound);
-
-                        echo'<tr align = "center">';
-                        echo'<td></td>';
-                        echo '<td >'.$row['productname']. '</td>';
-                        echo '<td> <a href="minus_quantity.php?update_pro='.$row['id'].'"><img src = "Pictures/minus.png"></a> </td>';
-                        echo '<td>'.$proquan.'</td>';
-                        echo '<td> <a href="plus_quantity.php?update_pro='.$row['id'].'"><img src = "Pictures/plus.png"></a></td>';
-                        echo '<td>' .$row['price']. '</td>';
-
-                        $temp_subtotal = $row['price'] * $proquan;
-                        echo '<td>' .$temp_subtotal. '</td>';
-
-                        echo '<td> <a href="remove_item.php?update_pro='.$row['id'].'"><img src = "Pictures/remove_item.png"></a> </td>';
-                        echo'</tr>';
-                                
-                        
-                        $temp_total = $temp_total + $temp_subtotal;
-                        echo '<br>';
-
-                        $counter ++ ;
+                        if(isset($product['Proid']))
+                        {
+                            $isEmpty = 1;
+                            $proid = $product['Proid'];
+                            $proquan = $product['Proquantity'];
+    
+                            $sql = "SELECT id, productname, price FROM product WHERE id = '$proid'";
+                            $isFound = mysqli_query($conn,$sql); 
+                            $row = mysqli_fetch_assoc($isFound);
+    
+                            echo'<tr align = "center">';
+                            echo'<td></td>';
+                            echo '<td >'.$row['productname']. '</td>';
+                            echo '<td> <a href="minus_quantity.php?update_pro='.$row['id'].'"><img src = "Pictures/minus.png"></a> </td>';
+                            echo '<td>'.$proquan.'</td>';
+                            echo '<td> <a href="plus_quantity.php?update_pro='.$row['id'].'"><img src = "Pictures/plus.png"></a></td>';
+                            echo '<td>' .$row['price']. '</td>';
+    
+                            $temp_subtotal = $row['price'] * $proquan;
+                            echo '<td>' .$temp_subtotal. '</td>';
+    
+                            echo '<td> <a href="remove_item.php?update_pro='.$row['id'].'"><img src = "Pictures/remove_item.png"></a> </td>';
+                            echo'</tr>';
+                                    
+                            
+                            $temp_total = $temp_total + $temp_subtotal;
+                            echo '<br>';
+    
+                            $counter ++ ;
+                        }
+                            
                     }
-                        
                 }
-
+                
                 if($isEmpty === 1)
                 {
                     echo'<tr>';
