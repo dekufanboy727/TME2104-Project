@@ -11,13 +11,7 @@
 
     <body>
         <?php 
-            //session login NOT set MEAN user is NOT logged in
-            //PUBLIC user
-            if (!isset($_SESSION['login'])) 
-            {
-                //Redirecting public user to registration page upon clicking check out button
-                header("Location: register.php"); 
-            }
+   
 
             
         ?>
