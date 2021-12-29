@@ -280,6 +280,17 @@
                         $temp_total = $temp_total + $temp_subtotal;
                     }
                     
+                    //Insert the grand total into SHOPPINGCART table
+                    $sql = "UPDATE ShoppingCart SET Grand_total = '$temp_total' WHERE id = '$cartid'";
+                    if (mysqli_query($conn, $sql) === TRUE)
+                    {
+                        echo "Grand total added successfully".'<br>';
+                    }
+                    else
+                    {
+                        echo "Error adding grand total: " . mysqli_error($conn);
+                    }
+                    
                     echo'<tr>';
                     echo '<td colspan="6" align="right">'."<strong> Total: ". '</strong> </td>';
                     echo '<td colspan="7" align="left">'."<strong> $" .$temp_total. '</strong> </td>';
