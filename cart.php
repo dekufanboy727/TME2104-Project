@@ -10,6 +10,7 @@
     </head>
 
     <body>
+    <section class = "spacing">
         <?php
             //For buttons in HEADER
             $signup = $login = $logout = $myprofile = "";
@@ -216,8 +217,9 @@
             </div>
         </header>
         
+        <br>
+        <button class="button" type="reset" value="reset"> Clear </button>
         <table class= "table">
-        <tbody>
         <tr style="background-color: #C0C0C0">
             <td style="background-color: #FFFFFF"></td>
             <td style= "width:50%" align= center >Item(s)</td>
@@ -227,6 +229,7 @@
             <td>Unit Price</td>
             <td>Subtotal</td>
             <td></td>
+            <td style="background-color: #FFFFFF"></td>
         </tr>
             
         <?php 
@@ -256,6 +259,7 @@
 
                 $result = mysqli_query ($conn,$sql);
                 
+                //Registered user
                 //If there is more than 0 rows
                 if(mysqli_num_rows($result) > 0)
                 {
@@ -279,21 +283,22 @@
                     echo'<tr>';
                     echo '<td colspan="6" align="right">'."<strong> Total: ". '</strong> </td>';
                     echo '<td colspan="7" align="left">'."<strong> $" .$temp_total. '</strong> </td>';
-                    echo'</tr>';
+                    echo '</table>';
+                    echo '</section>';
 
                     //Check Out Button
-                    echo'<tr>';
-                    echo'<td></td>';
-                    echo ' <td style="padding-bottom: 200px" colspan="7" align="right"> <button class="button" type="Check Out" value="Check Out"> Check Out </button></td>';
-                    echo'</tr>';
-
+                    echo '<p style="text-align:right">';
+                    echo '<button class="b2" type="checkout" value="checkout"> Check Out </button>';
+                    echo'</p>';
                 }
                 else
                 {
                     echo'<br></br>';
                     echo'<tr>';
-                    echo'<td style="padding-bottom: 300px" colspan="8" align="center"> Empty Cart! </td>';
+                    echo'<td  colspan="8" align="center"> Empty Cart! </td>';
                     echo'</tr>';
+                    echo '</table>';
+                    echo '</section>';
                 }
             }
             else //Public User!
@@ -342,26 +347,28 @@
                     echo '<td colspan="6" align="right">'."<strong> Total: ". '</strong> </td>';
                     echo '<td colspan="7" align="left">'."<strong> $" .$temp_total. '</strong> </td>';
                     echo'</tr>';
+                    echo '</table>';
+                    echo '</section>';
 
                     //Check Out Button
-                    echo'<tr>';
-                    echo'<td></td>';
-                    echo ' <td style="padding-bottom: 200px" colspan="7" align="right"> <button class="button" type="Check Out" value="Check Out"> Check Out </button></td>';
-                    echo'</tr>';
-
+                    echo '<p style="text-align:right">';
+                    echo '<button class="b2" type="checkout" value="checkout"> Check Out </button>';
+                    echo'</p>';
                 }
                 else
                 {
                     echo'<br></br>';
                     echo'<tr>';
-                    echo'<td style="padding-bottom: 300px" colspan="8" align="center"> Empty Cart! </td>';
+                    echo'<td  colspan="8" align="center"> Empty Cart! </td>';
                     echo'</tr>';
+                    echo '</table>';
+                    echo '</section>';
                 }
                 
             }
+
+
         ?>
-            </tbody>
-        </table>
 
 
     <footer class="FooterFooter">
