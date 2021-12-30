@@ -288,7 +288,8 @@
                 (4, 'Darrel', 'Wong', 'DW4@gmail.com', 60, 1420001000, 'Bb123@', 'Male', 'Sarawak', 93000, '6, Jalan Rodway,', 'Kuching', 'Logged Out'),
                 (5, 'Siti', 'Ahmad', 'MA5@gmail.com', 60, 1530002000, 'Bb123@', 'Female', 'Pahang', 27600, '7, Jalan Lipis,', 'Raub', 'Logged Out');";
 
-                if (mysqli_query($conn, $sql) === TRUE) {
+                $result = mysqli_query($conn, $sql);
+                if ($result === TRUE) {
                     echo "New record created successfully";
                 } else {
                     echo "Error: " .  mysqli_error($conn);
@@ -306,36 +307,43 @@
                 ON DELETE CASCADE
                 ON UPDATE CASCADE
                 )";
-      
-                if (mysqli_query($conn, $sql) === TRUE)
+
+                $result = mysqli_query($conn, $sql);
+                if ($result === TRUE) 
                 {
-                echo "Table cart created successfully or Table exists".'<br>';
+                    echo "Table cart created successfully or Table exists".'<br>';
                 }
                 else
                 {
-                echo "Error creating table cart: " . mysqli_error($conn);
+                    echo "Error creating table cart: " . mysqli_error($conn);
                 }
             
-            //Create Dummy Transactions and Transaction Details
+            //Create Transactions TABLE
             $sql = "CREATE TABLE transactions (
                 id int(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
                 userid int(15) NOT NULL,
                 _date date NOT NULL,
-                total double(15,2) NOT NULL,
+                _time time NOT NULL,
+                shipping_fee double(15,2) NOT NULL,
+                merchandise_total double(15,2) NOT NULL,
+                grand_total double(15,2) NOT NULL,
                 is_preset tinyint(1) NOT NULL DEFAULT 0
-              );";
+              )";
 
-            if (mysqli_query($conn, $sql) == TRUE){
+            $result = mysqli_query($conn, $sql);
+            if ($result == TRUE){
                 echo "Table Transactions Created Successfully".'<br>';
 
-                $sql = "INSERT INTO `transactions` (`id`, `userid`, `_date`, `total`, `is_preset`) VALUES
-                (1, 1, '2021-12-28', 8239.00, 1),
-                (2, 2, '2021-12-29', 340.00, 1),
-                (3, 3, '2021-12-28', 9212.50, 1),
-                (4, 4, '2022-12-08', 3936.00, 1),
-                (5, 5, '2022-12-08', 4950.00, 1);";
+                //Insert Dummy Transactions for testing purpose 
+                $sql = "INSERT INTO transactions (id, userid, _date, _time, shipping_fee, merchandise_total, grand_total, is_preset) VALUES
+                (1, 1, '2021-12-28', '12:55:45', 100.50, 8239.00, 8339.50, 1),
+                (2, 2, '2021-12-29', '08:10:05', 55.50, 340.00, 395.50, 1),
+                (3, 3, '2021-12-28', '10:20:11', 340.50, 9212.00, 9552.50, 1),
+                (4, 4, '2022-12-08', '15:49:59', 55.50, 3936.00, 3991.5, 1),
+                (5, 5, '2022-12-08', '21:13:12', 210.50, 4950.00, 5160.5, 1)";
 
-                if (mysqli_query($conn, $sql) === TRUE) {
+                $result = mysqli_query($conn, $sql);
+                if ($result === TRUE) {
                     echo "New record created successfully";
                 } else {
                     echo "Error: " .  mysqli_error($conn);
@@ -345,8 +353,9 @@
                 echo "Error creating table: " . $conn->error;
             }
 
+            //Create transactions_details TABLE
             $sql = "CREATE TABLE transactions_details (
-                trans_id int(15) UNSIGNED NOT NULL, 
+                trans_id int(11) UNSIGNED NOT NULL, 
                 product_id int(30) NOT NULL,
                 quantity int(15) NOT NULL,
                 total_price double(15,2) NOT NULL,
@@ -356,9 +365,11 @@
                 ON UPDATE CASCADE
                 )";
 
-            if (mysqli_query($conn, $sql) == TRUE){
+            $result = mysqli_query($conn, $sql);
+            if ($result === TRUE){
                 echo "Table Transaction Details Created Successfully".'<br>';
 
+                //Insert Dummy Transactions details for testing purpose 
                 $sql = "INSERT INTO transactions_details (trans_id, product_id, quantity, total_price) VALUES
                 (1, 3, 4, 860.00),
                 (1, 7, 1, 2279.00),
@@ -370,7 +381,9 @@
                 (5, 2, 6, 4620.00),
                 (5, 6, 10, 330.00);";
 
-                if (mysqli_query($conn, $sql) === TRUE) {
+                
+                $result = mysqli_query($conn, $sql);
+                if ($result === TRUE) {
                     echo "New record created successfully";
                 } else {
                     echo "Error: " .  mysqli_error($conn);
