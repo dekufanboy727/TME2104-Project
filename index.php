@@ -87,7 +87,7 @@
           }
           
         } else {
-            echo "Error creating table: " . mysqli_error($conn);
+          echo "Error creating table: " . mysqli_error($conn);
         }
 
         mysqli_close($conn);
@@ -95,14 +95,14 @@
     <!----product end-->
     
         <header class="HeaderHeader" id="Push_header">
-            <div id = side_logo>
-              <ul id = abc>
-              <li><a id="expand_sidenav"><span onclick="sidebar()">&#9776;</span></a></li>
-              <ul>
-              <img class="logo" src="Pictures/LOGO.jpeg" alt="Pacific Northwest X-Ray Inc.">
-            </div>
+              
 
             <div class="login_register">
+                <ul id = abc>
+                  <li><img class="logo" src="Pictures/LOGO.jpeg" alt="Pacific Northwest X-Ray Inc."></li>
+                  <li><a id="expand_sidenav"><span onclick="sidebar()">&#9776;</span></a></li>
+                </ul>
+
                 <ul>
                   <li><a href="register.php"><?php echo $signup?></a></li>
                   <li><a href="login.php" ><?php echo $login?></a></li>
@@ -110,8 +110,9 @@
                   <li><a href="myProfile.php"  ><?php echo $myprofile?></a></li>
                   <li><img class="image_login_register" src="Pictures/login_register_icon.png" alt="Login and register icon"></a>
                 </ul>
+                
             </div>
-            
+            <a class = "cart_position" href="cart.php"> <img id="cart" src="Pictures/cart.png" alt="Cart"> </a>
                  
             <div class="navigation">
                 <ul >

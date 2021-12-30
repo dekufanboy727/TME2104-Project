@@ -10,6 +10,7 @@
     </head>
 
     <body>
+    <section class = "spacing">
         <?php
             //For buttons in HEADER
             $signup = $login = $logout = $myprofile = "";
@@ -216,17 +217,19 @@
             </div>
         </header>
         
+        <br>
+        <button class="button" type="reset" value="reset"> Clear </button>
         <table class= "table">
-        <tbody>
         <tr style="background-color: #C0C0C0">
             <td style="background-color: #FFFFFF"></td>
-            <td>Item(s)</td>
+            <td style= "width:50%" align= center >Item(s)</td>
             <td></td>
             <td>Quantity</td>
             <td></td>
             <td>Unit Price</td>
             <td>Subtotal</td>
             <td></td>
+            <td style="background-color: #FFFFFF"></td>
         </tr>
             
         <?php 
@@ -256,6 +259,7 @@
 
                 $result = mysqli_query ($conn,$sql);
                 
+                //Registered user
                 //If there is more than 0 rows
                 if(mysqli_num_rows($result) > 0)
                 {
@@ -276,21 +280,38 @@
                         $temp_total = $temp_total + $temp_subtotal;
                     }
                     
+                    //Insert the grand total into SHOPPINGCART table
+                    $sql = "UPDATE ShoppingCart SET Grand_total = '$temp_total' WHERE id = '$cartid'";
+                    if (mysqli_query($conn, $sql) === TRUE)
+                    {
+                        echo "Grand total added successfully".'<br>';
+                    }
+                    else
+                    {
+                        echo "Error adding grand total: " . mysqli_error($conn);
+                    }
+                    
                     echo'<tr>';
                     echo '<td colspan="6" align="right">'."<strong> Total: ". '</strong> </td>';
                     echo '<td colspan="7" align="left">'."<strong> $" .$temp_total. '</strong> </td>';
-                    echo'</tr>';
+                    echo '</table>';
+                    echo '</section>';
 
                     //Check Out Button
-                    echo'<tr>';
-                    echo'<td></td>';
-                    echo ' <td colspan="7" align="right"> <button class="button" type="Check Out" value="Check Out"> Check Out </button></td>';
-                    echo'</tr>';
-
+                    echo '<p style="text-align:right">';
+                    //Proceed to payment
+                    //Registered users
+                    echo '<a href = "checkout.php"><button class="b2" type="checkout" value="checkout"> Check Out </button></a>';
+                    echo'</p>';
                 }
                 else
                 {
-                    echo "Empty Cart!";
+                    echo'<br></br>';
+                    echo'<tr>';
+                    echo'<td  colspan="8" align="center"> Empty Cart! </td>';
+                    echo'</tr>';
+                    echo '</table>';
+                    echo '</section>';
                 }
             }
             else //Public User!
@@ -298,64 +319,74 @@
                 $counter = 0;
                 $isEmpty = 0;
 
-                foreach($_SESSION['cart'] as $product)
+                if(isset($_SESSION['cart']))
                 {
-                    if(isset($product['Proid']))
+                    foreach($_SESSION['cart'] as $product)
                     {
-                        $isEmpty = 1;
-                        $proid = $product['Proid'];
-                        $proquan = $product['Proquantity'];
-
-                        $sql = "SELECT id, productname, price FROM product WHERE id = '$proid'";
-                        $isFound = mysqli_query($conn,$sql); 
-                        $row = mysqli_fetch_assoc($isFound);
-
-                        echo'<tr align = "center">';
-                        echo'<td></td>';
-                        echo '<td >'.$row['productname']. '</td>';
-                        echo '<td> <a href="minus_quantity.php?update_pro='.$row['id'].'"><img src = "Pictures/minus.png"></a> </td>';
-                        echo '<td>'.$proquan.'</td>';
-                        echo '<td> <a href="plus_quantity.php?update_pro='.$row['id'].'"><img src = "Pictures/plus.png"></a></td>';
-                        echo '<td>' .$row['price']. '</td>';
-
-                        $temp_subtotal = $row['price'] * $proquan;
-                        echo '<td>' .$temp_subtotal. '</td>';
-
-                        echo '<td> <a href="remove_item.php?update_pro='.$row['id'].'"><img src = "Pictures/remove_item.png"></a> </td>';
-                        echo'</tr>';
-                                
-                        
-                        $temp_total = $temp_total + $temp_subtotal;
-                        echo '<br>';
-
-                        $counter ++ ;
+                        if(isset($product['Proid']))
+                        {
+                            $isEmpty = 1;
+                            $proid = $product['Proid'];
+                            $proquan = $product['Proquantity'];
+    
+                            $sql = "SELECT id, productname, price FROM product WHERE id = '$proid'";
+                            $isFound = mysqli_query($conn,$sql); 
+                            $row = mysqli_fetch_assoc($isFound);
+    
+                            echo'<tr align = "center">';
+                            echo'<td></td>';
+                            echo '<td >'.$row['productname']. '</td>';
+                            echo '<td> <a href="minus_quantity.php?update_pro='.$row['id'].'"><img src = "Pictures/minus.png"></a> </td>';
+                            echo '<td>'.$proquan.'</td>';
+                            echo '<td> <a href="plus_quantity.php?update_pro='.$row['id'].'"><img src = "Pictures/plus.png"></a></td>';
+                            echo '<td>' .$row['price']. '</td>';
+    
+                            $temp_subtotal = $row['price'] * $proquan;
+                            echo '<td>' .$temp_subtotal. '</td>';
+    
+                            echo '<td> <a href="remove_item.php?update_pro='.$row['id'].'"><img src = "Pictures/remove_item.png"></a> </td>';
+                            echo'</tr>';
+                                    
+                            
+                            $temp_total = $temp_total + $temp_subtotal;
+                            echo '<br>';
+    
+                            $counter ++ ;
+                        }
+                            
                     }
-                        
                 }
-
+                
                 if($isEmpty === 1)
                 {
                     echo'<tr>';
                     echo '<td colspan="6" align="right">'."<strong> Total: ". '</strong> </td>';
                     echo '<td colspan="7" align="left">'."<strong> $" .$temp_total. '</strong> </td>';
                     echo'</tr>';
+                    echo '</table>';
+                    echo '</section>';
 
                     //Check Out Button
-                    echo'<tr>';
-                    echo'<td></td>';
-                    echo ' <td colspan="7" align="right"> <button class="button" type="Check Out" value="Check Out"> Check Out </button></td>';
-                    echo'</tr>';
-
+                    echo '<p style="text-align:right">';
+                    //Redirect to registration
+                    //Public users
+                    echo '<a href = "register.php"><button class="b2" type="checkout" value="checkout"> Check Out </button>';
+                    echo'</p>';
                 }
                 else
                 {
-                    echo "Empty Cart!";
+                    echo'<br></br>';
+                    echo'<tr>';
+                    echo'<td  colspan="8" align="center"> Empty Cart! </td>';
+                    echo'</tr>';
+                    echo '</table>';
+                    echo '</section>';
                 }
                 
             }
+
+
         ?>
-            </tbody>
-        </table>
 
 
     <footer class="FooterFooter">
