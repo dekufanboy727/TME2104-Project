@@ -51,7 +51,8 @@
                 ON UPDATE CASCADE
                 )";
 
-                if (mysqli_query($conn, $sql) === TRUE)
+                $result = mysqli_query($conn, $sql);    
+                if ($result === TRUE)
                 {
                     echo "Table cartITEM created successfully or Table exists".'<br>';
                 }
@@ -136,7 +137,8 @@
                             $sql = "INSERT INTO Cart_Item (Cart_id, Product_id, Quantity, Subtotal)
                             VALUES ('$cartid', '$pro_id', '$pro_quantity', '$subtotal')";
         
-                            if (mysqli_query($conn, $sql) === TRUE)
+                            $result = mysqli_query($conn, $sql);                    
+                            if ($result === TRUE)
                             {
                                 echo "cart item added successfully".'<br>';
                             }
@@ -152,7 +154,8 @@
                         $sql = "INSERT INTO Cart_Item (Cart_id, Product_id, Quantity, Subtotal)
                         VALUES ('$cartid', '$pro_id', '$pro_quantity', '$subtotal')";
     
-                        if (mysqli_query($conn, $sql) === TRUE)
+                        $result = mysqli_query($conn, $sql);                   
+                        if ($result === TRUE)
                         {
                             echo "cart item added successfully".'<br>';
                         }
@@ -248,7 +251,8 @@
                 ON Cart_Item.Product_id = product.id /*Find the same PRODUCT ID*/
                 WHERE Cart_Item.Cart_id = '$cartid'"; /*Locate that person's CART ID*/
 
-                if (mysqli_query($conn, $sql) == true)
+                $result = mysqli_query($conn, $sql);                
+                if ($result == true)
                 {
                     echo "Join cart and product SUCCESS!";
                 }
@@ -282,7 +286,8 @@
                     
                     //Insert the grand total into SHOPPINGCART table
                     $sql = "UPDATE ShoppingCart SET Grand_total = '$temp_total' WHERE id = '$cartid'";
-                    if (mysqli_query($conn, $sql) === TRUE)
+                    $result = mysqli_query($conn, $sql);  
+                    if ($result === TRUE)
                     {
                         echo "Grand total added successfully".'<br>';
                     }

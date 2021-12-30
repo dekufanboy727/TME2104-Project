@@ -3,7 +3,7 @@
 
 <html lang="en">
     <head>
-        <title>Cart - PNWX</title>
+        <title>Check Out - PNWX</title>
         <link rel="icon" href="Pictures/icon.png">
         <link rel="shortcut icon" href="Pictures/icon.png">
         <link rel="stylesheet" href="CSS/checkout.css">
@@ -97,15 +97,23 @@
                     $shippingfee = 340.50;
                 }
 
+                $_SESSION['shipping'] = $shippingfee;
+                
                 $sql = "SELECT Grand_total FROM ShoppingCart WHERE id = '$cartid'"; 
                 $result = mysqli_query ($conn,$sql);
                 $user_making_payment = mysqli_fetch_assoc($result);
+
+                $_SESSION['merchandise'] = $user_making_payment['Grand_total'];
 
                 $paymentotal = $user_making_payment['Grand_total'] + $shippingfee;
                 echo "Merchandise Subtotal: ".$user_making_payment['Grand_total'];
                 echo "Shipping Subtotal: ".$shippingfee;
                 echo "Payment Total (".$total_quantity." Item): ".$paymentotal;
+
+                $_SESSION['PaymentTotal'] = $paymentotal;
             ?>
+
+            <a href = "payment.php"><button class="b2"> Place Order </button></a>
 
         
 

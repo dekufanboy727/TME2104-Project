@@ -16,13 +16,6 @@ body{
     background-color: rgb(230, 230, 230);
 }
 
-header {
-    background-color: black;
-    min-width: 1500px;
-    height: 130px;
-    box-shadow: -2px 5px 10px black;
-}
-
 .menu a {
     font-size: 25px;
     float: left;

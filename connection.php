@@ -17,7 +17,8 @@
     }
 
     $sql = "CREATE DATABASE DB_PNWX";
-    if (mysqli_query($conn, $sql)) 
+    $result = mysqli_query($conn, $sql);
+    if ($result === TRUE) 
     {
         echo "Database created successfully";
     }
