@@ -32,6 +32,7 @@
                 $userid = $_SESSION['user_id'];
                 $cartid = $_SESSION['cartid'];
 
+
                 //Select user info from the table
                 $sql = "SELECT firstname, lastname, region, phone, _state, postcode, _address, city 
                 FROM registered_user WHERE id='$userid'";
@@ -113,9 +114,145 @@
                 $_SESSION['PaymentTotal'] = $paymentotal;
             ?>
 
-            <a href = "payment.php"><button class="b2"> Place Order </button></a>
+            <!--Payment-->
+            <p>Total: 
 
-        
+            <?php 
+                $shippingfee = $_SESSION['shipping'];
+                $merchandise = $_SESSION['merchandise'];
+                $paymentotal = $_SESSION['PaymentTotal'];
+
+                $sql = "SELECT Grand_total FROM ShoppingCart WHERE User_id='$userid'";
+                $isFound = mysqli_query($conn,$sql); 
+
+                //Fetch the grantotal
+                $result = mysqli_fetch_assoc($isFound); 
+
+                $total = $shippingfee + $result['Grand_total'];
+                echo $total.'</p>';
+            ?>
+            <p>
+                OTP
+                <form name="payment" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+                    <input type="text" id="validation" name="validation">
+                    <div class="button">
+                        <input type="submit" name = "submit" value="Submit" >
+                    </div>
+                </form>
+            </p>
+
+            <!--Validate dummy OTP-->
+            <?php
+                $validate_error = "";
+                $validate_error2 = "";
+                $OTP = "";
+                $trans_id = "";
+                if ($_SERVER["REQUEST_METHOD"] == "POST")
+                {
+                    if(empty($_POST["validation"]))
+                    {
+                        $validate_error = "PAYMENT ATTEMPT FAILED!";
+                        $validate_error2 = "Please try to CHECK OUT AGAIN!";
+                    }
+                    else
+                    {
+                        $OTP = test($_POST["validation"]);
+                        if(!is_numeric($OTP) || strlen($OTP) !== 6)
+                        {
+                            $validate_error = "PAYMENT ATTEMPT FAILED!";
+                            $validate_error2 = "Please try to CHECK OUT AGAIN!";
+                        }
+                    }
+
+                    if($OTP !== "" && $validate_error === "" && $validate_error2 === "")
+                    {
+                        date_default_timezone_set("Asia/Kuching");
+                        $date = date("Y-m-d");
+                        $time = date("H:i:s");
+
+                        $sql = "INSERT INTO transactions (userid, _date, _time, shipping_fee, merchandise_total, grand_total) 
+                        VALUES ('$userid', '$date', '$time', '$shippingfee', '$merchandise', '$paymentotal')";
+                        $isFound = mysqli_query($conn,$sql);
+
+                        if ($isFound === TRUE) {
+                            echo "New record created successfully";
+                        } else {
+                            echo "Error: " .  mysqli_error($conn);
+                        }
+
+                        //Fetch the trans id
+                        $sql = "SELECT id FROM transactions WHERE userid = '$userid' AND _date = '$date' AND _time = '$time'"; 
+                        $isFound = mysqli_query($conn,$sql); 
+                        $result = mysqli_fetch_assoc($isFound);
+                        //Store the trans id into the variable
+                        $trans_id = $result['id'];
+
+                        //Select every product in CART ITEM 
+                        $sql = "SELECT * FROM Cart_Item WHERE Cart_id = '$cartid'"; 
+                        $isFound = mysqli_query($conn,$sql); 
+    
+                        if(mysqli_num_rows($isFound) > 0)
+                        {
+                            while($row = mysqli_fetch_assoc($isFound)) //Insert every product into the transactions details
+                            {
+                                $proid = $row['Product_id'];
+                                $quan = $row['Quantity'];
+                                $subtotal = $row['Subtotal'];
+                                $sql = "INSERT INTO transactions_details (trans_id, product_id, quantity, total_price) VALUES
+                                ('$trans_id', '$proid', '$quan', '$subtotal')";
+
+                                $isInsert = mysqli_query($conn,$sql); 
+                                if ($isInsert === TRUE) {
+                                    echo "New record FOR TRANSACTIONS DETAILS created successfully";
+                                } else {
+                                    echo "Error record FOR TRANSACTIONS DETAILS : " .  mysqli_error($conn);
+                                }
+                            }
+     
+                            //Remove the paid items in cart
+                            $sql = "DELETE FROM Cart_Item WHERE Cart_id = $cartid";
+                            $isFound = mysqli_query($conn,$sql); 
+                            if ($isFound === TRUE) {
+                                echo "Remove the paid items in cart successfully";
+                            } else {
+                                echo "Error Remove the paid items: " .  mysqli_error($conn);
+                            }
+                        }
+                        echo "Validation and Payment Successful!";
+                        echo '<p>'."Payment Date: ".$date;
+                        echo "Payment Time: ".$time.'</p>';
+                        echo "Generating Receipt and Redirecting back to CATALOG...";
+
+                        //Redirect back to index.php after successful payment
+                        header( "refresh:8 ; url=index.php" );
+                        
+                        //Open a new tab for receipt
+                        echo '<script type="text/javascript">
+                             window.open("receipt.php?receipt='.$trans_id.'")
+                             </script>';
+                        
+                    }
+                    else
+                    {
+                        echo $validate_error;
+                        echo $validate_error2;
+                        echo "Redirecting back to CART...";
+                        //Redirect back to cart after failed payment attempt
+                        header( "refresh:3 ; url=cart.php" );
+                    }
+
+                }
+
+                function test($data)
+                {
+                    $data = trim($data);
+                    $data = stripslashes($data);
+                    $data = htmlspecialchars($data);
+                    return $data;
+                }
+            ?>
+
+            
 
         </main>
 
