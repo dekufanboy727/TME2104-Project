@@ -51,7 +51,8 @@
         productpic BLOB (255) NOT NULL
         )";
 
-        if (mysqli_query($conn, $sql) === TRUE) {
+        $result = mysqli_query($conn, $sql);
+        if ($result === TRUE) {
           echo "Table u created successfully or Table exists".'<br>';
           
           //setup array for dummy products
@@ -78,7 +79,8 @@
           foreach($productcategory as $value){
             $sql = "INSERT INTO Product(productcategory, productname, productdetail, price, productpic) 
             VALUES ('$value','$productname[$index]', '$productdetail[$index]', '$price[$index]', '$productpic[$index]')";
-            if (mysqli_query($conn, $sql) === TRUE) {
+            $result = mysqli_query($conn, $sql);
+            if ($result === TRUE) {
               echo "New record created successfully";
             } else {
               echo "Error: " . $sql  . mysqli_error($conn);

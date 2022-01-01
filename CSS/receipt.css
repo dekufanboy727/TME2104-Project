@@ -1,0 +1,73 @@
+html {
+    margin : 0;
+    padding: 0;
+    min-width: 1500px;
+    font-family: Maiandra GD;
+    height: 100%;
+}
+
+body{
+    margin : 0;
+    padding: 0;
+    min-width: 1500px;
+    font-family: Maiandra GD;
+    color: black;
+    height: 100%;
+    background-color: rgb(255, 255, 255);
+}
+
+/*Footer*/
+.FooterFooter {
+    background-color: black;
+    font-family: Maiandra GD;
+    height: 250px;
+    min-width: 1500px;
+}
+
+.FFooterIcon {
+    margin-left: 10px;
+    margin-top: 20px;
+    float: left;
+}
+
+.FFooterBlocks {
+    font-family: Maiandra GD;
+    color: #b3b3b3;
+    background-color: black;
+    width: 270px;
+    height: 90px;
+    display: inline;
+    float: right;
+}
+
+.FFooterBlocks h3 {
+    text-align: left;
+    padding-left: 15%;
+    list-style-type: none;
+    text-align: left;
+}
+
+.FFooterIcon img {
+    width: 300px;
+    height: 130px;
+}
+
+#FooterLine {
+    border-top: #b3b3b3;
+    position: relative;
+}
+
+.FFooterUpperPortion {
+    height: 140px;
+}
+
+.FFooterLowerPortion {
+    text-align: center;
+}
+
+.Disclaimer {
+    color: #b3b3b3;
+}
+
+/*main*/
+

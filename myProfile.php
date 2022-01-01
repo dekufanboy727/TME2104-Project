@@ -5,6 +5,8 @@
     <head>
         <title>My Profile - PNWX</title>
         <meta charset="UTF-8">
+        <link rel="icon" href="Pictures/icon.png">
+        <link rel="shortcut icon" href="Pictures/icon.png">
         <script type="text/javascript" src="editprofile.js"></script>
         <link rel="stylesheet" href="CSS/myProfile.css">
     </head>
@@ -14,8 +16,9 @@
             <a href="index.php"> <img class="logo" src="Pictures/LOGO.jpeg" alt="Pacific Northwest X-Ray Inc."> </a>
             <span class = "menu">
                 <a id="active" href="myProfile.php"> My Profile </a>
-                <a href="index.php"> Catalog </a>
                 <a href="dashboard.php"> Dashboard </a>
+                <a href="user_trans_list.php"> Transaction History </a>
+                <a href="index.php"> Catalog </a>
                 <a class = "cart_position" href="cart.php"> <img id="cart" src="Pictures/cart.png" alt="Cart"> </a>
             </span>
             <span class= "logout"> 
