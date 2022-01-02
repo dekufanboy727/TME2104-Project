@@ -220,20 +220,19 @@
             </div>
         </header>
         
-        <br>
-        <button class="button" type="reset" value="reset"> Clear </button>
+
         <table class= "table">
-        <tr style="background-color: #C0C0C0">
-            <td style="background-color: #FFFFFF"></td>
-            <td style= "width:50%" align= center >Item(s)</td>
+        <tr style="background-color: #C0C0C0" align= center>
+            <td style= "width:50%">Item(s)</td>
             <td></td>
             <td>Quantity</td>
             <td></td>
             <td>Unit Price</td>
             <td>Subtotal</td>
             <td></td>
-            <td style="background-color: #FFFFFF"></td>
         </tr>
+
+
             
         <?php 
             //To calculate GRAND TOTAL
@@ -270,7 +269,6 @@
                     while($row = mysqli_fetch_assoc($result))
                     {
                         echo'<tr align = "center">';
-                        echo'<td></td>';
                         echo '<td >'.$row['productname']. '</td>';
                         echo '<td> <a href="minus_quantity.php?update_pro='.$row['id'].'&update_pro_quantity='.$row['Quantity'].'&update_cart_id='.$row['Cart_id'].'"><img src = "Pictures/minus.png"></a></td>';
                         echo '<td>'.$row['Quantity'].'</td>';
@@ -339,7 +337,6 @@
                             $row = mysqli_fetch_assoc($isFound);
     
                             echo'<tr align = "center">';
-                            echo'<td></td>';
                             echo '<td >'.$row['productname']. '</td>';
                             echo '<td> <a href="minus_quantity.php?update_pro='.$row['id'].'"><img src = "Pictures/minus.png"></a> </td>';
                             echo '<td>'.$proquan.'</td>';
