@@ -18,6 +18,10 @@
 
         $id = $email = $name = $sum_err = "";
 
+        if(!isset($_SESSION['admin_id'])){
+            header('Location: adminlogin.php');
+        }
+
         $id = $_SESSION['admin_id'];
         $email = $_SESSION['email'];
 

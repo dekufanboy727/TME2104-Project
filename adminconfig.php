@@ -19,13 +19,14 @@
     }
 
     $sql = "CREATE DATABASE DB_PNWX";
-    if (mysqli_query($conn, $sql)) 
+    $dbResult = mysqli_query($conn, $sql);
+    if ($dbResult === FALSE) 
     {
-        echo "Database created successfully";
+        echo "Database creation failed:" . mysqli_error($conn);
     }
     else
     {
-        echo "Database creation failed:" . mysqli_error($conn);
+        echo "Database created successfully";   
     }
 
     $dbname = "DB_PNWX";
