@@ -1,0 +1,197 @@
+html {
+    margin : 0;
+    padding: 0;
+    min-width: 1500px;
+    font-family: Maiandra GD;
+    height: 100%;
+}
+
+
+body{
+    margin : 0;
+    padding: 0;
+    min-width: 1500px;
+    font-family: Maiandra GD;
+    color: black;
+    min-height: 100%;
+    background-color: rgb(230, 230, 230);
+}
+
+
+/*Header*/
+.HeaderHeader {
+  background: black;
+  height: 170px;
+  position: fixed;
+  width: 100%;
+  box-shadow: -2px 5px 10px black;
+}
+
+.SearchButton {
+  background: Black;
+  color: #b3b3b3;
+  font-family: Maiandra GD;
+  border-width: 1px;
+}
+
+.login_register {
+  padding-top: 20px;
+  margin-right: 5%;
+  padding-bottom: 0;
+  background: Black;
+}
+
+.login_register .image_login_register {
+  width: auto;
+  height: 25px;
+  float:right;
+}
+
+/*.navigation {
+  background: #000000;
+  color: #eae2d8;
+}
+
+.navigation ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}*/
+
+.login_register ul {
+  list-style-type: none;
+  margin: 0px;
+  padding-right: 50px;
+  overflow: hidden;
+}
+
+.login_register li {
+  float:right;
+  font-size: 18px;
+  color: #cccccc;
+  font-family: Maiandra GD;
+  display: block;
+}
+
+.login_register li a{
+  padding-left: 10px;
+  text-decoration: none;
+  color: #cccccc;
+  padding-top: 35px;
+}
+
+/*.navigation li {
+  float: left;
+  padding-left: 32px;
+  padding-right: 32px;
+  font-size: 25px;
+  color: #cccccc;
+  font-family: Maiandra GD;
+  display: block;
+  padding-top: 35px;
+}*/
+
+
+.logo {
+  float: left;
+  width: 280px;
+  height: 120px;
+}
+
+/*.navigation li a:link {
+  color: #b3b3b3;
+}
+
+.navigation li a:visited {
+  color: #b3b3b3;
+}
+
+.navigation li a:hover {
+  color: #e6e6e6;
+}
+
+.navigation li a {
+  text-decoration: none;
+}*/
+
+.search li {
+  float: right;
+}
+
+/*Footer*/
+.FooterFooter {
+  background-color: black;
+  font-family: Maiandra GD;
+  height: 280px;
+  padding: 30px;
+  min-width: 1500px;
+}
+
+.FFooterIcon {
+  margin-left: 10px;
+  margin-top: 20px;
+  float: left;
+}
+
+.FFooterBlocks {
+  font-family: Maiandra GD;
+  color: #b3b3b3;
+  background-color: black;
+  width: 270px;
+  height: 90px;
+  display: inline;
+  float: right;
+}
+
+.FFooterBlocks h3 {
+  text-align: left;
+  margin-left: 15%;
+  list-style-type: none;
+  text-align: left;
+}
+
+.FFooterIcon img {
+  width: 300px;
+  height: 130px;
+}
+
+#FooterLine {
+  border-top: #b3b3b3;
+  position: relative;
+}
+
+.FFooterUpperPortion {
+  height: 140px;
+}
+
+.FFooterLowerPortion {
+  text-align: center;
+}
+
+.Disclaimer {
+  color: #b3b3b3;
+}
+
+
+/** {box-sizing: border-box}
+body {font-family: Arial, Helvetica, sans-serif; margin:0}
+.mySlides {display: none}
+img {vertical-align: middle;}
+
+/*Transactions*/
+.error{
+    color:red;
+    font-size: 13px;
+    font-family: Maiandra GD;
+}
+
+.push_main{
+    margin-top: 10%;
+    height: 80%;
+    width: 2000px;
+}
+
+.clear{
+    clear:both;
+}

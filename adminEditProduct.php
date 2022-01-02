@@ -9,6 +9,13 @@
     <title>Admin/Edit Product - PNWX</title>
 </head>
 <body>
+    <?php
+        include_once 'adminconfig.php';
+
+        //logic goes here
+
+    ?>
+
     <header class="HeaderHeader" id="Push_header">
         <a href="adminDashboard.php"> <img class="logo" src="Pictures/LOGO.jpeg" alt="Pacific Northwest X-Ray Inc."> </a>
         
@@ -34,20 +41,29 @@
 		<thead>
 			<tr>
 				<th>Product ID</th>
+                <th>Product Picture</th>
+                <th>Product Name</th>
 				<th>Product Category</th>
-				<th>Product Name</th>
 				<th>Product Detail</th>
 				<th>Product Price</th>
 			</tr>
 		</thead>
 		<tbody>
-			<tr>
-				<td>&nbsp;</td>
-				<td>&nbsp;</td>
-				<td>&nbsp;</td>
-				<td>&nbsp;</td>
-				<td>&nbsp;</td>
-			</tr>
+            <?php
+                $table_sql = "SELECT id, productcategory, productname, productdetail, price, productpic
+                            FROM product";
+                $table_result = mysqli_query($conn, $table_sql);
+
+                if(mysqli_num_rows($table_result) > 0){
+                    while($row = mysqli_fetch_assoc($table_result)){
+                        echo "<tr><td>"."id: ".$row['id']."</td><td>".'<image src="'.$row['productpic'].'" height ="200" width = "200"/>'."</td><td>".$row['productname']."</td><td>".$row['productcategory']."</td><td>"
+                        .$row['productdetail']."</td><td>".$row['price']."</td></tr>";
+                    }
+                }else{
+                    echo "<span class='noresults'>No Transactions Detected</span><br><br>";
+                }
+
+            ?>
 		</tbody>
 	</table>
     <br>
