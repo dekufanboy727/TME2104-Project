@@ -154,20 +154,11 @@
             </div>
             
             <div class="mySlides">
-              <div class="row">
-                <div class="column1">
-                        <h1>Silver Recovery Systems.</h1>
-                    <img src="Pictures/Equipment1.jpg" alt="Rotex Silver Recovery Equipment" title="Rotex Silver Recovery Equipment" width="200" height="200" >
-                </div>
-            
-                <div class="column2">
-                    <br><br><br><br>
-                    <h2>Silver Recovery Systems.
-                        How These Systems Work...</h2>
-                    <p>the process by which pure metallic silver can be recycled from old x-ray films. The commonest process now used is called "wash". The film is shredded and placed in large baths of a chemical reagent e.g. cyanide solution. The cyanide leaches the silver from the film. The silver is then removed from the solution by electrolysis. </p>
-                        <p><a href="page2.html"><button class="button">LEARN MORE</button></a></p>
-                </div>
-              </div>
+            <img src="Pictures/banner.png" style="width:100%">
+            </div>
+
+            <div class="mySlides">
+            <img src="Pictures/banner 3.png" style="width:100%">
             </div>
             
             <a class="prev" onclick="nextslide(-1)">&#10094;</a>
@@ -176,6 +167,7 @@
             <div class = "dotbullet">
                 <span class="dot" onclick="currentSlide(1)"></span> 
                 <span class="dot" onclick="currentSlide(2)"></span> 
+                <span class="dot" onclick="currentSlide(3)"></span> 
             </div>
             <script src="slides.js"></script>
             </div>
