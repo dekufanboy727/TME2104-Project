@@ -316,28 +316,28 @@
                 <hr>
             </div>
             <?php
-                $date1 = date( 'd' ,strtotime("now"));
-                $date2 = date('m', strtotime("now"));
-                $date3 = date('Y', strtotime("now"));
+                $dated1 = date( 'd' ,strtotime("now"));
+                $dated2 = date('m', strtotime("now"));
+                $dated3 = date('Y', strtotime("now"));
 
-                $sql = "SELECT id, userid, _date,  _time, shipping_fee, merchandise_total, grand_total 
-                        FROM transactions WHERE DAY(_date) = '$date1' 
-                        AND MONTH(_date) = '$date2' 
-                        AND YEAR(_date) = '$date3'
+                $datedsql = "SELECT id, userid, _date,  _time, shipping_fee, merchandise_total, grand_total 
+                        FROM transactions WHERE DAY(_date) = '$dated1' 
+                        AND MONTH(_date) = '$dated2' 
+                        AND YEAR(_date) = '$dated3'
                         ORDER BY _time DESC
                         LIMIT 5";
 
-                $result = mysqli_query($conn, $sql);
+                $datedresult = mysqli_query($conn, $datedsql);
 
                 //Getting Specific Values from the Tables
-                if(mysqli_num_rows($result) > 0){
+                if(mysqli_num_rows($datedresult) > 0){
                     echo "<table class='demTable'>";
                     echo "<tr><th>ID</th><th>UserID</th><th>Date</th><th>Time</th><th>Subtotal</th><th>Shipping Fee</th><th>Total</th></tr>";
-                    while($row = mysqli_fetch_assoc($result)){
+                    while($row = mysqli_fetch_assoc($datedresult)){
                         $temp_id = $row["id"];
                         $sql_name = "SELECT firstname, lastname FROM registered_user WHERE id = '$temp_id'";
-                        $result2 = mysqli_query($conn, $sql_name);
-                        $temp_name = mysqli_fetch_assoc($result2);
+                        $datedresult2 = mysqli_query($conn, $sql_name);
+                        $temp_name = mysqli_fetch_assoc($datedresult2);
                         echo "<tr><td>".$row["id"]."</td><td>".$row["userid"].":".$temp_name["firstname"]." ".$temp_name["lastname"]."</td><td>".$row["_date"]."</td><td>".
                         $row["_time"]."</td><td>"."$".$row["merchandise_total"]."</td><td>"."$".$row["shipping_fee"]."</td><td>"."$".$row["grand_total"]."</td></tr>";
                     }
@@ -464,10 +464,12 @@
                     }else{
                         echo "<br>";
                         echo "<p class='noresults'> No Results </p>";
+                        echo mysqli_error($conn);
                     }
                 }else{
                     echo "<br>";
                     echo "<p class='noresults'> No Results </p>";
+                    echo mysqli_error($conn);
                 }
                 mysqli_close($conn);
             ?>
