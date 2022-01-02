@@ -9,6 +9,12 @@
     <title>Admin/Edit Customer - PNWX</title>
 </head>
 <body>
+    <?php
+        include_once 'adminconfig.php';
+
+        //logic goes here
+
+    ?>
     <header class="HeaderHeader" id="Push_header">
         <a href="adminDashboard.php"> <img class="logo" src="Pictures/LOGO.jpeg" alt="Pacific Northwest X-Ray Inc."> </a>
         
@@ -34,34 +40,36 @@
         <thead>
             <tr>
                 <th>Customer ID</th>
+                <th>Name</th>
                 <th>Email</th>
-                <th>Password</th>
-                <th>Confirm Password</th>
-                <th>First Name</th>
-                <th>Last Name</th>
+                <th>Region</th>
                 <th>Phone</th>
+                <th>Password</th>
                 <th>Gender</th>
-                <th>Address</th>
-                <th>Postcode</th>
-                <th>City</th>
                 <th>State</th>
+                <th>Postcode</th>
+                <th>Address</th>
+                <th>City</th>
+                <th>Login</th>
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-            </tr>
+            <?php
+                $table_sql = "SELECT id, firstname, lastname, email, region, phone, pwd, gender, _state, postcode, _address, city, _login
+                            FROM registered_user";
+                $table_result = mysqli_query($conn, $table_sql);
+
+                if(mysqli_num_rows($table_result) > 0){
+                    while($row = mysqli_fetch_assoc($table_result)){
+                        echo "<tr><td>"."id: ".$row['id']."</td><td>".$row['firstname'].$row['lastname']."</td><td>".$row['email']."</td><td>".$row['region']."</td><td>"
+                        .$row['phone']."</td><td>".$row['pwd']."</td><td>".$row['gender']."</td><td>".$row['_state']."</td><td>".$row['postcode']."</td><td>".$row['_address']."</td><td>"
+                        .$row['city']."</td><td>".$row['_login']."</td></tr>";
+                    }
+                }else{
+                    echo "<span class='noresults'>No Transactions Detected</span><br><br>";
+                }
+
+            ?>
         </tbody>
 	</table>
     <br>
