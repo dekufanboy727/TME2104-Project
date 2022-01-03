@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -11,7 +12,6 @@
     <?php 
         include 'connection.php';
         
-        session_start();
         $id = $_SESSION['user_id'];
         $sql = "UPDATE registered_User SET _login='Logged Out' WHERE id='$id'";
 
