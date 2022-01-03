@@ -321,3 +321,48 @@ html {
   margin-right: auto;
   color: darkred;
 }
+
+/* For Link Buttons */
+a.butt{
+  display: inline;
+}
+
+.button{
+  padding: 10px;
+  color: white;
+  background-color: #000;
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+}
+
+.button:hover{
+  background-color: #555;
+}
+
+/*Extra Css for PHP validation*/
+.error{
+  color:red;
+  font-size: 13px;
+  font-family: Maiandra GD;
+}
+
+.correct{
+  color: green;
+  font-size: 13px;
+  font-family: Maiandra GD;
+}
+
+.errorGender{
+  padding-top: 7px;
+  font-size: 13px;
+  font-family: Maiandra GD;
+  color:red;
+}
+
+.errorTerms{
+  padding-top: 7px;
+  font-size: 13px;
+  font-family: Maiandra GD;
+  color:red;
+}

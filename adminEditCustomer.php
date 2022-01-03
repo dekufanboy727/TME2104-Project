@@ -12,6 +12,267 @@
     <?php
         include_once 'adminconfig.php';
 
+        //Create Logic
+        //Validation of Data
+        //Validation
+        $fname = $lname = ""; 
+        $fnameE = $lnameE = $createSuc ="";
+        $NameE1 = "*Please capitalise FIRST CHARACTER of your Name!";
+        $NameE2 = "*Please make sure your Name are all in lowercase except the FIRST character!";
+        //Other declaration
+        $email = $mobile = $pw = $cpw = $gender = "";
+        $emailE = $mobileE = $pwE = $cpwE = $genderE = $termsE ="";
+        $postcode = $add = $city ="";
+        $postcodeE = $addE = $cityE ="";
+        $cpw_match = $pw_strong = "";
+
+        if ($_SERVER["REQUEST_METHOD"] == "POST")
+        {
+            //Validate fname
+            if(empty($_POST["fname"]))
+            {
+                $fnameE = "*First Name is required!";
+            }
+            else
+            {
+                $fname = test($_POST["fname"]);
+
+                //Check whether the first character is upper case?
+                if(!preg_match('~^\p{Lu}~u', $fname))
+                {
+                    $fnameE = $NameE1;
+                }
+                else
+                {
+                    for($x=1; $x < strlen($fname); $x++)
+                    {
+                        if($fname[$x] === " ") //next word
+                        {
+                            $x++;
+                            if( $fname[$x] !== strtoupper($fname[$x]))
+                            {
+                                $fnameE = $NameE1;
+                            }
+                        }
+                        else if($fname[$x] !== strtolower($fname[$x]))
+                        {
+                            $fnameE = $NameE2;
+                        }
+                    }   
+                }
+            }
+
+            //Validate lname
+            if(empty($_POST["lname"]))
+            {
+                $lnameE = "*Last Name is required!";
+            }
+            else
+            {
+                $lname = test($_POST["lname"]);
+
+                //Check whether the first character is upper case?
+                if(!preg_match('~^\p{Lu}~u', $lname))
+                {
+                    $lnameE = $NameE1;
+                }
+                else
+                {
+                    for($x=1; $x < strlen($lname); $x++)
+                    {
+                        if($lname[$x] === " ") //next word
+                        {
+                            $x++;
+                            if( $lname[$x] !== strtoupper($lname[$x]))
+                            {
+                                $lnameE = $NameE1;
+                            }
+                        }
+                        else if($lname[$x] !== strtolower($lname[$x]))
+                        {
+                            $lnameE = $NameE2;
+                        }
+                    }   
+                }
+            }
+            
+            //Validate email
+            if(empty($_POST["email"]))
+            {
+                $emailE = "*Email is required!";
+            }
+            else 
+            {
+                $email = test($_POST["email"]);
+                if (!filter_var($email, FILTER_VALIDATE_EMAIL)) 
+                {
+                    $emailE = "*Invalid email format!";
+                }
+                
+            }
+
+            //Validate mobile
+            if(empty($_POST["mobile"]))
+            {
+                $mobileE = "*Phone number is required!";
+            }
+            else
+            {
+                $mobile = test($_POST["mobile"]);
+                //Check is it number
+                if(!is_numeric($mobile))
+                {
+                    $mobileE = "*Invalid! Please use only numbers 0-9!";
+                }
+                else if(strlen($mobile) > 10 || strlen($mobile) <9) //Check length
+                {
+                    $mobileE = "*Invalid phone number length!";
+                }
+            }
+
+            //Validate password
+            if(empty($_POST["pw"]))
+            {
+                $pwE = "*Password is required!";
+            }
+            else
+            {
+                $pw = test($_POST["pw"]);
+                if(strlen($pw) <6 )
+                {
+                    $pwE = "*Please use password with at least 6 digits!";
+                }
+                else if(!preg_match("#[0-9]+#",$pw))
+                {
+                    $pwE = "*Must contain at least 1 number!";
+                }
+                else if (!preg_match("#[A-Z]+#",$pw))
+                {
+                    $pwE = "*Must contain at least 1 uppercase letter!";
+                }
+                else if (!preg_match("#[a-z]+#",$pw))
+                {
+                    $pwE = "*Must contain at least 1 lowercase letter!";
+                }
+                else if (!preg_match('/[\'^£$%&*()}{@#~?><>,|=_+¬-]/',$pw))
+                {
+                    $pwE = "*Must contain at least 1 special character!";
+                }
+                else if (preg_match('/\s/',$pw)) //find whitespace
+                {
+                    $pwE = "*Must not contain any whitespace!";
+                }
+                else
+                {
+                    $pw_strong = "Strong Password!";
+                }
+            }
+
+            //Validate confirm password
+            if(empty($_POST["cpw"]) && !empty($_POST["pw"]))
+            {
+                $cpwE = "*Please confirm your password!";
+            }
+            else 
+            {
+                $cpw = test($_POST["cpw"]);
+                if($cpw !== $_POST["pw"])
+                {
+                    $cpwE = "*The password confirmation does not match!";
+                }
+                else if($cpw === $_POST["pw"] && !empty($_POST["pw"]))
+                {
+                    $cpw_match = "Password Match!";
+                }
+            }
+
+            //Validate gender
+            if(empty($_POST["gender"]))
+            {
+                $genderE = "*Gender is required!";
+            }
+            else
+            {
+                $gender = test($_POST["gender"]);
+            }
+
+            //Validate address
+            if(empty($_POST["Address"]))
+            {
+                $addE = "*Address is required!";
+            }
+            else
+            {
+                $add = test($_POST["Address"]);
+            }
+
+            //Validate postcode
+            if(empty($_POST["Postcode"]))
+            {
+                $postcodeE = "*Postcode is required!";
+            }
+            else
+            {
+                $postcode = test($_POST["Postcode"]);
+                if(!is_numeric($postcode))
+                {
+                    $postcodeE = "*Invalid PostCode! Only numbers are Allowed!";
+                }
+                else if (strlen($postcode) > 5 || strlen($postcode) <5)
+                {
+                    $postcodeE = "*Invalid PostCode length!";
+                }
+            }
+
+            //Validate city
+            if(empty($_POST["city"]))
+            {
+                $cityE = "*City is required!";
+            }
+            else
+            {
+                $city = test($_POST["city"]);
+            }
+
+            $state = test($_POST["state"]);
+            $region = test($_POST["region"]);
+
+            
+        } //End Validation
+
+        function test($data)
+        {
+            $data = trim($data);
+            $data = stripslashes($data);
+            $data = htmlspecialchars($data);
+            return $data;
+        }
+
+        if(isset($_POST["create"])){
+            if($emailE == "" && $mobileE == "" && $pwE == "" && $cpwE == "" && $genderE == "" && $termsE =="" && $fnameE == "" && $lnameE == "" && $addE == "" && $postcodeE == "" && $cityE == ""
+            &&  $fname != "" && $lname != "" && $email != "" && $mobile != "" && $pw != "" && $cpw != "" && $gender != "" &&  $add != "" && $postcode != "" && $city != "")
+            {
+                //Insert registered user's data into the table
+                $sql = "INSERT INTO registered_User (firstname, lastname, email, region, phone, pwd, gender, _state, postcode, _address, city,_login)
+                VALUES ('$fname', '$lname', '$email','$region','$mobile', '$pw','$gender', '$state', '$postcode', '$add', '$city', 'Logged Out')";
+                if ($conn->query($sql) === TRUE) {
+                    echo "New record created successfully";
+                    $createSuc = "New record created successfully";
+                  } else {
+                    echo "Error: " . $sql . "<br>" . $conn->error;
+                  }
+
+                $sql = "SELECT id FROM registered_User WHERE email='$email'"; //Select the user id
+                $isFound = mysqli_query($conn,$sql); 
+                $result = mysqli_fetch_assoc($isFound);
+                $id = $result["id"];
+            }
+        }
+
+        
+        
+        
+
         //logic goes here
 
     ?>
@@ -51,6 +312,7 @@
                 <th>Address</th>
                 <th>City</th>
                 <th>Login</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -63,7 +325,11 @@
                     while($row = mysqli_fetch_assoc($table_result)){
                         echo "<tr><td>"."id: ".$row['id']."</td><td>".$row['firstname'].$row['lastname']."</td><td>".$row['email']."</td><td>".$row['region']."</td><td>"
                         .$row['phone']."</td><td>".$row['pwd']."</td><td>".$row['gender']."</td><td>".$row['_state']."</td><td>".$row['postcode']."</td><td>".$row['_address']."</td><td>"
-                        .$row['city']."</td><td>".$row['_login']."</td></tr>";
+                        .$row['city']."</td><td>".$row['_login']."</td><td>";
+
+                        echo '<a class="butt" href= "adminEditCustomer.php?edit='.$row['id'].'"><button class="button" type="button value="edit">Edit</button></a>'.
+                             '<a class="butt" href= "adminEditCustomer.php?delete='.$row['id'].'"><button class="button" type="button" value="delete">Delete</button></a>'
+                             ."</td></tr>"; 
                     }
                 }else{
                     echo "<span class='noresults'>No Transactions Detected</span><br><br>";
@@ -77,16 +343,136 @@
     <!-- For inserting new data -->
     <section class="padCard">
         <h1>Insert Data</h1>
-        <p>*Insert Form Here</p>
-        <br>
-
-    </section>
-
-    <!-- For deleting existing data -->
-    <section class="padCard">
-        <h1>Delete Data</h1>
-        <p>*Insert Form Here</p>
-        <br>
+        <span class="correct"> <?php echo $createSuc; ?> </span>
+        <form name="reg" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+            <table>
+                <tr>
+                    <th>
+                        Category
+                    </th>
+                    <th>
+                        Field
+                    </th>
+                </tr>
+                <tr>
+                    <td><label for="fname">First Name</label></td>
+                    <td>
+                        <input type="text" id="fname" name="fname" placeholder="Your first name.." value="<?php echo $fname;?>">
+                        <span class="error"> <br> <?php echo $fnameE; ?> </span>
+                        <br>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="lname">Last Name</label></td>
+                    <td>
+                        <input type="text" id="lname" name="lname" placeholder="Your last name.." value="<?php echo $lname;?>">
+                        <span class="error"> <br> <?php echo $lnameE; ?> </span>
+                        <br>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="Email">Email</label></td>
+                    <td>
+                        <input type="email" id="email" name="email" placeholder="Email.." value="<?php echo $email;?>" >
+                        <span class="error"> <br> <?php echo $emailE; ?> </span>
+                        <br>
+                    </td>
+                </tr>    
+                <tr>
+                    <td><label for="mobile">Mobile</label></td>
+                    <td>
+                        <select id="region" name="region">
+                            <option value="+60">+60</option>
+                            <option value="+1">+1</option>
+                            <option value="+44">+44</option>
+                        </select>
+                        <input type="text" id="mobile" name="mobile" placeholder="Phone number.." value="<?php echo $mobile;?>" >
+                        <span class="error"> <br> <?php echo $mobileE; ?> </span>
+                        <br>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="pw">Password</label></td>
+                    <td>
+                        <input type="password" id="pw" name="pw" placeholder="Password.." value="<?php echo $pw;?>" >
+                        <span class="error"> <br> <?php echo $pwE; ?> </span>
+                        <span class="correct"> <?php echo $pw_strong; ?> </span>
+                        <br>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="cpw">Confirm Password</label></td>
+                    <td>
+                        <input type="password" id="cpw" name="cpw" placeholder="Confirm password.." value="<?php echo $cpw;?>" >
+                        <span class="error"> <br> <?php echo $cpwE; ?> </span>
+                        <span class="correct"> <?php echo $cpw_match; ?> </span>
+                        <br>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="gender">Gender</label></td>
+                    <td>
+                    <input type="radio" id="male" name="gender" value="Male"
+                    <?php if (isset($gender) && $gender=="Male") echo "checked";?> >
+                    <label for="male">Male</label>
+                    <input type="radio" id="female" name="gender" value="Female"
+                    <?php if (isset($gender) && $gender=="Female") echo "checked";?> >
+                    <label for="female">Female</label>
+                    <span class="errorGender"><?php echo $genderE; ?> </span>
+                    </td>
+                    <br>
+                </tr>
+                <tr>
+                    <td><label for="address">Address</label></td>
+                    <td>
+                        <input type="text" id="address" name="Address" placeholder="Address.." value="<?php echo $add;?>" >
+                        <span class="error"> <br> <?php echo $addE; ?> </span>
+                        <br>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="postcode">Postcode</label></td>
+                    <td>
+                        <input type="text" id="postcode" name="Postcode" placeholder="Postcode.." value="<?php echo $postcode;?>" >
+                        <span class="error"> <br> <?php echo $postcodeE; ?> </span>
+                        <br>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="city">City</label></td>
+                    <td>
+                        <input type="text" id="city" name="city" placeholder="City.." value="<?php echo $city;?>" >
+                        <span class="error"> <br> <?php echo $cityE; ?> </span>
+                        <br>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="state">State</label></td>
+                    <td>
+                        <select id="state" name="state">
+                            <option value="Johor">Johor</option>
+                            <option value="Kedah">Kedah</option>
+                            <option value="Kelantan">Kelantan</option>
+                            <option value="Melaka">Melaka</option>
+                            <option value="Negeri Sembilan">Negeri Sembilan</option>
+                            <option value="Pahang">Pahang</option>
+                            <option value="Penang">Penang</option>
+                            <option value="Perak">Perak</option>
+                            <option value="Perlis">Perlis</option>
+                            <option value="Sabah">Sabah</option>
+                            <option value="Sarawak">Sarawak</option>
+                            <option value="Selangor">Selangor</option>
+                            <option value="Terengganu">Terengganu</option>
+                        </select>
+                        <br>
+                    </td>
+                </tr>
+                <tr>
+                    <td><input type="submit" name = "create" value="Create" ></td>
+                    <td><input type="reset" name = "reset" value="Clear" > </td>
+                </tr>
+            </table>
+        </form>
 
     </section>
 
@@ -97,7 +483,8 @@
         <br>
 
     </section>
-    
+
+
     <!-- For animating elements as they enter/leave the viewport -->
     </div>
         <script src="scrollReveal.js"></script>
