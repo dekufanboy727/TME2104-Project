@@ -78,12 +78,14 @@
                 $result_trans = mysqli_query($conn,$sql); 
                 $receipt = mysqli_fetch_assoc($result_trans); //Fetch the selected info
 
-                echo '<p>'."Payment Date: ".$receipt['_date'];
+                echo '<p>'."Receipt No: ".$receipt_no;
+                echo "Payment Date: ".$receipt['_date'];
                 echo "Payment Time: ".$receipt['_time'].'</p>';
 
                 //CONTENT FOR EMAIL
                 $message .= '
-                        <p>'."Payment Date: ".$receipt['_date'].'<br>
+                        <p>Receipt No: '.$receipt_no.
+                        'Payment Date: '.$receipt['_date'].'<br>
                         Payment Time: '.$receipt['_time'].'</p>';
                 //CONTENT FOR EMAIL
             ?>
