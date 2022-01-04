@@ -15,16 +15,18 @@
         //Create Logic
         //Validation of Data
         //Validation
+        $shownid = 0;
         $fname = $lname = ""; 
         $fnameE = $lnameE = $createSuc = $deleteMes ="";
         $NameE1 = "*Please capitalise FIRST CHARACTER of your Name!";
         $NameE2 = "*Please make sure your Name are all in lowercase except the FIRST character!";
         //Other declaration
-        $email = $mobile = $pw = $cpw = $gender = "";
+        $email = $mobile = $pw = $cpw = $gender = $region = $state = "";
         $emailE = $mobileE = $pwE = $cpwE = $genderE = $termsE ="";
         $postcode = $add = $city ="";
         $postcodeE = $addE = $cityE ="";
         $cpw_match = $pw_strong = "";
+        $editstat = FALSE;
 
         if ($_SERVER["REQUEST_METHOD"] == "POST")
         {
@@ -258,18 +260,33 @@
                 if ($conn->query($sql) === TRUE) {
                     echo "New record created successfully";
                     $createSuc = "New record created successfully";
+                    
+                    //Resetting Values
+                    $fname = $lname = ""; 
+                    $fnameE = $lnameE = $createSuc = $deleteMes ="";
+                    $NameE1 = "*Please capitalise FIRST CHARACTER of your Name!";
+                    $NameE2 = "*Please make sure your Name are all in lowercase except the FIRST character!";
+                    
+                    $email = $mobile = $pw = $cpw = $gender = $region = $state = "";
+                    $emailE = $mobileE = $pwE = $cpwE = $genderE = $termsE ="";
+                    $postcode = $add = $city ="";
+                    $postcodeE = $addE = $cityE ="";
+                    $cpw_match = $pw_strong = "";
                   } else {
                     echo "Error: " . $sql . "<br>" . $conn->error;
                   }
 
-                $sql = "SELECT id FROM registered_User WHERE email='$email'"; //Select the user id
+                $sql = "SELECT id FROM registered_user WHERE email='$email'"; //Select the user id
                 $isFound = mysqli_query($conn,$sql); 
                 $result = mysqli_fetch_assoc($isFound);
                 $id = $result["id"];
             }
         }
 
+        //Delete Action
+
         if(isset($_GET["delete"])){
+            //Gets the id from the superglobal
             $deleteid = $_GET["delete"];
             $deletesql = "DELETE FROM registered_user WHERE id = '$deleteid'";
             $deleteresult = mysqli_query($conn, $deletesql);
@@ -281,9 +298,92 @@
             }
         }
         
-        
+        //Edit Mode
 
-        //logic goes here
+        if(isset($_GET["edit"])){
+            $editid = $_GET["edit"];
+            $editsql = "SELECT * FROM registered_user WHERE id = '$editid'";
+            $editresult = mysqli_query($conn, $editsql) or die($mysqli_error($conn));
+            if (mysqli_num_rows($editresult) > 0){
+                $editstat = TRUE;
+                $editrow = mysqli_fetch_assoc($editresult);
+                $shownid = $editid;
+                $fname = $editrow["firstname"];
+                $lname = $editrow["lastname"];
+                $email = $editrow["email"];
+                $region = $editrow["region"];
+                $mobile = $editrow["phone"];
+                $pw = $editrow["pwd"];
+                $cpw = $editrow["pwd"];
+                $gender = $editrow["gender"];
+                $state = $editrow["_state"];
+                $postcode = $editrow["postcode"];
+                $add = $editrow["_address"];
+                $city = $editrow["city"];
+
+            }else{
+                echo "0 results";
+            }
+        }
+
+        // To exit out of edit mode
+        if(isset($_GET["canceledit"])){
+            $fname = "";
+            $lname = "";
+            $email = "";
+            $region = "";
+            $mobile = "";
+            $pw = "";
+            $cpw = "";
+            $gender = "";
+            $state = "";
+            $postcode = "";
+            $add = "";
+            $city = "";
+            $shownid = 0;
+
+            $editstat = FALSE;
+        }
+
+        //Update Logic
+        if(isset($_POST["update"])){
+            if($emailE == "" && $mobileE == "" && $pwE == "" && $cpwE == "" && $genderE == "" && $termsE =="" && $fnameE == "" && $lnameE == "" && $addE == "" && $postcodeE == "" && $cityE == ""
+            &&  $fname != "" && $lname != "" && $email != "" && $mobile != "" && $pw != "" && $cpw != "" && $gender != "" &&  $add != "" && $postcode != "" && $city != ""){
+
+                echo $fname;
+
+                $shownid = $_POST['id'];
+                $updatesql = "UPDATE registered_user SET firstname = '$fname', lastname = '$lname', email = '$email', region = '$region', phone = '$mobile', pwd = '$pw', 
+                gender = '$gender', _state= '$state', postcode ='$postcode', _address ='$add', city = '$city', _login = 'Logged Out' WHERE id = '$shownid'";
+
+                if(mysqli_query($conn, $updatesql)){
+                    $deleteMes = "Record".$shownid."Updated";
+                }else{
+                    $deleteMes = "Update Error";
+                }
+            }
+
+        }
+
+        //To Clear Values
+        if(isset($_GET["clearvalues"])){
+            $fname = "";
+            $lname = "";
+            $email = "";
+            $region = "";
+            $mobile = "";
+            $pw = "";
+            $cpw = "";
+            $gender = "";
+            $state = "";
+            $postcode = "";
+            $add = "";
+            $city = "";
+            $emailE = $mobileE = $pwE = $cpwE = $genderE = $termsE ="";
+            $postcodeE = $addE = $cityE ="";
+            $cpw_match = $pw_strong = "";
+            $shownid = 0;
+        }
 
     ?>
     <header class="HeaderHeader" id="Push_header">
@@ -354,9 +454,10 @@
 
     <!-- For inserting new data -->
     <section class="padCard">
-        <h1>Insert Data</h1>
+        <h1><?php if($editstat == TRUE){echo "Update ";}else{echo "Insert ";}?> Data</h1>
         <span class="correct"> <?php echo $createSuc; ?> </span>
         <form name="reg" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+            <input type="hidden" name = "id" value = "<?php echo $editid;?>"/>    
             <table>
                 <tr>
                     <th>
@@ -394,9 +495,9 @@
                     <td><label for="mobile">Mobile</label></td>
                     <td>
                         <select id="region" name="region">
-                            <option value="+60">+60</option>
-                            <option value="+1">+1</option>
-                            <option value="+44">+44</option>
+                            <option value="+60" <?php if($region === "+60"){ echo "selected";} ?>>+60</option>
+                            <option value="+1" <?php if($region === "+1"){ echo "selected";} ?>>+1</option>
+                            <option value="+44" <?php if($region === "+44"){ echo "selected";} ?>>+44</option>
                         </select>
                         <input type="text" id="mobile" name="mobile" placeholder="Phone number.." value="<?php echo $mobile;?>" >
                         <span class="error"> <br> <?php echo $mobileE; ?> </span>
@@ -462,40 +563,45 @@
                     <td><label for="state">State</label></td>
                     <td>
                         <select id="state" name="state">
-                            <option value="Johor">Johor</option>
-                            <option value="Kedah">Kedah</option>
-                            <option value="Kelantan">Kelantan</option>
-                            <option value="Melaka">Melaka</option>
-                            <option value="Negeri Sembilan">Negeri Sembilan</option>
-                            <option value="Pahang">Pahang</option>
-                            <option value="Penang">Penang</option>
-                            <option value="Perak">Perak</option>
-                            <option value="Perlis">Perlis</option>
-                            <option value="Sabah">Sabah</option>
-                            <option value="Sarawak">Sarawak</option>
-                            <option value="Selangor">Selangor</option>
-                            <option value="Terengganu">Terengganu</option>
+                            <option value="Johor" <?php if($state === "Johor"){ echo "selected";} ?>>Johor</option>
+                            <option value="Kedah" <?php if($state === "Kedah"){ echo "selected";} ?>>Kedah</option>
+                            <option value="Kelantan" <?php if($state === "Kelantan"){ echo "selected";} ?>>Kelantan</option>
+                            <option value="Melaka" <?php if($state === "Melaka"){ echo "selected";} ?>>Melaka</option>
+                            <option value="Negeri Sembilan" <?php if($state === "Negeri Sembilan"){ echo "selected";} ?>>Negeri Sembilan</option>
+                            <option value="Pahang" <?php if($state === "Pahang"){ echo "selected";} ?>>Pahang</option>
+                            <option value="Penang" <?php if($state === "Penang"){ echo "selected";} ?>>Penang</option>
+                            <option value="Perak" <?php if($state === "Perak"){ echo "selected";} ?>>Perak</option>
+                            <option value="Perlis" <?php if($state === "Perlis"){ echo "selected";} ?>>Perlis</option>
+                            <option value="Sabah" <?php if($state === "Sabah"){ echo "selected";} ?>>Sabah</option>
+                            <option value="Sarawak" <?php if($state === "Sarawak"){ echo "selected";} ?>>Sarawak</option>
+                            <option value="Selangor" <?php if($state === "Selangor"){ echo "selected";} ?>>Selangor</option>
+                            <option value="Terengganu" <?php if($state === "Terengganu"){ echo "selected";} ?>>Terengganu</option>
                         </select>
                         <br>
                     </td>
                 </tr>
                 <tr>
-                    <td><input type="submit" name = "create" value="Create" ></td>
-                    <td><input type="reset" name = "reset" value="Clear" > </td>
+                    <td>
+                        <?php if ($editstat === TRUE):?>
+                            <input type="submit" name = "update" value="Update" >
+                        <?php else: ?>
+                            <input type="submit" name = "create" value="Create" >
+                        <?php endif; ?>
+                    </td>
+                    <td>
+                        <?php if ($editstat === TRUE):?>
+                            <a href="adminEditCustomer.php?canceledit=1"><input type="button" value="Cancel" ></a>
+                        <?php else: ?>
+                            <a href="adminEditCustomer.php?clearvalues=1"><input type="reset" name = "reset" value="Clear" ></a>
+                        <?php endif; ?>
+                        
+                    
+                     </td>
                 </tr>
             </table>
         </form>
 
     </section>
-
-    <!-- For updating existing data -->
-    <section class="padCard">
-        <h1>Update Data</h1>
-        <p>*Insert Form Here</p>
-        <br>
-
-    </section>
-
 
     <!-- For animating elements as they enter/leave the viewport -->
     </div>
