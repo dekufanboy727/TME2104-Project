@@ -256,7 +256,7 @@ html {
 }
 
 /* Tables */
-.demTable {
+.displayTable {
   margin-left: auto;
   margin-right: auto;
   width: 75%;
@@ -264,13 +264,13 @@ html {
   border-collapse: collapse;
   padding: 6px;
 }
-.demTable th {
+.displayTable th {
   border: 2px solid #b3adad;
   padding: 6px;
   background: #f0f0f0;
   color: #313030;
 }
-.demTable td {
+.displayTable td {
   border: 2px solid #b3adad;
   text-align: center;
   padding: 6px;
@@ -288,7 +288,7 @@ html {
   width: 87%;
 }
 
-.report{
+.report {
   width: 80%;
   margin-left: auto;
   margin-right: auto;
@@ -303,19 +303,19 @@ html {
   text-align: center;
 }
 
-.reptoppart input{
+.reptoppart input {
   display: inline;
 }
 
-.rep_select{
+.rep_select {
   display: inline;
 }
 
-.repbotpart{
+.repbotpart {
   text-align: center;
 }
 
-.noresults{
+.noresults {
   font-weight: bolder;
   margin-left: auto;
   margin-right: auto;
@@ -323,46 +323,142 @@ html {
 }
 
 /* For Link Buttons */
-a.butt{
+a.butt {
   display: inline;
 }
 
-.button{
+.button {
+  font-weight: bold;
   padding: 10px;
   color: white;
   background-color: #000;
   text-align: center;
   cursor: pointer;
   width: 100%;
+  margin: 5px 0;
 }
 
-.button:hover{
+.button:hover {
   background-color: #555;
 }
 
 /*Extra Css for PHP validation*/
-.error{
-  color:red;
+.error {
+  color: red;
   font-size: 13px;
   font-family: Maiandra GD;
 }
 
-.correct{
+.correct {
   color: green;
   font-size: 13px;
   font-family: Maiandra GD;
 }
 
-.errorGender{
+.errorGender {
   padding-top: 7px;
   font-size: 13px;
   font-family: Maiandra GD;
-  color:red;
+  color: red;
 }
 
-.errorTerms{
+.errorTerms {
   padding-top: 7px;
   font-size: 13px;
   font-family: Maiandra GD;
-  color:red;
+  color: red;
+}
+
+/* Forms */
+.column-form {
+  width: 100%;
+  display: flex;
+  margin: auto;
+}
+
+.column-form .columnB-form {
+  width: 55%;
+  text-align: center;
+  margin-top: 25px;
+  margin: auto;
+  background-color: rgb(238, 238, 238);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.384);
+}
+
+.columnB-form h1 {
+  font-size: 45px;
+}
+
+.formTable {
+  table-layout: fixed;
+  width: 70%;
+  height: 100%;
+  border: 0px none #ffffff;
+  border-collapse: collapse;
+  padding: 5px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.formTable th {
+  border-bottom: 2px solid #000000;
+  padding: 10px;
+  color: #313030;
+  font-size: 24px;
+}
+.formTable td {
+  border: 0px none;
+  text-align: center;
+  padding: 7px;
+  color: #313030;
+}
+
+.formTable td label {
+  margin-left: 22%;
+  float: left;
+  padding-right: 6px;
+  font-size: 18px;
+}
+
+.formTable td input {
+  width: 70%;
+  padding: 4px 8px;
+  margin: 3px 0;
+  box-sizing: border-box;
+}
+
+.formTable td input[type="submit"],
+input[type="button"],
+input[type="reset"] {
+  font-size: 20px;
+  font-weight: bold;
+  color: white;
+  background-color: #000;
+  text-align: center;
+  cursor: pointer;
+  box-sizing: border-box;
+  padding: 10px;
+  margin: 25px 0 25px 0;
+}
+
+td input[type="button"] {
+  padding: 10px;
+}
+
+td input[type="reset"] {
+  padding: 10px;
+}
+
+.formTable td input[type="submit"]:hover,
+input[type="reset"]:hover,
+input[type="button"]:hover {
+  background-color: #555;
+  cursor: pointer;
+}
+
+.formTable td #state {
+  width: 70%;
+  padding: 4px 8px;
+  margin: 3px 0;
+  box-sizing: border-box;
 }
