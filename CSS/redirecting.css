@@ -44,7 +44,7 @@ header .logo {
     font-size: 30px;
     height: 50%;
     text-align: center;
-    margin-top: 17%;
+    margin-top: 15%;
 }
 
 /*Footer*/
@@ -53,6 +53,7 @@ header .logo {
     font-family: Maiandra GD;
     height: 250px;
     min-width: 1500px;
+    margin-top: 5%;
 }
 
 .FFooterIcon {
