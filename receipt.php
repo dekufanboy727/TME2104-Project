@@ -37,7 +37,7 @@
                 </head>
                 <body>
                     <header>
-                        <img class="logo" src="Pictures/logo receipt.png" alt="Pacific Northwest X-Ray Inc.">
+                        <img class="logo" src="https://i.imgur.com/SUPr5Gf.png" alt="Pacific Northwest X-Ray Inc.">
                         <p>RECEIPT</p>
                     </header>';
         ?>
