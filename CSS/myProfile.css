@@ -159,11 +159,29 @@ header .logo {
     font-weight: bold;
 }
 
+.column2 ul li {
+    padding: 11.5px 0px;
+    font-size: 20px;
+}
+
 /*Display Profile*/
-#display0, #display1, #display3, #display4, #display5, #display6, #display7, #display8, #display9, #display10{
-    padding: 15px 0px;
+#display0, #display1 {
     font-size: 20px;
     font-weight: bold;
+    padding: 5px 0px;
+}
+
+#display3 {
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: -30px;
+    padding-bottom: 3.5px;
+}
+
+#display4, #display5, #display6, #display7, #display8, #display9, #display10{
+    font-size: 20px;
+    font-weight: bold;
+    padding: 3.5px 0px;
 }
 
 .column {
@@ -220,8 +238,6 @@ noscript {
     display:none;
     width: 350px;
     height: 25px;
-    margin-top: 2.8%;
-    margin-bottom: 2.8%;
 }
 
 #edit_confirm_pw {
@@ -230,7 +246,6 @@ noscript {
 
 #display2_cpw {
     display: none;
-    padding: 15px 0px;
     font-size: 20px;
     font-weight: bold;
 }
@@ -239,14 +254,12 @@ noscript {
     display:none;
     width: 350px;
     height: 25px;
-    margin-bottom: 2.5%;
 }
 
 #state {
     display:none;
     width: 358px;
     height: 35px;
-    margin-top: 2.5%;
 }
 
 #GENDER {
@@ -255,25 +268,20 @@ noscript {
 }
 
 #GENDER input {
-    
     width: 15px;
     height: 20px;
 }
 
 #mobile{
-    width: 288px;
-    height: 15px;
+    width: 292px;
+    height: 24px;
     display:none;
-    padding: 5px 5px;
-    margin-top: 0.5%;
 }
 
 #region {
     width: 57px;
     height: 29px;
     display:none;
-    padding: 5px 5px;
-    margin-top: 0.5%;
 }
 
 #button {
