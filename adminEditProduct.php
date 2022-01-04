@@ -5,6 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="CSS/admin.css">
+    <link rel="icon" href="Pictures/icon.png">
+    <link rel="shortcut icon" href="Pictures/icon.png">
     <script src="https://unpkg.com/scrollreveal@4"></script>
     <title>Admin/Edit Product - PNWX</title>
 </head>
@@ -37,7 +39,7 @@
         <hr>
     </div>
 
-    <table class="demTable">
+    <table class="displayTable">
 		<thead>
 			<tr>
 				<th>Product ID</th>

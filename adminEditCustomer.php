@@ -4,11 +4,14 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="CSS/admin.css">
+    <link rel="stylesheet" href="CSS/adminCustomer.css">
+    <link rel="icon" href="Pictures/icon.png">
+    <link rel="shortcut icon" href="Pictures/icon.png">
     <script src="https://unpkg.com/scrollreveal@4"></script>
     <title>Admin/Edit Customer - PNWX</title>
 </head>
 <body>
+    
     <?php
         include_once 'adminconfig.php';
 
@@ -294,7 +297,7 @@
                 $deleteMes = "Record has been succesfully deleted.";
             }else
             {
-                echo "Record Can't Be Deleted". mysqli_error($conn);
+                echo "Record can't be deleted". mysqli_error($conn);
             }
         }
         
@@ -357,7 +360,7 @@
                 gender = '$gender', _state= '$state', postcode ='$postcode', _address ='$add', city = '$city', _login = 'Logged Out' WHERE id = '$shownid'";
 
                 if(mysqli_query($conn, $updatesql)){
-                    $deleteMes = "Record".$shownid."Updated";
+                    $deleteMes = "Record ".$shownid." Updated";
                 }else{
                     $deleteMes = "Update Error";
                 }
@@ -402,12 +405,15 @@
         </div>
     </header>
 
+    
+
     <div class="admin-title">
         <h1>Edit Customer Information</h1>
         <hr>
     </div>
 
-    <table class="demTable">
+    <!-- Display customer Information -->
+    <table class="displayTable">
         <thead>
             <tr>
                 <th>Customer ID</th>
@@ -448,167 +454,171 @@
             ?>
         </tbody>
 	</table>
-    <br>
 
-    <span class="correct"> <?php echo $deleteMes; ?> </span>
+    <br><br><br><br>
 
-    <!-- For inserting new data -->
-    <section class="padCard">
-        <h1><?php if($editstat == TRUE){echo "Update ";}else{echo "Insert ";}?> Data</h1>
-        <span class="correct"> <?php echo $createSuc; ?> </span>
-        <form name="reg" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
-            <input type="hidden" name = "id" value = "<?php echo $editid;?>"/>    
-            <table>
-                <tr>
-                    <th>
-                        Category
-                    </th>
-                    <th>
-                        Field
-                    </th>
-                </tr>
-                <tr>
-                    <td><label for="fname">First Name</label></td>
-                    <td>
-                        <input type="text" id="fname" name="fname" placeholder="Your first name.." value="<?php echo $fname;?>">
-                        <span class="error"> <br> <?php echo $fnameE; ?> </span>
+    <!-- For inserting new customer data -->
+    <div class="column-form">
+        <div class="columnB-form">
+            <h1><?php if($editstat == TRUE){echo "Update ";}else{echo "Insert ";}?> Data</h1>
+            <span class="correct-record"> <?php echo $createSuc; ?> </span>
+            <span class="correct-record"> <?php echo $deleteMes; ?> </span>
+            <form name="reg" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+                <input type="hidden" name = "id" value = "<?php echo $editid;?>"/>    
+                <table class="formTable">
+                    <tr>
+                        <th>
+                            Category
+                        </th>
+                        <th>
+                            Fields
+                        </th>
+                    </tr>
+                    <tr>
+                        <td><label for="fname">First Name</label></td>
+                        <td>
+                            <input type="text" id="fname" name="fname" placeholder="Your first name.." value="<?php echo $fname;?>">
+                            <span class="error"> <br> <?php echo $fnameE; ?> </span>
+                            <br>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label for="lname">Last Name</label></td>
+                        <td>
+                            <input type="text" id="lname" name="lname" placeholder="Your last name.." value="<?php echo $lname;?>">
+                            <span class="error"> <br> <?php echo $lnameE; ?> </span>
+                            <br>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label for="Email">Email</label></td>
+                        <td>
+                            <input type="email" id="email" name="email" placeholder="Email.." value="<?php echo $email;?>" >
+                            <span class="error"> <br> <?php echo $emailE; ?> </span>
+                            <br>
+                        </td>
+                    </tr>    
+                    <tr>
+                        <td><label for="mobile">Mobile</label></td>
+                        <td>
+                            <select id="region" name="region">
+                                <option value="+60" <?php if($region === "+60"){ echo "selected";} ?>>+60</option>
+                                <option value="+1" <?php if($region === "+1"){ echo "selected";} ?>>+1</option>
+                                <option value="+44" <?php if($region === "+44"){ echo "selected";} ?>>+44</option>
+                            </select>
+                            <input type="text" id="mobile" name="mobile" placeholder="Phone number.." value="<?php echo $mobile;?>" >
+                            <span class="error"> <br> <?php echo $mobileE; ?> </span>
+                            <br>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label for="pw">Password</label></td>
+                        <td>
+                            <input type="password" id="pw" name="pw" placeholder="Password.." value="<?php echo $pw;?>" >
+                            <span class="error"> <br> <?php echo $pwE; ?> </span>
+                            <span class="correct"> <?php echo $pw_strong; ?> </span>
+                            <br>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label for="cpw">Confirm Password</label></td>
+                        <td>
+                            <input type="password" id="cpw" name="cpw" placeholder="Confirm password.." value="<?php echo $cpw;?>" >
+                            <span class="error"> <br> <?php echo $cpwE; ?> </span>
+                            <span class="correct"> <?php echo $cpw_match; ?> </span>
+                            <br>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label for="gender">Gender</label></td>
+                        <td>
+                            <label for="male">Male
+                                <input type="radio" id="male" name="gender" value="Male"
+                                <?php if (isset($gender) && $gender=="Male") echo "checked";?> >
+                            </label>
+                            <label for="female">Female
+                                <input type="radio" id="female" name="gender" value="Female"
+                                <?php if (isset($gender) && $gender=="Female") echo "checked";?> >
+                            </label>
+                            <br><br><br>
+                            <span class="errorGender"><?php echo $genderE; ?> </span>
+                        </td>
                         <br>
-                    </td>
-                </tr>
-                <tr>
-                    <td><label for="lname">Last Name</label></td>
-                    <td>
-                        <input type="text" id="lname" name="lname" placeholder="Your last name.." value="<?php echo $lname;?>">
-                        <span class="error"> <br> <?php echo $lnameE; ?> </span>
-                        <br>
-                    </td>
-                </tr>
-                <tr>
-                    <td><label for="Email">Email</label></td>
-                    <td>
-                        <input type="email" id="email" name="email" placeholder="Email.." value="<?php echo $email;?>" >
-                        <span class="error"> <br> <?php echo $emailE; ?> </span>
-                        <br>
-                    </td>
-                </tr>    
-                <tr>
-                    <td><label for="mobile">Mobile</label></td>
-                    <td>
-                        <select id="region" name="region">
-                            <option value="+60" <?php if($region === "+60"){ echo "selected";} ?>>+60</option>
-                            <option value="+1" <?php if($region === "+1"){ echo "selected";} ?>>+1</option>
-                            <option value="+44" <?php if($region === "+44"){ echo "selected";} ?>>+44</option>
-                        </select>
-                        <input type="text" id="mobile" name="mobile" placeholder="Phone number.." value="<?php echo $mobile;?>" >
-                        <span class="error"> <br> <?php echo $mobileE; ?> </span>
-                        <br>
-                    </td>
-                </tr>
-                <tr>
-                    <td><label for="pw">Password</label></td>
-                    <td>
-                        <input type="password" id="pw" name="pw" placeholder="Password.." value="<?php echo $pw;?>" >
-                        <span class="error"> <br> <?php echo $pwE; ?> </span>
-                        <span class="correct"> <?php echo $pw_strong; ?> </span>
-                        <br>
-                    </td>
-                </tr>
-                <tr>
-                    <td><label for="cpw">Confirm Password</label></td>
-                    <td>
-                        <input type="password" id="cpw" name="cpw" placeholder="Confirm password.." value="<?php echo $cpw;?>" >
-                        <span class="error"> <br> <?php echo $cpwE; ?> </span>
-                        <span class="correct"> <?php echo $cpw_match; ?> </span>
-                        <br>
-                    </td>
-                </tr>
-                <tr>
-                    <td><label for="gender">Gender</label></td>
-                    <td>
-                    <input type="radio" id="male" name="gender" value="Male"
-                    <?php if (isset($gender) && $gender=="Male") echo "checked";?> >
-                    <label for="male">Male</label>
-                    <input type="radio" id="female" name="gender" value="Female"
-                    <?php if (isset($gender) && $gender=="Female") echo "checked";?> >
-                    <label for="female">Female</label>
-                    <span class="errorGender"><?php echo $genderE; ?> </span>
-                    </td>
-                    <br>
-                </tr>
-                <tr>
-                    <td><label for="address">Address</label></td>
-                    <td>
-                        <input type="text" id="address" name="Address" placeholder="Address.." value="<?php echo $add;?>" >
-                        <span class="error"> <br> <?php echo $addE; ?> </span>
-                        <br>
-                    </td>
-                </tr>
-                <tr>
-                    <td><label for="postcode">Postcode</label></td>
-                    <td>
-                        <input type="text" id="postcode" name="Postcode" placeholder="Postcode.." value="<?php echo $postcode;?>" >
-                        <span class="error"> <br> <?php echo $postcodeE; ?> </span>
-                        <br>
-                    </td>
-                </tr>
-                <tr>
-                    <td><label for="city">City</label></td>
-                    <td>
-                        <input type="text" id="city" name="city" placeholder="City.." value="<?php echo $city;?>" >
-                        <span class="error"> <br> <?php echo $cityE; ?> </span>
-                        <br>
-                    </td>
-                </tr>
-                <tr>
-                    <td><label for="state">State</label></td>
-                    <td>
-                        <select id="state" name="state">
-                            <option value="Johor" <?php if($state === "Johor"){ echo "selected";} ?>>Johor</option>
-                            <option value="Kedah" <?php if($state === "Kedah"){ echo "selected";} ?>>Kedah</option>
-                            <option value="Kelantan" <?php if($state === "Kelantan"){ echo "selected";} ?>>Kelantan</option>
-                            <option value="Melaka" <?php if($state === "Melaka"){ echo "selected";} ?>>Melaka</option>
-                            <option value="Negeri Sembilan" <?php if($state === "Negeri Sembilan"){ echo "selected";} ?>>Negeri Sembilan</option>
-                            <option value="Pahang" <?php if($state === "Pahang"){ echo "selected";} ?>>Pahang</option>
-                            <option value="Penang" <?php if($state === "Penang"){ echo "selected";} ?>>Penang</option>
-                            <option value="Perak" <?php if($state === "Perak"){ echo "selected";} ?>>Perak</option>
-                            <option value="Perlis" <?php if($state === "Perlis"){ echo "selected";} ?>>Perlis</option>
-                            <option value="Sabah" <?php if($state === "Sabah"){ echo "selected";} ?>>Sabah</option>
-                            <option value="Sarawak" <?php if($state === "Sarawak"){ echo "selected";} ?>>Sarawak</option>
-                            <option value="Selangor" <?php if($state === "Selangor"){ echo "selected";} ?>>Selangor</option>
-                            <option value="Terengganu" <?php if($state === "Terengganu"){ echo "selected";} ?>>Terengganu</option>
-                        </select>
-                        <br>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <?php if ($editstat === TRUE):?>
-                            <input type="submit" name = "update" value="Update" >
-                        <?php else: ?>
-                            <input type="submit" name = "create" value="Create" >
-                        <?php endif; ?>
-                    </td>
-                    <td>
-                        <?php if ($editstat === TRUE):?>
-                            <a href="adminEditCustomer.php?canceledit=1"><input type="button" value="Cancel" ></a>
-                        <?php else: ?>
-                            <a href="adminEditCustomer.php?clearvalues=1"><input type="reset" name = "reset" value="Clear" ></a>
-                        <?php endif; ?>
+                    </tr>
+                    <tr>
+                        <td><label for="address">Address</label></td>
+                        <td>
+                            <input type="text" id="address" name="Address" placeholder="Address.." value="<?php echo $add;?>" >
+                            <span class="error"> <br> <?php echo $addE; ?> </span>
+                            <br>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label for="postcode">Postcode</label></td>
+                        <td>
+                            <input type="text" id="postcode" name="Postcode" placeholder="Postcode.." value="<?php echo $postcode;?>" >
+                            <span class="error"> <br> <?php echo $postcodeE; ?> </span>
+                            <br>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label for="city">City</label></td>
+                        <td>
+                            <input type="text" id="city" name="city" placeholder="City.." value="<?php echo $city;?>" >
+                            <span class="error"> <br> <?php echo $cityE; ?> </span>
+                            <br>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label for="state">State</label></td>
+                        <td>
+                            <select id="state" name="state">
+                                <option value="Johor" <?php if($state === "Johor"){ echo "selected";} ?>>Johor</option>
+                                <option value="Kedah" <?php if($state === "Kedah"){ echo "selected";} ?>>Kedah</option>
+                                <option value="Kelantan" <?php if($state === "Kelantan"){ echo "selected";} ?>>Kelantan</option>
+                                <option value="Melaka" <?php if($state === "Melaka"){ echo "selected";} ?>>Melaka</option>
+                                <option value="Negeri Sembilan" <?php if($state === "Negeri Sembilan"){ echo "selected";} ?>>Negeri Sembilan</option>
+                                <option value="Pahang" <?php if($state === "Pahang"){ echo "selected";} ?>>Pahang</option>
+                                <option value="Penang" <?php if($state === "Penang"){ echo "selected";} ?>>Penang</option>
+                                <option value="Perak" <?php if($state === "Perak"){ echo "selected";} ?>>Perak</option>
+                                <option value="Perlis" <?php if($state === "Perlis"){ echo "selected";} ?>>Perlis</option>
+                                <option value="Sabah" <?php if($state === "Sabah"){ echo "selected";} ?>>Sabah</option>
+                                <option value="Sarawak" <?php if($state === "Sarawak"){ echo "selected";} ?>>Sarawak</option>
+                                <option value="Selangor" <?php if($state === "Selangor"){ echo "selected";} ?>>Selangor</option>
+                                <option value="Terengganu" <?php if($state === "Terengganu"){ echo "selected";} ?>>Terengganu</option>
+                            </select>
+                            <br>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <?php if ($editstat === TRUE):?>
+                                <input type="submit" name = "update" value="Update" >
+                            <?php else: ?>
+                                <input type="submit" name = "create" value="Create" >
+                            <?php endif; ?>
+                        </td>
+                        <td>
+                            <?php if ($editstat === TRUE):?>
+                                <a href="adminEditCustomer.php?canceledit=1"><input type="button" value="Cancel" ></a>
+                            <?php else: ?>
+                                <a href="adminEditCustomer.php?clearvalues=1"><input type="reset" name = "reset" value="Clear" ></a>
+                            <?php endif; ?>
+                            
                         
-                    
-                     </td>
-                </tr>
-            </table>
-        </form>
-
-    </section>
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+    </div>
 
     <!-- For animating elements as they enter/leave the viewport -->
     </div>
         <script src="scrollReveal.js"></script>
     </div>
 
-    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br>
 
     <footer class="FooterFooter" id="Push_footer">
         <div class="FFooterUpperPortion">
@@ -656,5 +666,8 @@
           <sub class="Disclaimer">©1997-2021 Pacific Northwest X-Ray Inc. - Sales & Marketing Division - All Rights Reserved</sub>
         </div>
     </footer>   
+
+    
+
 </body>
 </html>
