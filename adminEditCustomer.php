@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="CSS/admin.css">
+    <link rel="stylesheet" href="CSS/adminCustomer.css">
     <link rel="icon" href="Pictures/icon.png">
     <link rel="shortcut icon" href="Pictures/icon.png">
     <script src="https://unpkg.com/scrollreveal@4"></script>
@@ -297,7 +297,7 @@
                 $deleteMes = "Record has been succesfully deleted.";
             }else
             {
-                echo "Record Can't Be Deleted". mysqli_error($conn);
+                echo "Record can't be deleted". mysqli_error($conn);
             }
         }
         
@@ -360,7 +360,7 @@
                 gender = '$gender', _state= '$state', postcode ='$postcode', _address ='$add', city = '$city', _login = 'Logged Out' WHERE id = '$shownid'";
 
                 if(mysqli_query($conn, $updatesql)){
-                    $deleteMes = "Record".$shownid."Updated";
+                    $deleteMes = "Record ".$shownid." Updated";
                 }else{
                     $deleteMes = "Update Error";
                 }
@@ -457,14 +457,12 @@
 
     <br><br><br><br>
 
-    <span class="correct"> <?php echo $deleteMes; ?> </span>
-
     <!-- For inserting new customer data -->
     <div class="column-form">
         <div class="columnB-form">
             <h1><?php if($editstat == TRUE){echo "Update ";}else{echo "Insert ";}?> Data</h1>
-            <span class="correct"> <?php echo $createSuc; ?> </span>
-            
+            <span class="correct-record"> <?php echo $createSuc; ?> </span>
+            <span class="correct-record"> <?php echo $deleteMes; ?> </span>
             <form name="reg" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
                 <input type="hidden" name = "id" value = "<?php echo $editid;?>"/>    
                 <table class="formTable">
@@ -542,6 +540,7 @@
                                 <input type="radio" id="female" name="gender" value="Female"
                                 <?php if (isset($gender) && $gender=="Female") echo "checked";?> >
                             </label>
+                            <br><br><br>
                             <span class="errorGender"><?php echo $genderE; ?> </span>
                         </td>
                         <br>
