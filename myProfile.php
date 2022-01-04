@@ -1,5 +1,4 @@
-<?php session_start() ?>
-
+<?php session_start(); ob_start();?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -17,7 +16,6 @@
             <span class = "menu">
                 <a id="active" href="myProfile.php"> My Profile </a>
                 <a href="dashboard.php"> Dashboard </a>
-                <a href="user_trans_list.php"> Transaction History </a>
                 <a href="index.php"> Catalog </a>
                 <a class = "cart_position" href="cart.php"> <img id="cart" src="Pictures/cart.png" alt="Cart"> </a>
             </span>
@@ -301,21 +299,22 @@
                         <!--Display the li before editting-->
                         <li id="display0"><?php echo  ": " .$row["email"].""; ?></li>
                         <!--Display the input when users try to edit-->
-                            <input type="email" id="email" name="email"   value="<?php echo $row["email"]; ?>">
+                        <li><input type="email" id="email" name="email"   value="<?php echo $row["email"]; ?>"></li>
 
                         <li id="display1"><?php    echo ": " .$password.""; ?></li>
-                            <input type="password" id="pw" name="pw"   value="<?php echo $row["pwd"]; ?>">
+                        <li><input type="password" id="pw" name="pw"   value="<?php echo $row["pwd"]; ?>"></li>
 
                         <li id="display2_cpw"><?php    echo ": " .$password.""; ?></li>
-                            <input type="password" id="cpw" name="cpw"  value="<?php echo $row["pwd"]; ?>" >
+                        <li><input type="password" id="cpw" name="cpw"  value="<?php echo $row["pwd"]; ?>" ></li>
 
                         <li id="display3"><?php    echo ": " .$row["firstname"].""; ?></li>
-                            <input type="text" id="fname" name="fname"  value="<?php echo $row["firstname"];?>">
+                        <li><input type="text" id="fname" name="fname"  value="<?php echo $row["firstname"];?>"></li>
 
                         <li id="display4"><?php    echo ": " .$row["lastname"].""; ?></li>
-                            <input type="text" id="lname" name="lname"   value="<?php echo $row["lastname"]; ?>">
+                        <li><input type="text" id="lname" name="lname"   value="<?php echo $row["lastname"]; ?>"></li>
 
                         <li id="display5"><?php    echo ": +" .$row["region"]."".$row["phone"].""; ?></li>
+                        <li>
                         <span id="PHONE">
                             <select id="region" name="region">
                                         <option value="+60">+60</option>
@@ -324,8 +323,10 @@
                             </select>
                             <input type="phone" id="mobile" name="mobile"   value="<?php echo $row["phone"]; ?>">
                         </span>
+                        </li>
 
                         <li id="display6"><?php    echo ": " .$row["gender"].""; ?></li>
+                        <li>
                         <span id="GENDER">
                             <input type="radio" id="male" name="gender" value="Male"
                             <?php if ($row["gender"]=="Male") echo "checked";?> >
@@ -334,18 +335,20 @@
                             <?php if ($row["gender"]=="Female") echo "checked";?> >
                             <label id="display_female" for="female">Female</label>
                         </span>
+                        </li>
 
                         <li id="display7"><?php    echo ": " .$row["_address"].""; ?></li>
-                            <input type="text" id="address" name="Address" value="<?php echo $row["_address"];?>" >
+                        <li><input type="text" id="address" name="Address" value="<?php echo $row["_address"];?>" ></li>
 
                         <li id="display8"><?php    echo ": " .$row["postcode"].""; ?></li>
-                            <input type="text" id="postcode" name="Postcode" value="<?php echo $row["postcode"];?>" >
+                        <li><input type="text" id="postcode" name="Postcode" value="<?php echo $row["postcode"];?>" ></li>
                     
 
                         <li id="display9"><?php    echo ": " .$row["city"].""; ?></li>
-                            <input type="text" id="city" name="city"  value="<?php echo $row["city"];?>" >
+                        <li><input type="text" id="city" name="city"  value="<?php echo $row["city"];?>" ></li>
 
                         <li id="display10"><?php    echo ": " .$row["_state"].""; ?> </li>
+                        <li>
                             <select id="state" name="state">
                                 <option value="Kelantan" <?php if ($row["_state"] == 'Kelantan') echo ' selected="selected"'; ?>>Kelantan</option>
                                 <option value="Melaka" <?php if ($row["_state"] == 'Melaka') echo ' selected="selected"'; ?>>Melaka</option>
@@ -361,6 +364,7 @@
                                 <option value="Kedah" <?php if ($row["_state"] == 'Kedah') echo ' selected="selected"'; ?>>Kedah</option>
                                 <option value="Johor" <?php if ($row["_state"] == 'Johor') echo ' selected="selected"'; ?>>Johor</option>
                             </select>
+                        </li>
 
                         <div id="button">
                             <input type="submit" name = "submit" value="Update" >

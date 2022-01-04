@@ -1,5 +1,4 @@
-<?php session_start(); ?>
-
+<?php session_start(); ob_start();?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -12,7 +11,6 @@
     </head>
 
     <body>
-
         <?php 
             //Declarations
             $email = $pw = "";
@@ -59,7 +57,6 @@
 
             //Connection
             include 'connection.php';
-            
             //No error in input
             if (!empty($_POST["email"])&& !empty($_POST["pw"])) //Check whether the user exists 
             {
@@ -70,14 +67,11 @@
                 if(mysqli_num_rows($isFound) == 1) 
                 {
                     unset($_SESSION['cart']); //Unset the session cart for public users
-                    
                     //fetch the id
                     $result = mysqli_fetch_assoc($isFound);
                     $id = $result["id"];
-
                     //Update the login status in table
                     $sql = "UPDATE registered_User SET _login='Logged In' WHERE id='$id'";
-
                     $result = mysqli_query ($conn,$sql);
                     //See if updated
                     if($result == true)
@@ -88,27 +82,27 @@
                     {
                         echo "Failed to update". $conn->error;
                     }
-
+                    
                     //Set session variables
                     $_SESSION['email'] = $email;
                     $_SESSION['login'] = "Logged In";
                     $_SESSION['user_id'] = $id;
-
                     $sql = "SELECT id FROM ShoppingCart WHERE User_id='$id'"; //Select the cart id From SHOPPING CART
                     $isFound = mysqli_query($conn,$sql); 
-
+                    
                     //Fetch the cart id
                     $result = mysqli_fetch_assoc($isFound); 
-
+                    
                     //Store the cart id
                     $cartid = $result["id"]; 
                     $_SESSION['cartid'] = $cartid;
-
+                    
                     //Close Connection
                     mysqli_close($conn);
-
+                    
                     //Redirecting user
                     header("Location: redirecting.html");
+                    ob_end_flush();
                 }   
                 else
                 {
@@ -116,7 +110,6 @@
                 }
             }
         ?>
-
         <header>
             <a href="index.php"> <img class="logo" src="Pictures/LOGO.jpeg" alt="Pacific Northwest X-Ray Inc."> </a>
             <div class="header_login">

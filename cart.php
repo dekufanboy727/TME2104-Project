@@ -46,7 +46,7 @@
                 FOREIGN KEY (Cart_id) REFERENCES ShoppingCart(id)
                 ON DELETE CASCADE
                 ON UPDATE CASCADE,
-                FOREIGN KEY (Product_id) REFERENCES Product(id)
+                FOREIGN KEY (Product_id) REFERENCES product(id)
                 ON DELETE CASCADE
                 ON UPDATE CASCADE
                 )";
@@ -83,7 +83,7 @@
                     $cartid = $result["id"]; 
                     $_SESSION['cartid'] = $cartid;
 
-                    $sql = "SELECT price FROM Product WHERE id='$pro_id'"; //Select the product price
+                    $sql = "SELECT price FROM product WHERE id='$pro_id'"; //Select the product price
                     $isFound = mysqli_query($conn,$sql); 
 
                     //Fetch the price
@@ -109,7 +109,7 @@
                                 $Ori_quantity =  $result['Quantity'];
                                 $Ori_quantity = $Ori_quantity + $pro_quantity ; //Add the quantity
 
-                                $sql = "SELECT price FROM Product WHERE id='$pro_id'"; //Select the product price
+                                $sql = "SELECT price FROM product WHERE id='$pro_id'"; //Select the product price
                                 $isFound = mysqli_query($conn,$sql); 
                                 $result = mysqli_fetch_assoc($isFound); //Fetch the price
                                 $pro_price = $result["price"]; //Store the price
@@ -120,6 +120,7 @@
                                 //Update the cart_Item with new quantity
                                 $sql = "UPDATE Cart_Item 
                                 SET Quantity='$Ori_quantity',
+                                Subtotal = '$subtotal'
                                 WHERE Product_id='$pro_id'";
                                 $result = mysqli_query ($conn,$sql);
 
@@ -253,7 +254,7 @@
                 $result = mysqli_query($conn, $sql);                
                 if ($result == true)
                 {
-                    echo "Join cart and product SUCCESS!";
+                    //echo "Join cart and product SUCCESS!";
                 }
                 else
                 {
@@ -287,7 +288,7 @@
                     $result = mysqli_query($conn, $sql);  
                     if ($result === TRUE)
                     {
-                        echo "Grand total added successfully".'<br>';
+                        //echo "Grand total added successfully".'<br>';
                     }
                     else
                     {
