@@ -14,7 +14,7 @@
         $quantity = $_SESSION['update_pro_quantity'] ;
         $quantity = $quantity +1;
     
-        $sql = "SELECT price FROM Product WHERE id='$proid'"; //Select the product price
+        $sql = "SELECT price FROM product WHERE id='$proid'"; //Select the product price
         $isFound = mysqli_query($conn,$sql); 
         $result = mysqli_fetch_assoc($isFound); //Fetch the price
         $pro_price = $result["price"]; //Store the price
