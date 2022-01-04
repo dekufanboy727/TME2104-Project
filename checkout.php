@@ -1,4 +1,4 @@
-<?php session_start(); ?>
+<?php session_start(); ob_start();?>
 <!DOCTYPE html>
 
 <html lang="en">
@@ -35,7 +35,7 @@
 
                 //Select user info from the table
                 $sql = "SELECT firstname, lastname, region, phone, _state, postcode, _address, city 
-                FROM registered_user WHERE id='$userid'";
+                FROM registered_User WHERE id='$userid'";
                 $result = mysqli_query($conn,$sql); 
                 $user_making_payment = mysqli_fetch_assoc($result); //Fetch the selected info
                 
@@ -225,11 +225,13 @@
 
                         //Redirect back to index.php after successful payment
                         header( "refresh:8 ; url=index.php" );
+                        //ob_end_flush();
                         
                         //Open a new tab for receipt
                         echo '<script type="text/javascript">
-                             window.open("receipt.php?receipt='.$trans_id.'")
+                             window.open("receipt.php?receipt='.$trans_id.'&check=true")
                              </script>';
+                            ob_end_flush();
                         
                     }
                     else
