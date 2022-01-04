@@ -16,7 +16,7 @@
         //Validation of Data
         //Validation
         $fname = $lname = ""; 
-        $fnameE = $lnameE = $createSuc ="";
+        $fnameE = $lnameE = $createSuc = $deleteMes ="";
         $NameE1 = "*Please capitalise FIRST CHARACTER of your Name!";
         $NameE2 = "*Please make sure your Name are all in lowercase except the FIRST character!";
         //Other declaration
@@ -269,7 +269,17 @@
             }
         }
 
-        
+        if(isset($_GET["delete"])){
+            $deleteid = $_GET["delete"];
+            $deletesql = "DELETE FROM registered_user WHERE id = '$deleteid'";
+            $deleteresult = mysqli_query($conn, $deletesql);
+            if( $deleteresult === TRUE){
+                $deleteMes = "Record has been succesfully deleted.";
+            }else
+            {
+                echo "Record Can't Be Deleted". mysqli_error($conn);
+            }
+        }
         
         
 
@@ -339,6 +349,8 @@
         </tbody>
 	</table>
     <br>
+
+    <span class="correct"> <?php echo $deleteMes; ?> </span>
 
     <!-- For inserting new data -->
     <section class="padCard">
