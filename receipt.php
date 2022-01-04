@@ -19,7 +19,7 @@
         ?>
 
         <header>
-            <img class="logo" src="Pictures/LOGO.jpeg" alt="Pacific Northwest X-Ray Inc.">
+            <img class="logo" src="Pictures/logo receipt.png" alt="Pacific Northwest X-Ray Inc.">
             <p>Pacific Northwest X-Ray Inc.</p>
             <p>Receipt</p>
         </header>

@@ -44,7 +44,7 @@
                 }
                 else
                 {
-                    $pw = $_POST["pw"];
+                    $pw = test($_POST["pw"]);
                 }
 
             }

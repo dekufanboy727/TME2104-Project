@@ -83,9 +83,9 @@ body {
 
 .logo {
   float: left;
-  width: 280px;
-  height: 120px;
-  margin-left: 50px;
+  width: 546px;
+  height: auto;
+  margin-left: 100px;
 }
 
 /*.navigation li a:link {

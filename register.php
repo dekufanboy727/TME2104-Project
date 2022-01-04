@@ -136,7 +136,7 @@
                 }
                 else
                 {
-                    $pw = $_POST["pw"];
+                    $pw = test($_POST["pw"]);
                     if(strlen($pw) <6 )
                     {
                         $pwE = "*Please use password with at least 6 digits!";
@@ -174,7 +174,7 @@
                 }
                 else 
                 {
-                    $cpw = $_POST["cpw"];
+                    $cpw = test($_POST["cpw"]);
                     if($cpw !== $_POST["pw"])
                     {
                         $cpwE = "*The password confirmation does not match!";
