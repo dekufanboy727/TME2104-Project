@@ -1,5 +1,4 @@
-<?php session_start() ?>
-
+<?php session_start(); ob_start();?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -17,7 +16,6 @@
             <span class = "menu">
                 <a id="active" href="myProfile.php"> My Profile </a>
                 <a href="dashboard.php"> Dashboard </a>
-                <a href="user_trans_list.php"> Transaction History </a>
                 <a href="index.php"> Catalog </a>
                 <a class = "cart_position" href="cart.php"> <img id="cart" src="Pictures/cart.png" alt="Cart"> </a>
             </span>
