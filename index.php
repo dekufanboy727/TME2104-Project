@@ -101,7 +101,7 @@
 
             <div class="login_register">
                 <ul id = abc>
-                  <li><img class="logo" src="Pictures/LOGO.jpeg" alt="Pacific Northwest X-Ray Inc."></li>
+                  <li><img class="logo" src="Pictures/logo index.png" alt="Pacific Northwest X-Ray Inc."></li>
                   <li><a id="expand_sidenav"><span onclick="sidebar()">&#9776;</span></a></li>
                 </ul>
 
