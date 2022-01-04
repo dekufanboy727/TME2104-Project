@@ -254,7 +254,7 @@
                 $result = mysqli_query($conn, $sql);                
                 if ($result == true)
                 {
-                    echo "Join cart and product SUCCESS!";
+                    //echo "Join cart and product SUCCESS!";
                 }
                 else
                 {
@@ -288,7 +288,7 @@
                     $result = mysqli_query($conn, $sql);  
                     if ($result === TRUE)
                     {
-                        echo "Grand total added successfully".'<br>';
+                        //echo "Grand total added successfully".'<br>';
                     }
                     else
                     {
