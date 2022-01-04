@@ -77,7 +77,7 @@
           
           $index = 0;
           foreach($productcategory as $value){
-            $sql = "INSERT INTO Product(productcategory, productname, productdetail, price, productpic) 
+            $sql = "INSERT INTO product(productcategory, productname, productdetail, price, productpic) 
             VALUES ('$value','$productname[$index]', '$productdetail[$index]', '$price[$index]', '$productpic[$index]')";
             $result = mysqli_query($conn, $sql);
             if ($result === TRUE) {
@@ -184,7 +184,7 @@
                 <h3 id = "merchantBoard"> Merchant Board </h3>
                 <?php 
                 include 'connection.php';
-                $sql = "SELECT id, productcategory, productname, productdetail, price, productpic FROM Product WHERE productcategory='Merchant Board'";
+                $sql = "SELECT id, productcategory, productname, productdetail, price, productpic FROM product WHERE productcategory='Merchant Board'";
                 $result = $conn->query($sql);
     
                 if ($result->num_rows > 0) {
@@ -215,7 +215,7 @@
                 <h3 id = "silverRecovery"> Silver Recovery Systems </h3>
                 <?php 
                 include 'connection.php';
-                $sql = "SELECT id, productcategory, productname, productdetail, price, productpic FROM Product WHERE productcategory='Silver Recovery Systems'";
+                $sql = "SELECT id, productcategory, productname, productdetail, price, productpic FROM product WHERE productcategory='Silver Recovery Systems'";
                 $result = $conn->query($sql);
     
                 if ($result->num_rows > 0) {
@@ -244,7 +244,7 @@
                 <h3 id = "veterinary"> Veterinary  </h3>
                 <?php 
                 include 'connection.php';
-                $sql = "SELECT id, productcategory, productname, productdetail, price, productpic FROM Product WHERE productcategory='Veterinary '";
+                $sql = "SELECT id, productcategory, productname, productdetail, price, productpic FROM product WHERE productcategory='Veterinary '";
                 $result = $conn->query($sql);
     
                 if ($result->num_rows > 0) {
@@ -274,7 +274,7 @@
                 <h3 id = "xray"> X Ray Test Meters  </h3>
                 <?php 
                 include 'connection.php';
-                $sql = "SELECT id, productcategory, productname, productdetail, price, productpic FROM Product WHERE productcategory='X Ray Test Meters  '";
+                $sql = "SELECT id, productcategory, productname, productdetail, price, productpic FROM product WHERE productcategory='X Ray Test Meters  '";
                 $result = $conn->query($sql);
     
                 if ($result->num_rows > 0) {
