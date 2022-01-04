@@ -16,13 +16,32 @@
             //Retrieve the trans id through get method
             $_SESSION['receipt'] = $_GET['receipt'];
             $receipt_no = $_SESSION['receipt'];
+
+            //Used to check whether we need to send receipt thru email?
+            //If the user is checking the transaction list, then no
+            //If the user is making new transaction (check out), then yes
+            $check = $_GET['check'];
         ?>
 
         <header>
             <img class="logo" src="Pictures/logo receipt.png" alt="Pacific Northwest X-Ray Inc.">
-            <p>Pacific Northwest X-Ray Inc.</p>
-            <p>Receipt</p>
+            <p>RECEIPT</p>
         </header>
+
+        <!--CONTENT FOR EMAIL-->
+        <?php
+            $message = '
+            <html lang="en">
+                <head>
+                    <title>Receipt</title>
+                </head>
+                <body>
+                    <header>
+                        <img class="logo" src="Pictures/logo receipt.png" alt="Pacific Northwest X-Ray Inc.">
+                        <p>RECEIPT</p>
+                    </header>';
+        ?>
+        <!--CONTENT FOR EMAIL-->
 
         <main>
             <p>To </p><br>
@@ -30,16 +49,29 @@
             <!--Upper Portion-->
             <?php
                 //Select user related info
-                $sql = "SELECT firstname, lastname, region, phone, _state, postcode, _address, city 
-                FROM registered_user WHERE id='$userid'";
+                $sql = "SELECT firstname, lastname, email, region, phone, _state, postcode, _address, city 
+                FROM registered_User WHERE id='$userid'";
                 $result = mysqli_query($conn,$sql); 
                 $receipt_user = mysqli_fetch_assoc($result); //Fetch the selected info
+
+                //Store the user email for later use
+                $email = $receipt_user['email'];
 
                 echo '<p>'.$receipt_user['lastname']." ".$receipt_user['firstname'].'<br>';
                 echo "+".$receipt_user['region']." ".$receipt_user['phone'].'<br>';
                 echo $receipt_user['_address'].",".'<br>';
                 echo $receipt_user['city'].", ".$receipt_user['postcode'].", ".'<br>';
                 echo $receipt_user['_state'].", Malaysia.".'</p>';
+
+                //CONTENT FOR EMAIL
+                $message .= '
+                    <main>
+                        <p>'.$receipt_user['lastname']." ".$receipt_user['firstname'].'<br>
+                        +'.$receipt_user['region']." ".$receipt_user['phone'].'<br>'
+                        .$receipt_user['_address'].",".'<br>'
+                        .$receipt_user['city'].", ".$receipt_user['postcode'].", ".'<br>'
+                        .$receipt_user['_state'].", Malaysia.".'</p>';
+                //CONTENT FOR EMAIL
 
                 //Select transaction related info
                 $sql = "SELECT * FROM transactions WHERE id='$receipt_no'";
@@ -48,6 +80,12 @@
 
                 echo '<p>'."Payment Date: ".$receipt['_date'];
                 echo "Payment Time: ".$receipt['_time'].'</p>';
+
+                //CONTENT FOR EMAIL
+                $message .= '
+                        <p>'."Payment Date: ".$receipt['_date'].'<br>
+                        Payment Time: '.$receipt['_time'].'</p>';
+                //CONTENT FOR EMAIL
             ?>
 
             <table>
@@ -63,6 +101,25 @@
                 <td style="background-color: #FFFFFF"></td>
             </tr>
             </table>
+
+            <!--CONTENT FOR EMAIL-->
+            <?php 
+                $message .= '
+                    <table>
+                    <tr style="background-color: #C0C0C0">
+                        <td style="background-color: #FFFFFF"></td>
+                        <td style= "width:50%" align= center >Product(s)</td>
+                        <td></td>
+                        <td>Quantity</td>
+                        <td></td>
+                        <td>Unit Price</td>
+                        <td>Subtotal</td>
+                        <td></td>
+                        <td style="background-color: #FFFFFF"></td>
+                    </tr>
+                    </table>';
+            ?>
+            <!--CONTENT FOR EMAIL-->
 
             <!--Lower Portion-->
             <?php
@@ -95,20 +152,37 @@
                         $unit_price = $row_trans['total_price']/$row_trans['quantity'];
 
                         echo'<table><tr align = "center">';
-                        echo'<td></td>';
-                        echo '<td>'.$counter. '</td>';
-                        echo '<td >'.$row_pro['productname']. '</td>';
-                        echo '<td>'.$row_trans['quantity'].'</td>';
+                        echo '<td>' .$counter. '</td>';
+                        echo '<td>' .$row_pro['productname']. '</td>';
+                        echo '<td>' .$row_trans['quantity'].'</td>';
                         echo '<td>' .$unit_price. '</td>';
                         echo '<td>' .$row_trans['total_price']. '</td>';
-                        echo'</tr></table>';
-                    }
 
-                    echo "Merchandise Subtotal: ".$receipt['merchandise_total'];
-                    echo "Shipping Subtotal: ".$receipt['shipping_fee'];
-                    echo "Total: ".$receipt['grand_total'];
+                        //CONTENT FOR EMAIL
+                        $message .= '
+                            <table><tr align = "center">
+                            <td>' .$counter. '</td>
+                            <td>' .$row_pro['productname']. '</td>
+                            <td>' .$row_trans['quantity'].'</td>
+                            <td>' .$unit_price. '</td>
+                            <td>' .$row_trans['total_price']. '</td>';
+                        //CONTENT FOR EMAIL
+                    }
+                    echo'</tr></table>';
+                    echo "Merchandise Subtotal: ".$receipt['merchandise_total'].'<br>';
+                    echo "Shipping Subtotal: ".$receipt['shipping_fee'].'<br>';
+                    echo "Total: ".$receipt['grand_total'].'<br>';
+
+                    //CONTENT FOR EMAIL
+                    $message .= '
+                            </tr></table>
+                            Merchandise Subtotal: '.$receipt['merchandise_total'].'<br>
+                            Shipping Subtotal: '.$receipt['shipping_fee'].'<br>
+                            Total: '.$receipt['grand_total'].'<br>
+                            </main>';
+                    //CONTENT FOR EMAIL
                 }
-                $result = mysqli_query ($conn,$sql);
+                
             ?>
 
         </main>
@@ -160,6 +234,42 @@
                 </div>
         </footer>
 
+        <?php
+            //CONTENT FOR EMAIL
+            $message .= '
+                    <footer>
+                        <p>Thank You for Purchasing with Us!</p>
+                    </footer></body></html>';
+            //CONTENT FOR EMAIL
+
+            //If user making new order, then send email
+            if($check == true)
+            {
+                //Get user email
+                $to = $email;
+                
+                //Subject
+                $subject = "PNWX - Receipt No ".$receipt_no;
+
+                // Always set content-type when sending HTML email
+                $headers = "MIME-Version: 1.0" . "\r\n";
+                $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+                // More headers
+                $headers .= 'From: <PNWX@hotmail.com>' . "\r\n";
+
+                
+
+                $MAIL = mail($to,$subject,$message,$headers);
+                if($MAIL == true)
+                {
+                    echo "SUCCESS MAIL!";
+                }
+                else if($MAIL == false)
+                {
+                    echo "FAILED MAIL!";
+                }
+            }
+        ?>
 
     </body>
 
