@@ -24,8 +24,13 @@
         ?>
 
         <header>
-            <img class="logo" src="Pictures/logo receipt.png" alt="Pacific Northwest X-Ray Inc.">
-            <p>RECEIPT</p>
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+        <td style="width: 80px"></td>
+        <td colspan="2"><img class="logo" style="width:20%" src="Pictures/logo receipt.png" alt="Pacific Northwest X-Ray Inc."></td>
+        <td colspan="2" style="font-size:50px"><p>RECEIPT</p></td>
+        <td style="width: 80px"></td>
+        </tr>
         </header>
 
         <!--CONTENT FOR EMAIL-->
@@ -37,17 +42,40 @@
                 </head>
                 <body>
                     <header>
-                        <img class="logo" src="https://i.imgur.com/SUPr5Gf.png" alt="Pacific Northwest X-Ray Inc.">
-                        <p>RECEIPT</p>
+                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                        <tr>
+                        <td></td>
+                        <td colspan="3"><img class="logo" src="https://i.imgur.com/SUPr5Gf.png" alt="Pacific Northwest X-Ray Inc."></td>
+                        <td colspan="5" style="font-size:50px"><p>RECEIPT</p></td>
+                        <td></td>
+                        </tr>
                     </header>';
         ?>
         <!--CONTENT FOR EMAIL-->
 
         <main>
-            <p>To </p><br>
+
 
             <!--Upper Portion-->
             <?php
+
+                //Select transaction related info
+                $sql = "SELECT * FROM transactions WHERE id='$receipt_no'";
+                $result_trans = mysqli_query($conn,$sql); 
+                $receipt = mysqli_fetch_assoc($result_trans); //Fetch the selected info
+
+                echo '<tr><td colspan="3"></td><td>'."Receipt No: ".$receipt_no. '</td></tr>';
+                echo '<tr><td colspan="3"></td><td>'."Payment Date: ".$receipt['_date'].'</td></tr>';
+                echo '<tr><td colspan="3"></td><td>'."Payment Time: ".$receipt['_time'].'</td></tr>';
+
+                //CONTENT FOR EMAIL
+                $message .= '
+                        <tr><td colspan="3"></td><td> Receipt No: '.$receipt_no.'</td></tr>'.
+                        '<tr><td colspan="3"></td><td> Payment Date: '.$receipt['_date'].'</td></tr>
+                        <tr><td colspan="3"></td><td> Payment Time: '.$receipt['_time'].'</td></tr>';
+                //CONTENT FOR EMAIL
+
+
                 //Select user related info
                 $sql = "SELECT firstname, lastname, email, region, phone, _state, postcode, _address, city 
                 FROM registered_User WHERE id='$userid'";
@@ -57,69 +85,49 @@
                 //Store the user email for later use
                 $email = $receipt_user['email'];
 
-                echo '<p>'.$receipt_user['lastname']." ".$receipt_user['firstname'].'<br>';
-                echo "+".$receipt_user['region']." ".$receipt_user['phone'].'<br>';
-                echo $receipt_user['_address'].",".'<br>';
-                echo $receipt_user['city'].", ".$receipt_user['postcode'].", ".'<br>';
-                echo $receipt_user['_state'].", Malaysia.".'</p>';
+                echo '<tr><td></td><td><p>To</p></td></tr>';
+                echo '<tr><td></td><td>'.$receipt_user['lastname']." ".$receipt_user['firstname'].'</td></tr>';
+                echo '<tr><td></td><td>'."+".$receipt_user['region']." ".$receipt_user['phone'].'</td></tr>';
+                echo '<tr><td></td><td>'.$receipt_user['_address'].",".'</td></tr>';
+                echo '<tr><td></td><td>'.$receipt_user['city'].", ".$receipt_user['postcode'].", ".'</td></tr>';
+                echo '<tr><td></td><td>'.$receipt_user['_state'].", Malaysia.".'</td></tr>';
 
                 //CONTENT FOR EMAIL
                 $message .= '
                     <main>
-                        <p>'.$receipt_user['lastname']." ".$receipt_user['firstname'].'<br>
-                        +'.$receipt_user['region']." ".$receipt_user['phone'].'<br>'
-                        .$receipt_user['_address'].",".'<br>'
-                        .$receipt_user['city'].", ".$receipt_user['postcode'].", ".'<br>'
-                        .$receipt_user['_state'].", Malaysia.".'</p>';
+                    <tr><td></td><td><p>To</p></td></tr>'.
+                    '<tr><td></td><td>'.$receipt_user['lastname']." ".$receipt_user['firstname'].'</td></tr>'.
+                    ' <tr><td></td><td> +'.$receipt_user['region']." ".$receipt_user['phone'].'</td></tr>'.
+                    ' <tr><td></td><td> +'.$receipt_user['_address'].",".'</td></tr>'.
+                    ' <tr><td></td><td> +'.$receipt_user['city'].", ".$receipt_user['postcode'].", ".'</td></tr>'.
+                    ' <tr><td></td><td> +'.$receipt_user['_state'].", Malaysia.".'</td></tr>';
                 //CONTENT FOR EMAIL
 
-                //Select transaction related info
-                $sql = "SELECT * FROM transactions WHERE id='$receipt_no'";
-                $result_trans = mysqli_query($conn,$sql); 
-                $receipt = mysqli_fetch_assoc($result_trans); //Fetch the selected info
 
-                echo '<p>'."Receipt No: ".$receipt_no;
-                echo "Payment Date: ".$receipt['_date'];
-                echo "Payment Time: ".$receipt['_time'].'</p>';
-
-                //CONTENT FOR EMAIL
-                $message .= '
-                        <p>Receipt No: '.$receipt_no.
-                        'Payment Date: '.$receipt['_date'].'<br>
-                        Payment Time: '.$receipt['_time'].'</p>';
-                //CONTENT FOR EMAIL
             ?>
 
-            <table>
-            <tr style="background-color: #C0C0C0">
-                <td style="background-color: #FFFFFF"></td>
-                <td style= "width:50%" align= center >Product(s)</td>
-                <td></td>
-                <td>Quantity</td>
-                <td></td>
-                <td>Unit Price</td>
-                <td>Subtotal</td>
-                <td></td>
-                <td style="background-color: #FFFFFF"></td>
+            
+            <tr style="background-color: #C0C0C0" align= center>
+                <td style="background-color: #FFFFFF; width: 75px"></td>
+                <td >Product(s)</td>
+                <td >Quantity</td>
+                <td >Unit Price</td>
+                <td >Subtotal</td>
+                <td style="background-color: #FFFFFF; width:80px"></td>
             </tr>
-            </table>
+            
 
             <!--CONTENT FOR EMAIL-->
             <?php 
                 $message .= '
-                    <table>
-                    <tr style="background-color: #C0C0C0">
-                        <td style="background-color: #FFFFFF"></td>
-                        <td style= "width:50%" align= center >Product(s)</td>
-                        <td></td>
-                        <td>Quantity</td>
-                        <td></td>
-                        <td>Unit Price</td>
-                        <td>Subtotal</td>
-                        <td></td>
-                        <td style="background-color: #FFFFFF"></td>
-                    </tr>
-                    </table>';
+                <tr style="background-color: #C0C0C0" align= center>
+                <td style="background-color: #FFFFFF; width: 75px"></td>
+                <td >Product(s)</td>
+                <td >Quantity</td>
+                <td >Unit Price</td>
+                <td >Subtotal</td>
+                <td style="background-color: #FFFFFF; width:80px"></td>
+                </tr>';
             ?>
             <!--CONTENT FOR EMAIL-->
 
@@ -130,11 +138,11 @@
                 $result_trans_detail = mysqli_query($conn, $sql);                
                 if ($result_trans_detail == true)
                 {
-                    echo "FOUND transactions_details!";
+                    echo '<tr><td></td><td>'."FOUND transactions_details!".'</td></tr>';
                 }
                 else
                 {
-                    echo "Error finding transactions_details: " . mysqli_error($conn);
+                    echo '<tr><td></td><td>'."Error finding transactions_details: " . mysqli_error($conn). '</td></tr>';
                 }
 
                 if(mysqli_num_rows($result_trans_detail) > 0)
@@ -189,7 +197,9 @@
 
         </main>
 
-        <p>Thank You for Purchasing with Us!</p>
+        <tr><td></td><td>Thank You for Purchasing with Us!</td></tr>
+        </table>
+        <br><br><br>
         <footer class="FooterFooter">
                 
                 <div class="FFooterUpperPortion">
