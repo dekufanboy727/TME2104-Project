@@ -466,3 +466,26 @@ input[type="button"]:hover {
   margin: 3px 0;
   box-sizing: border-box;
 }
+
+/* Tables */
+.displayTable {
+  margin-left: auto;
+  margin-right: auto;
+  width: 75%;
+  border: 2px solid #b3adad;
+  border-collapse: collapse;
+  padding: 6px;
+}
+.displayTable th {
+  border: 2px solid #b3adad;
+  padding: 6px;
+  background: #f0f0f0;
+  color: #313030;
+}
+.displayTable td {
+  border: 2px solid #b3adad;
+  text-align: center;
+  padding: 6px;
+  background: #ffffff;
+  color: #313030;
+}

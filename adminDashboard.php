@@ -261,7 +261,7 @@
 
                 //Getting Specific Values from the Tables
                 if(mysqli_num_rows($sum_result) > 0){
-                    echo "<table class='demTable'>";
+                    echo "<table class='displayTable'>";
                     echo "<tr><th>No</th><th>UserID</th><th>Username</th><th>State</th></tr>";
                     $key = 1;
                     while($sum_row = mysqli_fetch_assoc($sum_result)){
@@ -297,7 +297,7 @@
 
                 //Getting Specific Values from the Tables
                 if(mysqli_num_rows($sum_result) > 0){
-                    echo "<table class='demTable'>";
+                    echo "<table class='displayTable'>";
                     echo "<tr><th>No</th><th>State</th><th>Number</th></tr>";
                     $key = 1;
                     while($sum_row = mysqli_fetch_assoc($sum_result)){
@@ -336,7 +336,7 @@
 
                 //Getting Specific Values from the Tables
                 if(mysqli_num_rows($datedresult) > 0){
-                    echo "<table class='demTable'>";
+                    echo "<table class='displayTable'>";
                     echo "<tr><th>ID</th><th>UserID</th><th>Date</th><th>Time</th><th>Subtotal</th><th>Shipping Fee</th><th>Total</th></tr>";
                     while($row = mysqli_fetch_assoc($datedresult)){
                         $temp_id = $row["id"];
@@ -380,7 +380,7 @@
 
                 //Getting Specific Values from the Tables
                 if(mysqli_num_rows($sum_result) > 0){
-                    echo "<table class='demTable'>";
+                    echo "<table class='displayTable'>";
                     echo "<tr><th>No</th><th>Product</th><th>Category</th><th>Quantity Sold</th></tr>";
                     $key = 1;
 
@@ -455,7 +455,7 @@
             <?php
                 if($_SERVER["REQUEST_METHOD"] == "POST"){
                     if(mysqli_num_rows($result) > 0){
-                        echo "<table class='demTable'>";
+                        echo "<table class='displayTable'>";
                         echo "<tr><th>ID</th><th>UserID</th><th>Date</th><th>Time</th><th>Subtotal</th><th>Shipping Fee</th><th>Total</th></tr>";
                         while($row = mysqli_fetch_assoc($result)){
                             $temp_id = $row["id"];
