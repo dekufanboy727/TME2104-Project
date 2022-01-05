@@ -6,7 +6,6 @@
         <title>Receipt - PNWX</title>
         <link rel="icon" href="Pictures/icon.png">
         <link rel="shortcut icon" href="Pictures/icon.png">
-        <link rel="stylesheet" href="CSS/receipt.css">
     </head>
 
     <body>
@@ -26,10 +25,10 @@
         <header>
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
         <tr>
-        <td style="width: 80px"></td>
-        <td colspan="2"><img class="logo" style="width:20%" src="Pictures/logo receipt.png" alt="Pacific Northwest X-Ray Inc."></td>
+        <td style="width: 5%"></td>
+        <td colspan="2"><img class="logo" style="width:20%" src = "Pictures/logo receipt.png" alt="Pacific Northwest X-Ray Inc."></td>
         <td colspan="2" style="font-size:50px"><p>RECEIPT</p></td>
-        <td style="width: 80px"></td>
+        <td style="width: 5%"></td>
         </tr>
         </header>
 
@@ -44,10 +43,10 @@
                     <header>
                         <table width="100%" border="0" cellspacing="0" cellpadding="0">
                         <tr>
-                        <td></td>
-                        <td colspan="3"><img class="logo" src="https://i.imgur.com/SUPr5Gf.png" alt="Pacific Northwest X-Ray Inc."></td>
-                        <td colspan="5" style="font-size:50px"><p>RECEIPT</p></td>
-                        <td></td>
+                        <td style="width: 5%"></td>
+                        <td colspan="2"><img class="logo" style="width:20%" src = "https://i.imgur.com/SUPr5Gf.png" alt="Pacific Northwest X-Ray Inc."></td>
+                        <td colspan="2" style="font-size:50px"><p>RECEIPT</p></td>
+                        <td style="width: 5%"></td>
                         </tr>
                     </header>';
         ?>
@@ -91,6 +90,7 @@
                 echo '<tr><td></td><td>'.$receipt_user['_address'].",".'</td></tr>';
                 echo '<tr><td></td><td>'.$receipt_user['city'].", ".$receipt_user['postcode'].", ".'</td></tr>';
                 echo '<tr><td></td><td>'.$receipt_user['_state'].", Malaysia.".'</td></tr>';
+                echo '</table> <br>';
 
                 //CONTENT FOR EMAIL
                 $message .= '
@@ -98,30 +98,34 @@
                     <tr><td></td><td><p>To</p></td></tr>'.
                     '<tr><td></td><td>'.$receipt_user['lastname']." ".$receipt_user['firstname'].'</td></tr>'.
                     ' <tr><td></td><td> +'.$receipt_user['region']." ".$receipt_user['phone'].'</td></tr>'.
-                    ' <tr><td></td><td> +'.$receipt_user['_address'].",".'</td></tr>'.
-                    ' <tr><td></td><td> +'.$receipt_user['city'].", ".$receipt_user['postcode'].", ".'</td></tr>'.
-                    ' <tr><td></td><td> +'.$receipt_user['_state'].", Malaysia.".'</td></tr>';
+                    ' <tr><td></td><td> '.$receipt_user['_address'].",".'</td></tr>'.
+                    ' <tr><td></td><td> '.$receipt_user['city'].", ".$receipt_user['postcode'].", ".'</td></tr>'.
+                    ' <tr><td></td><td> '.$receipt_user['_state'].", Malaysia.".'</td></tr>'.
+                    '</table> <br>';
                 //CONTENT FOR EMAIL
 
 
             ?>
 
-            
-            <tr style="background-color: #C0C0C0" align= center>
-                <td style="background-color: #FFFFFF; width: 75px"></td>
-                <td >Product(s)</td>
-                <td >Quantity</td>
-                <td >Unit Price</td>
-                <td >Subtotal</td>
-                <td style="background-color: #FFFFFF; width:80px"></td>
+            <table width="100%">
+            <tr style="background-color: #C0C0C0; height: 70px" align= center>
+                <td style="background-color: #FFFFFF; width: 5%"></td>
+                <td width="10%"> No. </td>
+                <td width="50%">Product(s)</td>
+                <td width="10%">Quantity</td>
+                <td width="10%">Unit Price</td>
+                <td width="10%">Subtotal</td>
+                <td style="background-color: #FFFFFF; width:5%"></td>
             </tr>
             
 
             <!--CONTENT FOR EMAIL-->
             <?php 
                 $message .= '
-                <tr style="background-color: #C0C0C0" align= center>
+                <table width="100%">
+                <tr style="background-color: #C0C0C0; height: 70px" align= center>
                 <td style="background-color: #FFFFFF; width: 75px"></td>
+                <td> No. </td>
                 <td >Product(s)</td>
                 <td >Quantity</td>
                 <td >Unit Price</td>
@@ -138,7 +142,7 @@
                 $result_trans_detail = mysqli_query($conn, $sql);                
                 if ($result_trans_detail == true)
                 {
-                    echo '<tr><td></td><td>'."FOUND transactions_details!".'</td></tr>';
+                   // echo '<tr><td></td><td>'."FOUND transactions_details!".'</td></tr>';
                 }
                 else
                 {
@@ -161,7 +165,8 @@
                         //To ensure the price doesnt change due to some modification
                         $unit_price = $row_trans['total_price']/$row_trans['quantity'];
 
-                        echo'<table><tr align = "center">';
+                        echo'<tr align = "center" style="height: 70px">';
+                        echo '<td></td>';
                         echo '<td>' .$counter. '</td>';
                         echo '<td>' .$row_pro['productname']. '</td>';
                         echo '<td>' .$row_trans['quantity'].'</td>';
@@ -170,7 +175,8 @@
 
                         //CONTENT FOR EMAIL
                         $message .= '
-                            <table><tr align = "center">
+                            <tr align = "center" style="height: 70px">
+                            <td></td>
                             <td>' .$counter. '</td>
                             <td>' .$row_pro['productname']. '</td>
                             <td>' .$row_trans['quantity'].'</td>
@@ -178,17 +184,18 @@
                             <td>' .$row_trans['total_price']. '</td>';
                         //CONTENT FOR EMAIL
                     }
-                    echo'</tr></table>';
-                    echo "Merchandise Subtotal: ".$receipt['merchandise_total'].'<br>';
-                    echo "Shipping Subtotal: ".$receipt['shipping_fee'].'<br>';
-                    echo "Total: ".$receipt['grand_total'].'<br>';
+                    echo'</tr>';
+                    echo '<tr style="height: 50px"><td></td><td style="border-top: 1px solid #C0C0C0;" colspan="4" align=right>'. "Merchandise Subtotal: ".
+                    '</td><td align=center style="border-top: 1px solid #C0C0C0;">'.$receipt['merchandise_total'].'</td></tr>';
+                    echo '<tr style="height: 50px"><td colspan="5" align=right>'."Shipping Subtotal: ".'</td><td align=center>'.$receipt['shipping_fee'].'</td></tr>';
+                    echo '<tr style="height: 50px"><td colspan="5" align=right>'."Total: ".'</td><td align=center>'.$receipt['grand_total'].'</td></tr>';
 
                     //CONTENT FOR EMAIL
                     $message .= '
-                            </tr></table>
-                            Merchandise Subtotal: '.$receipt['merchandise_total'].'<br>
-                            Shipping Subtotal: '.$receipt['shipping_fee'].'<br>
-                            Total: '.$receipt['grand_total'].'<br>
+                            <tr style="height: 50px"><td></td><td style="border-top: 1px solid #C0C0C0;" colspan="4" align=right>'. "Merchandise Subtotal: ".
+                            '</td><td align=center style="border-top: 1px solid #C0C0C0;">'.$receipt['merchandise_total'].'</td></tr>
+                            <tr style="height: 50px"><td colspan="5" align=right> Shipping Subtotal: '.'</td><td align=center>'.$receipt['shipping_fee'].'</td></tr>
+                            <tr style="height: 50px"><td colspan="5" align=right> Total: '.'</td><td align=center>'.$receipt['grand_total'].'</td></tr></tr>
                             </main>';
                     //CONTENT FOR EMAIL
                 }
@@ -196,61 +203,35 @@
             ?>
 
         </main>
+       </table>
 
-        <tr><td></td><td>Thank You for Purchasing with Us!</td></tr>
-        </table>
+
+
         <br><br><br>
-        <footer class="FooterFooter">
-                
-                <div class="FFooterUpperPortion">
-                    <div class="FFooterIcon">
-                        <img src="Pictures/LOGO.jpeg" alt="Pacific Northwest X-Ray Inc.">
-                    </div>
-                    <div class="FFooterBlocks">
-                        <h3><b>Contact Us</b></h3>
-                        <ul>
-                            <li>Tel: 503-667-3000</li>
-                            <br>
-                            <li>Toll-Free: 800-827-9729</li>
-                            <br>
-                            <li>Fax: 503-666-8855</li>
-                        </ul>
-                    </div>
-                    <div class="FFooterBlocks">
-                        <h3><b>Reach Us</b></h3>
-                        <ul>
-                            <li>P.O. Box 625,</li>
-                            <br>
-                            <li>Gresham, OR</li>
-                            <br>
-                            <li>97030 U.S.A.</li>
-                        </ul>
-                    </div>
-                    <div class="FFooterBlocks">
-                        <h3><b>Opening Hours</b></h3>
-                        <ul>
-                            <li>8am - 5pm</li>
-                            <br>
-                            <li>Monday-Friday</li>
-                            <br>
-                            <li>(PST/PT)</li>
-                        </ul>
-                    </div>
+        <footer style="padding-top:10em;margin-top:auto;">
+            <h3 align=center> Thank You for Purchasing with Us!</h3>
+            <hr style="margin-left:70px; margin-right:70px; border-top: 1px solid gray;">
+                <div align=center>
+                    <p>Address: P.O. Box 625, Gresham, OR 97030 U.S.A. &nbsp||&nbsp 
+                     Tel: 503-667-3000  &nbsp||&nbsp  Toll-Free: 800-827-9729  &nbsp||&nbsp  Fax: 503-666-8855 </p>
+                    <p>©1997-2021 Pacific Northwest X-Ray Inc. - Sales & Marketing Division - All Rights Reserved </p>
                 </div>
 
-                <br>
-                <br>
-                <hr id="FooterLine"/>
-                <div class="FFooterLowerPortion" >
-                <sub class="Disclaimer">©1997-2021 Pacific Northwest X-Ray Inc. - Sales & Marketing Division - All Rights Reserved</sub>
-                </div>
         </footer>
 
         <?php
             //CONTENT FOR EMAIL
             $message .= '
-                    <footer>
-                        <p>Thank You for Purchasing with Us!</p>
+                    </table>
+                    <footer style="padding-top:10em;margin-top:auto;">
+                    <h3 align=center> Thank You for Purchasing with Us!</h3>
+                    <hr style="margin-left:70px; margin-right:70px; border-top: 1px solid gray;">
+                            <div align=center>
+                                <p>Address: P.O. Box 625, Gresham, OR 97030 U.S.A. &nbsp||&nbsp 
+                                 Tel: 503-667-3000  &nbsp||&nbsp  Toll-Free: 800-827-9729  &nbsp||&nbsp  Fax: 503-666-8855 </p>
+                                <p>©1997-2021 Pacific Northwest X-Ray Inc. - Sales & Marketing Division - All Rights Reserved </p>
+                            </div>
+            
                     </footer></body></html>';
             //CONTENT FOR EMAIL
 
@@ -279,8 +260,9 @@
                 else if($MAIL == false)
                 {
                     echo "FAILED MAIL!";
-                }
+                }  
             }
+
         ?>
 
     </body>

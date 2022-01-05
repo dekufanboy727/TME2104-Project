@@ -604,8 +604,6 @@
                             <?php else: ?>
                                 <a href="adminEditCustomer.php?clearvalues=1"><input type="reset" name = "reset" value="Clear" ></a>
                             <?php endif; ?>
-                            
-                        
                         </td>
                     </tr>
                 </table>
