@@ -251,6 +251,58 @@ html {
   right: -25%;
 }
 
+/* Clock */
+.clock-box {
+  margin: auto;
+  width: 50%;
+  padding: 3em 1.5em;
+  background-image: linear-gradient(45deg, #ede5f1, #1d1d1d);
+  border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+  animation: bgblob 4s infinite 0.5s;
+  margin-bottom: 200px;
+}
+
+.clock, .date {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: white;
+  text-shadow: 0 5px 5px #000000bb;
+}
+
+.clock {
+  font-size: 6.5em;
+  line-height: 1.5em;
+}
+
+.date {
+  font-size: 3em;
+}
+
+@keyframes bgblob {
+  0% {
+    border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+
+  }
+
+  25% {
+    border-radius: 75% 25% 45% 55% / 30% 30% 70% 70%;
+  }
+
+  50% {
+    border-radius: 61% 39% 27% 73% / 62% 77% 23% 38%;
+  }
+
+  75% {
+    border-radius: 30% 62% 74% 26% / 75% 57% 43% 25%;
+  }
+
+  100% {
+    border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+  }
+}
+
 /* Tables */
 .displayTable {
   margin-left: auto;
@@ -309,12 +361,13 @@ html {
 
 .repbotpart {
   text-align: center;
+  margin-bottom: 100px;
 }
 
 .noresults {
   font-weight: bolder;
-  margin-left: auto;
-  margin-right: auto;
+  margin: auto;
+  text-align: center;
   color: darkred;
 }
 
@@ -336,6 +389,36 @@ a.butt {
 
 .button:hover {
   background-color: #555;
+}
+
+/*For Header Section in Dashboard*/
+.summaryColumn {
+  margin-bottom: 100px;
+}
+
+.section-header {
+  font-size: 30px;
+  text-align: center;
+}
+
+.section-header-hr {
+  overflow: visible; 
+  height: 30px;
+  border-style: solid;
+  border-color: black;
+  border-width: 1px 0 0 0;
+  border-radius: 20px;
+  width: 50%;
+}
+.section-header-hr:before { 
+  display: block;
+  content: "";
+  height: 30px;
+  margin-top: -31px;
+  border-style: solid;
+  border-color: black;
+  border-width: 0 0 1px 0;
+  border-radius: 20px;
 }
 
 /*Extra Css for PHP validation*/
