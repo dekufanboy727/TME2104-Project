@@ -48,7 +48,8 @@
         productname VARCHAR(255) NOT NULL,
         productdetail VARCHAR(255) NOT NULL,
         price int(11) NOT NULL,
-        productpic BLOB (255) NOT NULL
+        productpic BLOB (255) NOT NULL,
+        productpicadd VARCHAR(255) NOT NULL
         )";
 
         $result = mysqli_query($conn, $sql);
@@ -74,11 +75,14 @@
 
           $productpic = array("itempic/item1.jpg", "itempic/item2.jpg", "itempic/item3.jpg", "itempic/item4.jpg", "itempic/item5.jpg", "itempic/item6.jpg", "itempic/item7.jpg", 
           "itempic/item8.jpg");
+
+          $productpicadd = array("itempic/item1.jpg", "itempic/item2.jpg", "itempic/item3.jpg", "itempic/item4.jpg", "itempic/item5.jpg", "itempic/item6.jpg", "itempic/item7.jpg", 
+          "itempic/item8.jpg");
           
           $index = 0;
           foreach($productcategory as $value){
-            $sql = "INSERT INTO product(productcategory, productname, productdetail, price, productpic) 
-            VALUES ('$value','$productname[$index]', '$productdetail[$index]', '$price[$index]', '$productpic[$index]')";
+            $sql = "INSERT INTO product(productcategory, productname, productdetail, price, productpic, productpicadd) 
+            VALUES ('$value','$productname[$index]', '$productdetail[$index]', '$price[$index]', '$productpic[$index]', '$productpicadd[$index]')";
             $result = mysqli_query($conn, $sql);
             if ($result === TRUE) {
               echo "New record created successfully";
