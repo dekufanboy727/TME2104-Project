@@ -1,4 +1,4 @@
-<?php session_start(); ?>
+<?php session_start(); ob_start();?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -20,6 +20,7 @@
 
         if(!isset($_SESSION['admin_id'])){
             header('Location: adminlogin.php');
+            ob_end_flush();
         }
 
         $id = $_SESSION['admin_id'];

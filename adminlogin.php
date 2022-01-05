@@ -1,4 +1,4 @@
-<?php session_start(); ?>
+<?php session_start(); ob_start();?>
 
 <!DOCTYPE html>
 <html>
@@ -128,6 +128,7 @@
                     
                     //Redirecting user
                     header("Location: adminDashboard.php");
+                    ob_end_flush();
                 }   
                 else
                 {
