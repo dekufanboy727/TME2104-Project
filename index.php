@@ -73,11 +73,11 @@
 
           $price = array("1968", "770", "215", "2412", "170", "33", "2279", "1700");
 
-          $productpic = array("itempic/item1.jpg", "itempic/item2.jpg", "itempic/item3.jpg", "itempic/item4.jpg", "itempic/item5.jpg", "itempic/item6.jpg", "itempic/item7.jpg", 
-          "itempic/item8.jpg");
-
           $productpicadd = array("itempic/item1.jpg", "itempic/item2.jpg", "itempic/item3.jpg", "itempic/item4.jpg", "itempic/item5.jpg", "itempic/item6.jpg", "itempic/item7.jpg", 
           "itempic/item8.jpg");
+
+          $productpic = array("presetpic/item1.jpg", "preset/item2.jpg", "preset/item3.jpg", "preset/item4.jpg", "preset/item5.jpg", "preset/item6.jpg", "preset/item7.jpg", 
+          "preset/item8.jpg");
           
           $index = 0;
           foreach($productcategory as $value){
