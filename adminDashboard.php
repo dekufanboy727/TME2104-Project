@@ -8,10 +8,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="CSS/admin.css">
     <script src="https://unpkg.com/scrollreveal@4"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"
+     integrity="sha512-TW5s0IT/IppJtu76UbysrBH9Hy/5X41OTAbQuffZFU6lQ1rdcLHzpU5BzVvr/YFykoiMYZVWlr/PX1mDcfM9Qg==" 
+     crossorigin="anonymous" 
+     referrerpolicy="no-referrer">
+    </script>
     <script src="clock.js" defer></script>
     <script src="scrollReveal.js" defer></script>
     <title>Admin Dashboard - PNWX</title>
 </head>
+
 <body>
     <?php
         include 'adminconfig.php';
@@ -311,8 +317,78 @@
                     echo "<p class='noresults'> No Results </p>";
                 }
                 
+                // Chart for Transaction Record
+                foreach($sum_result as $data)
+                {
+                    $state[] = $data['_state'];
+                    $custotal[] = $data['custotal'];
+                }
             ?>
-            <p style="text-align:center;">Maybe you can chartify this?</p>
+
+            <!-- Chart for Transaction Record -->
+            <div class="barChart-container">
+                <canvas id="barChart"></canvas>
+            </div>
+            
+            <script>
+                const labels = <?php echo json_encode($state) ?>;
+
+                const data = {
+                labels: labels,
+                datasets: [{
+                    data: <?php echo json_encode($custotal) ?>,
+                    label: 'Number of Transactions',
+                    backgroundColor: [
+                    'rgba(255, 99, 132, 0.4)',
+                    'rgba(255, 159, 64, 0.4)',
+                    'rgba(75, 192, 192, 0.4)',
+                    'rgba(54, 162, 235, 0.4)',
+                    'rgba(201, 203, 207, 0.4)'
+                    ],
+                    borderColor: [
+                    'rgb(255, 99, 132)',
+                    'rgb(255, 159, 64)',
+                    'rgb(75, 192, 192)',
+                    'rgb(54, 162, 235)',
+                    'rgb(201, 203, 207)'
+                    ],
+                    borderWidth: 1,
+                    borderColor: '#777',
+                    hoverBorderWidth: 2,
+                    hoverBorderColor: '#000',
+                }]
+                };
+
+                const config = {
+                    type: 'bar',
+                    data: data,
+                        options: {
+                            responsive: true,
+                            plugins: {
+                            legend: {
+                                position: 'top',
+                            },
+                            title: {
+                                display: true,
+                                text: 'Number of Transactions based on States',
+                                font: {
+                                    size: 26
+                                }
+                            }
+                        }
+                    },
+                };
+
+                // Global default chart variables
+                Chart.defaults.font.family = 'Arial';
+                Chart.defaults.font.size = 14;
+
+                const barChart = new Chart(
+                document.getElementById('barChart').getContext('2d'),
+                config
+                );
+
+            </script>
         </div>
     </div>
 
@@ -323,7 +399,7 @@
                 <hr class="section-header-hr">
             </div>
             <?php
-                $dated1 = date( 'd' ,strtotime("now"));
+                $dated1 = date('d' ,strtotime("now"));
                 $dated2 = date('m', strtotime("now"));
                 $dated3 = date('Y', strtotime("now"));
 
@@ -423,18 +499,80 @@
                     echo "<br>";
                     echo "<p class='noresults'> No Results </p>";
                 }
+
+                foreach($sum_result as $data)
+                {
+                    $productname[] = $data['productname'];
+                    $salestotal[] = $data['custotal'];
+                };
             ?>
-            <p style="text-align:center;">Maybe you can chartify this?</p>
+
+            <!-- Pie Chart for Hottest Products -->
+            <div class="pieChart-container">
+                <canvas id="pieChart"></canvas>
+            </div>
+            
+            <script>
+                const labelsPie = <?php echo json_encode($productname) ?>;
+
+                const dataPie = {
+                labels: labelsPie,
+                datasets: [{
+                    data: <?php echo json_encode($salestotal) ?>,
+                    label: 'Hottest Products',
+                    backgroundColor: [
+                    'rgba(255, 99, 132, 0.4)',
+                    'rgba(255, 159, 64, 0.4)',
+                    'rgba(75, 192, 192, 0.4)',
+                    'rgba(54, 162, 235, 0.4)',
+                    'rgba(20, 75, 207, 0.4)'
+                    ],
+                    borderColor: [
+                    'rgb(255, 99, 132)',
+                    'rgb(255, 159, 64)',
+                    'rgb(75, 192, 192)',
+                    'rgb(54, 162, 235)',
+                    'rgb(20, 75, 207)'
+                    ],
+                    borderWidth: 1,
+                    borderColor: '#777',
+                    hoverBorderWidth: 2,
+                    hoverBorderColor: '#000'
+                }]
+                };
+
+                const configPie = {
+                type: 'pie',
+                data: dataPie,
+                options: {
+                    responsive: false,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                        },
+                        title: {
+                            display: true,
+                            text: 'Number of quantities sold per products',
+                            font: {
+                                size: 26
+                            }
+                        }
+                    }
+                }
+                };
+
+                const pieChart = new Chart(
+                document.getElementById('pieChart').getContext('2d'),
+                configPie
+                );
+
+            </script>
         </div>
     </div>
 
-    <div class="admin-title">
+    <section class="report">
         <h1>Report of Transaction Records</h1>
         <hr>
-    </div>
-
-
-    <section class="report">
         <div class="reptoppart" >
             <form  action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
                 <input type="date" class="sum_button" name="search_date"></input>
