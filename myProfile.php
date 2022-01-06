@@ -231,10 +231,11 @@
                     $sql= "UPDATE registered_User
                     SET firstname = '$fname', lastname= '$lname', email= '$email', region= '$region', phone= '$mobile', pwd= '$pw', gender= '$gender', _state= '$state',postcode= '$postcode', _address= '$add', city= '$city'
                     WHERE id = '$id'";
-                    if ($conn->query($sql) === "TRUE") {
+                    $result = mysqli_query($conn,$sql);
+                    if ($result === TRUE) {
                         echo "profile updated!";
                     } else {
-                        echo "Error: " . $sql . "<br>" . $conn->error;
+                        echo "Error: ". $conn->error;
                     }
 
                     //Refresh the page after profile is updated
