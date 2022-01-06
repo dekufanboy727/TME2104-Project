@@ -26,7 +26,7 @@
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
         <tr>
         <td style="width: 5%"></td>
-        <td colspan="2"><img class="logo" style="width:20%" src = "Pictures/logo receipt.png" alt="Pacific Northwest X-Ray Inc."></td>
+        <td colspan="2"><img class="logo" style="width:25%" src = "Pictures/logo receipt.png" alt="Pacific Northwest X-Ray Inc."></td>
         <td colspan="2" style="font-size:50px"><p>RECEIPT</p></td>
         <td style="width: 5%"></td>
         </tr>
@@ -39,15 +39,16 @@
                 <head>
                     <title>Receipt</title>
                 </head>
-                <body>
+                <body style="font-family: Times New Roman;">
                     <header>
-                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                        <table width="100%" border="0" cellspacing="0" cellpadding="0" style = "font-family: Times New Roman;">
                         <tr>
-                        <td style="width: 5%"></td>
-                        <td colspan="2"><img class="logo" style="width:20%" src = "https://i.imgur.com/SUPr5Gf.png" alt="Pacific Northwest X-Ray Inc."></td>
-                        <td colspan="2" style="font-size:50px"><p>RECEIPT</p></td>
-                        <td style="width: 5%"></td>
+                        <td style="width: 3%"></td>
+                        <td ><img class="logo" style="width:25%" src = "https://i.imgur.com/SUPr5Gf.png" alt="Pacific Northwest X-Ray Inc."></td>
+                        <td colspan="2" style="font-size:50px; font-family: Times New Roman;"><p>RECEIPT</p></td>
+                        <td></td>
                         </tr>
+                        </table>
                     </header>';
         ?>
         <!--CONTENT FOR EMAIL-->
@@ -69,9 +70,10 @@
 
                 //CONTENT FOR EMAIL
                 $message .= '
-                        <tr style="font-size:17px;"><td colspan="3"></td><td> Receipt No: '.$receipt_no.'</td></tr>'.
-                        '<tr style="font-size:17px;"><td colspan="3"></td><td> Payment Date: '.$receipt['_date'].'</td></tr>
-                        <tr style="font-size:17px;"><td colspan="3"></td><td> Payment Time: '.$receipt['_time'].'</td></tr>';
+                        <div style="font-size:17px;font-family: Times New Roman; float: right; margin-right: 1.5%;"> 
+                        Receipt No: '.$receipt_no.'<br>
+                        Payment Date: '.$receipt['_date'].'<br>
+                        Payment Time: '.$receipt['_time'].'<br></div>';
                 //CONTENT FOR EMAIL
 
 
@@ -95,13 +97,14 @@
                 //CONTENT FOR EMAIL
                 $message .= '
                     <main>
-                    <tr style="font-size:17px;"><td></td><td><p>To:</p></td></tr>'.
-                    '<tr style="font-size:17px;"><td></td><td>'.$receipt_user['lastname']." ".$receipt_user['firstname'].'</td></tr>'.
-                    ' <tr style="font-size:17px;"><td></td><td> +'.$receipt_user['region']." ".$receipt_user['phone'].'</td></tr>'.
-                    ' <tr style="font-size:17px;"><td></td><td> '.$receipt_user['_address'].",".'</td></tr>'.
-                    ' <tr style="font-size:17px;"><td></td><td> '.$receipt_user['city'].", ".$receipt_user['postcode'].", ".'</td></tr>'.
-                    ' <tr style="font-size:17px;"><td></td><td> '.$receipt_user['_state'].", Malaysia.".'</td></tr>'.
-                    '</table> <br>';
+                    <div style="font-size:17px;font-family: Times New Roman;margin-left: 3%;"><br><br><br><br>
+                    To: <br><br>
+                    '.$receipt_user['lastname']." ".$receipt_user['firstname'].'<br>
+                    '.$receipt_user['region']." ".$receipt_user['phone'].'<br>
+                    '.$receipt_user['_address'].",".'<br>
+                    '.$receipt_user['city'].", ".$receipt_user['postcode'].", ".'<br>
+                    '.$receipt_user['_state'].", Malaysia.".'<br>
+                    </div>';
                 //CONTENT FOR EMAIL
 
             ?>
@@ -121,15 +124,14 @@
             <!--CONTENT FOR EMAIL-->
             <?php 
                 $message .= '
-                <table width="100%">
-                <tr style="background-color: #C0C0C0; height: 70px; font-size: 20px;" align= center>
-                    <td style="background-color: #FFFFFF; width: 75px"></td>
-                    <td> No. </td>
-                    <td >Product(s)</td>
-                    <td >Quantity</td>
-                    <td >Unit Price</td>
-                    <td >Subtotal</td>
-                    <td style="background-color: #FFFFFF; width:80px"></td>
+                <br>
+                <table style="width: 100%;font-family: Times New Roman; margin-left: 3%;">
+                <tr style="background-color: #C0C0C0; height: 70px; width: 100%; text-align: center;;" >     
+                    <td width="12.5%"><p style="font-family: Times New Roman;font-size: 20px; color: black;"> No. </p></td>
+                    <td width="50%"><p style="font-family: Times New Roman;font-size: 20px;color: black;">Product(s)</p></td>
+                    <td width="10%"><p style="font-family: Times New Roman;font-size: 20px;color: black;">Quantity</p></td>
+                    <td width="10%"><p style="font-family: Times New Roman;font-size: 20px;color: black;">Unit Price</p></td>
+                    <td width="17.5%"><p style="font-family: Times New Roman;font-size: 20px;color: black;">Subtotal</p></td> 
                 </tr>';
             ?>
             <!--CONTENT FOR EMAIL-->
@@ -165,34 +167,57 @@
                         echo '<td>' .$row_trans['quantity'].'</td>';
                         echo '<td>' .$unit_price. '</td>';
                         echo '<td>' .$row_trans['total_price']. '</td>';
+                        echo'</tr>';
 
                         //CONTENT FOR EMAIL
                         $message .= '
-                            <tr align = "center" style="height: 70px; font-size: 19px;">
-                            <td></td>
-                            <td>' .$counter. '</td>
-                            <td>' .$row_trans['product_name']. '</td>
-                            <td>' .$row_trans['quantity'].'</td>
-                            <td>' .$unit_price. '</td>
-                            <td>' .$row_trans['total_price']. '</td>';
+                            <tr align = "center" style="height: 70px; font-size: 18px;font-family: Times New Roman;">   
+                            <td><p style="font-family: Times New Roman;font-size: 20px;">' .$counter. '</p></td>
+                            <td><p style="font-family: Times New Roman;font-size: 20px;">' .$row_trans['product_name']. '</p></td>
+                            <td><p style="font-family: Times New Roman;font-size: 20px;">' .$row_trans['quantity'].'</p></td>
+                            <td><p style="font-family: Times New Roman;font-size: 20px;">' .$unit_price. '</p></td>
+                            <td><p style="font-family: Times New Roman;font-size: 20px;">' .$row_trans['total_price']. '</p></td></tr>';
                         //CONTENT FOR EMAIL
                     }
-                    echo'</tr>';
-                    echo '<tr style="height: 50px; font-size: 19px;"><td></td><td style="border-top: 1px solid #C0C0C0;" colspan="4" align=right>'. "Merchandise Subtotal: ".
-                    '</td><td align=center style="border-top: 1px solid #C0C0C0;">'.$receipt['merchandise_total'].'</td></tr>';
+
+                    echo '<tr><td><br/></td></tr>';
+                    echo '<tr style="height: 50px; font-size: 19px;"><td></td><td style="border-top: 1px solid #C0C0C0;" colspan="4" align=right>'. "Merchandise Subtotal: ".'
+                    </td><td align=center style="border-top: 1px solid #C0C0C0;">'.$receipt['merchandise_total'].'</td></tr>';
                     echo '<tr style="height: 50px; font-size: 19px;"><td colspan="5" align=right>'."Shipping Subtotal: ".'</td><td align=center>'.$receipt['shipping_fee'].'</td></tr>';
                     echo '<tr style="height: 50px; font-size: 19px; font-weight: bold;"><td colspan="5" align=right>'."Total: ".'</td><td align=center>'.$receipt['grand_total'].'</td></tr>';
 
                     //CONTENT FOR EMAIL
                     $message .= '
-                            <tr style="height: 50px; font-size: 19px;"><td></td><td style="border-top: 1px solid #C0C0C0;" colspan="4" align=right>'. "Merchandise Subtotal: ".
-                            '</td><td align=center style="border-top: 1px solid #C0C0C0;">'.$receipt['merchandise_total'].'</td></tr>
-                            <tr style="height: 50px; font-size: 19px;"><td colspan="5" align=right> Shipping Subtotal: '.'</td><td align=center>'.$receipt['shipping_fee'].'</td></tr>
-                            <tr style="height: 50px; font-size: 19px; font-weight: bold;"><td colspan="5" align=right> Total: '.'</td><td align=center>'.$receipt['grand_total'].'</td></tr></tr>
-                            </table></main>';
+                            <tr><td><br/></td></tr>
+                            <tr style="height: 50px; font-size: 19px; padding:0;">
+                                <td style="border-top: 1px solid #C0C0C0;" colspan="4" align=right>
+                                <span style="font-family: Times New Roman; padding:0; ">'. "Merchandise Subtotal: ".
+                                '</span></td>
+                                <td align=center style="border-top: 1px solid #C0C0C0;">
+                                <span  style="font-family: Times New Roman; padding:0;">'.$receipt['merchandise_total'].
+                                '</span ></td>
+                            </tr>
+                            <tr style="height: 50px; font-size: 19px; padding:0;">
+                                <td colspan="4" align=right>
+                                <span  style="font-family: Times New Roman; padding:0;">'."Shipping Subtotal: ".'
+                                </span ></td>
+                                <td align=center>
+                                <span  style="font-family: Times New Roman; padding:0;">'.$receipt['shipping_fee'].'
+                                </span ></td>
+                            </tr>
+                            <tr style="height: 50px; font-size: 19px; padding:0; font-weight: bold;">
+                                <td colspan="4" align=right>
+                                <span  style="font-family: Times New Roman; padding:0;">'."Total: ".'
+                                </span ></td>
+                                <td align=center>
+                                <span  style="font-family: Times New Roman; padding:0;">'.$receipt['grand_total'].'
+                                </span ></td>
+                            </tr>
+
+                            </table>
+                            </main>';
                     //CONTENT FOR EMAIL
                 }
-                
             ?>
             </table>
         </main>
@@ -215,11 +240,11 @@
             $message .= '
                     <br><br><br>
                     <footer style="padding-top:10em;margin-top:auto;">
-                    <h3 align=center> Thank You for Purchasing with Us!</h3>
-                    <hr style="margin-left:70px; margin-right:70px; border-top: 1px solid gray;">
-                            <div align=center style="font-size:17.5px;">
-                                <p>Address: P.O. Box 625, Gresham, OR 97030 U.S.A. &nbsp||&nbsp 
-                                 Tel: 503-667-3000  &nbsp||&nbsp  Toll-Free: 800-827-9729  &nbsp||&nbsp  Fax: 503-666-8855 </p>
+                    <h3 align=center style= "font-size:17px;"> Thank You for Purchasing with Us!</h3>
+                    <hr style="margin-left:40px; margin-right:40px; border-top: 1px solid gray;">
+                            <div align=center style="font-size:15px;">
+                                <p>Address: P.O. Box 625, Gresham, OR 97030 U.S.A. ||
+                                 Tel: 503-667-3000  ||  Toll-Free: 800-827-9729  ||  Fax: 503-666-8855 </p>
                                 <p>©1997-2021 Pacific Northwest X-Ray Inc. - Sales & Marketing Division - All Rights Reserved </p>
                             </div>
             
