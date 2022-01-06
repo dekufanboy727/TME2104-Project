@@ -76,8 +76,8 @@
           $productpicadd = array("itempic/item1.jpg", "itempic/item2.jpg", "itempic/item3.jpg", "itempic/item4.jpg", "itempic/item5.jpg", "itempic/item6.jpg", "itempic/item7.jpg", 
           "itempic/item8.jpg");
 
-          $productpic = array("presetpic/item1.jpg", "preset/item2.jpg", "preset/item3.jpg", "preset/item4.jpg", "preset/item5.jpg", "preset/item6.jpg", "preset/item7.jpg", 
-          "preset/item8.jpg");
+          $productpic = array("presetpic/item1.jpg", "presetpic/item2.jpg", "presetpic/item3.jpg", "presetpic/item4.jpg", "presetpic/item5.jpg", "presetpic/item6.jpg", "presetpic/item7.jpg", 
+          "presetpic/item8.jpg");
           
           $index = 0;
           foreach($productcategory as $value){
@@ -119,26 +119,9 @@
                 
             </div>
             <a class = "cart_position" href="cart.php"> <img id="cart" src="Pictures/cart.png" alt="Cart"> </a>
-                 
-            <div class="navigation">
-                <ul >
-                
-                <!--<li><a href="index.php" target="_blank">Home</a></li>
-                <li><a href="http://www.pnwx.com/Equipment/" target="_blank">Equipment</a></li>
-                <li><a href="http://www.pnwx.com/Accessories/" target="_blank">Accessories</a></li>
-                <li><a href="http://www.pnwx.com/Supplies" target="_blank">Supplies</a></li>
-                <li><a href="http://www.pnwx.com/Parts/" target="_blank">Parts</a></li>
-                
-                <div class="search">
-                <li><form action="http://www.pnwx.com/Search/" method="post">
-                <input type="text" name="SearchWords" size="30" maxlength="70" value="" />
-                <input class="SearchButton" type="submit" value="Search" />
-                </form></li>
-                </div>
-                
-                </ul>-->
-            </div>
+              
         </header>
+
         <div id="mySidenav" class="sidenav">
               <a href="javascript:void(0)" class="closebtn" onclick="closesidebar()">&times;</a>
               <br>
@@ -196,7 +179,7 @@
                     while($row = $result->fetch_assoc()) {
                       echo '<form name="add_cart" method="post" action="cart.php">';
                       echo '<div class="column"> <div class = "card">';
-                      echo '' .'<img src = "' . $row['productpic'] . '"/>' . '';
+                      echo '<img src = "' . $row['productpic'] . '"/>';
                       echo '  <div class="grid-container"> <h2>' . $row["productname"]. '</h2></div>';
                       echo '  <div class="grid-container"> <h2 class="title">'. "$" . $row["price"] .  '</h2></div>';
                       echo '  <div class="grid-container"> <p>' . $row["productdetail"] . '</p></div>';
