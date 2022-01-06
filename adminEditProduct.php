@@ -4,10 +4,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="CSS/admin.css">
+    <link rel="stylesheet" href="CSS/adminProduct.css">
     <link rel="icon" href="Pictures/icon.png">
     <link rel="shortcut icon" href="Pictures/icon.png">
     <script src="https://unpkg.com/scrollreveal@4"></script>
+    <script src="scrollReveal.js" defer></script>
     <title>Admin/Edit Product - PNWX</title>
 </head>
 <body>
@@ -91,7 +92,6 @@
         }
 
         //Create Record
-
         if(isset($_POST['create'])){
             if($productnameERR == "" && $productdescERR == "" && $productpriceERR == "" && $productpicERR == "" && $productname != "" 
             && $productdesc != "" && $productprice != "" && $uploadOk == 1){
@@ -114,8 +114,7 @@
             }
         }
 
-        //Delete Record
-
+        // Delete Record
         if(isset($_GET["delete"])){
             //Gets the id from the superglobal
             $deleteid = $_GET["delete"];
@@ -133,7 +132,7 @@
             }
         }
 
-        //Edit Mode Initiate
+        // Edit Mode Initiate
         if(isset($_GET["edit"])){
             $editid = $_GET["edit"];
             $editsql = "SELECT * FROM product WHERE id = '$editid'";
@@ -282,113 +281,107 @@
 	</table>
     <br>
     
-    
-    <!-- For inserting new data -->
-    <section class="padCard">
-        <h1><?php if($editstat == TRUE){echo "Update ";}else{echo "Insert ";}?> Data</h1>
-        <span class="correct-record"> <?php echo $createSUC; ?> </span>
-        <span class="correct-record"> <?php echo $deleteMes; ?> </span>
-        <form name="insert" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" enctype="multipart/form-data">
-            <input type="hidden" name="productid" value="<?php echo $editid; ?>">
+    <!-- For inserting new product data -->
+    <div class="column-form">
+        <div class="columnB-form">
+            <h1><?php if($editstat == TRUE){echo "Update ";}else{echo "Insert ";}?> Product Data</h1>
+            <span class="correct-record"> <?php echo $createSUC; ?> </span>
+            <span class="correct-record"> <?php echo $deleteMes; ?> </span>
+            <form name="insert" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" enctype="multipart/form-data">
+                <input type="hidden" name="productid" value="<?php echo $editid; ?>">
 
-            <table>
-                <th>
-                    Category
-                </th>
-                <th>
-                    Fields
-                </th>
-                <tr>
-                    <td>
-                        <label for="productname">Name</label>
-                    </td>
-                    <td>
-                        <input type="text" name="productname" placeholder="Product Name goes here..." value ="<?php echo $productname;?>" enctype="multipart/form-data">
-                        <span class="error"> <br> <?php echo $productnameERR; ?> </span>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <label for="productcategory">Category</label>
-                    </td>
-                    <td>
-                        <select name="productcategory" id="prodcat">
-                            <option value="Merchant Board" <?php if($productcategory === "Merchant Board "){ echo "selected";} ?>>Merchant Board</option>
-                            <option value="Silver Recovery Systems" <?php if($productcategory === "Silver Recovery Systems "){ echo "selected";} ?>>Silver Recovery Systems</option>
-                            <option value="Veterinary" <?php if($productcategory === "Veterinary "){ echo "selected";} ?>>Veterinary</option>
-                            <option value="X Ray Test Meters" <?php if($productcategory === "X Ray Test Meters "){ echo "selected";} ?>>X Ray Test Meters</option>
-                        </select>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <label for="productdesc">Description</label>
-                    </td>
-                    <td>
-                        <input type="text" name="productdesc" placeholder="Product Detail goes here..." value ="<?php echo $productdesc;?>">
-                        <span class="error"> <br> <?php echo $productdescERR; ?> </span>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <label for="productprice">Price</label>
-                    </td>
-                    <td>
-                        <input type="text" name="productprice" placeholder="Product Price goes here..." value ="<?php echo $productprice;?>">
-                        <span class="error"> <br> <?php echo $productpriceERR; ?> </span>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <label for="productpic">Picture Upload</label>
-                    </td>
-                    <td>
-                        <span class="error"> <br> <?php echo $productpicERR; ?> </span>
-                        <input type="file" name="productpic" id= "productpic" value ="">
-                    </td>
-                </tr>
-                <?php if($editstat === TRUE): ?>
-                <tr>
-                    <td>
-                        <img src="<?php echo $productpic ?>" height = "300" width = "300">
-                    </td>
-                    <td>
-                        <p> Make Changes to the Photo? </p>
-                        <input type="radio" id= "noupload" name = "uploadphoto" value ="no">
-                        <label for="noupload">No</label>
-                        <input type="radio" id= "yesupload" name = "uploadphoto" value ="yes">
-                        <label for="yesupload">Yes</label>
-                    </td>
-                </tr>
-                <?php endif; ?>
-                <td>
-                    <?php if ($editstat === TRUE):?>
-                        <input type="submit" name = "update" value="Update" >
-                    <?php else: ?>
-                        <input type="submit" name = "create" value="Create" >
+                <table class="formTable">
+                    <th>
+                        Category
+                    </th>
+                    <th>
+                        Fields
+                    </th>
+                    <tr>
+                        <td>
+                            <label for="productname">Name</label>
+                        </td>
+                        <td>
+                            <input type="text" name="productname" placeholder="Product Name goes here..." value ="<?php echo $productname;?>" enctype="multipart/form-data">
+                            <span class="error"> <br> <?php echo $productnameERR; ?> </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="productcategory">Category</label>
+                        </td>
+                        <td>
+                            <select name="productcategory" id="prodcat">
+                                <option value="Merchant Board" <?php if($productcategory === "Merchant Board "){ echo "selected";} ?>>Merchant Board</option>
+                                <option value="Silver Recovery Systems" <?php if($productcategory === "Silver Recovery Systems "){ echo "selected";} ?>>Silver Recovery Systems</option>
+                                <option value="Veterinary" <?php if($productcategory === "Veterinary "){ echo "selected";} ?>>Veterinary</option>
+                                <option value="X Ray Test Meters" <?php if($productcategory === "X Ray Test Meters "){ echo "selected";} ?>>X Ray Test Meters</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="productdesc">Description</label>
+                        </td>
+                        <td>
+                            <input type="text" name="productdesc" placeholder="Product Detail goes here..." value ="<?php echo $productdesc;?>">
+                            <span class="error"> <br> <?php echo $productdescERR; ?> </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="productprice">Price</label>
+                        </td>
+                        <td>
+                            <input type="text" name="productprice" placeholder="Product Price goes here..." value ="<?php echo $productprice;?>">
+                            <span class="error"> <br> <?php echo $productpriceERR; ?> </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="productpic">Picture Upload</label>
+                        </td>
+                        <td>
+                            <input type="file" name="productpic" id= "productpic" value ="">
+                            <span class="error"> <br> <?php echo $productpicERR; ?> </span>
+                        </td>
+                    </tr>
+                    <?php if($editstat === TRUE): ?>
+                    <tr>
+                        <td>
+                            <img src="<?php echo $productpic ?>" height = "300" width = "300">
+                        </td>
+                        <td>
+                            <p> Make Changes to the Photo? </p>
+                            <label for="noupload">No
+                                <input type="radio" id= "noupload" name = "uploadphoto" value ="no">
+                            </label>
+                            <label for="yesupload">Yes
+                                <input type="radio" id= "yesupload" name = "uploadphoto" value ="yes">
+                            </label>
+                        </td>
+                    </tr>
                     <?php endif; ?>
-                </td>
-                <td>
-                    <?php if ($editstat === TRUE):?>
-                        <a href="adminEditProduct.php?canceledit=1"><input type="button" value="Cancel" ></a>
-                    <?php else: ?>
-                        <a href="adminEditProduct.php?clearvalues=1"><input type="reset" name = "reset" value="Clear" ></a>
-                    <?php endif; ?>
-                </td>
-            </table>
-        </form>
-        <br>
-
-    </section>
-
-
-    <!-- For animating elements as they enter/leave the viewport -->
+                    <td>
+                        <?php if ($editstat === TRUE):?>
+                            <input type="submit" name = "update" value="Update" >
+                        <?php else: ?>
+                            <input type="submit" name = "create" value="Create" >
+                        <?php endif; ?>
+                    </td>
+                    <td>
+                        <?php if ($editstat === TRUE):?>
+                            <a href="adminEditProduct.php?canceledit=1"><input type="button" value="Cancel" ></a>
+                        <?php else: ?>
+                            <a href="adminEditProduct.php?clearvalues=1"><input type="reset" name = "reset" value="Clear" ></a>
+                        <?php endif; ?>
+                    </td>
+                </table>
+            </form>
+            <br>
+        </div>
     </div>
-        <script src="scrollReveal.js"></script>
-    </div>
-    
-    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-
+       
     <footer class="FooterFooter" id="Push_footer">
         <div class="FFooterUpperPortion">
             <div class="FFooterIcon">

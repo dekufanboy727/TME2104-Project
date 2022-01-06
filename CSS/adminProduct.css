@@ -62,13 +62,6 @@ html {
   padding-right: 70px;
 }
 
-.SearchButton {
-  background: Black;
-  color: #b3b3b3;
-  font-family: Maiandra GD;
-  border-width: 1px;
-}
-
 .login_register {
   padding-top: 20px;
   margin-right: 5%;
@@ -187,122 +180,6 @@ html {
   padding: 50px 100px;
 }
 
-/* Button Animation */
-.wrapper {
-  position: relative;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  content: "";
-  display: table;
-  clear: both;
-}
-
-.link_wrapper {
-  position: relative;
-}
-
-.link_wrapper a {
-  display: block;
-  width: 400px;
-  height: 50px;
-  line-height: 50px;
-  font-weight: bold;
-  text-decoration: none;
-  background: #333;
-  text-align: center;
-  color: #fff;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  border: 3px solid #333;
-  transition: all 0.35s;
-}
-
-.icon {
-  width: 50px;
-  height: 50px;
-  border: 3px solid transparent;
-  position: absolute;
-  transform: rotate(45deg);
-  right: 0;
-  top: 0;
-  z-index: -1;
-  transition: all 0.35s;
-}
-
-.icon svg {
-  width: 30px;
-  top: calc(50% - 15px);
-  left: calc(50% - 15px);
-  transform: rotate(-45deg);
-  fill: #2ecc71;
-  transition: all 0.35s;
-}
-
-.link_wrapper a:hover {
-  width: 400px;
-  border: 3px solid #2ecc71;
-  background: transparent;
-  color: #2ecc71;
-}
-
-.link_wrapper a:hover + .icon {
-  border: 3px solid #2ecc71;
-  right: -25%;
-}
-
-/* Clock */
-.clock-box {
-  margin: auto;
-  width: 50%;
-  padding: 3em 1.5em;
-  background-image: linear-gradient(45deg, #ede5f1, #1d1d1d);
-  border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
-  animation: bgblob 4s infinite 0.5s;
-  margin-bottom: 200px;
-}
-
-.clock, .date {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  color: white;
-  text-shadow: 0 5px 5px #000000bb;
-}
-
-.clock {
-  font-size: 6.5em;
-  line-height: 1.5em;
-}
-
-.date {
-  font-size: 3em;
-}
-
-@keyframes bgblob {
-  0% {
-    border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
-
-  }
-
-  25% {
-    border-radius: 75% 25% 45% 55% / 30% 30% 70% 70%;
-  }
-
-  50% {
-    border-radius: 61% 39% 27% 73% / 62% 77% 23% 38%;
-  }
-
-  75% {
-    border-radius: 30% 62% 74% 26% / 75% 57% 43% 25%;
-  }
-
-  100% {
-    border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
-  }
-}
-
 /* Tables */
 .displayTable {
   margin-left: auto;
@@ -326,51 +203,6 @@ html {
   color: #313030;
 }
 
-/* Insert Record */
-.padCard {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  margin: 8px;
-  margin-right: auto;
-  margin-left: auto;
-  background-color: rgb(238, 238, 238);
-  width: 87%;
-}
-
-.report {
-  width: 80%;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.reptoppart {
-  width: 100%;
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: 20%;
-  padding-right: 20%;
-  text-align: center;
-}
-
-.reptoppart input {
-  display: inline;
-}
-
-.rep_select {
-  display: inline;
-}
-
-.repbotpart {
-  text-align: center;
-  margin-bottom: 100px;
-}
-
-.noresults {
-  font-weight: bolder;
-  margin: auto;
-  text-align: center;
-  color: darkred;
-}
-
 /* For Link Buttons */
 a.butt {
   display: inline;
@@ -389,36 +221,6 @@ a.butt {
 
 .button:hover {
   background-color: #555;
-}
-
-/*For Header Section in Dashboard*/
-.summaryColumn {
-  margin-bottom: 100px;
-}
-
-.section-header {
-  font-size: 30px;
-  text-align: center;
-}
-
-.section-header-hr {
-  overflow: visible; 
-  height: 30px;
-  border-style: solid;
-  border-color: black;
-  border-width: 1px 0 0 0;
-  border-radius: 20px;
-  width: 50%;
-}
-.section-header-hr:before { 
-  display: block;
-  content: "";
-  height: 30px;
-  margin-top: -31px;
-  border-style: solid;
-  border-color: black;
-  border-width: 0 0 1px 0;
-  border-radius: 20px;
 }
 
 /*Extra Css for PHP validation*/
@@ -461,6 +263,8 @@ a.butt {
   width: 100%;
   display: flex;
   margin: auto;
+  margin-top: 50px;
+  margin-bottom: 50px;
 }
 
 .column-form .columnB-form {
@@ -476,6 +280,7 @@ a.butt {
   font-size: 45px;
 }
 
+/* Forms */
 .formTable {
   table-layout: fixed;
   width: 70%;
@@ -493,6 +298,7 @@ a.butt {
   color: #313030;
   font-size: 24px;
 }
+
 .formTable td {
   border: 0px none;
   text-align: center;
@@ -510,7 +316,7 @@ a.butt {
 .formTable td input {
   width: 70%;
   padding: 4px 8px;
-  margin: 3px 0;
+  margin: 20px 0;
   box-sizing: border-box;
 }
 
@@ -543,32 +349,9 @@ input[type="button"]:hover {
   cursor: pointer;
 }
 
-.formTable td #state {
+.formTable td #prodcat {
   width: 70%;
   padding: 4px 8px;
   margin: 3px 0;
   box-sizing: border-box;
-}
-
-/* Tables */
-.displayTable {
-  margin-left: auto;
-  margin-right: auto;
-  width: 75%;
-  border: 2px solid #b3adad;
-  border-collapse: collapse;
-  padding: 6px;
-}
-.displayTable th {
-  border: 2px solid #b3adad;
-  padding: 6px;
-  background: #f0f0f0;
-  color: #313030;
-}
-.displayTable td {
-  border: 2px solid #b3adad;
-  text-align: center;
-  padding: 6px;
-  background: #ffffff;
-  color: #313030;
 }
