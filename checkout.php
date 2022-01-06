@@ -44,7 +44,7 @@
                 <table style="width:100%; font-size: 20px;">
                 <tr>
                 <td><strong>Delivery Address</strong></td>
-                <td width="85%"><img src="Pictures/delivery.png"></td>
+                <td width="80%"><img src="Pictures/delivery.png"></td>
                 </tr>
                 </table>
                 
