@@ -1,4 +1,5 @@
 <?php 
+    ob_start();
     session_start(); 
 
     include 'connection.php';
@@ -32,6 +33,6 @@
     }
 
     header('Location:cart.php');
-    
+    ob_end_flush();
 ?>
 
