@@ -224,7 +224,7 @@
 
         <table class= "table">
         <tr style="background-color: #C0C0C0" align= center>
-            <td style= "width:50%">Item(s)</td>
+            <td style= "width:50%">Product(s)</td>
             <td></td>
             <td>Quantity</td>
             <td></td>

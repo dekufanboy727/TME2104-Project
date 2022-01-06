@@ -141,3 +141,37 @@ header .logo {
 .Disclaimer {
     color: #b3b3b3;
 }
+
+main {
+    margin-left: 20%;
+    margin-right: 20%;
+}
+
+img {
+    height: 64px;
+    width:96px;
+}
+
+.b2 {
+    padding: 5px;
+    color: rgb(255, 255, 255);
+    background-color: rgb(0, 0, 0);
+    text-align: center;
+    cursor: pointer;
+    width: 8%;
+    font-size: 15px;
+  }
+  
+.b2:hover {
+    background-color: rgb(155, 153, 153);
+  }
+
+input {
+    width: 10%;
+    padding: 7px;
+    text-align: center;
+  }
+
+input[type=text]:focus {
+    background-color: rgba(209, 173, 230, 0.356);
+  }
