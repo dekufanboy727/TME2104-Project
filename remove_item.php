@@ -20,16 +20,35 @@
         $_SESSION['update_pro'] = $_GET['update_pro'];
         $proid = $_SESSION['update_pro'] ;
         $i = 0;
-        foreach($_SESSION['cart'] as $product)
+        $check_last_item = 0;
+
+        foreach ($_SESSION['cart'] as $product)
         {
-            if($product['Proid'] === $proid)//If same product found
+            if(isset($product))
             {
-                $product['Proquantity'] =  $product['Proquantity'] - 1;
-                break;
-            } 
-            $i ++;
+                $check_last_item ++; //Calculate remaining no of item in the session array
+            }
+            
         }
-        unset($_SESSION['cart'][$i]);
+
+        //If there is only one item before delete
+        if($check_last_item === 1)
+        {
+            session_destroy(); //Destroy session
+        }
+        else
+        {
+            foreach($_SESSION['cart'] as $product)
+            {
+                if($product['Proid'] === $proid)//If same product found
+                {
+                    unset($_SESSION['cart'][$i]);
+                    break;
+                } 
+                $i ++;
+            }
+        }
+        $_SESSION['cart'] = array_values($_SESSION['cart']);
     }
 
     header('Location:cart.php');
