@@ -27,15 +27,14 @@
     }
     else
     {
-        $_SESSION['update_pro'] = $_GET['update_pro'];
-        $proid = $_SESSION['update_pro'] ;
+        $proid  = $_GET['update_pro'];
+        
         $i = 0;
         foreach($_SESSION['cart'] as $product)
         {
             if($product['Proid'] === $proid)//If same product found
             {
                 $product['Proquantity'] =  $product['Proquantity'] + 1;
-                
                 $_SESSION['cart'][$i] = $product;
                 break;
             } 

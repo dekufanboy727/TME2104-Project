@@ -60,7 +60,7 @@
                 {
                     echo "Error creating table cart: " . mysqli_error($conn);
                 }
-        
+                
             //Get the product id & quantity thru the Add Cart InputField in Index.php
             if ($_SERVER["REQUEST_METHOD"] == "POST")
             {
@@ -351,7 +351,6 @@
                                     
                             
                             $temp_total = $temp_total + $temp_subtotal;
-                            echo '<br>';
     
                             $counter ++ ;
                         }
@@ -377,7 +376,6 @@
                 }
                 else
                 {
-                    echo'<br></br>';
                     echo'<tr>';
                     echo'<td  colspan="8" align="center"> Empty Cart! </td>';
                     echo'</tr>';
