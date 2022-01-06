@@ -286,7 +286,7 @@
                 (2, 'Holly', 'Maddson', 'HM2@gmail.com', 60, 1110001000, 'Aa123@', 'Female', 'Penang', 37701, '2, Jalan Ferringgi 5/7B', 'GeorgeTown', 'Logged Out'),
                 (3, 'Barry', 'Halselhoff', 'BH3@gmail.com', 60, 1320001000, 'Bb123@', 'Male', 'Selangor', 48000, '4, Jalan University,', 'Petaling Jaya', 'Logged Out'),
                 (4, 'Darrel', 'Wong', 'DW4@gmail.com', 60, 1420001000, 'Bb123@', 'Male', 'Sarawak', 93000, '6, Jalan Rodway,', 'Kuching', 'Logged Out'),
-                (5, 'Siti', 'Ahmad', 'MA5@gmail.com', 60, 1530002000, 'Bb123@', 'Female', 'Pahang', 27600, '7, Jalan Lipis,', 'Raub', 'Logged Out');";
+                (5, 'Siti', 'Ahmad', 'MA5@gmail.com', 60, 1530002000, 'Bb123@', 'Female', 'Pahang', 27600, '7, Jalan Lipis,', 'Raub', 'Logged Out')";
 
                 $result = mysqli_query($conn, $sql);
                 if ($result === TRUE) {
@@ -312,12 +312,23 @@
                 if ($result === TRUE) 
                 {
                     echo "Table cart created successfully or Table exists".'<br>';
+                    $sql = "INSERT INTO ShoppingCart (id, User_id, Grand_total) VALUES
+                    (1, 1, 0.00),
+                    (2, 2, 0.00),
+                    (3, 3, 0.00),
+                    (4, 4, 0.00),
+                    (5, 5, 0.00)";
+                    if ($conn->query($sql) === TRUE) {
+                        echo "New CART created successfully";
+                    } else {
+                        echo "Error: " . $sql . "<br>" . $conn->error;
+                    }
                 }
                 else
                 {
                     echo "Error creating table cart: " . mysqli_error($conn);
                 }
-            
+
             //Create Transactions TABLE
             $sql = "CREATE TABLE transactions (
                 id int(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
@@ -359,6 +370,7 @@
                 product_id int(30) NOT NULL,
                 quantity int(15) NOT NULL,
                 total_price double(15,2) NOT NULL,
+                product_name VARCHAR(255) NOT NULL,
                 PRIMARY KEY (trans_id, product_id, quantity, total_price),
                 FOREIGN KEY (trans_id) REFERENCES transactions (id)
                 ON DELETE CASCADE
@@ -370,16 +382,16 @@
                 echo "Table Transaction Details Created Successfully".'<br>';
 
                 //Insert Dummy Transactions details for testing purpose 
-                $sql = "INSERT INTO transactions_details (trans_id, product_id, quantity, total_price) VALUES
-                (1, 3, 4, 860.00),
-                (1, 7, 1, 2279.00),
-                (1, 8, 3, 5100.00),
-                (2, 5, 2, 340.00),
-                (3, 4, 1, 2412.00),
-                (3, 5, 40, 6800.00),
-                (4, 1, 2, 3936.00),
-                (5, 2, 6, 4620.00),
-                (5, 6, 10, 330.00);";
+                $sql = "INSERT INTO transactions_details (trans_id, product_id, quantity, total_price, product_name) VALUES
+                (1, 3, 4, 860.00, 'Steel Wool Recovery Canisters and Accessories'),
+                (1, 7, 1, 2279.00, 'ECC Series 820 kVp Meters'),
+                (1, 8, 3, 5100.00, 'Series 815 kVp Meters'),
+                (2, 5, 2, 340.00, 'Techno Aide Veterinary Immobilizers'),
+                (3, 4, 1, 2412.00, 'Rotex Standard Ultra Series Silver Recovery Systems'),
+                (3, 5, 40, 6800.00, 'Techno Aide Veterinary Immobilizers'),
+                (4, 1, 2, 3936.00, 'Pacific Northway X-Ray Merchant Board for DR Panels'),
+                (5, 2, 6, 4620.00, 'PNWX Light Duty Merchant Board for Film Cassettes'),
+                (5, 6, 10, 330.00, 'Techno Aide Veterinary Positioner')";
 
                 
                 $result = mysqli_query($conn, $sql);

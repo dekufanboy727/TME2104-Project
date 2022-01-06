@@ -63,15 +63,15 @@
                 $result_trans = mysqli_query($conn,$sql); 
                 $receipt = mysqli_fetch_assoc($result_trans); //Fetch the selected info
 
-                echo '<tr><td colspan="3"></td><td>'."Receipt No: ".$receipt_no. '</td></tr>';
-                echo '<tr><td colspan="3"></td><td>'."Payment Date: ".$receipt['_date'].'</td></tr>';
-                echo '<tr><td colspan="3"></td><td>'."Payment Time: ".$receipt['_time'].'</td></tr>';
+                echo '<tr style="font-size:17px;"><td colspan="3"></td><td>'."Receipt No: ".$receipt_no. '</td></tr>';
+                echo '<tr style="font-size:17px;"><td colspan="3"></td><td>'."Payment Date: ".$receipt['_date'].'</td></tr>';
+                echo '<tr style="font-size:17px;"><td colspan="3"></td><td>'."Payment Time: ".$receipt['_time'].'</td></tr>';
 
                 //CONTENT FOR EMAIL
                 $message .= '
-                        <tr><td colspan="3"></td><td> Receipt No: '.$receipt_no.'</td></tr>'.
-                        '<tr><td colspan="3"></td><td> Payment Date: '.$receipt['_date'].'</td></tr>
-                        <tr><td colspan="3"></td><td> Payment Time: '.$receipt['_time'].'</td></tr>';
+                        <tr style="font-size:17px;"><td colspan="3"></td><td> Receipt No: '.$receipt_no.'</td></tr>'.
+                        '<tr style="font-size:17px;"><td colspan="3"></td><td> Payment Date: '.$receipt['_date'].'</td></tr>
+                        <tr style="font-size:17px;"><td colspan="3"></td><td> Payment Time: '.$receipt['_time'].'</td></tr>';
                 //CONTENT FOR EMAIL
 
 
@@ -84,31 +84,30 @@
                 //Store the user email for later use
                 $email = $receipt_user['email'];
 
-                echo '<tr><td></td><td><p>To</p></td></tr>';
-                echo '<tr><td></td><td>'.$receipt_user['lastname']." ".$receipt_user['firstname'].'</td></tr>';
-                echo '<tr><td></td><td>'."+".$receipt_user['region']." ".$receipt_user['phone'].'</td></tr>';
-                echo '<tr><td></td><td>'.$receipt_user['_address'].",".'</td></tr>';
-                echo '<tr><td></td><td>'.$receipt_user['city'].", ".$receipt_user['postcode'].", ".'</td></tr>';
-                echo '<tr><td></td><td>'.$receipt_user['_state'].", Malaysia.".'</td></tr>';
+                echo '<tr style="font-size:17px;"><td></td><td><p>To:</p></td></tr>';
+                echo '<tr style="font-size:17px;"><td></td><td>'.$receipt_user['lastname']." ".$receipt_user['firstname'].'</td></tr>';
+                echo '<tr style="font-size:17px;"><td></td><td>'."+".$receipt_user['region']." ".$receipt_user['phone'].'</td></tr>';
+                echo '<tr style="font-size:17px;"><td></td><td>'.$receipt_user['_address'].",".'</td></tr>';
+                echo '<tr style="font-size:17px;"><td></td><td>'.$receipt_user['city'].", ".$receipt_user['postcode'].", ".'</td></tr>';
+                echo '<tr style="font-size:17px;"><td></td><td>'.$receipt_user['_state'].", Malaysia.".'</td></tr>';
                 echo '</table> <br>';
 
                 //CONTENT FOR EMAIL
                 $message .= '
                     <main>
-                    <tr><td></td><td><p>To</p></td></tr>'.
-                    '<tr><td></td><td>'.$receipt_user['lastname']." ".$receipt_user['firstname'].'</td></tr>'.
-                    ' <tr><td></td><td> +'.$receipt_user['region']." ".$receipt_user['phone'].'</td></tr>'.
-                    ' <tr><td></td><td> '.$receipt_user['_address'].",".'</td></tr>'.
-                    ' <tr><td></td><td> '.$receipt_user['city'].", ".$receipt_user['postcode'].", ".'</td></tr>'.
-                    ' <tr><td></td><td> '.$receipt_user['_state'].", Malaysia.".'</td></tr>'.
+                    <tr style="font-size:17px;"><td></td><td><p>To:</p></td></tr>'.
+                    '<tr style="font-size:17px;"><td></td><td>'.$receipt_user['lastname']." ".$receipt_user['firstname'].'</td></tr>'.
+                    ' <tr style="font-size:17px;"><td></td><td> +'.$receipt_user['region']." ".$receipt_user['phone'].'</td></tr>'.
+                    ' <tr style="font-size:17px;"><td></td><td> '.$receipt_user['_address'].",".'</td></tr>'.
+                    ' <tr style="font-size:17px;"><td></td><td> '.$receipt_user['city'].", ".$receipt_user['postcode'].", ".'</td></tr>'.
+                    ' <tr style="font-size:17px;"><td></td><td> '.$receipt_user['_state'].", Malaysia.".'</td></tr>'.
                     '</table> <br>';
                 //CONTENT FOR EMAIL
-
 
             ?>
 
             <table width="100%">
-            <tr style="background-color: #C0C0C0; height: 70px" align= center>
+            <tr style="background-color: #C0C0C0; height: 70px; font-size: 20px;" align= center>
                 <td style="background-color: #FFFFFF; width: 5%"></td>
                 <td width="10%"> No. </td>
                 <td width="50%">Product(s)</td>
@@ -123,14 +122,14 @@
             <?php 
                 $message .= '
                 <table width="100%">
-                <tr style="background-color: #C0C0C0; height: 70px" align= center>
-                <td style="background-color: #FFFFFF; width: 75px"></td>
-                <td> No. </td>
-                <td >Product(s)</td>
-                <td >Quantity</td>
-                <td >Unit Price</td>
-                <td >Subtotal</td>
-                <td style="background-color: #FFFFFF; width:80px"></td>
+                <tr style="background-color: #C0C0C0; height: 70px; font-size: 20px;" align= center>
+                    <td style="background-color: #FFFFFF; width: 75px"></td>
+                    <td> No. </td>
+                    <td >Product(s)</td>
+                    <td >Quantity</td>
+                    <td >Unit Price</td>
+                    <td >Subtotal</td>
+                    <td style="background-color: #FFFFFF; width:80px"></td>
                 </tr>';
             ?>
             <!--CONTENT FOR EMAIL-->
@@ -155,63 +154,55 @@
                     while($row_trans = mysqli_fetch_assoc($result_trans_detail))
                     {
                         $counter++;
-                        $product_id = $row_trans['product_id'];
-                        //Fetch product details
-                        $sql = "SELECT * FROM product WHERE id = '$product_id'"; 
-                        $result_pro = mysqli_query($conn, $sql);  
-                        $row_pro = mysqli_fetch_assoc($result_pro);
                         
-
-                        //To ensure the price doesnt change due to some modification
+                        //To ensure the price doesnt change due to modification in admin side
                         $unit_price = $row_trans['total_price']/$row_trans['quantity'];
 
-                        echo'<tr align = "center" style="height: 70px">';
+                        echo'<tr align = "center" style="height: 70px; font-size: 19px;">';
                         echo '<td></td>';
                         echo '<td>' .$counter. '</td>';
-                        echo '<td>' .$row_pro['productname']. '</td>';
+                        echo '<td>' .$row_trans['product_name']. '</td>';
                         echo '<td>' .$row_trans['quantity'].'</td>';
                         echo '<td>' .$unit_price. '</td>';
                         echo '<td>' .$row_trans['total_price']. '</td>';
 
                         //CONTENT FOR EMAIL
                         $message .= '
-                            <tr align = "center" style="height: 70px">
+                            <tr align = "center" style="height: 70px; font-size: 19px;">
                             <td></td>
                             <td>' .$counter. '</td>
-                            <td>' .$row_pro['productname']. '</td>
+                            <td>' .$row_trans['product_name']. '</td>
                             <td>' .$row_trans['quantity'].'</td>
                             <td>' .$unit_price. '</td>
                             <td>' .$row_trans['total_price']. '</td>';
                         //CONTENT FOR EMAIL
                     }
                     echo'</tr>';
-                    echo '<tr style="height: 50px"><td></td><td style="border-top: 1px solid #C0C0C0;" colspan="4" align=right>'. "Merchandise Subtotal: ".
+                    echo '<tr style="height: 50px; font-size: 19px;"><td></td><td style="border-top: 1px solid #C0C0C0;" colspan="4" align=right>'. "Merchandise Subtotal: ".
                     '</td><td align=center style="border-top: 1px solid #C0C0C0;">'.$receipt['merchandise_total'].'</td></tr>';
-                    echo '<tr style="height: 50px"><td colspan="5" align=right>'."Shipping Subtotal: ".'</td><td align=center>'.$receipt['shipping_fee'].'</td></tr>';
-                    echo '<tr style="height: 50px"><td colspan="5" align=right>'."Total: ".'</td><td align=center>'.$receipt['grand_total'].'</td></tr>';
+                    echo '<tr style="height: 50px; font-size: 19px;"><td colspan="5" align=right>'."Shipping Subtotal: ".'</td><td align=center>'.$receipt['shipping_fee'].'</td></tr>';
+                    echo '<tr style="height: 50px; font-size: 19px; font-weight: bold;"><td colspan="5" align=right>'."Total: ".'</td><td align=center>'.$receipt['grand_total'].'</td></tr>';
 
                     //CONTENT FOR EMAIL
                     $message .= '
-                            <tr style="height: 50px"><td></td><td style="border-top: 1px solid #C0C0C0;" colspan="4" align=right>'. "Merchandise Subtotal: ".
+                            <tr style="height: 50px; font-size: 19px;"><td></td><td style="border-top: 1px solid #C0C0C0;" colspan="4" align=right>'. "Merchandise Subtotal: ".
                             '</td><td align=center style="border-top: 1px solid #C0C0C0;">'.$receipt['merchandise_total'].'</td></tr>
-                            <tr style="height: 50px"><td colspan="5" align=right> Shipping Subtotal: '.'</td><td align=center>'.$receipt['shipping_fee'].'</td></tr>
-                            <tr style="height: 50px"><td colspan="5" align=right> Total: '.'</td><td align=center>'.$receipt['grand_total'].'</td></tr></tr>
-                            </main>';
+                            <tr style="height: 50px; font-size: 19px;"><td colspan="5" align=right> Shipping Subtotal: '.'</td><td align=center>'.$receipt['shipping_fee'].'</td></tr>
+                            <tr style="height: 50px; font-size: 19px; font-weight: bold;"><td colspan="5" align=right> Total: '.'</td><td align=center>'.$receipt['grand_total'].'</td></tr></tr>
+                            </table></main>';
                     //CONTENT FOR EMAIL
                 }
                 
             ?>
-
+            </table>
         </main>
-       </table>
-
-
+       
 
         <br><br><br>
         <footer style="padding-top:10em;margin-top:auto;">
             <h3 align=center> Thank You for Purchasing with Us!</h3>
             <hr style="margin-left:70px; margin-right:70px; border-top: 1px solid gray;">
-                <div align=center>
+                <div align=center style="font-size:17px;">
                     <p>Address: P.O. Box 625, Gresham, OR 97030 U.S.A. &nbsp||&nbsp 
                      Tel: 503-667-3000  &nbsp||&nbsp  Toll-Free: 800-827-9729  &nbsp||&nbsp  Fax: 503-666-8855 </p>
                     <p>©1997-2021 Pacific Northwest X-Ray Inc. - Sales & Marketing Division - All Rights Reserved </p>
@@ -222,11 +213,11 @@
         <?php
             //CONTENT FOR EMAIL
             $message .= '
-                    </table>
+                    <br><br><br>
                     <footer style="padding-top:10em;margin-top:auto;">
                     <h3 align=center> Thank You for Purchasing with Us!</h3>
                     <hr style="margin-left:70px; margin-right:70px; border-top: 1px solid gray;">
-                            <div align=center>
+                            <div align=center style="font-size:17.5px;">
                                 <p>Address: P.O. Box 625, Gresham, OR 97030 U.S.A. &nbsp||&nbsp 
                                  Tel: 503-667-3000  &nbsp||&nbsp  Toll-Free: 800-827-9729  &nbsp||&nbsp  Fax: 503-666-8855 </p>
                                 <p>©1997-2021 Pacific Northwest X-Ray Inc. - Sales & Marketing Division - All Rights Reserved </p>
@@ -249,8 +240,6 @@
                 $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
                 // More headers
                 $headers .= 'From: <PNWX@hotmail.com>' . "\r\n";
-
-                
 
                 $MAIL = mail($to,$subject,$message,$headers);
                 if($MAIL == true)

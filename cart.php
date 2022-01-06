@@ -310,7 +310,6 @@
                 }
                 else
                 {
-                    echo'<br></br>';
                     echo'<tr>';
                     echo'<td  colspan="8" align="center"> Empty Cart! </td>';
                     echo'</tr>';
