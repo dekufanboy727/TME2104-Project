@@ -198,8 +198,14 @@
                                 $proid = $row['Product_id'];
                                 $quan = $row['Quantity'];
                                 $subtotal = $row['Subtotal'];
-                                $sql = "INSERT INTO transactions_details (trans_id, product_id, quantity, total_price) VALUES
-                                ('$trans_id', '$proid', '$quan', '$subtotal')";
+
+                                $sql = "SELECT productname FROM product WHERE id = '$proid'";
+                                $isFound_2 = mysqli_query($conn,$sql); 
+                                $product = mysqli_fetch_assoc($isFound_2);
+                                $product_name = $product['productname'];
+
+                                $sql = "INSERT INTO transactions_details (trans_id, product_id, quantity, total_price, product_name) VALUES
+                                ('$trans_id', '$proid', '$quan', '$subtotal', '$product_name')";
 
                                 $isInsert = mysqli_query($conn,$sql); 
                                 if ($isInsert === TRUE) {
@@ -221,18 +227,23 @@
                         echo "Validation and Payment Successful!";
                         echo '<p>'."Payment Date: ".$date;
                         echo "Payment Time: ".$time.'</p>';
-                        echo "Generating Receipt and Redirecting back to CATALOG...";
+                        echo "Please allow POP UP window for this website! Generating RECEIPT!";
+                        echo "Redirecting back to CATALOG...";
 
                         //Redirect back to index.php after successful payment
                         header( "refresh:8 ; url=index.php" );
-                        //ob_end_flush();
-                        
+
                         //Open a new tab for receipt
                         echo '<script type="text/javascript">
-                             window.open("receipt.php?receipt='.$trans_id.'&check=true")
+                             setTimeout
+                             (
+                                 function() 
+                                 {
+                                    window.open("receipt.php?receipt='.$trans_id.'&check=true")
+                                 }, 5000
+                             );
                              </script>';
-                            ob_end_flush();
-                        
+                        ob_end_flush();
                     }
                     else
                     {
