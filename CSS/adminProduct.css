@@ -1,0 +1,357 @@
+* {
+  box-sizing: border-box;
+}
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+}
+.mySlides {
+  display: none;
+}
+img {
+  vertical-align: middle;
+}
+
+html,
+body {
+  margin-top: 0;
+  padding: 0;
+  font-family: Maiandra GD;
+  scroll-padding-top: 200px;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+/*Header*/
+.HeaderHeader {
+  background: black;
+  height: 180px;
+  z-index: 1;
+  width: 100%;
+  box-shadow: -2px 5px 10px black;
+}
+
+.header_login {
+  margin-left: 10px;
+  font-size: 35px;
+  color: #cccccc;
+  text-shadow: 1px 1px 4px #ffffff;
+  padding-top: 60px;
+}
+
+.header_login a {
+  text-decoration: none;
+  float: right;
+  color: #cccccc;
+  font-size: 20px;
+  text-shadow: 3px 1px 4px #ffffff;
+  font-family: Maiandra GD;
+  padding-top: 10px;
+  padding-right: 70px;
+}
+
+.login_register {
+  padding-top: 20px;
+  margin-right: 5%;
+  padding-bottom: 0;
+  background: Black;
+}
+
+.login_register .image_login_register {
+  width: auto;
+  height: 25px;
+  float: right;
+}
+
+.login_register ul {
+  list-style-type: none;
+  margin: 0px;
+  padding-right: 50px;
+  overflow: hidden;
+}
+
+.login_register li {
+  float: right;
+  font-size: 18px;
+  color: #cccccc;
+  font-family: Maiandra GD;
+  display: block;
+}
+
+.login_register li a {
+  padding-left: 10px;
+  text-decoration: none;
+  color: #cccccc;
+  padding-top: 35px;
+}
+
+.logo {
+  float: left;
+  width: 280px;
+  height: 120px;
+}
+
+/*Footer*/
+.FooterFooter {
+  background-color: black;
+  font-family: Maiandra GD;
+  height: 280px;
+  padding: 30px;
+  min-width: 1500px;
+}
+
+.FFooterIcon {
+  margin-left: 10px;
+  margin-top: 20px;
+  float: left;
+}
+
+.FFooterBlocks {
+  font-family: Maiandra GD;
+  color: #b3b3b3;
+  background-color: black;
+  width: 270px;
+  height: 90px;
+  display: inline;
+  float: right;
+}
+
+.FFooterBlocks h3 {
+  text-align: left;
+  margin-left: 15%;
+  list-style-type: none;
+  text-align: left;
+}
+
+.FFooterIcon img {
+  width: 300px;
+  height: 130px;
+}
+
+#FooterLine {
+  border-top: #b3b3b3;
+  position: relative;
+}
+
+.FFooterUpperPortion {
+  height: 140px;
+}
+
+.FFooterLowerPortion {
+  text-align: center;
+}
+
+.Disclaimer {
+  color: #b3b3b3;
+}
+
+/* Dashboard */
+.admin-title {
+  font-size: 30px;
+  text-align: center;
+}
+
+.admin-title hr {
+  width: 87%;
+  border-width: 5px;
+}
+
+.admin-row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.admin-container {
+  float: left;
+  width: 50%;
+  padding: 50px 100px;
+}
+
+/* Tables */
+.displayTable {
+  margin-left: auto;
+  margin-right: auto;
+  width: 75%;
+  border: 2px solid #b3adad;
+  border-collapse: collapse;
+  padding: 6px;
+}
+.displayTable th {
+  border: 2px solid #b3adad;
+  padding: 6px;
+  background: #f0f0f0;
+  color: #313030;
+}
+.displayTable td {
+  border: 2px solid #b3adad;
+  text-align: center;
+  padding: 6px;
+  background: #ffffff;
+  color: #313030;
+}
+
+/* For Link Buttons */
+a.butt {
+  display: inline;
+}
+
+.button {
+  font-weight: bold;
+  padding: 10px;
+  color: white;
+  background-color: #000;
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+  margin: 5px 0;
+}
+
+.button:hover {
+  background-color: #555;
+}
+
+/*Extra Css for PHP validation*/
+.error {
+  color: red;
+  font-size: 13px;
+  font-family: Maiandra GD;
+}
+
+.correct {
+  color: green;
+  font-size: 20px;
+  font-family: Maiandra GD;
+}
+
+.correct-record {
+  color: green;
+  font-size: 20px;
+  font-family: Maiandra GD;
+  text-align: center;
+  font-weight: bold;
+}
+
+.errorGender {
+  padding-top: 7px;
+  font-size: 13px;
+  font-family: Maiandra GD;
+  color: red;
+}
+
+.errorTerms {
+  padding-top: 7px;
+  font-size: 13px;
+  font-family: Maiandra GD;
+  color: red;
+}
+
+/* Forms */
+.column-form {
+  width: 100%;
+  display: flex;
+  margin: auto;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+.column-form .columnB-form {
+  width: 55%;
+  text-align: center;
+  margin-top: 25px;
+  margin: auto;
+  background-color: rgb(238, 238, 238);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.384);
+}
+
+.columnB-form h1 {
+  font-size: 45px;
+}
+
+/* Forms */
+.formTable {
+  table-layout: fixed;
+  width: 70%;
+  height: 100%;
+  border: 0px none #ffffff;
+  border-collapse: collapse;
+  padding: 5px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.formTable th {
+  border-bottom: 2px solid #000000;
+  padding: 10px;
+  color: #313030;
+  font-size: 24px;
+}
+
+.formTable td {
+  border: 0px none;
+  text-align: center;
+  padding: 7px;
+  color: #313030;
+}
+
+.formTable td label {
+  margin-left: 22%;
+  float: left;
+  padding-right: 6px;
+  font-size: 18px;
+}
+
+.formTable td input {
+  width: 70%;
+  padding: 4px 8px;
+  margin: 20px 0;
+  box-sizing: border-box;
+}
+
+.formTable td input[type="submit"],
+input[type="button"],
+input[type="reset"] {
+  font-size: 20px;
+  font-weight: bold;
+  color: white;
+  background-color: #000;
+  text-align: center;
+  cursor: pointer;
+  box-sizing: border-box;
+  padding: 10px;
+  margin: 25px 0 25px 0;
+}
+
+td input[type="button"] {
+  padding: 10px;
+}
+
+td input[type="reset"] {
+  padding: 10px;
+}
+
+.formTable td input[type="submit"]:hover,
+input[type="reset"]:hover,
+input[type="button"]:hover {
+  background-color: #555;
+  cursor: pointer;
+}
+
+.formTable td #prodcat {
+  width: 70%;
+  padding: 4px 8px;
+  margin: 3px 0;
+  box-sizing: border-box;
+}
