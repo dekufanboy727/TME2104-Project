@@ -8,6 +8,7 @@
     <link rel="icon" href="Pictures/icon.png">
     <link rel="shortcut icon" href="Pictures/icon.png">
     <script src="https://unpkg.com/scrollreveal@4"></script>
+    <script src="scrollReveal.js" defer></script>
     <title>Admin/Edit Customer - PNWX</title>
 </head>
 <body>
@@ -455,12 +456,10 @@
         </tbody>
 	</table>
 
-    <br><br><br><br>
-
     <!-- For inserting new customer data -->
     <div class="column-form">
         <div class="columnB-form">
-            <h1><?php if($editstat == TRUE){echo "Update ";}else{echo "Insert ";}?> Data</h1>
+            <h1><?php if($editstat == TRUE){echo "Update ";}else{echo "Insert ";}?> Customer Data</h1>
             <span class="correct-record"> <?php echo $createSuc; ?> </span>
             <span class="correct-record"> <?php echo $deleteMes; ?> </span>
             <form name="reg" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
@@ -610,13 +609,6 @@
             </form>
         </div>
     </div>
-
-    <!-- For animating elements as they enter/leave the viewport -->
-    </div>
-        <script src="scrollReveal.js"></script>
-    </div>
-
-    <br><br><br>
 
     <footer class="FooterFooter" id="Push_footer">
         <div class="FFooterUpperPortion">

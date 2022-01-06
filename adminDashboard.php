@@ -8,6 +8,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="CSS/admin.css">
     <script src="https://unpkg.com/scrollreveal@4"></script>
+    <script src="clock.js" defer></script>
+    <script src="scrollReveal.js" defer></script>
     <title>Admin Dashboard - PNWX</title>
 </head>
 <body>
@@ -239,10 +241,10 @@
         </div>
     </div>
 
-    
-    
-    
-    <br><br><br><br><br><br><br>
+    <div class="clock-box">
+        <div class="clock">HH : MM : SS</div>
+        <div class="date">DD - MM - YYYY</div>
+    </div>
     
     <div class="admin-title">
         <h1>Summary of Transaction Records</h1>
@@ -252,8 +254,8 @@
     <div class="summaryRow">
         <div class="summaryColumn">
             <div class="SumTitle">
-                <h3>Recent Buyers and States</h3>
-                <hr>
+                <h3 class="section-header">Recent Buyers and States</h3>
+                <hr class="section-header-hr">
             </div>
             <?php
                 $sql_sum = "SELECT userid FROM transactions ORDER BY _date DESC LIMIT 5";
@@ -281,9 +283,8 @@
         </div>
         <div class="summaryColumn">
             <div class="SumTitle">
-                <h3>Transactions based on States</h3>
-                <p>Maybe you can chartify this?</p>
-                <hr>
+                <h3 class="section-header">Transactions based on States</h3>
+                <hr class="section-header-hr">
             </div>
             <?php
                 $sql_sum = "SELECT _state,  COUNT(transactions.id) AS custotal 
@@ -311,14 +312,15 @@
                 }
                 
             ?>
+            <p style="text-align:center;">Maybe you can chartify this?</p>
         </div>
     </div>
 
     <div class="summaryRow">
         <div class="summaryColumn">
             <div class="SumTitle">
-                <h3>Today's Transactions</h3>
-                <hr>
+                <h3 class="section-header">Today's Transactions</h3>
+                <hr class="section-header-hr">
             </div>
             <?php
                 $dated1 = date( 'd' ,strtotime("now"));
@@ -355,9 +357,8 @@
         </div>
         <div class="summaryColumn">
             <div class="SumTitle">
-                <h3>Hottest Products</h3>
-                <p>Maybe you can chartify this?</p>
-                <hr>
+                <h3 class="section-header">Hottest Products</h3>
+                <hr class="section-header-hr">
             </div>
             <?php
                 //Sql Query Declarations
@@ -423,11 +424,9 @@
                     echo "<p class='noresults'> No Results </p>";
                 }
             ?>
+            <p style="text-align:center;">Maybe you can chartify this?</p>
         </div>
     </div>
-    
-
-    <br><br><br><br><br><br><br>
 
     <div class="admin-title">
         <h1>Report of Transaction Records</h1>
@@ -480,14 +479,6 @@
             ?>
         </div>
     </section>
-
-
-    <!-- For animating elements as they enter/leave the viewport -->
-    </div>
-        <script src="scrollReveal.js"></script>
-    </div>
-
-    <br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
     <footer class="FooterFooter" id="Push_footer">
         <div class="FFooterUpperPortion">
