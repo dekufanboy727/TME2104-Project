@@ -602,7 +602,7 @@
                             <?php if ($editstat === TRUE):?>
                                 <a href="adminEditCustomer.php?canceledit=1"><input type="button" value="Cancel" ></a>
                             <?php else: ?>
-                                <a href="adminEditCustomer.php?clearvalues=1"><input type="reset" name = "reset" value="Clear" ></a>
+                                <a href="adminEditCustomer.php?clearvalues=1"><input type="button" name = "reset" value="Clear" ></a>
                             <?php endif; ?>
                         </td>
                     </tr>

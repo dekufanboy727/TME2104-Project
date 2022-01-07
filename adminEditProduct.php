@@ -373,7 +373,7 @@
                         <?php if ($editstat === TRUE):?>
                             <a href="adminEditProduct.php?canceledit=1"><input type="button" value="Cancel" ></a>
                         <?php else: ?>
-                            <a href="adminEditProduct.php?clearvalues=1"><input type="reset" name = "reset" value="Clear" ></a>
+                            <a href="adminEditProduct.php?clearvalues=1"><input type="button" name = "reset" value="Clear" ></a>
                         <?php endif; ?>
                     </td>
                 </table>
