@@ -7,8 +7,7 @@
     <link rel="stylesheet" href="CSS/adminCustomer.css">
     <link rel="icon" href="Pictures/icon.png">
     <link rel="shortcut icon" href="Pictures/icon.png">
-    <script src="https://unpkg.com/scrollreveal@4"></script>
-    <script src="scrollReveal.js" defer></script>
+    <script src="https://unpkg.com/scrollreveal"></script>
     <title>Admin/Edit Customer - PNWX</title>
 </head>
 <body>
@@ -458,6 +457,7 @@
 	</table>
 
     <!-- For inserting new customer data -->
+    <br><br><br>
     <div class="column-form">
         <div class="columnB-form">
             <h1><?php if($editstat == TRUE){echo "Update ";}else{echo "Insert ";}?> Customer Data</h1>
@@ -610,6 +610,10 @@
             </form>
         </div>
     </div>
+    <br><br><br>
+
+    <!-- Calling Scroll Animation -->
+    <script src='scrollAnimation.js' defer></script>
 
     <footer class="FooterFooter" id="Push_footer">
         <div class="FFooterUpperPortion">
