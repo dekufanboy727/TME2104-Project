@@ -190,6 +190,10 @@
 
                 if(mysqli_query($conn, $updatesql)){
                     $deleteMes = "Record ".$shownid." Updated";
+
+                    $productid = $productname = $productprice = $productdesc = $productcategory = $productpic = $productpicERR = $createSUC = "";
+
+                    $productnameERR = $productpriceERR = $productdescERR = $targetFilePath = "";
                 }else{
                     $deleteMes = "Update Error";
                 }
@@ -214,6 +218,10 @@
                         $updatesql = "UPDATE product SET productpic = '$targetFilePath', productpicadd = '$targetFilePath' WHERE id = '$shownid'";
                         if(mysqli_query($conn, $updatesql)){
                             $deleteMes = "Picture ".$shownid." Updated";
+
+                            $productid = $productname = $productprice = $productdesc = $productcategory = $productpic = $productpicERR = $createSUC = "";
+
+                            $productnameERR = $productpriceERR = $productdescERR = $targetFilePath = "";
                         }else{
                             $deleteMes = "Update Error";
                         }
@@ -279,6 +287,11 @@
             ?>
 		</tbody>
 	</table>
+
+    <?php 
+    //Close Connection
+    mysqli_close($conn); 
+    ?>
     <br>
     
     <!-- For inserting new product data -->
@@ -373,7 +386,7 @@
                         <?php if ($editstat === TRUE):?>
                             <a href="adminEditProduct.php?canceledit=1"><input type="button" value="Cancel" ></a>
                         <?php else: ?>
-                            <a href="adminEditProduct.php?clearvalues=1"><input type="reset" name = "reset" value="Clear" ></a>
+                            <a href="adminEditProduct.php?clearvalues=1"><input type="button" name = "reset" value="Clear" ></a>
                         <?php endif; ?>
                     </td>
                 </table>
