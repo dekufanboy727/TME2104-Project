@@ -272,7 +272,7 @@
 
 
                         //Redirect back to index.php after successful payment
-                        //header( "refresh:8 ; url=index.php" );
+                        header( "refresh:8 ; url=index.php" );
 
                         //Open a new tab for receipt
                         echo '<script type="text/javascript">
@@ -295,7 +295,7 @@
                         echo " Redirecting back to CART...";
                         echo '</td></tr>';
                         //Redirect back to cart after failed payment attempt
-                        //header( "refresh:3 ; url=cart.php" );
+                        header( "refresh:3 ; url=cart.php" );
                     }
 
                 }
