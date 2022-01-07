@@ -101,7 +101,7 @@ header .logo {
     margin-top: 1%;
 }
 
-.logout a {
+.logout a, .logout span {
     font-family: Maiandra GD;
     color: #cccccc;
     float:right;
@@ -109,6 +109,10 @@ header .logo {
     text-decoration: none;
     padding: 5px 5px;
     margin-top: 1%;
+}
+
+.logout a:hover {
+    color: white;
 }
 
 .logout .image_login_register{
