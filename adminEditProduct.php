@@ -7,8 +7,8 @@
     <link rel="stylesheet" href="CSS/adminProduct.css">
     <link rel="icon" href="Pictures/icon.png">
     <link rel="shortcut icon" href="Pictures/icon.png">
-    <script src="https://unpkg.com/scrollreveal@4"></script>
-    <script src="scrollReveal.js" defer></script>
+    <script src="https://unpkg.com/scrollreveal"></script>
+
     <title>Admin/Edit Product - PNWX</title>
 </head>
 <body>
@@ -382,6 +382,9 @@
         </div>
     </div>
        
+    <!-- Calling Scroll Animation -->
+    <script src='scrollAnimation.js' defer></script>
+
     <footer class="FooterFooter" id="Push_footer">
         <div class="FFooterUpperPortion">
             <div class="FFooterIcon">

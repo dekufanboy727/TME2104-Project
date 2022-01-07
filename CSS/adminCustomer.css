@@ -189,12 +189,14 @@ html {
   border-collapse: collapse;
   padding: 6px;
 }
+
 .displayTable th {
   border: 2px solid #b3adad;
   padding: 6px;
   background: #f0f0f0;
   color: #313030;
 }
+
 .displayTable td {
   border: 2px solid #b3adad;
   text-align: center;
@@ -263,6 +265,8 @@ a.butt {
   width: 100%;
   display: flex;
   margin: auto;
+  margin-top: 50px;
+  margin-bottom: 50px;
 }
 
 .column-form .columnB-form {
