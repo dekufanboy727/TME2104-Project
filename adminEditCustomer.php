@@ -362,6 +362,11 @@
 
                 if(mysqli_query($conn, $updatesql)){
                     $deleteMes = "Record ".$shownid." Updated";
+                    $email = $mobile = $pw = $cpw = $gender = $region = $state = "";
+                    $emailE = $mobileE = $pwE = $cpwE = $genderE = $termsE ="";
+                    $postcode = $add = $city ="";
+                    $postcodeE = $addE = $cityE ="";
+                    $cpw_match = $pw_strong = "";
                 }else{
                     $deleteMes = "Update Error";
                 }
@@ -455,6 +460,11 @@
             ?>
         </tbody>
 	</table>
+
+    <?php 
+    //Close Connection
+    mysqli_close($conn); 
+    ?>
 
     <!-- For inserting new customer data -->
     <br><br><br>
