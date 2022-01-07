@@ -417,7 +417,7 @@
                     echo "<table class='displayTable'>";
                     echo "<tr><th>ID</th><th>UserID</th><th>Date</th><th>Time</th><th>Subtotal</th><th>Shipping Fee</th><th>Total</th></tr>";
                     while($row = mysqli_fetch_assoc($datedresult)){
-                        $temp_id = $row["id"];
+                        $temp_id = $row["userid"];
                         $sql_name = "SELECT firstname, lastname FROM registered_user WHERE id = '$temp_id'";
                         $datedresult2 = mysqli_query($conn, $sql_name);
                         $temp_name = mysqli_fetch_assoc($datedresult2);
@@ -595,7 +595,7 @@
                         echo "<table class='displayTable'>";
                         echo "<tr><th>ID</th><th>UserID</th><th>Date</th><th>Time</th><th>Subtotal</th><th>Shipping Fee</th><th>Total</th></tr>";
                         while($row = mysqli_fetch_assoc($result)){
-                            $temp_id = $row["id"];
+                            $temp_id = $row["userid"];
                             $sql_name = "SELECT firstname, lastname FROM registered_user WHERE id = '$temp_id'";
                             $result2 = mysqli_query($conn, $sql_name);
                             $temp_name = mysqli_fetch_assoc($result2);
