@@ -21,18 +21,13 @@
                 if($_SESSION['login'] === "Logged In")
                 {
                     $logout = "Logout";
-                    $myprofile = "My Profile     |";
-                }
-                else //Or logged out
-                {
-                    $signup = "Sign Up";
-                    $login = "Login     |";
+                    $myprofile = "My Profile";
                 }
             }
             else //session login not set yet
             {
                 $signup = "Sign Up";
-                $login = "Login     |";
+                $login = "Login";
             }
 
             // Create onnection
@@ -212,9 +207,10 @@
             </span>
             <div class="login_register">
                 <ul>
-                  <li><a href="register.php"><?php echo $signup?></a></li>
-                  <li><a href="login.php" ><?php echo $login?></a></li>
                   <li><a href="logout.php"  ><?php echo $logout?></a></li>
+                  <li><a href="register.php"><?php echo $signup?></a></li>
+                  <li>&nbsp| </li>
+                  <li><a href="login.php" ><?php echo $login?></a></li>
                   <li><a href="myProfile.php"  ><?php echo $myprofile?></a></li>
                   <li><img class="image_login_register" src="Pictures/login_register_icon.png" alt="Login and register icon"></a>
                 </ul>
