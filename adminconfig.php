@@ -15,18 +15,18 @@
     }
     else
     {
-        echo "Connection successful!";
+        //echo "Connection successful!";
     }
 
     $sql = "CREATE DATABASE DB_PNWX";
     $dbResult = mysqli_query($conn, $sql);
     if ($dbResult === FALSE) 
     {
-        echo "Database creation failed:" . mysqli_error($conn);
+        //echo "Database creation failed:" . mysqli_error($conn);
     }
     else
     {
-        echo "Database created successfully";   
+        //echo "Database created successfully";   
     }
 
     $dbname = "DB_PNWX";
@@ -40,7 +40,7 @@
     }
     else
     {
-        echo "Connection successful!";
+        //echo "Connection successful!";
     }
 
     

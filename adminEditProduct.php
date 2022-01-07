@@ -109,7 +109,7 @@
                     $productnameERR = $productpriceERR = $productdescERR = $targetFilePath = "";
                     
                 }else {
-                    $createSUC = "Error: " . $sql . "<br>" . mysqli_error($conn);
+                    $createSUC = "Error: Record cannot be added successfully!" /*. $sql . "<br>" . mysqli_error($conn)*/;
                 }
             }
         }
@@ -128,7 +128,7 @@
                 $deleteMes = "Record has been succesfully deleted.";
             }else
             {
-                echo "Record can't be deleted". mysqli_error($conn);
+                $deleteMes = "Record can't be deleted" /*. mysqli_error($conn)*/;
             }
         }
 
@@ -149,7 +149,7 @@
                 $productpic = $editrow["productpic"];
 
             }else{
-                echo "0 results";
+                $createSUC = "0 results";
             }
 
         }

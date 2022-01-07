@@ -41,7 +41,7 @@
             $result = mysqli_fetch_assoc($isFound);
             $name = $result['username'];
         }else{
-            echo "no results";
+            //echo "no results";
         }
         
         function test($data)
@@ -70,7 +70,7 @@
 
         //Inserting Preset Users For Functions to Work
         if ($conn->query($sql) === TRUE) {
-            echo "Table MyGuests created successfully";
+            //echo "Table MyGuests created successfully";
 
             $sql = " INSERT INTO registered_user (id, firstname, lastname, email, region, phone, pwd, gender, _state, postcode, _address, city, _login) VALUES
             (1, 'Jerry', 'Mander', 'JM1@gmail.com', 60, 1910001000, 'Cc123@', 'Male', 'Selangor', 53110, '3, Jalan Terringgi 3/5 C,', 'Kuala Lumpur', 'Logged Out'),
@@ -81,12 +81,12 @@
 
             $result = mysqli_query($conn, $sql);
             if ($result === TRUE) {
-                echo "New record created successfully";
+                //echo "New record created successfully";
             } else {
-                echo "Error: " .  mysqli_error($conn);
+                //echo "Error: " .  mysqli_error($conn);
             }
         } else {
-            echo "Error creating table: " . $conn->error;
+            //echo "Error creating table: " . $conn->error;
         }
 
         //Create Transactions TABLE
@@ -115,13 +115,13 @@
 
             $result = mysqli_query($conn, $sql);
             if ($result === TRUE) {
-                echo "New record created successfully";
+                //echo "New record created successfully";
             } else {
-                echo "Error: " .  mysqli_error($conn);
+                //echo "Error: " .  mysqli_error($conn);
             }
 
         }else{
-            echo "Error creating table: " . $conn->error;
+            //echo "Error creating table: " . $conn->error;
         }
 
         //Create transactions_details TABLE
@@ -155,13 +155,13 @@
             
             $result = mysqli_query($conn, $sql);
             if ($result === TRUE) {
-                echo "New record created successfully";
+                //echo "New record created successfully";
             } else {
-                echo "Error: " .  mysqli_error($conn);
+                //echo "Error: " .  mysqli_error($conn);
             }
 
         }else{
-            echo "Error creating table: " . $conn->error;
+            //echo "Error creating table: "  $conn->error;
         }
 
         //Transaction Report Request Handling
@@ -500,10 +500,10 @@
                     echo "<p class='noresults'> No Results </p>";
                 }
 
-                foreach($sum_result as $data)
+                foreach($temp_array as $data)
                 {
-                    $productname[] = $data['productname'];
-                    $salestotal[] = $data['custotal'];
+                    $productname[] = $data['name'];
+                    $salestotal[] = $data['quantity'];
                 };
             ?>
 
@@ -606,12 +606,12 @@
                     }else{
                         echo "<br>";
                         echo "<p class='noresults'> No Results </p>";
-                        echo mysqli_error($conn);
+                        //echo mysqli_error($conn);
                     }
                 }else{
                     echo "<br>";
                     echo "<p class='noresults'> No Results </p>";
-                    echo mysqli_error($conn);
+                    //echo mysqli_error($conn);
                 }
                 mysqli_close($conn);
             ?>
