@@ -40,14 +40,33 @@
                 $user_making_payment = mysqli_fetch_assoc($result); //Fetch the selected info
                 
             ?>
-            <img src="Pictures/delivery.png">
-            <p>Delivery Address</p> <br>
+
+                <table style="width:100%; font-size: 20px;">
+                <tr>
+                <td><strong>Delivery Address</strong></td>
+                <td width="80%"><img src="Pictures/delivery.png"></td>
+                </tr>
+                </table>
+                
+            
             <?php
-                echo $user_making_payment['lastname']." ".$user_making_payment['firstname'];
-                echo "+".$user_making_payment['region']." ".$user_making_payment['phone'];
-                echo $user_making_payment['_address'].", ".$user_making_payment['city'].", ".$user_making_payment['postcode'].", ".$user_making_payment['_state'].", Malaysia.";
+                echo '<table style="width:20%; font-size: 18px;">';
+                echo '<tr><td>'.$user_making_payment['_address'].",".'</td></tr>'.
+                '<tr><td>'.$user_making_payment['city'].",".$user_making_payment['postcode'].",".'</td></tr>'.
+                '<tr><td>'.$user_making_payment['_state'].", Malaysia.".'</tr>';
+                echo '<tr><td><br></td></tr>';
+                echo '<tr><td>'.$user_making_payment['lastname']." ".$user_making_payment['firstname'].'</td></tr>';
+                echo '<tr><td>'."+".$user_making_payment['region']." ".$user_making_payment['phone'].'</td></tr>';
+                echo '</table>';
             ?>
             <br>
+            <table style="width:100%; height: 400px; font-size: 18px;">
+            <tr style="background-color: #C0C0C0" align= center>
+                <td style= "width:55%">Product(s)</td>
+                <td style= "width:15%">Quantity</td>
+                <td style= "width:15%">Unit Price</td>
+                <td style= "width:15%">Subtotal</td>
+            </tr>
 
             <?php
                 $total_quantity = $shippingfee = $paymentotal = 0;
@@ -65,13 +84,14 @@
                     while($row = mysqli_fetch_assoc($result))
                     {
                         echo'<tr align = "center">';
-                        echo '<td >'.$row['productname']. '</td><br>';
-                        echo '<td>'.$row['Quantity'].'</td><br>';
-                        echo '<td>' .$row['price']. '</td><br>';
-                        echo '<td>' .$row['Subtotal']. '</td><br>';
+                        echo '<td >'.$row['productname']. '</td>';
+                        echo '<td>'.$row['Quantity'].'</td>';
+                        echo '<td>' .$row['price']. '</td>';
+                        echo '<td>' .$row['Subtotal']. '</td>';
                         echo'</tr>';
                     }
                 }
+
 
                 if($total_quantity <= 5 )
                 {
@@ -107,15 +127,18 @@
                 $_SESSION['merchandise'] = $user_making_payment['Grand_total'];
 
                 $paymentotal = $user_making_payment['Grand_total'] + $shippingfee;
-                echo "Merchandise Subtotal: ".$user_making_payment['Grand_total'];
-                echo "Shipping Subtotal: ".$shippingfee;
-                echo "Payment Total (".$total_quantity." Item): ".$paymentotal;
+                
+                echo '<tr ><td style="border-top: 1px solid #C0C0C0;" colspan="3" align=right>'."Merchandise Subtotal: ".
+                '</td><td align=center style="border-top: 1px solid #C0C0C0;">'.$user_making_payment['Grand_total'].'</td></tr>';
+                echo '<tr><td colspan="3" align=right>'."Shipping Subtotal: ".'</td><td align=center>'.$shippingfee.'</td></tr>';
+                echo '<tr style="font-weight: bold;"><td style="border-bottom: 1px solid #C0C0C0;" colspan="3" align=right>'."Payment Total (".$total_quantity." Item): ".'</td><td style="border-bottom: 1px solid #C0C0C0;" align=center>'.$paymentotal.'</td></tr>';
+                echo '</table>';
 
                 $_SESSION['PaymentTotal'] = $paymentotal;
             ?>
-
+            
             <!--Payment-->
-            <p>Total: 
+            <p align=right style="font-size:20px">Total: 
 
             <?php 
                 $shippingfee = $_SESSION['shipping'];
@@ -130,14 +153,16 @@
 
                 $total = $shippingfee + $result['Grand_total'];
                 echo $total.'</p>';
+
             ?>
+
             <p>
-                OTP
                 <form name="payment" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
-                    <input type="text" id="validation" name="validation">
-                    <div class="button">
-                        <input type="submit" name = "submit" value="Submit" >
-                    </div>
+                <p align=right style="font-size:20px"> OTP: 
+                <input type="text" id="validation" name="validation">
+                    <span class="button">
+                        <input class="b2" type="submit" name = "submit" value="Submit" >
+                    </span> </p>
                 </form>
             </p>
 
@@ -152,7 +177,7 @@
                     if(empty($_POST["validation"]))
                     {
                         $validate_error = "PAYMENT ATTEMPT FAILED!";
-                        $validate_error2 = "Please try to CHECK OUT AGAIN!";
+                        $validate_error2 = " Please try to CHECK OUT AGAIN!";
                     }
                     else
                     {
@@ -160,7 +185,7 @@
                         if(!is_numeric($OTP) || strlen($OTP) !== 6)
                         {
                             $validate_error = "PAYMENT ATTEMPT FAILED!";
-                            $validate_error2 = "Please try to CHECK OUT AGAIN!";
+                            $validate_error2 = " Please try to CHECK OUT AGAIN!";
                         }
                     }
 
@@ -224,11 +249,13 @@
                                 echo "Error Remove the paid items: " .  mysqli_error($conn);
                             }
                         }
-                        echo "Validation and Payment Successful!";
-                        echo '<p>'."Payment Date: ".$date;
+
+                        echo '<p align=right style="color:green; font-size:15px">'."Validation and Payment Successful!".'</p>';
+                        echo '<p align=right style="font-size:15px">'."Payment Date: ".$date.'<br>';
                         echo "Payment Time: ".$time.'</p>';
-                        echo "Please allow POP UP window for this website! Generating RECEIPT!";
-                        echo "Redirecting back to CATALOG...";
+                        echo '<p align=right style="color:red; font-size:15px">'."Please allow POP UP window for this website!".'<br>';
+                        echo "Generating RECEIPT!".'<br>';
+                        echo "Redirecting back to CATALOG...".'</p>';
 
                         //Redirect back to index.php after successful payment
                         header( "refresh:8 ; url=index.php" );
@@ -247,9 +274,11 @@
                     }
                     else
                     {
+                        echo '<p align=right style="color:red; font-size:15px">';
                         echo $validate_error;
-                        echo $validate_error2;
+                        echo $validate_error2.'<br>';
                         echo "Redirecting back to CART...";
+                        echo '</p>';
                         //Redirect back to cart after failed payment attempt
                         header( "refresh:3 ; url=cart.php" );
                     }
