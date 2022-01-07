@@ -119,8 +119,8 @@
                     }
 
                     //Set session variables
-                    $_SESSION['email'] = $email;
-                    $_SESSION['login'] = "Logged In";
+                    $_SESSION['admin_email'] = $email;
+                    $_SESSION['admin_login'] = "Logged In";
                     $_SESSION['admin_id'] = $id;
 
                     //Close Connection
