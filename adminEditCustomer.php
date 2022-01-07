@@ -406,8 +406,6 @@
         </div>
     </header>
 
-    
-
     <div class="admin-title">
         <h1>Edit Customer Information</h1>
         <hr>

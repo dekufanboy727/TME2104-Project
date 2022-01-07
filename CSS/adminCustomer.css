@@ -2,7 +2,7 @@
   box-sizing: border-box;
 }
 body {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Maiandra GD;
   margin: 0;
 }
 .mySlides {
@@ -21,7 +21,7 @@ body {
 }
 
 body {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Maiandra GD;
 }
 
 html {
@@ -63,10 +63,9 @@ html {
 }
 
 .login_register {
-  padding-top: 20px;
-  margin-right: 5%;
-  padding-bottom: 0;
-  background: Black;
+  margin-top: -20px;
+  padding-top: -20px;
+  margin-right: 7%;
 }
 
 .login_register .image_login_register {

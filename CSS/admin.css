@@ -2,7 +2,7 @@
   box-sizing: border-box;
 }
 body {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Maiandra GD;
   margin: 0;
 }
 .mySlides {
@@ -21,7 +21,7 @@ body {
 }
 
 body {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Maiandra GD;
 }
 
 html {
@@ -70,16 +70,15 @@ html {
 }
 
 .login_register {
-  padding-top: 20px;
+  margin-top: -30px;
+  padding-top: -30px;
   margin-right: 5%;
-  padding-bottom: 0;
-  background: Black;
 }
 
 .login_register .image_login_register {
   width: auto;
   height: 25px;
-  float: right;
+  float:right;
 }
 
 .login_register ul {
@@ -87,21 +86,25 @@ html {
   margin: 0px;
   padding-right: 50px;
   overflow: hidden;
+  padding-top: 15px;
 }
 
 .login_register li {
-  float: right;
+  float:right;
   font-size: 18px;
   color: #cccccc;
   font-family: Maiandra GD;
   display: block;
 }
 
-.login_register li a {
+.login_register li a{
   padding-left: 10px;
   text-decoration: none;
   color: #cccccc;
-  padding-top: 35px;
+}
+
+.login_register li a:hover {
+  color: rgb(255, 255, 255);
 }
 
 .logo {
