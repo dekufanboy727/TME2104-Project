@@ -259,6 +259,25 @@ body {
   background-color: #555;
 }
 
+.button2 {
+  border: none;
+  outline: 0;
+  float: right;
+  padding: 15px;
+  color: white;
+  background-color: #000;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  height: 40px;
+  width: 140px;
+  margin-right: 20px;
+}
+
+.button2:hover {
+  background-color: #555;
+}
+
 html {
   box-sizing: border-box;
 }

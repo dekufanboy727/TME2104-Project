@@ -73,22 +73,22 @@
 
                 $sql = "ALTER TABLE admins AUTO_INCREMENT = 1000";
                 if (mysqli_query($conn, $sql) === TRUE){
-                    echo "Alter successful";
+                    //echo "Alter successful";
                     $sql = "INSERT INTO admins (username, pass, fullname, email, _login) 
                         VALUES  ('admin01', 'PNWX', 'Jared RightBottom', 'admin01@pnwx.com', 0),
                                 ('admin02', 'PNWX', 'Garry HIghlander', 'admin02@pnwx.com', 0);";
 
                     if (mysqli_query($conn, $sql) == TRUE){
-                        echo "Values added successful";
+                        //echo "Values added successful";
                     }else{
-                        echo "Error: " . mysqli_error($conn);
+                        //echo "Error: " . mysqli_error($conn);
                     }
 
                 }else{
-                    echo "Error: " . mysqli_error($conn);
+                    //echo "Error: " . mysqli_error($conn);
                 }
             }else{
-                echo "Error: " . mysqli_error($conn);
+                //echo "Error: " . mysqli_error($conn);
             }
             
             //No error in input
@@ -111,11 +111,11 @@
                     //See if updated
                     if($result == true)
                     {
-                        echo "UPDATED LOGIN";
+                        //echo "UPDATED LOGIN";
                     } 
                     else
                     {
-                        echo "Failed to update". $conn->error;
+                        //echo "Failed to update". $conn->error;
                     }
 
                     //Set session variables

@@ -101,7 +101,8 @@
     <!----product end-->
     
         <header class="HeaderHeader" id="Push_header">
-              
+            
+        <a class="button2" href="adminlogin.php"  >Staff Only</a>
 
             <div class="login_register">
                 <ul id = abc>
@@ -118,6 +119,9 @@
                 </ul>
                 
             </div>
+
+            
+
             <a class = "cart_position" href="cart.php"> <img id="cart" src="Pictures/cart.png" alt="Cart"> </a>
               
         </header>

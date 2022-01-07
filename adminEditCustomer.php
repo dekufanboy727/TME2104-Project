@@ -277,7 +277,8 @@
                     $postcodeE = $addE = $cityE ="";
                     $cpw_match = $pw_strong = "";
                   } else {
-                    echo "Error: " . $sql . "<br>" . $conn->error;
+                    $createSuc = "Record could not be created successfully";
+                    //echo "Error: " . $sql . "<br>" . $conn->error;
                   }
 
                 $sql = "SELECT id FROM registered_user WHERE email='$email'"; //Select the user id
@@ -298,7 +299,7 @@
                 $deleteMes = "Record has been succesfully deleted.";
             }else
             {
-                echo "Record can't be deleted". mysqli_error($conn);
+                $deleteMes = "Record can't be deleted";
             }
         }
         
@@ -326,7 +327,7 @@
                 $city = $editrow["city"];
 
             }else{
-                echo "0 results";
+                $deleteMes = "0 results";
             }
         }
 

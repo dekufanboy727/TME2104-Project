@@ -19,11 +19,11 @@
         //See if updated
         if($result == true)
         {
-            echo "UPDATED LOGIN";
+            //echo "UPDATED LOGIN";
         } 
         else
         {
-            echo "Failed to update". mysqli_error($conn);
+            //echo "Failed to update". mysqli_error($conn);
         }
                     
         session_destroy();
