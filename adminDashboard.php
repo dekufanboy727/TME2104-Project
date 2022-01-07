@@ -7,14 +7,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="CSS/admin.css">
-    <script src="https://unpkg.com/scrollreveal@4"></script>
+    <script src="https://unpkg.com/scrollreveal"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"
      integrity="sha512-TW5s0IT/IppJtu76UbysrBH9Hy/5X41OTAbQuffZFU6lQ1rdcLHzpU5BzVvr/YFykoiMYZVWlr/PX1mDcfM9Qg==" 
      crossorigin="anonymous" 
      referrerpolicy="no-referrer">
     </script>
+    
     <script src="clock.js" defer></script>
-    <script src="scrollReveal.js" defer></script>
+
     <title>Admin Dashboard - PNWX</title>
 </head>
 
@@ -617,6 +618,9 @@
             ?>
         </div>
     </section>
+
+    <!-- Calling Scroll Animation -->
+    <script src='scrollAnimation.js' defer></script>
 
     <footer class="FooterFooter" id="Push_footer">
         <div class="FFooterUpperPortion">
