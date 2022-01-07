@@ -262,7 +262,8 @@ html {
   margin-bottom: 200px;
 }
 
-.clock, .date {
+.clock,
+.date {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -283,7 +284,6 @@ html {
 @keyframes bgblob {
   0% {
     border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
-
   }
 
   25% {
@@ -340,6 +340,17 @@ html {
   width: 80%;
   margin-left: auto;
   margin-right: auto;
+  padding-top: 250px;
+}
+
+.report h1 {
+  font-size: 55px;
+  text-align: center;
+}
+
+.report hr {
+  width: 87%;
+  border-width: 5px;
 }
 
 .reptoppart {
@@ -402,7 +413,7 @@ a.butt {
 }
 
 .section-header-hr {
-  overflow: visible; 
+  overflow: visible;
   height: 30px;
   border-style: solid;
   border-color: black;
@@ -410,7 +421,7 @@ a.butt {
   border-radius: 20px;
   width: 50%;
 }
-.section-header-hr:before { 
+.section-header-hr:before {
   display: block;
   content: "";
   height: 30px;
@@ -571,4 +582,20 @@ input[type="button"]:hover {
   padding: 6px;
   background: #ffffff;
   color: #313030;
+}
+
+/* Charts */
+.barChart-container {
+  margin: auto;
+  margin-top: 50px;
+  position: relative;
+  width: 60%;
+  height: 50vm;
+}
+
+.pieChart-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+  height: 35vh;
 }
