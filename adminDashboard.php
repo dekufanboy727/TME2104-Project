@@ -32,7 +32,7 @@
         }
 
         $id = $_SESSION['admin_id'];
-        $email = $_SESSION['email'];
+        $email = $_SESSION['admin_email'];
 
         $sql = "SELECT username FROM admins WHERE ID='$id'"; //Select the user id
         $isFound = mysqli_query($conn,$sql); //Check is it exists
