@@ -84,7 +84,7 @@
                     while($row = mysqli_fetch_assoc($result))
                     {
                         echo'<tr align = "center">';
-                        echo '<td >'.$row['productname']. '</td>';
+                        echo '<td>'.$row['productname']. '</td>';
                         echo '<td>'.$row['Quantity'].'</td>';
                         echo '<td>' .$row['price']. '</td>';
                         echo '<td>' .$row['Subtotal']. '</td>';
@@ -128,17 +128,24 @@
 
                 $paymentotal = $user_making_payment['Grand_total'] + $shippingfee;
                 
-                echo '<tr ><td style="border-top: 1px solid #C0C0C0;" colspan="3" align=right>'."Merchandise Subtotal: ".
-                '</td><td align=center style="border-top: 1px solid #C0C0C0;">'.$user_making_payment['Grand_total'].'</td></tr>';
-                echo '<tr><td colspan="3" align=right>'."Shipping Subtotal: ".'</td><td align=center>'.$shippingfee.'</td></tr>';
-                echo '<tr style="font-weight: bold;"><td style="border-bottom: 1px solid #C0C0C0;" colspan="3" align=right>'."Payment Total (".$total_quantity." Item): ".'</td><td style="border-bottom: 1px solid #C0C0C0;" align=center>'.$paymentotal.'</td></tr>';
-                echo '</table>';
+                echo '</table><hr style="border: 1px solid #C0C0C0;">';
+                echo '<br><br><br>';
+                echo '<table style="font-size:20px; width:100%; border-top: 1px solid gray;">';
+                echo '<tr><td align=left width="88.8%">'."Merchandise Subtotal: ".
+                '</td><td align=center>'.$user_making_payment['Grand_total'].'</td></tr>';
+                echo '<tr><td align=left width="88.8%">'."Shipping Subtotal: ".'</td><td align=center>'.$shippingfee.'</td></tr>';
+                echo '<tr style="font-weight: bold;"><td align=left width="88.8%">'."Payment Total (".$total_quantity." Item): ".
+                '</td><td align=center>'.$paymentotal.'</td></tr>';
+
 
                 $_SESSION['PaymentTotal'] = $paymentotal;
             ?>
+
+            </table><br>
             
             <!--Payment-->
-            <p align=right style="font-size:20px">Total: 
+            <table style="font-size:20px; width:100%; box-shadow: 5px 3px 10px 3px #888888;" >
+            <tr><td align=left>Total: 
 
             <?php 
                 $shippingfee = $_SESSION['shipping'];
@@ -152,22 +159,27 @@
                 $result = mysqli_fetch_assoc($isFound); 
 
                 $total = $shippingfee + $result['Grand_total'];
-                echo $total.'</p>';
+                echo $total.'</td>';
 
             ?>
 
-            <p>
+            
+
+            <td align=right width="60%">
                 <form name="payment" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
-                <p align=right style="font-size:20px"> OTP: 
-                <input type="text" id="validation" name="validation">
-                    <span class="button">
+                 OTP: </td>
+                <td align=center width="10%"><input type="text" id="validation" name="validation"></td>
+                    <td>
                         <input class="b2" type="submit" name = "submit" value="Submit" >
-                    </span> </p>
+                    </td>
                 </form>
-            </p>
+            </tr>
+
+            
 
             <!--Validate dummy OTP-->
             <?php
+            
                 $validate_error = "";
                 $validate_error2 = "";
                 $OTP = "";
@@ -250,15 +262,17 @@
                             }
                         }
 
-                        echo '<p align=right style="color:green; font-size:15px">'."Validation and Payment Successful!".'</p>';
-                        echo '<p align=right style="font-size:15px">'."Payment Date: ".$date.'<br>';
-                        echo "Payment Time: ".$time.'</p>';
-                        echo '<p align=right style="color:red; font-size:15px">'."Please allow POP UP window for this website!".'<br>';
-                        echo "Generating RECEIPT!".'<br>';
-                        echo "Redirecting back to CATALOG...".'</p>';
+                        //echo '<tr><td><br></td></tr>';
+                        echo '<tr><td align=right style="color:green; font-size:15px"colspan="5">'."Validation and Payment Successful!".'</td></tr>';
+                        echo '<tr><td align=right style="font-size:15px"colspan="5">'."Payment Date: ".$date.'</td></tr>';
+                        echo '<tr><td align=right style="font-size:15px"colspan="5">'."Payment Time: ".$time.'</td></tr>';
+                        echo '<tr><td align=right style="color:red; font-size:15px" colspan="5">'."Please allow POP UP window for this website!";
+                        echo " Generating RECEIPT!";
+                        echo " Redirecting back to CATALOG...".'</td></tr>';
+
 
                         //Redirect back to index.php after successful payment
-                        header( "refresh:8 ; url=index.php" );
+                        //header( "refresh:8 ; url=index.php" );
 
                         //Open a new tab for receipt
                         echo '<script type="text/javascript">
@@ -274,13 +288,14 @@
                     }
                     else
                     {
-                        echo '<p align=right style="color:red; font-size:15px">';
+                        echo '<tr>';
+                        echo '<td align=right style="color:red; font-size:15px" colspan="5">';
                         echo $validate_error;
-                        echo $validate_error2.'<br>';
-                        echo "Redirecting back to CART...";
-                        echo '</p>';
+                        echo $validate_error2;
+                        echo " Redirecting back to CART...";
+                        echo '</td></tr>';
                         //Redirect back to cart after failed payment attempt
-                        header( "refresh:3 ; url=cart.php" );
+                        //header( "refresh:3 ; url=cart.php" );
                     }
 
                 }
@@ -292,9 +307,9 @@
                     $data = htmlspecialchars($data);
                     return $data;
                 }
-            ?>
 
-            
+                echo '</table>';
+            ?>
 
         </main>
 
