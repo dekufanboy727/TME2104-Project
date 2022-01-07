@@ -26,21 +26,16 @@
             if($_SESSION['login'] === "Logged In")
             {
                 $logout = "Logout";
-                $myprofile = "My Profile     |";
-            }
-            else //Or logged out
-            {
-                $signup = "Sign Up";
-                $login = "Login     |";
+                $myprofile = "My Profile";
             }
         }
         else //session login not set yet
         {
             $signup = "Sign Up";
-            $login = "Login     |";
+            $login = "Login";
         }
-        //product
 
+        //product
         //Create Table Products
         $sql = "CREATE TABLE product (
         id INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
@@ -60,7 +55,7 @@
           $productcategory = array("Merchant Board ", "Merchant Board ", "Silver Recovery Systems ", "Silver Recovery Systems ", "Veterinary ", "Veterinary ", 
           "X Ray Test Meters ", "X Ray Test Meters ");
 
-          $productname = array("Pacific Northway X-Ray Merchant Board for DR Panels ", "PNWX Light Duty Merchant Board for Film Cassettes", 
+          $productname = array("Pacific Northway X-Ray Merchant Board for DR Panels", "PNWX Light Duty Merchant Board for Film Cassettes", 
           "Steel Wool Recovery Canisters and Accessories", "Rotex Standard Ultra Series Silver Recovery Systems", "Techno Aide Veterinary Immobilizers", 
           "Techno Aide Veterinary Positioner", "ECC Series 820 kVp Meters", "Series 815 kVp Meters");
 
@@ -102,7 +97,21 @@
     
         <header class="HeaderHeader" id="Push_header">
             
-        <a class="button2" href="adminlogin.php"  >Staff Only</a>
+        <?php
+          if(!isset($_SESSION['login']))
+          {
+            if(isset($_SESSION['admin_login']))
+            {
+              echo '<a class="button2" href="adminDashboard.php"  >Staff Only</a>';
+            }
+            else
+            {
+              echo '<a class="button2" href="adminlogin.php"  >Staff Only</a>';
+            }
+          }
+            
+        ?>
+        
 
             <div class="login_register">
                 <ul id = abc>
@@ -111,9 +120,10 @@
                 </ul>
 
                 <ul>
-                  <li><a href="register.php"><?php echo $signup?></a></li>
-                  <li><a href="login.php" ><?php echo $login?></a></li>
                   <li><a href="logout.php"  ><?php echo $logout?></a></li>
+                  <li><a href="register.php"><?php echo $signup?></a></li>
+                  <li>&nbsp| </li>
+                  <li><a href="login.php" ><?php echo $login?></a></li>
                   <li><a href="myProfile.php"  ><?php echo $myprofile?></a></li>
                   <li><img class="image_login_register" src="Pictures/login_register_icon.png" alt="Login and register icon"></a>
                 </ul>

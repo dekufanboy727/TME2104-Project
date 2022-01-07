@@ -35,18 +35,6 @@ body {
   float:right;
 }
 
-/*.navigation {
-  background: #000000;
-  color: #eae2d8;
-}
-
-.navigation ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-}*/
-
 .login_register ul {
   list-style-type: none;
   margin: 0px;
@@ -69,16 +57,9 @@ body {
   color: #cccccc;
 }
 
-/*.navigation li {
-  float: left;
-  padding-left: 32px;
-  padding-right: 32px;
-  font-size: 25px;
-  color: #cccccc;
-  font-family: Maiandra GD;
-  display: block;
-  padding-top: 35px;
-}*/
+.login_register li a:hover {
+  color: rgb(255, 255, 255);
+}
 
 
 .logo {
@@ -264,7 +245,7 @@ body {
   outline: 0;
   float: right;
   padding: 15px;
-  color: white;
+  color: #cccccc;
   background-color: #000;
   text-align: center;
   text-decoration: none;
@@ -272,10 +253,13 @@ body {
   height: 40px;
   width: 140px;
   margin-right: 20px;
+  padding-top: 17px;
+  font-family: Maiandra GD;
+  font-size: 18px;
 }
 
 .button2:hover {
-  background-color: #555;
+  color: rgb(255, 255, 255);
 }
 
 html {

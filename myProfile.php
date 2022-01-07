@@ -21,7 +21,7 @@
             </span>
             <span class= "logout"> 
                 <a id = "logout" href="logout.php">Logout</a>
-                <a>|</a>
+                <span>&nbsp|&nbsp</span>
                 <a href="myProfile.php"  >My Profile</a>
                 <img class="image_login_register" src="Pictures/login_register_icon.png" alt="Login and register icon">
             </span>
