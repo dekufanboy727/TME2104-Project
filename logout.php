@@ -19,11 +19,11 @@
         //See if updated
         if($result == true)
         {
-            echo "UPDATED LOGIN";
+            //echo "UPDATED LOGIN";
         } 
         else
         {
-            echo "Failed to update". $conn->error;
+            //echo "Failed to update". $conn->error;
         }
                     
         session_destroy();

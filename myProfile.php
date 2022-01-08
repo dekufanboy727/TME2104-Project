@@ -233,9 +233,9 @@
                     WHERE id = '$id'";
                     $result = mysqli_query($conn,$sql);
                     if ($result === TRUE) {
-                        echo "profile updated!";
+                        //echo "profile updated!";
                     } else {
-                        echo "Error: ". $conn->error;
+                        //echo "Error: ". $conn->error;
                     }
 
                     //Refresh the page after profile is updated
