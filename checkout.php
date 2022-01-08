@@ -60,8 +60,8 @@
                 echo '</table>';
             ?>
             <br>
-            <table style="width:100%; height: 400px; font-size: 18px;">
-            <tr style="background-color: #C0C0C0" align= center>
+            <table style="width:100%;  font-size: 18px;">
+            <tr style="background-color: #C0C0C0" align= center height="80px;">
                 <td style= "width:55%">Product(s)</td>
                 <td style= "width:15%">Quantity</td>
                 <td style= "width:15%">Unit Price</td>
@@ -83,7 +83,7 @@
                     $total_quantity = mysqli_num_rows($result); //Fetch the total number of items
                     while($row = mysqli_fetch_assoc($result))
                     {
-                        echo'<tr align = "center">';
+                        echo'<tr align = "center" height="80px;">';
                         echo '<td>'.$row['productname']. '</td>';
                         echo '<td>'.$row['Quantity'].'</td>';
                         echo '<td>' .$row['price']. '</td>';
