@@ -143,4 +143,45 @@ header .logo {
     color:rgb(230, 230, 230);
 }
 
+table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+th, td {
+    padding: 8px;
+    text-align: center;
+    border: 1px solid #ddd;
+}
+  
+tr:hover {background-color: rgba(209, 173, 230, 0.356);}
 
+hr {
+    height: 10px;
+    border: 0;
+    box-shadow: 0 10px 10px -10px #8c8c8c inset;
+  }
+
+* {
+    box-sizing: border-box;
+}
+
+/* Column container */
+.row {  
+    display: flex;
+    flex-wrap: wrap;
+}
+
+/* Left column */
+.leftcol {
+    flex: 50%;
+    padding: 20px;
+    border-right: 3px double #8c8c8c;
+    margin-top: 1%;
+}
+
+/* Right column */
+.rightcol {   
+    flex: 50%;
+    padding: 20px;
+}
