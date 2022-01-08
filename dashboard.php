@@ -32,7 +32,7 @@
                 <a id = "logout" href="logout.php">Logout</a>
                 <span>&nbsp|&nbsp</span>
                 <a href="myProfile.php"  >My Profile</a>
-                <img class="image_login_register" src="Pictures/login_register_icon.png" alt="Login and register icon">
+                <img class="image_login_register" src="Pictures/login_register_icon.png" alt="Login and register icon" style="height:30px; width:50px;margin-right:-14px">
             </span>
         </header>
 
