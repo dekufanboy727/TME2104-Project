@@ -153,18 +153,26 @@ img {
 }
 
 .b2 {
+    font-family: Maiandra GD;
     padding: 5px;
     color: rgb(255, 255, 255);
     background-color: rgb(0, 0, 0);
     text-align: center;
     cursor: pointer;
     width: 100%;
-    font-size: 15px;
+    font-size: 17px;
+    margin-right: 5%;
   }
   
 .b2:hover {
-    background-color: rgb(155, 153, 153);
+    background-color: rgb(185, 183, 183);
+    color: black;
   }
+
+.otp {
+    margin-left: -3%;
+    width: 100px;
+}
 
 input {
     width: 80%;

@@ -24,7 +24,7 @@ body {
 }
 
 .login_register {
-  margin-right: 9%;
+  margin-right: 5%;
   padding-bottom: 0;
   background: Black;
 }
@@ -52,7 +52,7 @@ body {
 }
 
 .login_register li a{
-  padding-left: 10px;
+  padding-left: 5px;
   text-decoration: none;
   color: #cccccc;
 }
@@ -64,29 +64,9 @@ body {
 
 .logo {
   float: left;
-  width: 546px;
+  width: 540px;
   height: auto;
-  margin-left: 100px;
-}
-
-/*.navigation li a:link {
-  color: #b3b3b3;
-}
-
-.navigation li a:visited {
-  color: #b3b3b3;
-}
-
-.navigation li a:hover {
-  color: #e6e6e6;
-}
-
-.navigation li a {
-  text-decoration: none;
-}*/
-
-.search li {
-  float: right;
+  margin-left: 80px;
 }
 
 /*Footer*/
@@ -491,7 +471,7 @@ html {
 
 .cart_position {
   float: right;
-  margin-right: 5%;
+  margin-right: 2%;
   margin-top: 2%;
 }
 
