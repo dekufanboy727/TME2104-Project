@@ -9,6 +9,7 @@
     <link rel="icon" href="Pictures/icon.png">
     <link rel="shortcut icon" href="Pictures/icon.png">
     <link rel="stylesheet" href="CSS/admin.css">
+    <link rel="shortcut icon" href="Pictures/icon.png">
     <script src="https://unpkg.com/scrollreveal"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"
      integrity="sha512-TW5s0IT/IppJtu76UbysrBH9Hy/5X41OTAbQuffZFU6lQ1rdcLHzpU5BzVvr/YFykoiMYZVWlr/PX1mDcfM9Qg==" 
@@ -356,6 +357,7 @@
                     'rgb(54, 162, 235)',
                     'rgb(201, 203, 207)'
                     ],
+                    barThickness: 135,
                     borderWidth: 1,
                     borderColor: '#777',
                     hoverBorderWidth: 2,
@@ -384,7 +386,7 @@
                 };
 
                 // Global default chart variables
-                Chart.defaults.font.family = 'Arial';
+                Chart.defaults.font.family = 'Georgia';
                 Chart.defaults.font.size = 14;
 
                 const barChart = new Chart(
