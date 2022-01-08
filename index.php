@@ -49,7 +49,7 @@
 
         $result = mysqli_query($conn, $sql);
         if ($result === TRUE) {
-          echo "Table u created successfully or Table exists".'<br>';
+          //echo "Table u created successfully or Table exists".'<br>';
           
           //setup array for dummy products
           $productcategory = array("Merchant Board ", "Merchant Board ", "Silver Recovery Systems ", "Silver Recovery Systems ", "Veterinary ", "Veterinary ", 

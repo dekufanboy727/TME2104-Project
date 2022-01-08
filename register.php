@@ -364,7 +364,7 @@
                 }
 
             }else{
-                echo "Error creating table: " . $conn->error;
+                //echo "Error creating table: " . $conn->error;
             }
 
             //Create transactions_details TABLE

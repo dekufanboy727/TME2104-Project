@@ -71,7 +71,7 @@
                 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;";
 
             if (mysqli_query($conn, $sql) === TRUE){
-                echo "Table added";
+                //echo "Table added";
 
                 $sql = "ALTER TABLE admins AUTO_INCREMENT = 1000";
                 if (mysqli_query($conn, $sql) === TRUE){
