@@ -354,8 +354,6 @@
             if($emailE == "" && $mobileE == "" && $pwE == "" && $cpwE == "" && $genderE == "" && $termsE =="" && $fnameE == "" && $lnameE == "" && $addE == "" && $postcodeE == "" && $cityE == ""
             &&  $fname != "" && $lname != "" && $email != "" && $mobile != "" && $pw != "" && $cpw != "" && $gender != "" &&  $add != "" && $postcode != "" && $city != ""){
 
-                echo $fname;
-
                 $shownid = $_POST['id'];
                 $updatesql = "UPDATE registered_user SET firstname = '$fname', lastname = '$lname', email = '$email', region = '$region', phone = '$mobile', pwd = '$pw', 
                 gender = '$gender', _state= '$state', postcode ='$postcode', _address ='$add', city = '$city', _login = 'Logged Out' WHERE id = '$shownid'";
@@ -445,7 +443,7 @@
 
                 if(mysqli_num_rows($table_result) > 0){
                     while($row = mysqli_fetch_assoc($table_result)){
-                        echo "<tr><td>"."id: ".$row['id']."</td><td>".$row['firstname'].$row['lastname']."</td><td>".$row['email']."</td><td>".$row['region']."</td><td>"
+                        echo "<tr><td>".$row['id']."</td><td>".$row['firstname']." ".$row['lastname']."</td><td>".$row['email']."</td><td>".$row['region']."</td><td>"
                         .$row['phone']."</td><td>".$row['pwd']."</td><td>".$row['gender']."</td><td>".$row['_state']."</td><td>".$row['postcode']."</td><td>".$row['_address']."</td><td>"
                         .$row['city']."</td><td>".$row['_login']."</td><td>";
 
