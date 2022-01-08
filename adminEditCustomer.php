@@ -260,9 +260,15 @@
                 //Insert registered user's data into the table
                 $sql = "INSERT INTO registered_User (firstname, lastname, email, region, phone, pwd, gender, _state, postcode, _address, city,_login)
                 VALUES ('$fname', '$lname', '$email','$region','$mobile', '$pw','$gender', '$state', '$postcode', '$add', '$city', 'Logged Out')";
+
                 if ($conn->query($sql) === TRUE) {
                     echo "New record created successfully";
                     $createSuc = "New record created successfully";
+
+                    $sql = "SELECT id FROM registered_user WHERE email='$email'"; //Select the user id
+                    $isFound = mysqli_query($conn,$sql); 
+                    $result = mysqli_fetch_assoc($isFound);
+                    $id = $result["id"];
                     
                     //Resetting Values
                     $fname = $lname = ""; 
@@ -280,10 +286,7 @@
                     //echo "Error: " . $sql . "<br>" . $conn->error;
                   }
 
-                $sql = "SELECT id FROM registered_user WHERE email='$email'"; //Select the user id
-                $isFound = mysqli_query($conn,$sql); 
-                $result = mysqli_fetch_assoc($isFound);
-                $id = $result["id"];
+                
             }
         }
 
