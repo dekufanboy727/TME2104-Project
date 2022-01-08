@@ -332,13 +332,16 @@
             //Create Transactions TABLE
             $sql = "CREATE TABLE transactions (
                 id int(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-                userid int(15) NOT NULL,
+                userid int(15) UNSIGNED NOT NULL,
                 _date date NOT NULL,
                 _time time NOT NULL,
                 shipping_fee double(15,2) NOT NULL,
                 merchandise_total double(15,2) NOT NULL,
                 grand_total double(15,2) NOT NULL,
-                is_preset tinyint(1) NOT NULL DEFAULT 0
+                is_preset tinyint(1) NOT NULL DEFAULT 0,
+                FOREIGN KEY (userid) REFERENCES registered_user (id)
+                ON DELETE CASCADE
+                ON UPDATE CASCADE
               )";
 
             $result = mysqli_query($conn, $sql);
@@ -361,7 +364,7 @@
                 }
 
             }else{
-                //echo "Error creating table: " . $conn->error;
+                echo "Error creating table: " . $conn->error;
             }
 
             //Create transactions_details TABLE
