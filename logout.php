@@ -4,6 +4,8 @@
     <head>
         <title>Loading...PNWX</title>
         <meta charset="UTF-8">
+        <link rel="icon" href="Pictures/icon.png">
+        <link rel="shortcut icon" href="Pictures/icon.png">
         <link rel="stylesheet" href="CSS/redirecting.css">
         
     </head>
