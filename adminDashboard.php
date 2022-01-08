@@ -329,7 +329,7 @@
                 <hr class="section-header-hr">
             </div>
             <?php
-                $sql_sum = "SELECT userid FROM transactions ORDER BY _date DESC LIMIT 5";
+                $sql_sum = "SELECT userid FROM transactions ORDER BY _date DESC, _time DESC LIMIT 5";
                 $sum_result = mysqli_query($conn,$sql_sum);
 
                 //Getting Specific Values from the Tables
