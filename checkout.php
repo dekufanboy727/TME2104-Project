@@ -43,17 +43,11 @@
 
             <!--Validate dummy OTP-->
             <?php
-                $shippingfee = $_SESSION['shipping'];
-                $merchandise = $_SESSION['merchandise'];
-                $paymentotal = $_SESSION['PaymentTotal'];
-
                 $sql = "SELECT Grand_total FROM ShoppingCart WHERE User_id='$userid'";
                 $isFound = mysqli_query($conn,$sql); 
 
                 //Fetch the grantotal
                 $result = mysqli_fetch_assoc($isFound); 
-
-                $total = $shippingfee + $result['Grand_total'];
 
                 $validate_error = "";
                 $validate_error2 = "";
@@ -61,18 +55,22 @@
                 $trans_id = "";
                 if ($_SERVER["REQUEST_METHOD"] === "POST")
                 {
+                    $shippingfee = $_SESSION['shipping'];
+                    $merchandise = $_SESSION['merchandise'];
+                    $paymentotal = $_SESSION['PaymentTotal'];
+
                     if(empty($_POST["validation"]))
                     {
-                        $validate_error = "PAYMENT ATTEMPT FAILED!";
-                        $validate_error2 = " Please try to CHECK OUT AGAIN!";
+                        $validate_error = "Payment Attempt Failed!";
+                        $validate_error2 = " Please try again!";
                     }
                     else
                     {
                         $OTP = test($_POST["validation"]);
                         if(!is_numeric($OTP) || strlen($OTP) !== 6)
                         {
-                            $validate_error = "PAYMENT ATTEMPT FAILED!";
-                            $validate_error2 = " Please try to CHECK OUT AGAIN!";
+                            $validate_error = "Payment Attempt Failed!";
+                            $validate_error2 = " Please try again!";
                         }
                     }
 
@@ -129,17 +127,23 @@
                             }
                         }
 
-                        //echo '<tr><td><br></td></tr>';
-                        echo '<tr><td align=right style="color:green; font-size:15px"colspan="5">'."Validation and Payment Successful!".'</td></tr>';
-                        echo '<tr><td align=right style="font-size:15px"colspan="5">'."Payment Date: ".$date.'</td></tr>';
-                        echo '<tr><td align=right style="font-size:15px"colspan="5">'."Payment Time: ".$time.'</td></tr>';
-                        echo '<tr><td align=right style="color:red; font-size:15px" colspan="5">'."Please allow POP UP window for this website!";
-                        echo " Generating RECEIPT!";
-                        echo " Redirecting back to CATALOG...".'</td></tr>';
+                        echo '<p class = "success">Validation and Payment Successful!</p>';
+                        //echo '<p class="error">Validation and Payment Successful!</p>';
+                        echo '<p class = "normal">
+                              Date & Time:&nbsp'.$date.'&nbsp'.$time.
+                             '<br> Generating Receipt, Please allow
+                             ';
+                        echo '<span class = "popup">
+                              POP UP 
+                              </span>';
+                        echo '<span class = "normal">
+                              ! <br>
+                              Redirecting...
+                              </span></p><br><br>';
 
 
                         //Redirect back to index.php after successful payment
-                        header( "refresh:6 ; url=index.php" );
+                        //header( "refresh:6 ; url=index.php" );
 
                         //Open a new tab for receipt
                         echo '<script type="text/javascript">
@@ -155,12 +159,8 @@
                     }
                     else
                     {
-                        echo '<tr>';
-                        echo '<td align=right style="color:red; font-size:15px" colspan="5">';
-                        echo $validate_error;
-                        echo $validate_error2;
-                        echo " Redirecting back to CART...";
-                        echo '</td></tr>';
+                        echo '<p class="error">'.$validate_error." ".$validate_error2.'</p>';
+                        echo '<p class="normal">Redirecting back to Cart...<br><br></p>';
                         //Redirect back to cart after failed payment attempt
                         header( "refresh:3 ; url=cart.php" );
                     }
@@ -175,7 +175,6 @@
                     return $data;
                 }
 
-                echo '</table>';
             ?>
 
                 <table style="width:100%; font-size: 20px;">
@@ -286,7 +285,7 @@
             <tr><td align=left>Total: 
 
             <?php
-                echo "$".$total.'</td>';
+                echo "$".$paymentotal.'</td>';
             ?>
 
             <td align=right width="45%">
