@@ -364,10 +364,16 @@ html {
 
 .reptoppart input {
   display: inline;
+  height: 24px;
+  padding-left: 5px;
 }
 
 .rep_select {
   display: inline;
+}
+
+.rep_select select{
+  height: 24px;
 }
 
 .repbotpart {

@@ -6,6 +6,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="Pictures/icon.png">
+    <link rel="shortcut icon" href="Pictures/icon.png">
     <link rel="stylesheet" href="CSS/admin.css">
     <script src="https://unpkg.com/scrollreveal"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"
@@ -208,6 +210,7 @@
         <div class="login_register">
             <ul> 
                 <li><a href="adminlogout.php">Log Out</a></li>
+                <li>&nbsp|</li>
                 <li><a href=""><?php echo $name ?></a></li>
                 <li><img class="image_login_register" src="Pictures/login_register_icon.png" alt="Login and register icon"></a>
             </ul>

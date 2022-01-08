@@ -12,7 +12,7 @@ body{
     min-width: 1500px;
     font-family: Maiandra GD;
     color: black;
-    height: 100%;
+    min-height: 100%;
 }
 
 .menu a {
@@ -183,3 +183,32 @@ input {
 input[type=text]:focus {
     background-color: rgba(209, 173, 230, 0.356);
   }
+
+.success {
+    font-family: Maiandra GD;
+    font-size: 22px;
+    text-align: center;
+    padding-top: 15px;
+    color: green;
+}
+
+.popup {
+    font-family: Maiandra GD;
+    font-size: 22px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.normal {
+    font-family: Maiandra GD;
+    font-size: 22px;
+    text-align: center;
+}
+
+.error {
+    font-family: Maiandra GD;
+    font-size: 22px;
+    color: red;
+    padding-top: 15px;
+    text-align: center;
+}
