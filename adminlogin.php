@@ -6,6 +6,8 @@
         <title>Admin Login - PNWX</title>
         <meta charset="UTF-8">
         <script type="text/javascript" src="LoginValidation.js"></script>
+        <link rel="icon" href="Pictures/icon.png">
+        <link rel="shortcut icon" href="Pictures/icon.png">
         <link rel="stylesheet" href="CSS/login.css">
     </head>
 
