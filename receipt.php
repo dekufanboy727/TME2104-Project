@@ -269,11 +269,11 @@
                 $MAIL = mail($to,$subject,$message,$headers);
                 if($MAIL == true)
                 {
-                    echo "SUCCESS MAIL!";
+                    //echo "SUCCESS MAIL!";
                 }
                 else if($MAIL == false)
                 {
-                    echo "FAILED MAIL!";
+                    //echo "FAILED MAIL!";
                 }  
             }
 

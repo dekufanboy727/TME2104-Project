@@ -339,7 +339,7 @@
                 merchandise_total double(15,2) NOT NULL,
                 grand_total double(15,2) NOT NULL,
                 is_preset tinyint(1) NOT NULL DEFAULT 0,
-                FOREIGN KEY (userid) REFERENCES registered_user (id)
+                FOREIGN KEY (userid) REFERENCES registered_User (id)
                 ON DELETE CASCADE
                 ON UPDATE CASCADE
               )";
