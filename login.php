@@ -114,7 +114,7 @@
             <a href="index.php"> <img class="logo" src="Pictures/LOGO.jpeg" alt="Pacific Northwest X-Ray Inc."> </a>
             <div class="header_login">
                 Log In
-                <a href="register.php" >Not Registred Yet? Register here!</a>
+                <a href="register.php" >Not Registered Yet? Register here!</a>
             </div>
         </header>
         
