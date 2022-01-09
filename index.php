@@ -206,7 +206,7 @@
                     }
     
                 } else {
-                    echo "0 results";
+                  echo '<p align=center style="font-size:18px;font-family: Maiandra GD;">'."0 results";
                 }
                 ?>    
                 
@@ -236,7 +236,7 @@
                     }
                     
                 } else {
-                    echo "0 results";
+                  echo '<p align=center style="font-size:18px;font-family: Maiandra GD;">'."0 results";
                 }
                 ?>            
               </div>
@@ -266,7 +266,7 @@
                     }
     
                 } else {
-                    echo "0 results";
+                  echo '<p align=center style="font-size:18px;font-family: Maiandra GD;">'."0 results";
                 }
                 ?>               
               </div>
@@ -296,7 +296,7 @@
                     }
     
                 } else {
-                    echo "0 results";
+                  echo '<p align=center style="font-size:18px;font-family: Maiandra GD;">'."0 results";
                 }
                 ?>                
               </div>
