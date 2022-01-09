@@ -205,7 +205,7 @@
   <div class="leftcol">
     <!--Number of Transactions in a year by month CHART -->
     <div class="barChart-container" align=center>
-        <canvas id="barChart" style="width:100%;max-width:700px;max-height:500px"></canvas>
+        <canvas id="barChart" style="max-width:700px;"></canvas>
     </div>
     
     <script>
@@ -217,23 +217,21 @@
             data: <?php echo json_encode($month) ?>,
             label: 'Months',
             backgroundColor: [
-            'rgba(255, 99, 132, 0.2)',
-            'rgba(255, 159, 64, 0.2)',
-            'rgba(255, 205, 86, 0.2)',
-            'rgba(75, 192, 192, 0.2)',
-            'rgba(54, 162, 235, 0.2)',
-            'rgba(153, 102, 255, 0.2)',
-            'rgba(201, 203, 207, 0.2)'
+            'rgb(255, 154, 162)',
+            'rgb(255, 183, 178)',
+            'rgb(255, 218, 193)',
+            'rgb(252, 244, 201)',
+            'rgb(255, 252, 195)',
+            'rgb(215, 253, 223)',
+            'rgb(183, 235, 226)',
+            'rgb(196, 216, 243)',
+            'rgb(200, 199, 247)',
+            'rgb(204, 181, 251)',
+            'rgb(208, 164, 255)',
+            'rgb(190, 148, 230)'
             ],
-            borderColor: [
-            '#DE3163',
-            '#FF7F50',
-            '#FFBF00',
-            '#40E0D0',
-            '#6495ED',
-            '#DA70D6',
-            '#808080'
-            ],
+            borderColor: 'white',
+            barThickness: 20,
             borderWidth: 1,
             hoverBorderWidth: 2,
             hoverBorderColor: '#000',
@@ -263,7 +261,7 @@
 
         // Global default chart variables
         Chart.defaults.font.family = 'Maiandra GD';
-        Chart.defaults.font.size = 15;
+        Chart.defaults.font.size = 13;
 
         const barChart = new Chart(
         document.getElementById('barChart').getContext('2d'),
@@ -275,7 +273,7 @@
     <div class="rightcol">
             <!-- Preferred Products by name -->
             <div class="pieChart-container" align=center>
-                <canvas id="pieChart" style="width:100%;max-width:500px"></canvas>
+                <canvas id="pieChart" style="width:100%;max-width:400px"></canvas>
             </div>
             
             <script>
