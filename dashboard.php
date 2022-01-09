@@ -341,6 +341,7 @@
 
             <!--Transaction History-->
             <hr>
+            <br><br>
             <h2 style="text-align:center; font-weight: bold; font-size: 30px;">Transaction History</h2>
 
             <?php
