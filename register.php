@@ -279,7 +279,7 @@
 
             //Inserting Preset Users For Functions to Work
             if ($conn->query($sql) === TRUE) {
-                echo "Table MyGuests created successfully";
+                //echo "Table MyGuests created successfully";
 
                 $sql = " INSERT INTO registered_User (id, firstname, lastname, email, region, phone, pwd, gender, _state, postcode, _address, city, _login) VALUES
                 (1, 'Jerry', 'Mander', 'JM1@gmail.com', 60, 1910001000, 'Cc123@', 'Male', 'Selangor', 53110, '3, Jalan Terringgi 3/5 C,', 'Kuala Lumpur', 'Logged Out'),
@@ -311,7 +311,7 @@
                 $result = mysqli_query($conn, $sql);
                 if ($result === TRUE) 
                 {
-                    echo "Table cart created successfully or Table exists".'<br>';
+                    //echo "Table cart created successfully or Table exists".'<br>';
                     $sql = "INSERT INTO ShoppingCart (id, User_id, Grand_total) VALUES
                     (1, 1, 0.00),
                     (2, 2, 0.00),
@@ -346,7 +346,7 @@
 
             $result = mysqli_query($conn, $sql);
             if ($result == TRUE){
-                echo "Table Transactions Created Successfully".'<br>';
+                //echo "Table Transactions Created Successfully".'<br>';
 
                 //Insert Dummy Transactions for testing purpose 
                 $sql = "INSERT INTO transactions (id, userid, _date, _time, shipping_fee, merchandise_total, grand_total, is_preset) VALUES
@@ -382,7 +382,7 @@
 
             $result = mysqli_query($conn, $sql);
             if ($result === TRUE){
-                echo "Table Transaction Details Created Successfully".'<br>';
+                //echo "Table Transaction Details Created Successfully".'<br>';
 
                 //Insert Dummy Transactions details for testing purpose 
                 $sql = "INSERT INTO transactions_details (trans_id, product_id, quantity, total_price, product_name) VALUES

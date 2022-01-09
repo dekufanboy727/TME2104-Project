@@ -265,7 +265,7 @@
                     echo "New record created successfully";
                     $createSuc = "New record created successfully";
 
-                    $sql = "SELECT id FROM registered_user WHERE email='$email'"; //Select the user id
+                    $sql = "SELECT id FROM registered_User WHERE email='$email'"; //Select the user id
                     $isFound = mysqli_query($conn,$sql); 
                     $result = mysqli_fetch_assoc($isFound);
                     $id = $result["id"];
@@ -295,7 +295,7 @@
         if(isset($_GET["delete"])){
             //Gets the id from the superglobal
             $deleteid = $_GET["delete"];
-            $deletesql = "DELETE FROM registered_user WHERE id = '$deleteid'";
+            $deletesql = "DELETE FROM registered_User WHERE id = '$deleteid'";
             $deleteresult = mysqli_query($conn, $deletesql);
             if( $deleteresult === TRUE){
                 $deleteMes = "Record has been succesfully deleted.";
@@ -309,7 +309,7 @@
 
         if(isset($_GET["edit"])){
             $editid = $_GET["edit"];
-            $editsql = "SELECT * FROM registered_user WHERE id = '$editid'";
+            $editsql = "SELECT * FROM registered_User WHERE id = '$editid'";
             $editresult = mysqli_query($conn, $editsql) or die($mysqli_error($conn));
             if (mysqli_num_rows($editresult) > 0){
                 $editstat = TRUE;
@@ -358,7 +358,7 @@
             &&  $fname != "" && $lname != "" && $email != "" && $mobile != "" && $pw != "" && $cpw != "" && $gender != "" &&  $add != "" && $postcode != "" && $city != ""){
 
                 $shownid = $_POST['id'];
-                $updatesql = "UPDATE registered_user SET firstname = '$fname', lastname = '$lname', email = '$email', region = '$region', phone = '$mobile', pwd = '$pw', 
+                $updatesql = "UPDATE registered_User SET firstname = '$fname', lastname = '$lname', email = '$email', region = '$region', phone = '$mobile', pwd = '$pw', 
                 gender = '$gender', _state= '$state', postcode ='$postcode', _address ='$add', city = '$city', _login = 'Logged Out' WHERE id = '$shownid'";
 
                 if(mysqli_query($conn, $updatesql)){
@@ -439,7 +439,7 @@
         <tbody>
             <?php
                 $table_sql = "SELECT id, firstname, lastname, email, region, phone, pwd, gender, _state, postcode, _address, city, _login
-                            FROM registered_user";
+                            FROM registered_User";
                 $table_result = mysqli_query($conn, $table_sql);
 
                 if(mysqli_num_rows($table_result) > 0){

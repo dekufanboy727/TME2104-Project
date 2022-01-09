@@ -76,7 +76,7 @@
         if ($conn->query($sql) === TRUE) {
             //echo "Table MyGuests created successfully";
 
-            $sql = " INSERT INTO registered_user (id, firstname, lastname, email, region, phone, pwd, gender, _state, postcode, _address, city, _login) VALUES
+            $sql = " INSERT INTO registered_User (id, firstname, lastname, email, region, phone, pwd, gender, _state, postcode, _address, city, _login) VALUES
             (1, 'Jerry', 'Mander', 'JM1@gmail.com', 60, 1910001000, 'Cc123@', 'Male', 'Selangor', 53110, '3, Jalan Terringgi 3/5 C,', 'Kuala Lumpur', 'Logged Out'),
             (2, 'Holly', 'Maddson', 'HM2@gmail.com', 60, 1110001000, 'Aa123@', 'Female', 'Penang', 37701, '2, Jalan Ferringgi 5/7B', 'GeorgeTown', 'Logged Out'),
             (3, 'Barry', 'Halselhoff', 'BH3@gmail.com', 60, 1320001000, 'Bb123@', 'Male', 'Selangor', 48000, '4, Jalan University,', 'Petaling Jaya', 'Logged Out'),
@@ -160,7 +160,7 @@
             merchandise_total double(15,2) NOT NULL,
             grand_total double(15,2) NOT NULL,
             is_preset tinyint(1) NOT NULL DEFAULT 0,
-            FOREIGN KEY (userid) REFERENCES registered_user (id)
+            FOREIGN KEY (userid) REFERENCES registered_User (id)
             ON DELETE CASCADE
             ON UPDATE CASCADE
           )";
@@ -339,7 +339,7 @@
                     $key = 1;
                     while($sum_row = mysqli_fetch_assoc($sum_result)){
                         $temp_id = $sum_row["userid"];
-                        $sql_name = "SELECT firstname, lastname, _state FROM registered_user WHERE id = '$temp_id'";
+                        $sql_name = "SELECT firstname, lastname, _state FROM registered_User WHERE id = '$temp_id'";
                         $sum_result2 = mysqli_query($conn, $sql_name);
                         $temp_name = mysqli_fetch_assoc($sum_result2);
                         echo "<tr><td>".$key."</td><td>".$sum_row["userid"]."</td><td>".$temp_name["firstname"]." ".$temp_name["lastname"]."</td><td>".$temp_name["_state"]."</td></tr>";
@@ -359,9 +359,9 @@
             </div>
             <?php
                 $sql_sum = "SELECT _state,  COUNT(transactions.id) AS custotal 
-                            FROM registered_user 
+                            FROM registered_User 
                             INNER JOIN transactions 
-                            ON registered_user.id = transactions.userid 
+                            ON registered_User.id = transactions.userid 
                             GROUP BY _state
                             ORDER BY custotal DESC
                             LIMIT 5";
@@ -484,7 +484,7 @@
                     echo "<tr><th>ID</th><th>UserID</th><th>Date</th><th>Time</th><th>Subtotal</th><th>Shipping Fee</th><th>Total</th></tr>";
                     while($row = mysqli_fetch_assoc($datedresult)){
                         $temp_id = $row["userid"];
-                        $sql_name = "SELECT firstname, lastname FROM registered_user WHERE id = '$temp_id'";
+                        $sql_name = "SELECT firstname, lastname FROM registered_User WHERE id = '$temp_id'";
                         $datedresult2 = mysqli_query($conn, $sql_name);
                         $temp_name = mysqli_fetch_assoc($datedresult2);
                         echo "<tr><td>".$row["id"]."</td><td>".$row["userid"].":".$temp_name["firstname"]." ".$temp_name["lastname"]."</td><td>".$row["_date"]."</td><td>".
@@ -662,7 +662,7 @@
                         echo "<tr><th>ID</th><th>UserID</th><th>Date</th><th>Time</th><th>Subtotal</th><th>Shipping Fee</th><th>Total</th></tr>";
                         while($row = mysqli_fetch_assoc($result)){
                             $temp_id = $row["userid"];
-                            $sql_name = "SELECT firstname, lastname FROM registered_user WHERE id = '$temp_id'";
+                            $sql_name = "SELECT firstname, lastname FROM registered_User WHERE id = '$temp_id'";
                             $result2 = mysqli_query($conn, $sql_name);
                             $temp_name = mysqli_fetch_assoc($result2);
                             echo "<tr><td>".$row["id"]."</td><td>".$row["userid"].":".$temp_name["firstname"]." ".$temp_name["lastname"]."</td><td>".$row["_date"]."</td><td>".
