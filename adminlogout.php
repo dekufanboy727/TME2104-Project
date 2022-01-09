@@ -1,3 +1,5 @@
+<?php session_start(); ?>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -13,7 +15,6 @@
     <?php 
         include 'adminconfig.php';
         
-        session_start();
         $id = $_SESSION['admin_id'];
         $sql = "UPDATE admins SET _login='0' WHERE ID='$id'";
 
