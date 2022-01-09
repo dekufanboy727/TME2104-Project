@@ -287,14 +287,14 @@
                     data: <?php echo json_encode($prefer_quantity) ?>,
                     label: 'Products',
                     backgroundColor: [
-                        "Tomato",
-                        "Orange",
-                        "DodgerBlue",
+                        '#9B3192',
+                        '#EA5F89',
+                        '#F7B7A3',
                     ],
                     borderColor: [
-                        "red",
-                        "Orange",
-                        "DodgerBlue",
+                        '#FFFFFF',
+                        '#FFFFFF',
+                        '#FFFFFF',
                     ],
                     borderWidth: 2,
                     hoverBorderWidth: 2,
@@ -341,10 +341,7 @@
 
             <!--Transaction History-->
             <hr>
-            <h2 align=center><strong>Transaction History</strong></h2>
-            <p style="color:red" align=center>*Please allow POP UP window!</p>
-
-
+            <h2 style="text-align:center; font-weight: bold; font-size: 30px;">Transaction History</h2>
 
             <?php
                 $sql = "SELECT id, _date, _time, grand_total FROM transactions WHERE userid = '$userid'";
