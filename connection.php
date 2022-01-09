@@ -9,22 +9,22 @@
     //Check connection
     if (!$conn) 
     {
-        die("Connection failed: " . mysqli_connect_error());
+        //die("Connection failed: " . mysqli_connect_error());
     }
     else
     {
-        echo "Connection successful!";
+        //echo "Connection successful!";
     }
 
     $sql = "CREATE DATABASE DB_PNWX";
     $result = mysqli_query($conn, $sql);
     if ($result === TRUE) 
     {
-        echo "Database created successfully";
+        //echo "Database created successfully";
     }
     else
     {
-        echo "Database creation failed:" . mysqli_error($conn);
+        //echo "Database creation failed:" . mysqli_error($conn);
     }
 
     $dbname = "DB_PNWX";
@@ -34,11 +34,11 @@
     //Check connection
     if (!$conn) 
     {
-        die("Connection failed: " . mysqli_connect_error());
+        //die("Connection failed: " . mysqli_connect_error());
     }
     else
     {
-        echo "Connection successful!";
+        //echo "Connection successful!";
     }
 
     

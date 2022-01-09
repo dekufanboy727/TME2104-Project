@@ -49,11 +49,11 @@
                 $result = mysqli_query($conn, $sql);    
                 if ($result === TRUE)
                 {
-                    echo "Table cartITEM created successfully or Table exists".'<br>';
+                    //echo "Table cartITEM created successfully or Table exists".'<br>';
                 }
                 else
                 {
-                    echo "Error creating table cart: " . mysqli_error($conn);
+                    //echo "Error creating table cart: " . mysqli_error($conn);
                 }
                 
             //Get the product id & quantity thru the Add Cart InputField in Index.php
@@ -136,11 +136,11 @@
                             $result = mysqli_query($conn, $sql);                    
                             if ($result === TRUE)
                             {
-                                echo "cart item added successfully".'<br>';
+                                //echo "cart item added successfully".'<br>';
                             }
                             else
                             {
-                                echo "Error adding cart item: " . mysqli_error($conn);
+                                //echo "Error adding cart item: " . mysqli_error($conn);
                             }
                         }
                     }
@@ -153,11 +153,11 @@
                         $result = mysqli_query($conn, $sql);                   
                         if ($result === TRUE)
                         {
-                            echo "cart item added successfully".'<br>';
+                            //echo "cart item added successfully".'<br>';
                         }
                         else
                         {
-                            echo "Error adding cart item: " . mysqli_error($conn);
+                            //echo "Error adding cart item: " . mysqli_error($conn);
                         }
                     }
                     
@@ -254,7 +254,7 @@
                 }
                 else
                 {
-                    echo "Error joining cart: " . mysqli_error($conn);
+                    //echo "Error joining cart: " . mysqli_error($conn);
                 }
 
                 $result = mysqli_query ($conn,$sql);
@@ -288,7 +288,7 @@
                     }
                     else
                     {
-                        echo "Error adding grand total: " . mysqli_error($conn);
+                        //echo "Error adding grand total: " . mysqli_error($conn);
                     }
                     
                     echo'<tr>';
@@ -298,7 +298,7 @@
                     echo '</section>';
 
                     //Check Out Button
-                    echo '<p style="text-align:right">';
+                    echo '<p style="text-align:right;">';
                     //Proceed to payment
                     //Registered users
                     echo '<a href = "checkout.php"><button class="b2" type="checkout" value="checkout"> Check Out </button></a>';

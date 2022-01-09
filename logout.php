@@ -4,6 +4,8 @@
     <head>
         <title>Loading...PNWX</title>
         <meta charset="UTF-8">
+        <link rel="icon" href="Pictures/icon.png">
+        <link rel="shortcut icon" href="Pictures/icon.png">
         <link rel="stylesheet" href="CSS/redirecting.css">
         
     </head>
@@ -19,11 +21,11 @@
         //See if updated
         if($result == true)
         {
-            echo "UPDATED LOGIN";
+            //echo "UPDATED LOGIN";
         } 
         else
         {
-            echo "Failed to update". $conn->error;
+            //echo "Failed to update". $conn->error;
         }
                     
         session_destroy();

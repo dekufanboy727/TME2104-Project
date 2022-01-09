@@ -290,12 +290,12 @@
 
                 $result = mysqli_query($conn, $sql);
                 if ($result === TRUE) {
-                    echo "New record created successfully";
+                    //echo "New record created successfully";
                 } else {
-                    echo "Error: " .  mysqli_error($conn);
+                    //echo "Error: " .  mysqli_error($conn);
                 }
             } else {
-                echo "Error creating table: " . $conn->error;
+                //echo "Error creating table: " . $conn->error;
             }
             
             //Create CART
@@ -319,26 +319,29 @@
                     (4, 4, 0.00),
                     (5, 5, 0.00)";
                     if ($conn->query($sql) === TRUE) {
-                        echo "New CART created successfully";
+                        //echo "New CART created successfully";
                     } else {
-                        echo "Error: " . $sql . "<br>" . $conn->error;
+                        //echo "Error: " . $sql . "<br>" . $conn->error;
                     }
                 }
                 else
                 {
-                    echo "Error creating table cart: " . mysqli_error($conn);
+                    //echo "Error creating table cart: " . mysqli_error($conn);
                 }
 
             //Create Transactions TABLE
             $sql = "CREATE TABLE transactions (
                 id int(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-                userid int(15) NOT NULL,
+                userid int(15) UNSIGNED NOT NULL,
                 _date date NOT NULL,
                 _time time NOT NULL,
                 shipping_fee double(15,2) NOT NULL,
                 merchandise_total double(15,2) NOT NULL,
                 grand_total double(15,2) NOT NULL,
-                is_preset tinyint(1) NOT NULL DEFAULT 0
+                is_preset tinyint(1) NOT NULL DEFAULT 0,
+                FOREIGN KEY (userid) REFERENCES registered_user (id)
+                ON DELETE CASCADE
+                ON UPDATE CASCADE
               )";
 
             $result = mysqli_query($conn, $sql);
@@ -355,13 +358,13 @@
 
                 $result = mysqli_query($conn, $sql);
                 if ($result === TRUE) {
-                    echo "New record created successfully";
+                    //echo "New record created successfully";
                 } else {
-                    echo "Error: " .  mysqli_error($conn);
+                    //echo "Error: " .  mysqli_error($conn);
                 }
 
             }else{
-                echo "Error creating table: " . $conn->error;
+                //echo "Error creating table: " . $conn->error;
             }
 
             //Create transactions_details TABLE
@@ -396,13 +399,13 @@
                 
                 $result = mysqli_query($conn, $sql);
                 if ($result === TRUE) {
-                    echo "New record created successfully";
+                    //echo "New record created successfully";
                 } else {
-                    echo "Error: " .  mysqli_error($conn);
+                    //echo "Error: " .  mysqli_error($conn);
                 }
 
             }else{
-                echo "Error creating table: " . $conn->error;
+                //echo "Error creating table: " . $conn->error;
             }
 
             //Actual Registration Logic
@@ -416,9 +419,9 @@
                 $sql = "INSERT INTO registered_User (firstname, lastname, email, region, phone, pwd, gender, _state, postcode, _address, city,_login)
                 VALUES ('$fname', '$lname', '$email','$region','$mobile', '$pw','$gender', '$state', '$postcode', '$add', '$city', 'Logged Out')";
                 if ($conn->query($sql) === TRUE) {
-                    echo "New record created successfully";
+                    //echo "New record created successfully";
                   } else {
-                    echo "Error: " . $sql . "<br>" . $conn->error;
+                    //echo "Error: " . $sql . "<br>" . $conn->error;
                   }
 
                 $sql = "SELECT id FROM registered_User WHERE email='$email'"; //Select the user id
@@ -430,9 +433,9 @@
                 $sql = "INSERT INTO ShoppingCart (User_id, Grand_total)
                 VALUES ('$id', '0.00')";
                 if ($conn->query($sql) === TRUE) {
-                    echo "New CART created successfully";
+                    //echo "New CART created successfully";
                   } else {
-                    echo "Error: " . $sql . "<br>" . $conn->error;
+                    //echo "Error: " . $sql . "<br>" . $conn->error;
                   }
             }
 

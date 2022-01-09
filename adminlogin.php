@@ -6,6 +6,8 @@
         <title>Admin Login - PNWX</title>
         <meta charset="UTF-8">
         <script type="text/javascript" src="LoginValidation.js"></script>
+        <link rel="icon" href="Pictures/icon.png">
+        <link rel="shortcut icon" href="Pictures/icon.png">
         <link rel="stylesheet" href="CSS/login.css">
     </head>
 
@@ -69,7 +71,7 @@
                 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;";
 
             if (mysqli_query($conn, $sql) === TRUE){
-                echo "Table added";
+                //echo "Table added";
 
                 $sql = "ALTER TABLE admins AUTO_INCREMENT = 1000";
                 if (mysqli_query($conn, $sql) === TRUE){

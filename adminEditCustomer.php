@@ -260,9 +260,15 @@
                 //Insert registered user's data into the table
                 $sql = "INSERT INTO registered_User (firstname, lastname, email, region, phone, pwd, gender, _state, postcode, _address, city,_login)
                 VALUES ('$fname', '$lname', '$email','$region','$mobile', '$pw','$gender', '$state', '$postcode', '$add', '$city', 'Logged Out')";
+
                 if ($conn->query($sql) === TRUE) {
                     echo "New record created successfully";
                     $createSuc = "New record created successfully";
+
+                    $sql = "SELECT id FROM registered_user WHERE email='$email'"; //Select the user id
+                    $isFound = mysqli_query($conn,$sql); 
+                    $result = mysqli_fetch_assoc($isFound);
+                    $id = $result["id"];
                     
                     //Resetting Values
                     $fname = $lname = ""; 
@@ -280,10 +286,7 @@
                     //echo "Error: " . $sql . "<br>" . $conn->error;
                   }
 
-                $sql = "SELECT id FROM registered_user WHERE email='$email'"; //Select the user id
-                $isFound = mysqli_query($conn,$sql); 
-                $result = mysqli_fetch_assoc($isFound);
-                $id = $result["id"];
+                
             }
         }
 
@@ -353,8 +356,6 @@
         if(isset($_POST["update"])){
             if($emailE == "" && $mobileE == "" && $pwE == "" && $cpwE == "" && $genderE == "" && $termsE =="" && $fnameE == "" && $lnameE == "" && $addE == "" && $postcodeE == "" && $cityE == ""
             &&  $fname != "" && $lname != "" && $email != "" && $mobile != "" && $pw != "" && $cpw != "" && $gender != "" &&  $add != "" && $postcode != "" && $city != ""){
-
-                echo $fname;
 
                 $shownid = $_POST['id'];
                 $updatesql = "UPDATE registered_user SET firstname = '$fname', lastname = '$lname', email = '$email', region = '$region', phone = '$mobile', pwd = '$pw', 
@@ -443,7 +444,7 @@
 
                 if(mysqli_num_rows($table_result) > 0){
                     while($row = mysqli_fetch_assoc($table_result)){
-                        echo "<tr><td>"."id: ".$row['id']."</td><td>".$row['firstname'].$row['lastname']."</td><td>".$row['email']."</td><td>".$row['region']."</td><td>"
+                        echo "<tr><td>".$row['id']."</td><td>".$row['firstname']." ".$row['lastname']."</td><td>".$row['email']."</td><td>".$row['region']."</td><td>"
                         .$row['phone']."</td><td>".$row['pwd']."</td><td>".$row['gender']."</td><td>".$row['_state']."</td><td>".$row['postcode']."</td><td>".$row['_address']."</td><td>"
                         .$row['city']."</td><td>".$row['_login']."</td><td>";
 

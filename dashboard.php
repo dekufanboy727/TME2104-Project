@@ -8,6 +8,10 @@
         <link rel="icon" href="Pictures/icon.png">
         <link rel="shortcut icon" href="Pictures/icon.png">
         <link rel="stylesheet" href="CSS/dashboard.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"
+        integrity="sha512-TW5s0IT/IppJtu76UbysrBH9Hy/5X41OTAbQuffZFU6lQ1rdcLHzpU5BzVvr/YFykoiMYZVWlr/PX1mDcfM9Qg==" 
+        crossorigin="anonymous" 
+        referrerpolicy="no-referrer"></script>
     </head>
 
     <body>
@@ -15,7 +19,8 @@
             include 'connection.php';
             $userid = $_SESSION['user_id'];
         ?>
-        <header>
+    
+    <header>
             <a href="index.php"> <img class="logo" src="Pictures/LOGO.jpeg" alt="Pacific Northwest X-Ray Inc."> </a>
             <span class = "menu">
                 <a href="myProfile.php"> My Profile </a>
@@ -27,7 +32,7 @@
                 <a id = "logout" href="logout.php">Logout</a>
                 <span>&nbsp|&nbsp</span>
                 <a href="myProfile.php"  >My Profile</a>
-                <img class="image_login_register" src="Pictures/login_register_icon.png" alt="Login and register icon">
+                <img class="image_login_register" src="Pictures/login_register_icon.png" alt="Login and register icon" style="height:30px; width:50px;margin-right:-14px">
             </span>
         </header>
 
@@ -36,6 +41,7 @@
             <?php
                 //Initialise array
                 $month = array(0,0,0,0,0,0,0,0,0,0,0,0);
+                $m2 = array("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec");
 
                 //Retrieve current year
                 $currentyear = date("Y");
@@ -83,6 +89,7 @@
                 }
 
                 //CHART
+                /*
                 echo '<table>
                      <tr><td>Month</td><td>Number of Transaction</td></tr>
                      <tr><td>Jan</td><td>'.$month[0].'</td></tr>
@@ -97,9 +104,9 @@
                      <tr><td>October</td><td>'.$month[9].'</td></tr>
                      <tr><td>November</td><td>'.$month[10].'</td></tr>
                      <tr><td>December</td><td>'.$month[11].'</td></tr></table>';
+                     */
 
-
-                //Preferred Products by name CHART
+                     //Preferred Products by name CHART
 
                 $preferredproduct = array();
 
@@ -113,7 +120,7 @@
                     while($row = mysqli_fetch_assoc($result))
                     {
                         
-                        $transid = $row['id'];echo $transid .'<br>';
+                        $transid = $row['id'];
                         $sql_2 = "SELECT product_name, quantity FROM transactions_details WHERE trans_id = '$transid'";
                         $result_2 = mysqli_query($conn,$sql_2);
 
@@ -172,22 +179,170 @@
                 }
 
                 //CHART
+                /*
                 echo '<br><table>
                      <tr><td>ProductName</td><td>Quantity</td></tr>
                      <tr><td>'.$prefer_name[0].'</td><td>'.$prefer_quantity[0].'</td></tr>
                      <tr><td>'.$prefer_name[1].'</td><td>'.$prefer_quantity[1].'</td></tr>
                      <tr><td>'.$prefer_name[2].'</td><td>'.$prefer_quantity[2].'</td></tr>
+                     <tr><td>'.$prefer_name[3].'</td><td>'.$prefer_quantity[3].'</td></tr>
+                     <tr><td>'.$prefer_name[4].'</td><td>'.$prefer_quantity[4].'</td></tr>
+                     <tr><td>'.$prefer_name[5].'</td><td>'.$prefer_quantity[5].'</td></tr>
+                     <tr><td>'.$prefer_name[6].'</td><td>'.$prefer_quantity[6].'</td></tr>
+                     <tr><td>'.$prefer_name[7].'</td><td>'.$prefer_quantity[7].'</td></tr>
                      </table>';
+                     */
 
-                     
 
             ?>
 
 
-            <!--Transaction History-->
+<div class="row">
+  <div class="leftcol">
+    <!--Number of Transactions in a year by month CHART -->
+    <div class="barChart-container" align=center>
+        <canvas id="barChart" style="width:100%;max-width:700px;max-height:500px"></canvas>
+    </div>
+    
+    <script>
+        const labels = <?php echo json_encode($m2) ?>;
 
-            <p>Transaction History</p>
-            <p>Please allow POP UP window!</p>
+        const data = {
+        labels: labels,
+        datasets: [{
+            data: <?php echo json_encode($month) ?>,
+            label: 'Months',
+            backgroundColor: [
+            'rgba(255, 99, 132, 0.2)',
+            'rgba(255, 159, 64, 0.2)',
+            'rgba(255, 205, 86, 0.2)',
+            'rgba(75, 192, 192, 0.2)',
+            'rgba(54, 162, 235, 0.2)',
+            'rgba(153, 102, 255, 0.2)',
+            'rgba(201, 203, 207, 0.2)'
+            ],
+            borderColor: [
+            '#DE3163',
+            '#FF7F50',
+            '#FFBF00',
+            '#40E0D0',
+            '#6495ED',
+            '#DA70D6',
+            '#808080'
+            ],
+            borderWidth: 1,
+            hoverBorderWidth: 2,
+            hoverBorderColor: '#000',
+        }]
+        };
+
+        const config = {
+            type: 'bar',
+            data: data,
+                options: {
+                    indexAxis: 'y',
+                    responsive: true,
+                    plugins: {
+                    legend: {
+                        position: 'top',
+                    },
+                    title: {
+                        display: true,
+                        text: 'Number of Transactions in a year by month',
+                        font: {
+                            size: 26
+                        }
+                    }
+                }
+            },
+        };
+
+        // Global default chart variables
+        Chart.defaults.font.family = 'Maiandra GD';
+        Chart.defaults.font.size = 15;
+
+        const barChart = new Chart(
+        document.getElementById('barChart').getContext('2d'),
+        config
+        );
+
+        </script>
+    </div>
+    <div class="rightcol">
+            <!-- Preferred Products by name -->
+            <div class="pieChart-container" align=center>
+                <canvas id="pieChart" style="width:100%;max-width:500px"></canvas>
+            </div>
+            
+            <script>
+                const labelsPie = <?php echo json_encode($prefer_name) ?>;
+
+                const dataPie = {
+                labels: labelsPie,
+                datasets: [{
+                    data: <?php echo json_encode($prefer_quantity) ?>,
+                    label: 'Products',
+                    backgroundColor: [
+                        "Tomato",
+                        "Orange",
+                        "DodgerBlue",
+                        "MediumSeaGreen",
+                        "Gray",
+                        "SlateBlue",
+                        "Violet",
+                        "LightGray"
+                    ],
+                    borderColor: [
+                        "red",
+                        "Orange",
+                        "DodgerBlue",
+                        "MediumSeaGreen",
+                        "Gray",
+                        "SlateBlue",
+                        "Violet",
+                        "LightGray"
+                    ],
+                    borderWidth: 2,
+                    hoverBorderWidth: 2,
+                    hoverBorderColor: '#000'
+                }]
+                };
+
+                const configPie = {
+                type: 'pie',
+                data: dataPie,
+                options: {
+                    responsive: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                        },
+                        title: {
+                            display: true,
+                            text: 'Preferred Products by name',
+                            font: {
+                                size: 26
+                            }
+                        }
+                    }
+                }
+                };
+
+                const pieChart = new Chart(
+                document.getElementById('pieChart').getContext('2d'),
+                configPie
+                );
+
+            </script>
+  </div>
+</div>
+
+            <!--Transaction History-->
+            <hr>
+            <h2 align=center><strong>Transaction History</strong></h2>
+            <p style="color:red" align=center>*Please allow POP UP window!</p>
+
+
 
             <?php
                 $sql = "SELECT id, _date, _time, grand_total FROM transactions WHERE userid = '$userid'";
@@ -198,20 +353,19 @@
                     while($row = mysqli_fetch_assoc($isFound))
                     {
                         //The list is a button that generate the receipt
-                        echo '<a href="receipt.php?receipt='.$row['id'].'&check=false" target="_blank">';
+                        echo '<table>';
+                        echo '<tr><td><a href="receipt.php?receipt='.$row['id'].'&check=false" target="_blank">';
                         echo "Transaction ID: " .$row['id'].
                              " Date: ".$row['_date']." ".$row['_time']."... Order Total: ".$row['grand_total'].
-                             '</br></a>';
+                             '</a></td></tr></table>';
                     }
                 }
             ?>
-            
 
-        </main>
-
+</main>
         
 
-        <footer class="FooterFooter">
+<footer class="FooterFooter">
             <div class="FFooterUpperPortion">
                 <div class="FFooterIcon">
                     <img src="Pictures/LOGO.jpeg" alt="Pacific Northwest X-Ray Inc.">

@@ -49,7 +49,7 @@
 
         $result = mysqli_query($conn, $sql);
         if ($result === TRUE) {
-          echo "Table u created successfully or Table exists".'<br>';
+          //echo "Table u created successfully or Table exists".'<br>';
           
           //setup array for dummy products
           $productcategory = array("Merchant Board ", "Merchant Board ", "Silver Recovery Systems ", "Silver Recovery Systems ", "Veterinary ", "Veterinary ", 
@@ -80,15 +80,15 @@
             VALUES ('$value','$productname[$index]', '$productdetail[$index]', '$price[$index]', '$productpic[$index]', '$productpicadd[$index]')";
             $result = mysqli_query($conn, $sql);
             if ($result === TRUE) {
-              echo "New record created successfully";
+              //echo "New record created successfully";
             } else {
-              echo "Error: " . $sql  . mysqli_error($conn);
+              //echo "Error: " . $sql  . mysqli_error($conn);
             }
             $index++;
           }
           
         } else {
-          echo "Error creating table: " . mysqli_error($conn);
+          //echo "Error creating table: " . mysqli_error($conn);
         }
 
         mysqli_close($conn);

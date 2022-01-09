@@ -41,6 +41,142 @@
                 
             ?>
 
+            <!--Validate dummy OTP-->
+            <?php
+                $sql = "SELECT Grand_total FROM ShoppingCart WHERE User_id='$userid'";
+                $isFound = mysqli_query($conn,$sql); 
+
+                //Fetch the grantotal
+                $result = mysqli_fetch_assoc($isFound); 
+
+                $validate_error = "";
+                $validate_error2 = "";
+                $OTP = "";
+                $trans_id = "";
+                if ($_SERVER["REQUEST_METHOD"] === "POST")
+                {
+                    $shippingfee = $_SESSION['shipping'];
+                    $merchandise = $_SESSION['merchandise'];
+                    $paymentotal = $_SESSION['PaymentTotal'];
+
+                    if(empty($_POST["validation"]))
+                    {
+                        $validate_error = "Payment Attempt Failed!";
+                        $validate_error2 = " Please try again!";
+                    }
+                    else
+                    {
+                        $OTP = test($_POST["validation"]);
+                        if(!is_numeric($OTP) || strlen($OTP) !== 6)
+                        {
+                            $validate_error = "Payment Attempt Failed!";
+                            $validate_error2 = " Please try again!";
+                        }
+                    }
+
+                    if($OTP !== "" && $validate_error === "" && $validate_error2 === "")
+                    {
+                        
+                        date_default_timezone_set("Asia/Kuching");
+                        $date = date("Y-m-d");
+                        $time = date("H:i:s");
+
+                        $sql = "INSERT INTO transactions (userid, _date, _time, shipping_fee, merchandise_total, grand_total) 
+                        VALUES ('$userid', '$date', '$time', '$shippingfee', '$merchandise', '$paymentotal')";
+                        $isFound = mysqli_query($conn,$sql);
+
+                        if ($isFound === TRUE) {
+                            //echo "New record created successfully";
+                        } else {
+                            //echo "Error: " .  mysqli_error($conn);
+                        }
+
+                        //Fetch the trans id
+                        $sql = "SELECT id FROM transactions WHERE userid = '$userid' AND _date = '$date' AND _time = '$time'"; 
+                        $isFound = mysqli_query($conn,$sql); 
+                        $result = mysqli_fetch_assoc($isFound);
+                        //Store the trans id into the variable
+                        $trans_id = $result['id'];
+
+                        //Select every product in CART ITEM 
+                        $sql = "SELECT * FROM Cart_Item WHERE Cart_id = '$cartid'"; 
+                        $isFound = mysqli_query($conn,$sql); 
+    
+                        if(mysqli_num_rows($isFound) > 0)
+                        {
+                            while($row = mysqli_fetch_assoc($isFound)) //Insert every product into the transactions details
+                            {
+                                $proid = $row['Product_id'];
+                                $quan = $row['Quantity'];
+                                $subtotal = $row['Subtotal'];
+
+                                $sql = "SELECT productname FROM product WHERE id = '$proid'";
+                                $isFound_2 = mysqli_query($conn,$sql); 
+                                $product = mysqli_fetch_assoc($isFound_2);
+                                $product_name = $product['productname'];
+
+                                $sql = "INSERT INTO transactions_details (trans_id, product_id, quantity, total_price, product_name) VALUES
+                                ('$trans_id', '$proid', '$quan', '$subtotal', '$product_name')";
+
+                                $isInsert = mysqli_query($conn,$sql); 
+                                if ($isInsert === TRUE) {
+                                    //echo "New record FOR TRANSACTIONS DETAILS created successfully";
+                                } else {
+                                    //echo "Error record FOR TRANSACTIONS DETAILS : " .  mysqli_error($conn);
+                                }
+                            }
+                        }
+
+                        echo '<p class = "success">Validation and Payment Successful!</p>';
+                        //echo '<p class="error">Validation and Payment Successful!</p>';
+                        echo '<p class = "normal">
+                              Date & Time:&nbsp'.$date.'&nbsp'.$time.
+                             '<br> Generating Receipt, Please allow
+                             ';
+                        echo '<span class = "popup">
+                              POP UP 
+                              </span>';
+                        echo '<span class = "normal">
+                              ! <br>
+                              Redirecting...
+                              </span></p><br><br>';
+
+
+                        //Redirect back to index.php after successful payment
+                        //header( "refresh:6 ; url=index.php" );
+
+                        //Open a new tab for receipt
+                        echo '<script type="text/javascript">
+                             setTimeout
+                             (
+                                 function() 
+                                 {
+                                    window.open("receipt.php?receipt='.$trans_id.'&check=true")
+                                 }, 3000
+                             );
+                             </script>';
+                        ob_end_flush();
+                    }
+                    else
+                    {
+                        echo '<p class="error">'.$validate_error." ".$validate_error2.'</p>';
+                        echo '<p class="normal">Redirecting back to Cart...<br><br></p>';
+                        //Redirect back to cart after failed payment attempt
+                        header( "refresh:3 ; url=cart.php" );
+                    }
+
+                }
+
+                function test($data)
+                {
+                    $data = trim($data);
+                    $data = stripslashes($data);
+                    $data = htmlspecialchars($data);
+                    return $data;
+                }
+
+            ?>
+
                 <table style="width:100%; font-size: 20px;">
                 <tr>
                 <td><strong>Delivery Address</strong></td>
@@ -55,13 +191,13 @@
                 '<tr><td>'.$user_making_payment['city'].",".$user_making_payment['postcode'].",".'</td></tr>'.
                 '<tr><td>'.$user_making_payment['_state'].", Malaysia.".'</tr>';
                 echo '<tr><td><br></td></tr>';
-                echo '<tr><td>'.$user_making_payment['lastname']." ".$user_making_payment['firstname'].'</td></tr>';
-                echo '<tr><td>'."+".$user_making_payment['region']." ".$user_making_payment['phone'].'</td></tr>';
+                echo '<tr><td style="font-weight:bold;">'.$user_making_payment['lastname']." ".$user_making_payment['firstname'].'</td></tr>';
+                echo '<tr><td style="font-weight:bold;">'."+".$user_making_payment['region']." ".$user_making_payment['phone'].'</td></tr>';
                 echo '</table>';
             ?>
             <br>
-            <table style="width:100%; height: 400px; font-size: 18px;">
-            <tr style="background-color: #C0C0C0" align= center>
+            <table style="width:100%;  font-size: 18px;">
+            <tr style="background-color: #C0C0C0" align= center height="80px;">
                 <td style= "width:55%">Product(s)</td>
                 <td style= "width:15%">Quantity</td>
                 <td style= "width:15%">Unit Price</td>
@@ -69,7 +205,8 @@
             </tr>
 
             <?php
-                $total_quantity = $shippingfee = $paymentotal = 0;
+                $total_quantity = 0;
+
                 $sql = "SELECT Cart_Item.Cart_id, product.id, product.productname, Cart_Item.Quantity, product.price, Cart_Item.Subtotal 
                 FROM Cart_Item
                 INNER JOIN product
@@ -83,8 +220,8 @@
                     $total_quantity = mysqli_num_rows($result); //Fetch the total number of items
                     while($row = mysqli_fetch_assoc($result))
                     {
-                        echo'<tr align = "center">';
-                        echo '<td >'.$row['productname']. '</td>';
+                        echo'<tr align = "center" height="80px;">';
+                        echo '<td>'.$row['productname']. '</td>';
                         echo '<td>'.$row['Quantity'].'</td>';
                         echo '<td>' .$row['price']. '</td>';
                         echo '<td>' .$row['Subtotal']. '</td>';
@@ -128,175 +265,58 @@
 
                 $paymentotal = $user_making_payment['Grand_total'] + $shippingfee;
                 
-                echo '<tr ><td style="border-top: 1px solid #C0C0C0;" colspan="3" align=right>'."Merchandise Subtotal: ".
-                '</td><td align=center style="border-top: 1px solid #C0C0C0;">'.$user_making_payment['Grand_total'].'</td></tr>';
-                echo '<tr><td colspan="3" align=right>'."Shipping Subtotal: ".'</td><td align=center>'.$shippingfee.'</td></tr>';
-                echo '<tr style="font-weight: bold;"><td style="border-bottom: 1px solid #C0C0C0;" colspan="3" align=right>'."Payment Total (".$total_quantity." Item): ".'</td><td style="border-bottom: 1px solid #C0C0C0;" align=center>'.$paymentotal.'</td></tr>';
-                echo '</table>';
+                echo '</table><hr style="border: 1px solid #C0C0C0;">';
+                echo '<br><br><br>';
+                echo '<table style="font-size:20px; width:100%; border-top: 1px solid gray;">';
+                echo '<tr><td align=left width="88.8%">'."Merchandise Subtotal: ".
+                '</td><td align=center>'.$user_making_payment['Grand_total'].'</td></tr>';
+                echo '<tr><td align=left width="88.8%">'."Shipping Subtotal: ".'</td><td align=center>'.$shippingfee.'</td></tr>';
+                echo '<tr style="font-weight: bold;"><td align=left width="88.8%">'."Payment Total (".$total_quantity." Item): ".
+                '</td><td align=center>'.$paymentotal.'</td></tr>';
+
 
                 $_SESSION['PaymentTotal'] = $paymentotal;
             ?>
+
+            </table><br>
             
             <!--Payment-->
-            <p align=right style="font-size:20px">Total: 
+            <table style="font-size:20px; width:100%; box-shadow: 0px 2px 5px 2px #888888; font-weight: bold;" >
+            <tr><td align=left>Total: 
 
-            <?php 
-                $shippingfee = $_SESSION['shipping'];
-                $merchandise = $_SESSION['merchandise'];
-                $paymentotal = $_SESSION['PaymentTotal'];
-
-                $sql = "SELECT Grand_total FROM ShoppingCart WHERE User_id='$userid'";
-                $isFound = mysqli_query($conn,$sql); 
-
-                //Fetch the grantotal
-                $result = mysqli_fetch_assoc($isFound); 
-
-                $total = $shippingfee + $result['Grand_total'];
-                echo $total.'</p>';
-
-            ?>
-
-            <p>
-                <form name="payment" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
-                <p align=right style="font-size:20px"> OTP: 
-                <input type="text" id="validation" name="validation">
-                    <span class="button">
-                        <input class="b2" type="submit" name = "submit" value="Submit" >
-                    </span> </p>
-                </form>
-            </p>
-
-            <!--Validate dummy OTP-->
             <?php
-                $validate_error = "";
-                $validate_error2 = "";
-                $OTP = "";
-                $trans_id = "";
-                if ($_SERVER["REQUEST_METHOD"] == "POST")
-                {
-                    if(empty($_POST["validation"]))
-                    {
-                        $validate_error = "PAYMENT ATTEMPT FAILED!";
-                        $validate_error2 = " Please try to CHECK OUT AGAIN!";
-                    }
-                    else
-                    {
-                        $OTP = test($_POST["validation"]);
-                        if(!is_numeric($OTP) || strlen($OTP) !== 6)
-                        {
-                            $validate_error = "PAYMENT ATTEMPT FAILED!";
-                            $validate_error2 = " Please try to CHECK OUT AGAIN!";
-                        }
-                    }
-
-                    if($OTP !== "" && $validate_error === "" && $validate_error2 === "")
-                    {
-                        date_default_timezone_set("Asia/Kuching");
-                        $date = date("Y-m-d");
-                        $time = date("H:i:s");
-
-                        $sql = "INSERT INTO transactions (userid, _date, _time, shipping_fee, merchandise_total, grand_total) 
-                        VALUES ('$userid', '$date', '$time', '$shippingfee', '$merchandise', '$paymentotal')";
-                        $isFound = mysqli_query($conn,$sql);
-
-                        if ($isFound === TRUE) {
-                            echo "New record created successfully";
-                        } else {
-                            echo "Error: " .  mysqli_error($conn);
-                        }
-
-                        //Fetch the trans id
-                        $sql = "SELECT id FROM transactions WHERE userid = '$userid' AND _date = '$date' AND _time = '$time'"; 
-                        $isFound = mysqli_query($conn,$sql); 
-                        $result = mysqli_fetch_assoc($isFound);
-                        //Store the trans id into the variable
-                        $trans_id = $result['id'];
-
-                        //Select every product in CART ITEM 
-                        $sql = "SELECT * FROM Cart_Item WHERE Cart_id = '$cartid'"; 
-                        $isFound = mysqli_query($conn,$sql); 
-    
-                        if(mysqli_num_rows($isFound) > 0)
-                        {
-                            while($row = mysqli_fetch_assoc($isFound)) //Insert every product into the transactions details
-                            {
-                                $proid = $row['Product_id'];
-                                $quan = $row['Quantity'];
-                                $subtotal = $row['Subtotal'];
-
-                                $sql = "SELECT productname FROM product WHERE id = '$proid'";
-                                $isFound_2 = mysqli_query($conn,$sql); 
-                                $product = mysqli_fetch_assoc($isFound_2);
-                                $product_name = $product['productname'];
-
-                                $sql = "INSERT INTO transactions_details (trans_id, product_id, quantity, total_price, product_name) VALUES
-                                ('$trans_id', '$proid', '$quan', '$subtotal', '$product_name')";
-
-                                $isInsert = mysqli_query($conn,$sql); 
-                                if ($isInsert === TRUE) {
-                                    echo "New record FOR TRANSACTIONS DETAILS created successfully";
-                                } else {
-                                    echo "Error record FOR TRANSACTIONS DETAILS : " .  mysqli_error($conn);
-                                }
-                            }
-     
-                            //Remove the paid items in cart
-                            $sql = "DELETE FROM Cart_Item WHERE Cart_id = $cartid";
-                            $isFound = mysqli_query($conn,$sql); 
-                            if ($isFound === TRUE) {
-                                echo "Remove the paid items in cart successfully";
-                            } else {
-                                echo "Error Remove the paid items: " .  mysqli_error($conn);
-                            }
-                        }
-
-                        echo '<p align=right style="color:green; font-size:15px">'."Validation and Payment Successful!".'</p>';
-                        echo '<p align=right style="font-size:15px">'."Payment Date: ".$date.'<br>';
-                        echo "Payment Time: ".$time.'</p>';
-                        echo '<p align=right style="color:red; font-size:15px">'."Please allow POP UP window for this website!".'<br>';
-                        echo "Generating RECEIPT!".'<br>';
-                        echo "Redirecting back to CATALOG...".'</p>';
-
-                        //Redirect back to index.php after successful payment
-                        header( "refresh:8 ; url=index.php" );
-
-                        //Open a new tab for receipt
-                        echo '<script type="text/javascript">
-                             setTimeout
-                             (
-                                 function() 
-                                 {
-                                    window.open("receipt.php?receipt='.$trans_id.'&check=true")
-                                 }, 5000
-                             );
-                             </script>';
-                        ob_end_flush();
-                    }
-                    else
-                    {
-                        echo '<p align=right style="color:red; font-size:15px">';
-                        echo $validate_error;
-                        echo $validate_error2.'<br>';
-                        echo "Redirecting back to CART...";
-                        echo '</p>';
-                        //Redirect back to cart after failed payment attempt
-                        header( "refresh:3 ; url=cart.php" );
-                    }
-
-                }
-
-                function test($data)
-                {
-                    $data = trim($data);
-                    $data = stripslashes($data);
-                    $data = htmlspecialchars($data);
-                    return $data;
-                }
+                echo "$".$paymentotal.'</td>';
             ?>
 
-            
+            <td align=right width="45%">
+                <form name="payment" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+                 OTP :&nbsp</td>
+                <td align=center width="10%"><input class="otp" type="text" id="validation" name="validation"></td>
+                    <td>
+                        <input class="b2" type="submit" name = "submit" value="Submit" >
+                    </td>
+                </form>
+            </tr>
+            </table>
 
         </main>
+
+        <?php
+            if ($_SERVER["REQUEST_METHOD"] === "POST")
+            {
+                if($OTP !== "" && $validate_error === "" && $validate_error2 === "")
+                {
+                    //Remove the paid items in cart
+                    $sql = "DELETE FROM Cart_Item WHERE Cart_id = $cartid";
+                    $isFound = mysqli_query($conn,$sql); 
+                    if ($isFound === TRUE) {
+                        //echo "Remove the paid items in cart successfully";
+                    } else {
+                        //echo "Error Remove the paid items: " .  mysqli_error($conn);
+                    }
+                }
+            }
+        ?>
 
         <footer class="FooterFooter">
                 <div class="FFooterUpperPortion">

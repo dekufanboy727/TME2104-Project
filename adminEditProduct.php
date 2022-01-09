@@ -143,7 +143,6 @@
                 $shownid = $editid;
                 $productname = $editrow["productname"];
                 $productcategory = $editrow["productcategory"];
-                echo $productcategory;
                 $productdesc = $editrow["productdetail"];
                 $productprice = $editrow["price"];
                 $productpic = $editrow["productpic"];

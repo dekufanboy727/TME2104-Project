@@ -12,8 +12,7 @@ body{
     min-width: 1500px;
     font-family: Maiandra GD;
     color: black;
-    height: 100%;
-    background-color: rgb(230, 230, 230);
+    min-height: 100%;
 }
 
 .menu a {
@@ -148,26 +147,35 @@ main {
 }
 
 img {
-    height: 64px;
-    width:96px;
+    height: 35px;
+    width:67px;
+    margin-left: -30px;
 }
 
 .b2 {
+    font-family: Maiandra GD;
     padding: 5px;
     color: rgb(255, 255, 255);
     background-color: rgb(0, 0, 0);
     text-align: center;
     cursor: pointer;
-    width: 8%;
-    font-size: 15px;
+    width: 100%;
+    font-size: 17px;
+    margin-right: 5%;
   }
   
 .b2:hover {
-    background-color: rgb(155, 153, 153);
+    background-color: rgb(185, 183, 183);
+    color: black;
   }
 
+.otp {
+    margin-left: -3%;
+    width: 100px;
+}
+
 input {
-    width: 10%;
+    width: 80%;
     padding: 7px;
     text-align: center;
   }
@@ -175,3 +183,32 @@ input {
 input[type=text]:focus {
     background-color: rgba(209, 173, 230, 0.356);
   }
+
+.success {
+    font-family: Maiandra GD;
+    font-size: 22px;
+    text-align: center;
+    padding-top: 15px;
+    color: green;
+}
+
+.popup {
+    font-family: Maiandra GD;
+    font-size: 22px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.normal {
+    font-family: Maiandra GD;
+    font-size: 22px;
+    text-align: center;
+}
+
+.error {
+    font-family: Maiandra GD;
+    font-size: 22px;
+    color: red;
+    padding-top: 15px;
+    text-align: center;
+}
