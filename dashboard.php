@@ -173,6 +173,10 @@
                 $i = 0;
                 foreach ($preferredproduct as $value)
                 {
+                    if($i === 3)
+                    {
+                        break;
+                    }
                     $prefer_quantity[$i] = $value['productCount'];
                     $prefer_name[$i] = $value['productName'];
                     $i++;
@@ -201,7 +205,7 @@
   <div class="leftcol">
     <!--Number of Transactions in a year by month CHART -->
     <div class="barChart-container" align=center>
-        <canvas id="barChart" style="width:100%;max-width:700px;max-height:500px"></canvas>
+        <canvas id="barChart" style="max-width:700px;"></canvas>
     </div>
     
     <script>
@@ -213,23 +217,21 @@
             data: <?php echo json_encode($month) ?>,
             label: 'Months',
             backgroundColor: [
-            'rgba(255, 99, 132, 0.2)',
-            'rgba(255, 159, 64, 0.2)',
-            'rgba(255, 205, 86, 0.2)',
-            'rgba(75, 192, 192, 0.2)',
-            'rgba(54, 162, 235, 0.2)',
-            'rgba(153, 102, 255, 0.2)',
-            'rgba(201, 203, 207, 0.2)'
+            'rgb(255, 154, 162)',
+            'rgb(255, 183, 178)',
+            'rgb(255, 218, 193)',
+            'rgb(252, 244, 201)',
+            'rgb(255, 252, 195)',
+            'rgb(215, 253, 223)',
+            'rgb(183, 235, 226)',
+            'rgb(196, 216, 243)',
+            'rgb(200, 199, 247)',
+            'rgb(204, 181, 251)',
+            'rgb(208, 164, 255)',
+            'rgb(190, 148, 230)'
             ],
-            borderColor: [
-            '#DE3163',
-            '#FF7F50',
-            '#FFBF00',
-            '#40E0D0',
-            '#6495ED',
-            '#DA70D6',
-            '#808080'
-            ],
+            borderColor: 'white',
+            barThickness: 20,
             borderWidth: 1,
             hoverBorderWidth: 2,
             hoverBorderColor: '#000',
@@ -248,7 +250,7 @@
                     },
                     title: {
                         display: true,
-                        text: 'Number of Transactions in a year by month',
+                        text: 'Number of Transactions in a Year by Month',
                         font: {
                             size: 26
                         }
@@ -259,7 +261,7 @@
 
         // Global default chart variables
         Chart.defaults.font.family = 'Maiandra GD';
-        Chart.defaults.font.size = 15;
+        Chart.defaults.font.size = 13;
 
         const barChart = new Chart(
         document.getElementById('barChart').getContext('2d'),
@@ -271,7 +273,7 @@
     <div class="rightcol">
             <!-- Preferred Products by name -->
             <div class="pieChart-container" align=center>
-                <canvas id="pieChart" style="width:100%;max-width:500px"></canvas>
+                <canvas id="pieChart" style="width:100%;max-width:400px"></canvas>
             </div>
             
             <script>
@@ -283,24 +285,14 @@
                     data: <?php echo json_encode($prefer_quantity) ?>,
                     label: 'Products',
                     backgroundColor: [
-                        "Tomato",
-                        "Orange",
-                        "DodgerBlue",
-                        "MediumSeaGreen",
-                        "Gray",
-                        "SlateBlue",
-                        "Violet",
-                        "LightGray"
+                        '#9B3192',
+                        '#EA5F89',
+                        '#F7B7A3',
                     ],
                     borderColor: [
-                        "red",
-                        "Orange",
-                        "DodgerBlue",
-                        "MediumSeaGreen",
-                        "Gray",
-                        "SlateBlue",
-                        "Violet",
-                        "LightGray"
+                        '#FFFFFF',
+                        '#FFFFFF',
+                        '#FFFFFF',
                     ],
                     borderWidth: 2,
                     hoverBorderWidth: 2,
@@ -319,7 +311,7 @@
                         },
                         title: {
                             display: true,
-                            text: 'Preferred Products by name',
+                            text: 'Preferred Products by Name',
                             font: {
                                 size: 26
                             }
@@ -334,15 +326,21 @@
                 );
 
             </script>
+
+            <?php
+                if(!isset($prefer_quantity[0]))
+                {
+                    echo '<p class="no_result_pie">'."No Results!".'</p>';
+                }
+            ?>
+
   </div>
 </div>
 
             <!--Transaction History-->
             <hr>
-            <h2 align=center><strong>Transaction History</strong></h2>
-            <p style="color:red" align=center>*Please allow POP UP window!</p>
-
-
+            <br><br>
+            <h2 style="text-align:center; font-weight: bold; font-size: 30px;">Transaction History</h2>
 
             <?php
                 $sql = "SELECT id, _date, _time, grand_total FROM transactions WHERE userid = '$userid'";
@@ -350,15 +348,21 @@
 
                 if(mysqli_num_rows($isFound) > 0)
                 {
+                    echo '<br><br>';
                     while($row = mysqli_fetch_assoc($isFound))
                     {
                         //The list is a button that generate the receipt
                         echo '<table>';
                         echo '<tr><td><a href="receipt.php?receipt='.$row['id'].'&check=false" target="_blank">';
-                        echo "Transaction ID: " .$row['id'].
-                             " Date: ".$row['_date']." ".$row['_time']."... Order Total: ".$row['grand_total'].
+                        echo "Transaction ID:".'&nbsp' .$row['id'].'&nbsp&nbsp'.
+                             " Date:".'&nbsp'.$row['_date']." ".$row['_time']."...".'&nbsp&nbsp'."Order Total:".'&nbsp'.$row['grand_total'].
                              '</a></td></tr></table>';
                     }
+                    echo '<div class="empty_btm"></div>';
+                }
+                else //mysqli_num_rows($isFound) = 0
+                {
+                    echo '<p class="no_trans">'."No Transactions being Made Yet!".'</p>';
                 }
             ?>
 

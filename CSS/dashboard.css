@@ -153,6 +153,11 @@ th, td {
     text-align: center;
 
 }
+
+tr a{
+    text-decoration: none;
+    color: black;
+}
   
 tr:hover {background-color: rgba(209, 173, 230, 0.356);}
 
@@ -164,6 +169,10 @@ hr {
 
 * {
     box-sizing: border-box;
+}
+
+.empty_btm {
+    margin-top: 8%;
 }
 
 /* Column container */
@@ -185,4 +194,19 @@ hr {
     flex: 50%;
     padding: 20px;
     margin-top: 2%;
+}
+
+
+.no_trans {
+    text-align: center;
+    padding-top: 100px;
+    padding-bottom: 150px;
+    font-size: 20px;
+}
+
+.no_result_pie {
+    text-align: center;
+    margin-top: -50%;
+    padding-bottom: 15px;
+    font-size: 20px;
 }
