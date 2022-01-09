@@ -1,7 +1,7 @@
 <?php 
     $servername = "localhost";
-    $username = "root";
-    $password = "";
+    $username = "id18251758_db_user";
+    $password = "WopK1kfEG(*mZE%3";
 
     //Pass for PNWX_admin is 2L4R/4hb6Qd6GVG3
     
@@ -18,7 +18,7 @@
         //echo "Connection successful!";
     }
 
-    $sql = "CREATE DATABASE DB_PNWX";
+    /*$sql = "CREATE DATABASE DB_PNWX";
     $dbResult = mysqli_query($conn, $sql);
     if ($dbResult === FALSE) 
     {
@@ -27,9 +27,9 @@
     else
     {
         //echo "Database created successfully";   
-    }
+    }*/
 
-    $dbname = "DB_PNWX";
+    $dbname = "id18251758_db_pnwx";
     
     // Create connection
     $conn = mysqli_connect($servername, $username, $password, $dbname);
