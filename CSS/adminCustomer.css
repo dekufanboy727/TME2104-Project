@@ -348,6 +348,12 @@ input[type="button"]:hover {
   cursor: pointer;
 }
 
+.formTable td #region {
+  width: 20%;
+  padding: 4px;
+  box-sizing: border-box;
+}
+
 .formTable td #state {
   width: 70%;
   padding: 4px 8px;
