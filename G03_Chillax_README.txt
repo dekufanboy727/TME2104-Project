@@ -19,12 +19,14 @@ database username: id18251758_db_user
 
 password: WopK1kfEG(*mZE%3
 
+Presets:
 Admins
 1. admin01@pnwx.com Password: PNWX
 2. admin02@pnwx.com Password: PNWX
 
 Users
-
+1. JM1@gmail.com Password: Cc123@
+2. HM2@gmail.com Password: Aa123@
 
 *Please use GMAIL to receive the Receipt through Email (Hotmail is blocking the email sent from the server).
 *Please allow pop-ups and redirects for this website.
