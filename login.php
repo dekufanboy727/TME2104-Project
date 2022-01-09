@@ -134,7 +134,7 @@
                             <label for="Email">Email</label>
                         </div>
                         <div class="col2">
-                            <input type="email" id="email" name="email" placeholder="Email.." value="<?php echo $email;?>" >
+                            <input type="email" id="email" name="email" placeholder="Email.." value="<?php echo $email;?>" ><br>
                             <span class="error"> <?php echo $emailE; ?> </span>
                         </div>
                     </div>
