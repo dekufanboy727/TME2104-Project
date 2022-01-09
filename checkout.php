@@ -143,7 +143,7 @@
 
 
                         //Redirect back to index.php after successful payment
-                        //header( "refresh:6 ; url=index.php" );
+                        header( "refresh:6 ; url=index.php" );
 
                         //Open a new tab for receipt
                         echo '<script type="text/javascript">

@@ -173,6 +173,10 @@
                 $i = 0;
                 foreach ($preferredproduct as $value)
                 {
+                    if($i === 3)
+                    {
+                        break;
+                    }
                     $prefer_quantity[$i] = $value['productCount'];
                     $prefer_name[$i] = $value['productName'];
                     $i++;
@@ -248,7 +252,7 @@
                     },
                     title: {
                         display: true,
-                        text: 'Number of Transactions in a year by month',
+                        text: 'Number of Transactions in a Year by Month',
                         font: {
                             size: 26
                         }
@@ -286,21 +290,11 @@
                         "Tomato",
                         "Orange",
                         "DodgerBlue",
-                        "MediumSeaGreen",
-                        "Gray",
-                        "SlateBlue",
-                        "Violet",
-                        "LightGray"
                     ],
                     borderColor: [
                         "red",
                         "Orange",
                         "DodgerBlue",
-                        "MediumSeaGreen",
-                        "Gray",
-                        "SlateBlue",
-                        "Violet",
-                        "LightGray"
                     ],
                     borderWidth: 2,
                     hoverBorderWidth: 2,
@@ -319,7 +313,7 @@
                         },
                         title: {
                             display: true,
-                            text: 'Preferred Products by name',
+                            text: 'Preferred Products by Name',
                             font: {
                                 size: 26
                             }
@@ -334,6 +328,14 @@
                 );
 
             </script>
+
+            <?php
+                if(!isset($prefer_quantity[0]))
+                {
+                    echo '<p class="no_result_pie">'."No Results!".'</p>';
+                }
+            ?>
+
   </div>
 </div>
 
@@ -350,15 +352,21 @@
 
                 if(mysqli_num_rows($isFound) > 0)
                 {
+                    echo '<br><br>';
                     while($row = mysqli_fetch_assoc($isFound))
                     {
                         //The list is a button that generate the receipt
                         echo '<table>';
                         echo '<tr><td><a href="receipt.php?receipt='.$row['id'].'&check=false" target="_blank">';
-                        echo "Transaction ID: " .$row['id'].
-                             " Date: ".$row['_date']." ".$row['_time']."... Order Total: ".$row['grand_total'].
+                        echo "Transaction ID:".'&nbsp' .$row['id'].'&nbsp&nbsp'.
+                             " Date:".'&nbsp'.$row['_date']." ".$row['_time']."...".'&nbsp&nbsp'."Order Total:".'&nbsp'.$row['grand_total'].
                              '</a></td></tr></table>';
                     }
+                    echo '<div class="empty_btm"></div>';
+                }
+                else //mysqli_num_rows($isFound) = 0
+                {
+                    echo '<p class="no_trans">'."No Transactions being Made Yet!".'</p>';
                 }
             ?>
 
