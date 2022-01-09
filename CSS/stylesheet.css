@@ -262,8 +262,8 @@ html {
 }
 
 .card {
-  min-height: 495px;
-  max-height: 495px;
+  min-height: 515px;
+  max-height: 515px;
   min-width: 450px;
   max-width: 450px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
@@ -291,8 +291,33 @@ html {
   color: white;
 }
 
-.grid-container {
+.grid-container_1 {
+  padding-top: 10px;
   text-align: center;
+  min-height: 20px;
+  max-height: 20px;
+}
+
+.grid-container_2 {
+  padding-top: 60px;
+  text-align: center;
+  min-height: 10px;
+  max-height: 10px;
+}
+
+.grid-container_3 {
+  padding-top: 55px;
+  text-align: center;
+  min-height: 30px;
+  max-height: 30px;
+}
+
+.grid-container_4 {
+  padding-top: 70px;
+  padding-bottom: 20px;
+  text-align: center;
+  min-height: 10px;
+  max-height: 10px;
 }
 
 .container {
